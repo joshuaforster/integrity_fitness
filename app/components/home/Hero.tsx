@@ -43,7 +43,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-16 md:pt-32 pb-16">
 
           <p className="hero-animate [animation-delay:100ms] text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
             Integrity Fitness Education · Norwich, Norfolk
