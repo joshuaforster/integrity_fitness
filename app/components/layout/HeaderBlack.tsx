@@ -37,7 +37,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-black/50 sticky top-0 z-50">
+    <header className="sticky top-0 z-50">
+      <div className="bg-black/50 w-full">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -78,13 +79,14 @@ export default function Header() {
           ))}
         </div>
       </nav>
+      </div>
 
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`lg:hidden absolute left-0 right-0 top-full bg-black overflow-hidden transition-all duration-300 ease-in-out ${
           mobileMenuOpen ? "max-h-96" : "max-h-0"
         }`}
       >
-        <div className="border-t border-gray-100 px-6 pb-4 space-y-1">
+        <div className="border-t border-white/10 px-6 pb-4 space-y-1">
           {navigation.map((item) => (
             <a
               key={item.name}
