@@ -1,6 +1,6 @@
-import Header from "./components/layout/Header"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "./components/layout/HeaderBlack";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     "Integrity Fitness Education offers professional personal trainer courses and fitness qualifications in Norwich, Norfolk. Start your fitness career today.",
 };
 
-export default function RootLayout({children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <Header />
-        <body className="min-h-full flex flex-col">
-          {children}
-        </body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
