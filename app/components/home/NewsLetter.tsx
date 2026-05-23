@@ -1,7 +1,7 @@
 export default function Newsletter() {
   return (
     <section className="bg-[#111111] py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
 
           <div>

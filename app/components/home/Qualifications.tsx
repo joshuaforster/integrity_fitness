@@ -1,20 +1,22 @@
+import Link from "next/link";
+
 const qualifications = [
   {
     category: "Become a Personal Trainer",
     courses: [
       {
         title: "Combined Level 2 & 3 Personal Training Diploma",
-        href: "/become-a-personal-trainer",
+        href: "/qualifications/become-a-personal-trainer",
         featured: true,
       },
       {
         title: "Level 2 Gym Instructor Certificate",
-        href: "/aiq_level_2_certificate_in_gym_instructing",
+        href: "/qualifications/level-2-gym-instructor",
         featured: false,
       },
       {
         title: "Level 3 Personal Training Qualification",
-        href: "/aiq_level_3_personal_training_qualification",
+        href: "/qualifications/level-3-personal-training",
         featured: false,
       },
     ],
@@ -24,17 +26,17 @@ const qualifications = [
     courses: [
       {
         title: "Level 2 Award in Mental Health Awareness",
-        href: "/l2-mental-health-awareness-aiq-qualification",
+        href: "/qualifications/mental-health-awareness",
         featured: false,
       },
       {
         title: "Level 3 Award in Supporting Pre & Post Natal Clients",
-        href: "/level-3-award-in-supporting-pre-and-post-natal-clients-with-exercise-nutrition",
+        href: "/qualifications/pre-post-natal",
         featured: false,
       },
       {
         title: "Level 3 Award in Emergency First Aid at Work",
-        href: "/emergency-first-aid-at-work",
+        href: "/qualifications/emergency-first-aid",
         featured: false,
       },
     ],
@@ -44,7 +46,7 @@ const qualifications = [
 export default function Qualifications() {
   return (
     <section className="bg-[#111111] py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mb-16">
           <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
@@ -101,12 +103,12 @@ export default function Qualifications() {
             Not sure which qualification is right for you? Get in touch and
             we&apos;ll point you in the right direction.
           </p>
-          <a
+          <Link
             href="/qualifications"
             className="flex-shrink-0 bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
           >
             See All Qualifications
-          </a>
+          </Link>
         </div>
 
       </div>

@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const panels = [
   {
     title: "Who Are We?",
     cta: "About Us",
-    href: "/about-us",
+    href: "/about",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
   },
   {
@@ -17,9 +18,9 @@ const panels = [
 
 export default function CTAPanels() {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2">
+    <section className="reveal grid grid-cols-1 lg:grid-cols-2">
       {panels.map((panel) => (
-        <a
+        <Link
           key={panel.title}
           href={panel.href}
           className="relative h-[480px] overflow-hidden group block"
@@ -28,6 +29,7 @@ export default function CTAPanels() {
             src={panel.image}
             alt=""
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
           />
 
@@ -47,7 +49,7 @@ export default function CTAPanels() {
               {panel.cta}
             </span>
           </div>
-        </a>
+        </Link>
       ))}
     </section>
   );

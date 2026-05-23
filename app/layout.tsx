@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./components/layout/HeaderBlack";
+import Footer from "./components/layout/Footer";
+import ScrollReveal from "./components/layout/ScrollReveal";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +29,9 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
     >
       <body className="min-h-full flex flex-col">
         <Header />
+        <ScrollReveal />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

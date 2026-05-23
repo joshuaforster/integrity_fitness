@@ -1,9 +1,10 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Mission() {
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left — statement */}
@@ -25,12 +26,12 @@ export default function Mission() {
               experience and real, applicable tips and tricks that they have
               picked up over the years.
             </p>
-            <a
-              href="/about-us"
+            <Link
+              href="/about"
               className="block text-center w-full sm:w-auto sm:inline-block bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
             >
               About Us
-            </a>
+            </Link>
           </div>
 
           {/* Right — quote over image with dark overlay */}
@@ -39,6 +40,7 @@ export default function Mission() {
               src="/harry.png"
               alt=""
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
               aria-hidden="true"
             />

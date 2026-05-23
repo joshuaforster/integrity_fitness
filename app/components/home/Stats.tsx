@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const stats = [
   { value: "100%", label: "Pass Rate" },
   { value: "1:1", label: "Personalised Learning" },
@@ -7,8 +9,8 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="bg-gray-50 py-24">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center">
+    <section className="bg-gray-100 py-24">
+      <div className="reveal mx-auto max-w-5xl px-6 lg:px-8 text-center">
 
         <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
           Why Integrity
@@ -32,12 +34,12 @@ export default function Stats() {
         </div>
 
         <div className="mt-12">
-          <a
+          <Link
             href="/contact"
             className="inline-block bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
           >
             Start Your Journey
-          </a>
+          </Link>
         </div>
 
       </div>

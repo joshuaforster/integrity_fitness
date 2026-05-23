@@ -5,23 +5,6 @@
   --foreground: #171717;
 }
 
-@keyframes heroFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-animate {
-    opacity: 0;
-    animation: heroFadeInUp 0.7s ease-out forwards;
-  }
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -45,6 +28,38 @@ body {
   100% {
     transform: translateX(-50%);
   }
+}
+
+/* Scroll reveal — applied by IntersectionObserver in ScrollReveal.tsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(60px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-60px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.testimonial-slide-next {
+  animation: slideInFromRight 0.35s ease-out both;
+}
+
+.testimonial-slide-prev {
+  animation: slideInFromLeft 0.35s ease-out both;
 }
 
 @theme {

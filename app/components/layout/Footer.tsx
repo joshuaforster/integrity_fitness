@@ -1,27 +1,28 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const navigation = {
   qualifications: [
-    { name: "Combined Level 2 & 3 Diploma", href: "/become-a-personal-trainer" },
-    { name: "Level 2 Gym Instructor", href: "/aiq_level_2_certificate_in_gym_instructing" },
-    { name: "Level 3 Personal Training", href: "/aiq_level_3_personal_training_qualification" },
-    { name: "Mental Health Awareness", href: "/l2-mental-health-awareness-aiq-qualification" },
-    { name: "Pre & Post Natal", href: "/level-3-award-in-supporting-pre-and-post-natal-clients-with-exercise-nutrition" },
-    { name: "Emergency First Aid", href: "/emergency-first-aid-at-work" },
+    { name: "Combined Level 2 & 3 Diploma", href: "/qualifications/become-a-personal-trainer" },
+    { name: "Level 2 Gym Instructor", href: "/qualifications/level-2-gym-instructor" },
+    { name: "Level 3 Personal Training", href: "/qualifications/level-3-personal-training" },
+    { name: "Mental Health Awareness", href: "/qualifications/mental-health-awareness" },
+    { name: "Pre & Post Natal", href: "/qualifications/pre-post-natal" },
+    { name: "Emergency First Aid", href: "/qualifications/emergency-first-aid" },
   ],
   company: [
-    { name: "About Us", href: "/about-us" },
+    { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
     { name: "FAQ", href: "/faq" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms of Service", href: "/terms" },
+    { name: "Terms & Conditions", href: "/terms" },
   ],
   social: [
     {
       name: "Facebook",
-      href: "#",
+      href: "https://www.facebook.com/IntegrityFitnessEducation",
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -34,7 +35,7 @@ const navigation = {
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/integrityfitnesseducation",
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -86,6 +87,7 @@ export default function Footer() {
               alt="Integrity Fitness Education"
               width={160}
               height={54}
+              style={{ height: "auto" }}
             />
             <p className="text-white text-sm leading-relaxed max-w-xs">
               One-to-one fitness education in Norwich, Norfolk. CIMSPA accredited,
@@ -115,12 +117,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {navigation.qualifications.map((item) => (
                   <li key={item.name}>
-                    <a
+                    <Link
                       href={item.href}
                       className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -133,12 +135,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
-                    <a
+                    <Link
                       href={item.href}
                       className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -149,12 +151,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {navigation.legal.map((item) => (
                   <li key={item.name}>
-                    <a
+                    <Link
                       href={item.href}
                       className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -168,23 +170,28 @@ export default function Footer() {
                 Norwich, Norfolk<br />
                 United Kingdom
               </address>
-              <a
+              <Link
                 href="/contact"
                 className="inline-block mt-6 bg-[#CE1A19] text-white px-6 py-3 text-xs font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors duration-200"
               >
                 Get In Touch
-              </a>
+              </Link>
             </div>
 
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white text-xs">
-            &copy; {year} Integrity Fitness Education Ltd. All rights reserved.
-          </p>
-          <p className="text-white text-xs">
-            CIMSPA Accredited &middot; Norwich, Norfolk
+        <div className="mt-12 pt-8 border-t border-white/10 space-y-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <p className="text-white text-xs">
+              &copy; {year} Integrity Fitness Education Ltd. All rights reserved.
+            </p>
+            <p className="text-white text-xs">
+              CIMSPA Accredited &middot; Norwich, Norfolk
+            </p>
+          </div>
+          <p className="text-white/40 text-xs">
+            Integrity Fitness Education Ltd &middot; Company No. 13487683 &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP
           </p>
         </div>
 
