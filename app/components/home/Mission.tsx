@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import Button from "@/app/components/Button"
 
 export default function Mission() {
   return (
@@ -12,7 +12,7 @@ export default function Mission() {
             <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
               Who We Are
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-6">
               One To One Learning Like No Other
             </h2>
             <div className="w-14 h-1 bg-[#CE1A19] mb-8" />
@@ -26,12 +26,9 @@ export default function Mission() {
               experience and real, applicable tips and tricks that they have
               picked up over the years.
             </p>
-            <Link
-              href="/about"
-              className="block text-center w-full sm:w-auto sm:inline-block bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-            >
+            <Button href="/about" variant="primary" className="w-full sm:w-auto">
               About Us
-            </Link>
+            </Button>
           </div>
 
           {/* Right — quote over image with dark overlay */}

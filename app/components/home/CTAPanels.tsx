@@ -3,12 +3,14 @@ import Link from "next/link";
 
 const panels = [
   {
+    label: "Est. 2015",
     title: "Who Are We?",
     cta: "About Us",
     href: "/about",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
   },
   {
+    label: "Norwich, Norfolk",
     title: "Get In Touch",
     cta: "Contact Us",
     href: "/contact",
@@ -40,7 +42,7 @@ export default function CTAPanels() {
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
             <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4 opacity-70">
-              Integrity Fitness Education
+              {panel.label}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight drop-shadow-lg">
               {panel.title}

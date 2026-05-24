@@ -47,7 +47,7 @@ export default function Values() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/10">
           {values.map((value) => (
-            <div key={value.title} className="bg-[#F5F5F5] flex flex-col items-center text-center px-10 py-14">
+            <div key={value.title} className="bg-white flex flex-col items-center text-center px-10 py-14 border border-black/5">
               <div className="w-16 h-16 rounded-full bg-[#CE1A19]/10 flex items-center justify-center mb-6">
                 <value.icon className="size-8 text-[#CE1A19]" aria-hidden="true" />
               </div>

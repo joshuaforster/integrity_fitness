@@ -30,6 +30,7 @@ const faqs = [
       { q: "How are your qualifications taught?", a: "The theoretical side can be covered mostly online by watching webinars and participating in video conferencing with tutors and guest experts. 1-1 tuition for both the theoretical and practical side of the course is available as well as full practical workshops." },
       { q: "How will I be assessed on the course?", a: "Level 2 and level 3 are assessed in person at an assessment day. Theory exams have multiple-choice tests which you can take online." },
       { q: "What happens if I don't pass an exam?", a: "You're allowed up to 3 attempts at every unit, with fees applied depending on your choice of course." },
+      { q: "What if I already have a Level 2 fitness instructor qualification?", a: "Just show us proof of your certification and we can invoice you individually. Email harry@integrityfitness.education with the subject 'Level 2 verification'." },
     ],
   },
   {
@@ -39,12 +40,6 @@ const faqs = [
       { q: "How long do I have to complete the qualification?", a: "You need to complete your certification within 36 months from your start date." },
       { q: "What if I'm ill or go on holiday?", a: "Not a problem, all learning is done at your own pace. All of the webinars are online so you won't miss anything." },
       { q: "How old do I need to be to do the course?", a: "You need to be 16 years of age or older." },
-    ],
-  },
-  {
-    category: "Other",
-    items: [
-      { q: "What if I already have a level 2 fitness instructor qualification?", a: "Just show us proof of your certification and we can invoice you individually. Email harry@integrityfitness.education with your subject 'Level 2 verification'." },
     ],
   },
 ];
@@ -66,7 +61,7 @@ function AccordionItem({ q, a }: { q: string; a: string }) {
         />
       </button>
       <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-6" : "max-h-0"}`}>
-        <p className="text-white text-base leading-relaxed">{a}</p>
+        <p className="text-white/65 text-base leading-relaxed pl-4 border-l border-[#CE1A19]/30">{a}</p>
       </div>
     </div>
   );
@@ -74,11 +69,11 @@ function AccordionItem({ q, a }: { q: string; a: string }) {
 
 export default function FaqAccordion() {
   return (
-    <section className="bg-[#111111] py-24">
-      <div className="reveal mx-auto max-w-4xl px-6 lg:px-8">
-        {faqs.map((group) => (
-          <div key={group.category} className="mb-16 last:mb-0">
-            <div className="flex items-center gap-4 mb-8">
+    <section className="bg-[#111111] pt-10 pb-24">
+      <div className="reveal mx-auto max-w-3xl px-6 lg:px-8">
+        {faqs.map((group, groupIndex) => (
+          <div key={group.category} className={groupIndex === 0 ? "mb-0" : "mt-20"}>
+            <div className="flex items-center gap-4 mb-5">
               <div className="w-1 h-8 bg-[#CE1A19]" />
               <h2 className="text-white text-xs font-semibold tracking-[4px] uppercase">
                 {group.category}

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/app/components/Button";
 
 export default function FaqCTA() {
   return (
@@ -16,18 +16,12 @@ export default function FaqCTA() {
           and we&apos;ll get back to you as soon as possible.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/contact"
-            className="bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-          >
+          <Button href="/contact" variant="primary" size="lg">
             Get In Touch
-          </Link>
-          <a
-            href="mailto:harry@integrityfitness.education"
-            className="border-2 border-black text-black px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
-          >
+          </Button>
+          <Button href="mailto:harry@integrityfitness.education" variant="outline-light" size="lg" external>
             Email Us Directly
-          </a>
+          </Button>
         </div>
       </div>
     </section>

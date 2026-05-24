@@ -1,7 +1,7 @@
 const stats = [
   { value: "100%", label: "Pass Rate" },
   { value: "1:1", label: "Personalised Tuition" },
-  { value: "Since 2015", label: "Established" },
+  { value: "2015", label: "Established" },
   { value: "CIMSPA", label: "Accredited" },
 ];
 

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/app/components/Button";
 
 const qualifications = [
   {
@@ -45,14 +45,13 @@ const qualifications = [
 
 export default function Qualifications() {
   return (
-    <section className="bg-[#111111] py-24">
+    <section className="bg-[#1D1D1D] py-24">
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-
         <div className="mb-16">
           <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
             What We Offer
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight max-w-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
             Qualifications Built For Real Careers
           </h2>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
@@ -74,8 +73,8 @@ export default function Qualifications() {
                     href={course.href}
                     className={`flex items-center justify-between p-5 border transition-all duration-200 group ${
                       course.featured
-                        ? "border-[#CE1A19] bg-[#CE1A19]/10 hover:bg-[#CE1A19]/20"
-                        : "border-white/15 hover:border-[#CE1A19]/60 hover:bg-white/[0.03]"
+                        ? "border-[#CE1A19] bg-[#111111] hover:bg-[#CE1A19]/20"
+                        : "border-white/15 bg-[#111111] hover:border-[#CE1A19]/60 hover:bg-white/[0.03]"
                     }`}
                   >
                     <div className="flex items-center gap-4">
@@ -98,19 +97,22 @@ export default function Qualifications() {
           ))}
         </div>
 
-        <div className="mt-16 pt-10 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <p className="text-white text-base max-w-lg">
-            Not sure which qualification is right for you? Get in touch and
-            we&apos;ll point you in the right direction.
-          </p>
-          <Link
-            href="/qualifications"
-            className="flex-shrink-0 bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-          >
-            See All Qualifications
-          </Link>
+        <div className="mt-16 pt-10 border-t border-white/15">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="flex-1">
+              <p className="text-white/50 text-xs font-semibold tracking-[3px] uppercase mb-2">
+                Not sure where to start?
+              </p>
+              <p className="text-white text-base leading-relaxed">
+                Get in touch and we&apos;ll point you in the right direction.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <Button href="/qualifications" variant="primary">See All Qualifications</Button>
+              <Button href="/contact" variant="outline-dark">Get In Touch</Button>
+            </div>
+          </div>
         </div>
-
       </div>
     </section>
   );

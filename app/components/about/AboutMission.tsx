@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Button from "@/app/components/Button";
 
 const differentiators = [
   "One-to-one learning tailored entirely to you",
-  "CIMSPA accredited, internationally recognised qualifications",
-  "100% pass rate across all students",
+  "Based in Norwich, Norfolk — built for the local fitness community",
+  "Courses designed entirely around your schedule and learning style",
   "A community that supports you long after the course ends",
 ];
 
@@ -18,10 +18,8 @@ export default function AboutMission() {
             <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
               Our Mission
             </p>
-            <h2 className="text-5xl md:text-6xl font-bold text-black leading-tight uppercase mb-6">
-              Education That
-              <br />Actually Changes
-              <br />Your Life.
+            <h2 className="text-5xl md:text-6xl font-bold text-black leading-tight uppercase mb-6 max-w-lg">
+              Education That Actually Changes Your Life.
             </h2>
             <div className="w-14 h-1 bg-[#CE1A19] mb-8" />
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
@@ -52,12 +50,9 @@ export default function AboutMission() {
                 </li>
               ))}
             </ul>
-            <Link
-              href="/qualifications"
-              className="inline-block mt-12 bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-            >
+            <Button href="/qualifications" variant="primary" className="mt-12">
               View Qualifications
-            </Link>
+            </Button>
           </div>
 
         </div>

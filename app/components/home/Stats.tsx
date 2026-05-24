@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Button from "@/app/components/Button";
 
 const stats = [
-  { value: "100%", label: "Pass Rate" },
-  { value: "1:1", label: "Personalised Learning" },
-  { value: "Level 3", label: "Qualified Instructors" },
-  { value: "CIMSPA", label: "Accredited" },
+  { value: "2015", label: "Established" },
+  { value: "6", label: "Qualifications Offered" },
+  { value: "Active IQ", label: "Awarding Body" },
+  { value: "36mo", label: "Max Study Period" },
 ];
 
 export default function Stats() {
@@ -13,10 +13,10 @@ export default function Stats() {
       <div className="reveal mx-auto max-w-5xl px-6 lg:px-8 text-center">
 
         <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
-          Why Integrity
+          By The Numbers
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
-          Everything You Need To Succeed
+          Built On A Decade Of Experience
         </h2>
         <div className="w-14 h-1 bg-[#CE1A19] mx-auto mt-6 mb-16" />
 
@@ -34,12 +34,9 @@ export default function Stats() {
         </div>
 
         <div className="mt-12">
-          <Link
-            href="/contact"
-            className="inline-block bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-          >
+          <Button href="/contact" variant="primary" size="lg">
             Start Your Journey
-          </Link>
+          </Button>
         </div>
 
       </div>

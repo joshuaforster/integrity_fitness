@@ -6,6 +6,12 @@ export type PricingTier = {
   highlighted?: boolean;
 };
 
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+};
+
 export type Qualification = {
   slug: string;
   title: string;
@@ -14,7 +20,9 @@ export type Qualification = {
   category: "personal-training" | "cpd";
   awardingBody: string;
   duration: string;
+  durationMonths?: string;
   tagline: string;
+  heroImage: string;
   overview: string[];
   whatYouWillLearn: string[];
   entryRequirements: string[];
@@ -22,6 +30,7 @@ export type Qualification = {
   pricing: PricingTier[];
   hasBillingToggle: boolean;
   badge?: string;
+  testimonials?: Testimonial[];
 };
 
 const qualifications: Qualification[] = [
@@ -33,7 +42,9 @@ const qualifications: Qualification[] = [
     category: "personal-training",
     awardingBody: "Active IQ",
     duration: "Flexible — study at your own pace",
+    durationMonths: "6–12 months",
     tagline: "The fastest route from zero to fully qualified personal trainer.",
+    heroImage: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80",
     badge: "Most Popular",
     overview: [
       "Our Combined Level 2 & 3 Diploma is the most direct path to becoming a fully qualified personal trainer. Rather than taking the two qualifications separately, you complete both in a single integrated programme — saving you time and money without cutting corners on quality.",
@@ -103,7 +114,7 @@ const qualifications: Qualification[] = [
       {
         name: "Independent",
         price: { monthly: 225, yearly: 2250 },
-        description: "Study at your own pace with full course access.",
+        description: "Fully self-paced, online study. All course materials and written assessments — no one-to-one sessions. Best suited to highly self-directed learners.",
         includes: [
           "Full Level 2 & 3 course materials",
           "Online learning portal access",
@@ -117,7 +128,7 @@ const qualifications: Qualification[] = [
         description: "Regular one-to-one sessions alongside flexible study.",
         includes: [
           "Everything in Independent",
-          "Weekly one-to-one sessions with Harry",
+          "Weekly one-to-one sessions",
           "Practical assessment support",
           "Ongoing feedback and mentoring",
         ],
@@ -137,6 +148,23 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    testimonials: [
+      {
+        quote: "I qualified in under a year while working full time. The one-to-one sessions meant I could actually ask questions — not just sit in a room waiting for the tutor to get round to me.",
+        name: "Jamie R.",
+        role: "Now a qualified PT",
+      },
+      {
+        quote: "I looked at a few providers before choosing Integrity. The combined diploma saved me time and money, and I came out knowing exactly what I was doing.",
+        name: "Chloe M.",
+        role: "Qualified in 9 months",
+      },
+      {
+        quote: "Every session was built around my schedule, which made this actually doable. I tried other courses and dropped out. This time I made it.",
+        name: "Tom B.",
+        role: "L2 & L3 qualified",
+      },
+    ],
   },
   {
     slug: "level-2-gym-instructor",
@@ -146,7 +174,9 @@ const qualifications: Qualification[] = [
     category: "personal-training",
     awardingBody: "Active IQ",
     duration: "Flexible — study at your own pace",
+    durationMonths: "3–6 months",
     tagline: "Your first step into the fitness industry — the right way.",
+    heroImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
     overview: [
       "The Level 2 Gym Instructor Certificate is the industry-standard entry qualification for anyone looking to begin a career in fitness. It equips you with everything you need to work safely and effectively on a gym floor.",
       "Delivered one-to-one with Harry, you will build a genuine foundation of knowledge — anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
@@ -196,7 +226,7 @@ const qualifications: Qualification[] = [
       {
         name: "Independent",
         price: { monthly: 149, yearly: 1490 },
-        description: "Study at your own pace with full course access.",
+        description: "Fully self-paced, online study. All course materials and written assessments — no one-to-one sessions. Best suited to highly self-directed learners.",
         includes: [
           "Full Level 2 course materials",
           "Online learning portal access",
@@ -210,7 +240,7 @@ const qualifications: Qualification[] = [
         description: "Regular one-to-one sessions alongside flexible study.",
         includes: [
           "Everything in Independent",
-          "Weekly one-to-one sessions with Harry",
+          "Weekly one-to-one sessions",
           "Practical assessment support",
           "Ongoing feedback and mentoring",
         ],
@@ -229,6 +259,18 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    testimonials: [
+      {
+        quote: "Straightforward, practical, and no fluff. I passed first time and started on the gym floor within a few weeks of finishing.",
+        name: "Daniel K.",
+        role: "Now a gym instructor",
+      },
+      {
+        quote: "The content was explained clearly without making it feel overwhelming. A great first step into the industry.",
+        name: "Priya S.",
+        role: "Qualified gym instructor",
+      },
+    ],
   },
   {
     slug: "level-3-personal-training",
@@ -238,7 +280,9 @@ const qualifications: Qualification[] = [
     category: "personal-training",
     awardingBody: "Active IQ",
     duration: "Flexible — study at your own pace",
+    durationMonths: "6–9 months",
     tagline: "Already have your Level 2? This is where you become a personal trainer.",
+    heroImage: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80",
     overview: [
       "The Level 3 Personal Training Qualification is designed for those who already hold a Level 2 Gym Instructor certificate and are ready to take the next step. This is the qualification that allows you to work with clients independently — designing programmes, coaching sessions, and building a business.",
       "Working one-to-one with Harry, you will develop advanced coaching skills, programme design knowledge, and the commercial understanding needed to thrive as a self-employed personal trainer.",
@@ -297,7 +341,7 @@ const qualifications: Qualification[] = [
       {
         name: "Independent",
         price: { monthly: 175, yearly: 1750 },
-        description: "Study at your own pace with full course access.",
+        description: "Fully self-paced, online study. All course materials and written assessments — no one-to-one sessions. Best suited to highly self-directed learners.",
         includes: [
           "Full Level 3 course materials",
           "Online learning portal access",
@@ -311,7 +355,7 @@ const qualifications: Qualification[] = [
         description: "Regular one-to-one sessions alongside flexible study.",
         includes: [
           "Everything in Independent",
-          "Weekly one-to-one sessions with Harry",
+          "Weekly one-to-one sessions",
           "Practical assessment support",
           "Ongoing feedback and mentoring",
         ],
@@ -330,6 +374,18 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    testimonials: [
+      {
+        quote: "I already had my Level 2 and just needed the PT qualification. The programme design module changed how I approach every session with clients.",
+        name: "Sarah L.",
+        role: "Now self-employed PT",
+      },
+      {
+        quote: "The business skills section was a genuine surprise — actually useful for understanding how to run a PT business, not just train people.",
+        name: "Marcus T.",
+        role: "PT business owner",
+      },
+    ],
   },
   {
     slug: "mental-health-awareness",
@@ -340,6 +396,7 @@ const qualifications: Qualification[] = [
     awardingBody: "Active IQ",
     duration: "1 day",
     tagline: "Understand mental health so you can better support every client.",
+    heroImage: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1920&q=80",
     overview: [
       "Mental health affects millions of people, and as a fitness professional you are often better placed than most to notice when a client is struggling. This one-day award gives you the knowledge to recognise the signs, respond appropriately, and signpost to the right support.",
       "Delivered in a small group or one-to-one format, the course covers the most common mental health conditions, the relationship between physical activity and mental wellbeing, and how to have sensitive, professional conversations with clients.",
@@ -411,6 +468,7 @@ const qualifications: Qualification[] = [
     awardingBody: "Active IQ",
     duration: "1–2 days",
     tagline: "Confidently train clients through pregnancy and beyond.",
+    heroImage: "https://images.unsplash.com/photo-1518310952931-b1de897abd40?auto=format&fit=crop&w=1920&q=80",
     overview: [
       "Pregnancy and the postnatal period are times when many women want to stay active but are unsure what is safe. This Level 3 Award gives you the knowledge and confidence to design and deliver safe, effective exercise programmes for pre and post natal clients.",
       "Covering the physiological changes of pregnancy, the guidelines around safe exercise, common postnatal conditions like diastasis recti, and how to adapt training accordingly, this award is an essential addition for any personal trainer working with female clients.",
@@ -482,6 +540,7 @@ const qualifications: Qualification[] = [
     awardingBody: "Active IQ",
     duration: "1 day",
     tagline: "The first aid qualification every fitness professional needs.",
+    heroImage: "https://images.unsplash.com/photo-1612776572997-76cc42e058c3?auto=format&fit=crop&w=1920&q=80",
     overview: [
       "Emergency First Aid at Work (EFAW) is a one-day qualification that equips you to respond quickly and effectively in an emergency. For fitness professionals it is not just good practice — many employers require it, and many insurance providers expect it.",
       "The course covers CPR, the use of an AED, management of common emergency situations, and the practical skills to keep someone safe until the emergency services arrive.",

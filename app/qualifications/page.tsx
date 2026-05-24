@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import qualifications from "@/app/data/qualifications";
+import PageHero from "@/app/components/PageHero";
+import Button from "@/app/components/Button";
 
 export const metadata = {
   title: "Qualifications | Integrity Fitness Education",
@@ -13,31 +14,13 @@ const cpdCourses = qualifications.filter((q) => q.category === "cpd");
 export default function QualificationsPage() {
   return (
     <main>
-      {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80"
-            alt="Qualifications"
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-20 pt-40 w-full">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
-            CIMSPA Accredited
-          </p>
-          <h1 className="text-6xl md:text-8xl font-bold text-white leading-tight uppercase mb-4">
-            Qualifications
-          </h1>
-          <p className="text-white/70 text-lg max-w-xl">
-            One-to-one education built for real careers. Every course delivered personally by Harry.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80"
+        label="CIMSPA Accredited"
+        title="Qualifications"
+        subtitle="One-to-one education built for real careers. Every course delivered personally by Harry."
+        minHeight="60vh"
+      />
 
       {/* PT Courses */}
       <section className="bg-[#111111] py-24">
@@ -127,12 +110,9 @@ export default function QualificationsPage() {
           <p className="text-white/70 text-lg mb-10 max-w-lg mx-auto">
             Every student is different. Get in touch and Harry will help you find the right course for your goals and circumstances.
           </p>
-          <Link
-            href="/contact"
-            className="bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-          >
+          <Button href="/contact" variant="primary" size="lg">
             Get In Touch
-          </Link>
+          </Button>
         </div>
       </section>
     </main>

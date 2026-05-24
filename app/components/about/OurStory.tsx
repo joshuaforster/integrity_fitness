@@ -15,7 +15,7 @@ const team = [
     name: "Paris",
     role: "Tutor & Assessor",
     image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80",
-    since: "The Team",
+    since: "Tutor & Assessor",
     bio: [
       "Paris qualified as a personal trainer and started working in the same gym as Harry. She made a strong impression by helping plenty of clients alongside her continued professional development, gaining certificates in spinning and supporting pre and post natal populations.",
       "Harry saw the potential for her to be a great teacher and she exceeded expectations with how she brought the course alive for all of her learners. She's more motivated than ever to bring the best possible experience here at IFE.",
@@ -33,7 +33,7 @@ export default function OurStory() {
             The People Behind IFE
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight uppercase">
-            The IFE Founders
+            The IFE Team
           </h2>
           <div className="w-14 h-1 bg-[#CE1A19] mx-auto mt-6 mb-8" />
           <p className="text-white text-lg leading-relaxed">
@@ -49,7 +49,7 @@ export default function OurStory() {
               <div className="relative h-[500px] overflow-hidden">
                 <Image
                   src={person.image}
-                  alt={person.name}
+                  alt={person.name === "Paris" ? "Paris, Tutor & Assessor at Integrity Fitness Education" : person.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

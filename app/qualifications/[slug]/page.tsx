@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-import qualifications, { getQualificationBySlug, type Qualification, type PricingTier } from "@/app/data/qualifications";
+import { CheckIcon } from "@heroicons/react/24/solid";
+import qualifications, { getQualificationBySlug, type Qualification } from "@/app/data/qualifications";
+import Button from "@/app/components/Button";
+import TestimonialsSection from "@/app/components/TestimonialsSection";
 
 export async function generateStaticParams() {
   return qualifications.map((q) => ({ slug: q.slug }));
@@ -17,64 +19,47 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function PriceDisplay({ tier, billing }: { tier: PricingTier; billing: "monthly" | "yearly" }) {
-  if (typeof tier.price === "number") {
-    return (
-      <div className="mb-6">
-        <span className="text-4xl font-bold text-white">£{tier.price}</span>
-        <span className="text-white/60 text-sm ml-1">one-time</span>
-      </div>
-    );
-  }
-  const amount = billing === "monthly" ? tier.price.monthly : tier.price.yearly;
-  const label = billing === "monthly" ? "/mo" : "/yr";
-  const saving = tier.price.monthly * 12 - tier.price.yearly;
-  return (
-    <div className="mb-6">
-      <span className="text-4xl font-bold text-white">£{amount}</span>
-      <span className="text-white/60 text-sm ml-1">{label}</span>
-      {billing === "yearly" && saving > 0 && (
-        <p className="text-[#CE1A19] text-xs font-semibold mt-1">Save £{saving} vs monthly</p>
-      )}
-    </div>
-  );
-}
-
 function PricingSection({ qual }: { qual: Qualification }) {
-  // CPD courses have no billing toggle — render static cards
+  // CPD courses — single flat-fee card
   if (!qual.hasBillingToggle) {
     return (
-      <section className="bg-[#F5F5F5] py-24">
+      <section className="bg-[#F8F8F8] py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-14">
             <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">Investment</p>
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight uppercase">Course Fee</h2>
             <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
           </div>
-          <div className="max-w-md">
+
+          <div className="max-w-sm">
             {qual.pricing.map((tier) => (
-              <div key={tier.name} className="bg-[#111111] p-8 ring-2 ring-[#CE1A19]">
-                <p className="text-white/50 text-xs font-semibold tracking-[4px] uppercase mb-6">{tier.name}</p>
-                <div className="flex items-start gap-1 mb-2">
-                  <span className="text-[#CE1A19] text-2xl font-bold mt-3 leading-none">£</span>
-                  <span className="text-7xl font-bold text-white leading-none tracking-tight">{tier.price as number}</span>
+              <div key={tier.name} className="bg-[#111111] p-10 border-t-4 border-[#CE1A19]">
+                <p className="text-white/40 text-xs font-semibold tracking-[4px] uppercase mb-4">{tier.name}</p>
+
+                <div className="mb-2">
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-[#CE1A19] text-lg font-bold self-start mt-2">£</span>
+                    <span className="text-7xl font-bold text-white leading-none tracking-tight">{tier.price as number}</span>
+                  </div>
+                  <p className="text-white/30 text-xs uppercase tracking-[2px] mt-2">one-time</p>
                 </div>
-                <p className="text-white/40 text-xs tracking-[2px] uppercase mb-2">one-time</p>
-                <p className="text-white/60 text-sm mb-8 mt-4 leading-relaxed">{tier.description}</p>
+
+                <p className="text-white/50 text-sm leading-relaxed mt-4 pb-6 mb-6 border-b border-white/10">
+                  {tier.description}
+                </p>
+
                 <ul className="space-y-3 mb-8">
                   {tier.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="w-4 h-px bg-[#CE1A19] mt-2.5 flex-shrink-0" />
-                      <span className="text-white text-sm">{item}</span>
+                      <CheckIcon className="w-4 h-4 text-[#CE1A19] mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-white text-sm leading-snug">{item}</span>
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href="/contact"
-                  className="block w-full text-center bg-[#CE1A19] text-white px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-                >
+
+                <Button href="/contact" variant="primary" fullWidth>
                   Book Your Place
-                </Link>
+                </Button>
               </div>
             ))}
           </div>
@@ -83,7 +68,7 @@ function PricingSection({ qual }: { qual: Qualification }) {
     );
   }
 
-  // PT courses — billing toggle handled client-side via a wrapper
+  // PT courses — billing toggle handled client-side
   return <PricingToggleSection qual={qual} />;
 }
 
@@ -101,7 +86,7 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
       <section className="relative min-h-[70vh] flex items-end">
         <div className="absolute inset-0 -z-10">
           <Image
-            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80"
+            src={qual.heroImage}
             alt={qual.title}
             fill
             className="object-cover"
@@ -125,23 +110,17 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
               </>
             )}
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight uppercase max-w-4xl mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight uppercase max-w-3xl mb-6">
             {qual.title}
           </h1>
-          <p className="text-white/80 text-lg max-w-xl mb-10">{qual.tagline}</p>
+          <p className="text-white/90 text-xl max-w-xl mb-10">{qual.tagline}</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/contact"
-              className="bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-            >
+            <Button href="/contact" variant="primary" size="lg">
               Enquire Now
-            </Link>
-            <Link
-              href="/qualifications"
-              className="border border-white/30 text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:border-white/60 transition-colors"
-            >
+            </Button>
+            <Button href="/qualifications" variant="outline-dark" size="lg">
               All Qualifications
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -172,7 +151,7 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
                   ))}
                 </ul>
               </div>
-              <div>
+              <div className="pt-6 border-t border-black/10">
                 <p className="text-black text-xs font-semibold tracking-[4px] uppercase mb-6">Entry Requirements</p>
                 <ul className="space-y-4">
                   {qual.entryRequirements.map((req) => (
@@ -198,11 +177,10 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      {/* What's Covered */}
+      {/* Course Modules */}
       <section className="bg-[#111111] py-24">
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-14">
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">Curriculum</p>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight uppercase">
               What&apos;s Covered
             </h2>
@@ -232,30 +210,52 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
       {/* Pricing */}
       <PricingSection qual={qual} />
 
+      {/* Testimonials */}
+      {qual.testimonials && qual.testimonials.length > 0 && (
+        <TestimonialsSection
+          theme="light"
+          label="Student Stories"
+          heading="What Our Students Say"
+          testimonials={qual.testimonials.map((t) => ({ body: t.quote, name: t.name, subtitle: t.role }))}
+        />
+      )}
+
       {/* CTA */}
-      <section className="bg-white py-24 border-t border-black/10">
+      <section className="bg-[#111111] py-24">
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">Ready To Start?</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-black uppercase leading-tight mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white uppercase leading-tight mb-6">
             Let&apos;s Talk
           </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mx-auto mb-8" />
-          <p className="text-gray-500 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
+          <div className="w-14 h-1 bg-[#CE1A19] mx-auto mb-10" />
+
+          <div className="flex flex-wrap justify-center gap-10 mb-12">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-white">Active IQ</p>
+              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Nationally Recognised</p>
+            </div>
+            <div className="w-px bg-white/10 hidden sm:block" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-white">CIMSPA</p>
+              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Accredited</p>
+            </div>
+            <div className="w-px bg-white/10 hidden sm:block" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-white">1-to-1</p>
+              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Personal Tuition</p>
+            </div>
+          </div>
+
+          <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
             Have a question about the course or want to understand which option is right for you? Reach out and we will get back to you the same day.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-[#CE1A19] text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-red-700 transition-colors"
-            >
+            <Button href="/contact" variant="primary" size="lg">
               Get In Touch
-            </Link>
-            <Link
-              href="/qualifications"
-              className="border-2 border-black text-black px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
-            >
+            </Button>
+            <Button href="/qualifications" variant="outline-dark" size="lg">
               All Qualifications
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
