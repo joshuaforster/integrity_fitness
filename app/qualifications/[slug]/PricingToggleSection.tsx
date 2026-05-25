@@ -55,7 +55,7 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
           </div>
 
           {qual.durationMonths && (
-            <p className="text-gray-400 text-xs uppercase tracking-widest mt-5">
+            <p className="text-gray-600 text-xs uppercase tracking-widest mt-5">
               Typical completion: {qual.durationMonths}
             </p>
           )}
@@ -91,16 +91,16 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                     Recommended
                   </span>
 
-                  <p className="text-white/40 text-xs font-semibold tracking-[4px] uppercase mt-4 mb-3">{tier.name}</p>
+                  <p className="text-white/60 text-xs font-semibold tracking-[4px] uppercase mt-4 mb-3">{tier.name}</p>
 
                   <div className="mb-2">
                     <div className="flex items-baseline gap-0.5">
-                      <span className="text-[#CE1A19] text-lg font-bold self-start mt-2">£</span>
+                      <span className="text-white text-lg font-bold self-start mt-2">£</span>
                       <span className="text-6xl font-bold text-white leading-none tracking-tight">{price}</span>
                     </div>
-                    <p className="text-white/30 text-xs uppercase tracking-[2px] mt-2">{period}</p>
+                    <p className="text-white/60 text-xs uppercase tracking-[2px] mt-2">{period}</p>
                     {saving > 0 && (
-                      <p className="text-[#CE1A19] text-xs font-semibold mt-1.5">Save £{saving} vs monthly</p>
+                      <p className="text-white text-xs font-semibold mt-1.5">Save £{saving} vs monthly</p>
                     )}
                   </div>
 

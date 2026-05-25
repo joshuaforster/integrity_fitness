@@ -34,14 +34,14 @@ function PricingSection({ qual }: { qual: Qualification }) {
           <div className="max-w-sm">
             {qual.pricing.map((tier) => (
               <div key={tier.name} className="bg-[#111111] p-10 border-t-4 border-[#CE1A19]">
-                <p className="text-white/40 text-xs font-semibold tracking-[4px] uppercase mb-4">{tier.name}</p>
+                <p className="text-white/60 text-xs font-semibold tracking-[4px] uppercase mb-4">{tier.name}</p>
 
                 <div className="mb-2">
                   <div className="flex items-baseline gap-0.5">
-                    <span className="text-[#CE1A19] text-lg font-bold self-start mt-2">£</span>
+                    <span className="text-white text-lg font-bold self-start mt-2">£</span>
                     <span className="text-7xl font-bold text-white leading-none tracking-tight">{tier.price as number}</span>
                   </div>
-                  <p className="text-white/30 text-xs uppercase tracking-[2px] mt-2">one-time</p>
+                  <p className="text-white/60 text-xs uppercase tracking-[2px] mt-2">one-time</p>
                 </div>
 
                 <p className="text-white/50 text-sm leading-relaxed mt-4 pb-6 mb-6 border-b border-white/10">
@@ -83,7 +83,7 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-[70vh] flex items-end">
+      <section className="relative min-h-[70vh] flex items-end bg-black">
         <div className="absolute inset-0 -z-10">
           <Image
             src={qual.heroImage}
@@ -98,13 +98,13 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-20 pt-40 w-full">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase">{qual.awardingBody}</span>
+            <span className="text-white text-xs font-semibold tracking-[4px] uppercase">{qual.awardingBody}</span>
             <span className="w-px h-3 bg-white/30" />
             <span className="text-white/60 text-xs tracking-[3px] uppercase">{qual.level}</span>
             {qual.badge && (
               <>
                 <span className="w-px h-3 bg-white/30" />
-                <span className="text-[10px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19] px-2 py-0.5 font-semibold">
+                <span className="text-[10px] uppercase tracking-widest text-white border border-white/60 px-2 py-0.5 font-semibold">
                   {qual.badge}
                 </span>
               </>
@@ -189,7 +189,7 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {qual.modules.map((mod, i) => (
               <div key={mod.title} className="border border-white/10 p-6">
-                <p className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase mb-1">
+                <p className="text-white text-xs font-semibold tracking-[3px] uppercase mb-1">
                   Module {i + 1}
                 </p>
                 <h3 className="text-white font-bold text-lg mb-5">{mod.title}</h3>
@@ -223,7 +223,7 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
       {/* CTA */}
       <section className="bg-[#111111] py-24">
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">Ready To Start?</p>
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">Ready To Start?</p>
           <h2 className="text-4xl md:text-5xl font-bold text-white uppercase leading-tight mb-6">
             Let&apos;s Talk
           </h2>
@@ -232,17 +232,17 @@ export default async function QualificationPage({ params }: { params: Promise<{ 
           <div className="flex flex-wrap justify-center gap-10 mb-12">
             <div className="text-center">
               <p className="text-2xl font-bold text-white">Active IQ</p>
-              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Nationally Recognised</p>
+              <p className="text-white/60 text-xs uppercase tracking-widest mt-1">Nationally Recognised</p>
             </div>
             <div className="w-px bg-white/10 hidden sm:block" />
             <div className="text-center">
               <p className="text-2xl font-bold text-white">CIMSPA</p>
-              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Accredited</p>
+              <p className="text-white/60 text-xs uppercase tracking-widest mt-1">Accredited</p>
             </div>
             <div className="w-px bg-white/10 hidden sm:block" />
             <div className="text-center">
               <p className="text-2xl font-bold text-white">1-to-1</p>
-              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Personal Tuition</p>
+              <p className="text-white/60 text-xs uppercase tracking-widest mt-1">Personal Tuition</p>
             </div>
           </div>
 

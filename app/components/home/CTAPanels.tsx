@@ -25,7 +25,7 @@ export default function CTAPanels() {
         <Link
           key={panel.title}
           href={panel.href}
-          className="relative h-[480px] overflow-hidden group block"
+          className="relative h-[480px] overflow-hidden group block bg-black"
         >
           <Image
             src={panel.image}

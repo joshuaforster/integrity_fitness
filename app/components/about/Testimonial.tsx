@@ -2,7 +2,7 @@ export default function Testimonial() {
   return (
     <section className="bg-[#111111] py-24">
       <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-        <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-12">
+        <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-12">
           From Our Graduates
         </p>
         <blockquote>

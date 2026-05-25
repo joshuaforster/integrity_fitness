@@ -32,7 +32,7 @@ export default function Mission() {
           </div>
 
           {/* Right — quote over image with dark overlay */}
-          <div className="relative overflow-hidden min-h-[420px]">
+          <div className="relative overflow-hidden min-h-[420px] bg-black">
             <Image
               src="/harry.png"
               alt=""

@@ -12,7 +12,7 @@ export default function AboutStats() {
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
           {stats.map((stat) => (
             <div key={stat.label} className="py-16 px-10 text-center">
-              <p className="text-5xl md:text-6xl font-bold text-[#CE1A19] mb-3 leading-none">
+              <p className="text-5xl md:text-6xl font-bold text-white mb-3 leading-none">
                 {stat.value}
               </p>
               <p className="text-white text-xs uppercase tracking-[3px] font-medium">

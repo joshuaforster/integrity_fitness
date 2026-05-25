@@ -14,7 +14,7 @@ const team = [
   {
     name: "Paris",
     role: "Tutor & Assessor",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80",
+    image: "/paris.webp",
     since: "Tutor & Assessor",
     bio: [
       "Paris qualified as a personal trainer and started working in the same gym as Harry. She made a strong impression by helping plenty of clients alongside her continued professional development, gaining certificates in spinning and supporting pre and post natal populations.",
@@ -29,7 +29,7 @@ export default function OurStory() {
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-5">
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-5">
             The People Behind IFE
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight uppercase">
@@ -69,7 +69,7 @@ export default function OurStory() {
 
               {/* Bio */}
               <div className="bg-[#1A1A1A] px-8 py-10">
-                <p className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase mb-5">
+                <p className="text-white text-xs font-semibold tracking-[3px] uppercase mb-5">
                   {person.role}
                 </p>
                 {person.bio.map((para, i) => (

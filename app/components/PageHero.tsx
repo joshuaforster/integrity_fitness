@@ -44,7 +44,7 @@ export default function PageHero({
 
       <div className="relative z-10 w-full">
         <div className={`mx-auto max-w-7xl px-6 lg:px-8 ${compact ? "pb-12 pt-28" : "pb-20 pt-48"}`}>
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-6">
             {label}
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-none uppercase tracking-tight">

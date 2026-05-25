@@ -22,14 +22,14 @@ export default function PrivacyPolicy() {
       {/* Hero */}
       <section className="bg-[#0D0D0D] pt-40 pb-20 border-b border-white/10">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
             Legal
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-white uppercase leading-none tracking-tight">
             Privacy Policy
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white/40 text-sm mt-6">
+          <p className="text-white/60 text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
           <Section title="Who We Are">
             <p>
               Our website address is:{" "}
-              <a href="https://integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="https://integrityfitness.education" className="text-white underline hover:text-white/80">
                 https://integrityfitness.education
               </a>
             </p>
@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
               An anonymized string created from your email address (also called a hash) may be
               provided to the Gravatar service to see if you are using it. The Gravatar service
               privacy policy is available at{" "}
-              <a href="https://automattic.com/privacy/" className="text-[#CE1A19] hover:underline">
+              <a href="https://automattic.com/privacy/" className="text-white underline hover:text-white/80">
                 https://automattic.com/privacy/
               </a>
               . After approval of your comment, your profile picture is visible to the public in
@@ -151,9 +151,9 @@ export default function PrivacyPolicy() {
 
           {/* Contact */}
           <div className="border-t border-white/10 pt-12 mt-4">
-            <p className="text-white/40 text-sm">
+            <p className="text-white/60 text-sm">
               Questions about this policy?{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>
             </p>

@@ -166,7 +166,7 @@ export default function Footer() {
               CIMSPA Accredited &middot; Norwich, Norfolk
             </p>
           </div>
-          <p className="text-white/40 text-xs">
+          <p className="text-white text-xs">
             Integrity Fitness Education Ltd &middot; Company No. 13487683 &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP
           </p>
         </div>

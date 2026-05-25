@@ -69,7 +69,7 @@ export default function Header() {
     ? "bg-[#111111]"
     : scrolled
       ? "backdrop-blur-xl bg-[#111111]/80 border-b border-white/10 shadow-lg"
-      : "bg-transparent";
+      : "bg-gradient-to-b from-black/60 to-transparent";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -93,8 +93,10 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <span className="sr-only">{mobileMenuOpen ? "Close menu" : "Open menu"}</span>
               <HamburgerIcon open={mobileMenuOpen} />
@@ -110,10 +112,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative text-sm font-semibold transition-colors duration-200 pb-1 group ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative text-m font-semibold transition-colors duration-200 pb-1 group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${active ? "text-white" : "text-white hover:text-[#CE1A19]"}`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-0 h-px bg-[#CE1A19] transition-all duration-200 ${active ? "w-full" : "w-0 group-hover:w-full"}`} />
+                  {/* <span className={`absolute bottom-0 left-0 h-px bg-white transition-all duration-200 ${active ? "w-full" : "w-0 group-hover:w-full"}`} /> */}
                 </Link>
               );
             })}
@@ -122,7 +125,8 @@ export default function Header() {
             <div className="relative group">
               <Link
                 href="/qualifications"
-                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 pb-1 ${qualActive ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                aria-current={qualActive ? "page" : undefined}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 pb-1 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${qualActive ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
               >
                 Qualifications
                 <ChevronDownIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
@@ -131,7 +135,7 @@ export default function Header() {
               {/* Dropdown panel */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-1 group-hover:translate-y-0">
                 <div className="bg-[#111111] border border-white/10 w-[580px] p-6 shadow-2xl">
-                  <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-5">
+                  <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-5">
                     Qualifications
                   </p>
                   <div className="grid grid-cols-2 gap-6">
@@ -145,7 +149,7 @@ export default function Header() {
                             <li key={course.name}>
                               <Link
                                 href={course.href}
-                                className="flex items-start gap-2 text-white/70 text-sm leading-snug hover:text-[#CE1A19] transition-colors group/item"
+                                className="flex items-start gap-2 text-white text-sm leading-snug hover:text-[#CE1A19] transition-colors group/item focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
                               >
                                 <span className="w-3 h-px bg-[#CE1A19] mt-2 flex-shrink-0 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                                 {course.name}
@@ -159,7 +163,7 @@ export default function Header() {
                   <div className="mt-5 pt-4 border-t border-white/10">
                     <Link
                       href="/qualifications"
-                      className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase hover:text-red-400 transition-colors"
+                      className="text-white text-xs font-semibold tracking-[3px] uppercase underline hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
                     >
                       View All Qualifications →
                     </Link>
@@ -174,7 +178,8 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative text-sm font-semibold transition-colors duration-200 pb-1 group ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative text-sm font-semibold transition-colors duration-200 pb-1 group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
                 >
                   {item.name}
                   <span className={`absolute bottom-0 left-0 h-px bg-[#CE1A19] transition-all duration-200 ${active ? "w-full" : "w-0 group-hover:w-full"}`} />
@@ -187,7 +192,7 @@ export default function Header() {
       </div>
 
       {/* Mobile menu — solid bg so text is always visible */}
-      <div className={`lg:hidden absolute left-0 right-0 top-full bg-[#111111] overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[600px]" : "max-h-0"}`}>
+      <div id="mobile-menu" className={`lg:hidden absolute left-0 right-0 top-full bg-[#111111] overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[600px]" : "max-h-0"}`}>
         <div className="border-t border-white/10 px-6 py-4 space-y-1">
 
           {navLinks.slice(0, 2).map((item) => {
@@ -197,10 +202,11 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
               >
                 <span>{item.name}</span>
-                {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" />}
+                {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
               </Link>
             );
           })}
@@ -210,7 +216,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileQualOpen(!mobileQualOpen)}
-              className={`w-full flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors ${qualActive ? "text-[#CE1A19]" : "text-white"}`}
+              className={`w-full flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${qualActive ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
             >
               <span>Qualifications</span>
               <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${mobileQualOpen ? "rotate-180" : ""}`} />
@@ -219,7 +225,7 @@ export default function Header() {
             <div className={`overflow-hidden transition-all duration-300 ${mobileQualOpen ? "max-h-96" : "max-h-0"}`}>
               {qualCategories.map((cat) => (
                 <div key={cat.title} className="px-4 pb-4">
-                  <p className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase mb-2">
+                  <p className="text-white text-xs font-semibold tracking-[3px] uppercase mb-2">
                     {cat.title}
                   </p>
                   {cat.courses.map((course) => (
@@ -227,7 +233,7 @@ export default function Header() {
                       key={course.name}
                       href={course.href}
                       onClick={() => { setMobileMenuOpen(false); setMobileQualOpen(false); }}
-                      className="block py-2 pl-3 text-sm text-white hover:text-[#CE1A19] transition-colors border-l border-white/20 mb-1"
+                      className="block py-2 pl-3 text-sm text-white hover:text-[#CE1A19] transition-colors border-l border-white/20 mb-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
                     >
                       {course.name}
                     </Link>
@@ -244,10 +250,11 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 last:border-0 ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 last:border-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
               >
                 <span>{item.name}</span>
-                {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" />}
+                {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
               </Link>
             );
           })}

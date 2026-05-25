@@ -26,7 +26,7 @@ export default function QualificationsPage() {
       <section className="bg-[#111111] py-24">
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-14">
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
+            <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
               Personal Training
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight uppercase">
@@ -44,11 +44,11 @@ export default function QualificationsPage() {
                 <div className="flex items-center gap-6">
                   <div>
                     <div className="flex items-center gap-3 mb-1">
-                      <span className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase">
+                      <span className="text-white text-xs font-semibold tracking-[3px] uppercase">
                         {q.level}
                       </span>
                       {q.badge && (
-                        <span className="text-[10px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19] px-2 py-0.5 font-semibold">
+                        <span className="text-[10px] uppercase tracking-widest text-white border border-white/60 px-2 py-0.5 font-semibold">
                           {q.badge}
                         </span>
                       )}
@@ -58,8 +58,8 @@ export default function QualificationsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 flex-shrink-0 ml-6">
-                  <span className="text-white/40 text-xs hidden sm:block">{q.duration}</span>
-                  <span className="text-[#CE1A19] text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  <span className="text-white/60 text-xs hidden sm:block">{q.duration}</span>
+                  <span className="text-white text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </div>
               </Link>
             ))}
@@ -90,7 +90,7 @@ export default function QualificationsPage() {
                 <h3 className="text-black font-bold text-xl mt-3 mb-3 leading-snug">{q.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">{q.tagline}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-xs">{q.duration}</span>
+                  <span className="text-gray-600 text-xs">{q.duration}</span>
                   <span className="text-[#CE1A19] text-lg group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </div>
               </Link>
@@ -102,7 +102,7 @@ export default function QualificationsPage() {
       {/* Bottom CTA */}
       <section className="bg-[#111111] py-20 border-t border-white/10">
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
             Not Sure Where To Start?
           </p>
           <h2 className="text-4xl font-bold text-white uppercase mb-6">We&apos;ll Point You In The Right Direction</h2>

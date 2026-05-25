@@ -9,7 +9,7 @@ function Section({ number, title, children }: { number?: string; title: string; 
     <div className="mb-12">
       <div className="flex items-baseline gap-3 mb-1">
         {number && (
-          <span className="text-[#CE1A19] text-sm font-bold tracking-widest">{number}</span>
+          <span className="text-white text-sm font-bold tracking-widest">{number}</span>
         )}
         <h2 className="text-white text-xl font-bold uppercase tracking-wide">{title}</h2>
       </div>
@@ -24,7 +24,7 @@ function Section({ number, title, children }: { number?: string; title: string; 
 function Sub({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-4">
-      <span className="text-[#CE1A19] text-sm font-semibold flex-shrink-0 mt-0.5">{id}</span>
+      <span className="text-white text-sm font-semibold flex-shrink-0 mt-0.5">{id}</span>
       <p className="text-white/70 text-base leading-relaxed">{children}</p>
     </div>
   );
@@ -36,14 +36,14 @@ export default function TermsAndConditions() {
       {/* Hero */}
       <section className="bg-[#0D0D0D] pt-40 pb-20 border-b border-white/10">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
             Legal
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-white uppercase leading-none tracking-tight">
             Terms &amp; Conditions
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white/40 text-sm mt-6">
+          <p className="text-white/60 text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd · Company No. 13487683
           </p>
         </div>
@@ -166,11 +166,11 @@ export default function TermsAndConditions() {
               home page of the site www.integrityfitness.education without our prior permission.
               Deep linking (i.e. links to specific pages within the site) requires our express
               written permission. To find out more please contact us by email at{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>{" "}
               or call us on{" "}
-              <a href="tel:+447795033958" className="text-[#CE1A19] hover:underline">
+              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">
                 +44 779 5033 958
               </a>
               .
@@ -335,9 +335,9 @@ export default function TermsAndConditions() {
           <Section number="14." title="Cancellation of Orders and Services">
             <p>
               To speak to us about your order, contact us on{" "}
-              <a href="tel:+447795033958" className="text-[#CE1A19] hover:underline">+44 77 9503 3958</a>
+              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">+44 77 9503 3958</a>
               {" "}or by email at{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>
               .
@@ -346,7 +346,7 @@ export default function TermsAndConditions() {
               If you are a consumer based within the European Union, you have a statutory right to
               a "cooling off" period of 14 calendar days from the date your order is confirmed. To
               cancel within this period, please email{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>
               .
@@ -372,7 +372,7 @@ export default function TermsAndConditions() {
           <Section number="15." title="Privacy">
             <p>
               Use of the website is also governed by our{" "}
-              <Link href="/privacy-policy" className="text-[#CE1A19] hover:underline">
+              <Link href="/privacy-policy" className="text-white underline hover:text-white/80">
                 Privacy Policy
               </Link>
               {" "}which is incorporated into these Terms and Conditions by this reference.
@@ -491,7 +491,7 @@ export default function TermsAndConditions() {
             <Sub id="24.1">
               All notices and communications shall be given to us either by post to our premises or
               by email to{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>
               . Such notice will be deemed received 3 days after posting if sent by first class
@@ -517,14 +517,14 @@ export default function TermsAndConditions() {
           {/* Company details */}
           <div className="border-t border-white/10 pt-12 mt-4 space-y-1">
             <p className="text-white font-semibold">Integrity Fitness Education Ltd</p>
-            <p className="text-white/40 text-sm">Company No. 13487683</p>
-            <p className="text-white/40 text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
-            <p className="text-white/40 text-sm mt-4">
-              <a href="mailto:harry@integrityfitness.education" className="text-[#CE1A19] hover:underline">
+            <p className="text-white/60 text-sm">Company No. 13487683</p>
+            <p className="text-white/60 text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
+            <p className="text-white/60 text-sm mt-4">
+              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>
               {" "}·{" "}
-              <a href="tel:+447795033958" className="text-[#CE1A19] hover:underline">
+              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">
                 +44 779 5033 958
               </a>
             </p>

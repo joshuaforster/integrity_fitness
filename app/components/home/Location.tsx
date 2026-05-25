@@ -47,7 +47,7 @@ export default function Location() {
 
           {/* Left — text */}
           <div>
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
+            <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-6">
               Find Us
             </p>
             <h2
@@ -82,7 +82,7 @@ export default function Location() {
               href="https://maps.google.com/?q=Complete+Fitness+Gym+Norwich"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-[#CE1A19] text-[#CE1A19] px-6 py-3 text-sm font-semibold tracking-wide uppercase hover:bg-[#CE1A19] hover:text-white transition-colors duration-200"
+              className="inline-flex items-center gap-2 border border-white text-white px-6 py-3 text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-black transition-colors duration-200"
             >
               Get Directions
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

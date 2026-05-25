@@ -107,7 +107,7 @@ function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
 
   const bodyClass = isDark ? "text-white" : "text-gray-700";
   const nameClass = isDark ? "text-white" : "text-black";
-  const metaClass = isDark ? "text-white/40" : "text-gray-400";
+  const metaClass = isDark ? "text-white/60" : "text-gray-600";
   const borderClass = isDark ? "border-white/10" : "border-black/10";
 
   const sizeClass = asGrid
@@ -129,7 +129,7 @@ function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="mt-2 text-[#CE1A19] text-xs font-semibold tracking-widest uppercase hover:text-red-400 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1A19]"
+            className={`mt-2 text-xs font-semibold tracking-widest uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${isDark ? "text-white hover:text-white/70" : "text-[#CE1A19] hover:text-red-400"}`}
           >
             {expanded ? "Read less ↑" : "Read more ↓"}
           </button>
@@ -189,7 +189,7 @@ export default function TestimonialsSection({
     <section className={`${sectionBg} py-24 overflow-hidden`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-14">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className={`${isDark ? "text-white" : "text-[#CE1A19]"} text-xs font-semibold tracking-[4px] uppercase mb-4`}>
             {label}
           </p>
           <h2 className={`text-4xl md:text-5xl font-bold ${headingClass} leading-tight max-w-xl`}>

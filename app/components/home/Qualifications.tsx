@@ -61,7 +61,7 @@ export default function Qualifications() {
           {qualifications.map((group) => (
             <div key={group.category}>
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-1 h-4 bg-[#CE1A19] inline-block" />
+                <span className="w-1 h-4 bg-[#ffffff] inline-block" />
                 <p className="text-white text-xs uppercase tracking-widest font-semibold">
                   {group.category}
                 </p>
@@ -73,13 +73,13 @@ export default function Qualifications() {
                     href={course.href}
                     className={`flex items-center justify-between p-5 border transition-all duration-200 group ${
                       course.featured
-                        ? "border-[#CE1A19] bg-[#111111] hover:bg-[#CE1A19]/20"
-                        : "border-white/15 bg-[#111111] hover:border-[#CE1A19]/60 hover:bg-white/[0.03]"
+                        ? "border-white bg-[#111111] hover:bg-white/20"
+                        : "border-white/15 bg-[#111111] hover:border-[#ffffff]/60 hover:bg-white/[0.03]"
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       {course.featured && (
-                        <span className="text-[10px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19] px-2 py-0.5 font-semibold whitespace-nowrap">
+                        <span className="text-[10px] text-white uppercase tracking-widest text- border border-white px-2 py-0.5 font-semibold whitespace-nowrap">
                           Popular
                         </span>
                       )}
@@ -87,7 +87,7 @@ export default function Qualifications() {
                         {course.title}
                       </span>
                     </div>
-                    <span className="text-[#CE1A19] text-lg flex-shrink-0 ml-4 group-hover:translate-x-1 transition-transform duration-200">
+                    <span className="text-[#ffffff] text-lg flex-shrink-0 ml-4 group-hover:translate-x-1 transition-transform duration-200">
                       →
                     </span>
                   </a>

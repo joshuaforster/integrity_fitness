@@ -31,7 +31,7 @@ export default function Values() {
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-5">
+          <p className="text-black text-xs font-semibold tracking-[4px] uppercase mb-5">
             What We Stand For
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight uppercase">

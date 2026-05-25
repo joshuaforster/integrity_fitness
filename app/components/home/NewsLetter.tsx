@@ -49,7 +49,7 @@ export default function Newsletter() {
                   Subscribe
                 </Button>
               </div>
-              <p className="text-white/30 text-xs">
+              <p className="text-white/60 text-xs">
                 No spam. Unsubscribe at any time.
               </p>
             </form>

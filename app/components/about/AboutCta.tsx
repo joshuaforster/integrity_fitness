@@ -8,7 +8,7 @@ export default function AboutCTA() {
 
           {/* Left — text */}
           <div>
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-5">
+            <p className="text-black text-xs font-semibold tracking-[4px] uppercase mb-5">
               Ready To Start?
             </p>
             <h2 className="text-5xl md:text-6xl font-bold text-black leading-tight uppercase mb-6">
@@ -33,7 +33,7 @@ export default function AboutCTA() {
 
           {/* Right — dark pull-quote panel */}
           <div className="bg-[#0D0D0D] p-12">
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
+            <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-6">
               Why Choose IFE
             </p>
             <p className="text-white text-4xl font-bold uppercase leading-tight mb-8">

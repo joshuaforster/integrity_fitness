@@ -15,7 +15,7 @@ export default function AboutMission() {
 
           {/* Left — statement */}
           <div className="lg:col-span-3">
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-6">
+            <p className="text-black text-xs font-semibold tracking-[4px] uppercase mb-6">
               Our Mission
             </p>
             <h2 className="text-5xl md:text-6xl font-bold text-black leading-tight uppercase mb-6 max-w-lg">
