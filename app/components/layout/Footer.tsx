@@ -1,15 +1,32 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/components/Button";
 
-const navigation = {
+const NAVIGATION = {
   qualifications: [
-    { name: "Combined Level 2 & 3 Diploma", href: "/qualifications/become-a-personal-trainer" },
-    { name: "Level 2 Gym Instructor", href: "/qualifications/level-2-gym-instructor" },
-    { name: "Level 3 Personal Training", href: "/qualifications/level-3-personal-training" },
-    { name: "Mental Health Awareness", href: "/qualifications/mental-health-awareness" },
+    {
+      name: "Combined Level 2 & 3 Diploma",
+      href: "/qualifications/become-a-personal-trainer",
+    },
+    {
+      name: "Level 2 Gym Instructor",
+      href: "/qualifications/level-2-gym-instructor",
+    },
+    {
+      name: "Level 3 Personal Training",
+      href: "/qualifications/level-3-personal-training",
+    },
+    {
+      name: "Mental Health Awareness",
+      href: "/qualifications/mental-health-awareness",
+    },
     { name: "Pre & Post Natal", href: "/qualifications/pre-post-natal" },
-    { name: "Emergency First Aid", href: "/qualifications/emergency-first-aid" },
+    {
+      name: "Emergency First Aid",
+      href: "/qualifications/emergency-first-aid",
+    },
   ],
   company: [
     { name: "About Us", href: "/about" },
@@ -48,129 +65,146 @@ const navigation = {
       ),
     },
   ],
-};
+} as const;
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="bg-[#0d0d0d] border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-16 pb-8">
-
-        <div className="xl:grid xl:grid-cols-3 xl:gap-12">
-
-          {/* Brand column */}
-          <div className="space-y-6">
+    <footer className="bg-zinc-950 border-t border-zinc-900 text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-16 pb-10">
+        <div className="xl:grid grid-cols-1 xl:grid-cols-3 xl:gap-16">
+          {/* Left Block — Identity Brand Panel */}
+          <div className="space-y-6 flex flex-col items-start">
             <Image
               src="/logo_white.png"
               alt="Integrity Fitness Education"
               width={160}
               height={54}
-              style={{ height: "auto" }}
+              priority
+              className="h-auto w-auto object-contain"
             />
-            <p className="text-white text-sm leading-relaxed max-w-xs">
-              One-to-one fitness education in Norwich, Norfolk. CIMSPA accredited,
-              Level 3 qualified, and built around you.
+            <p className="text-zinc-300 text-sm leading-relaxed max-w-xs">
+              One-to-one fitness education in Norwich, Norfolk. CIMSPA
+              accredited, Level 3 qualified, and built around you.
             </p>
             <div className="flex gap-4">
-              {navigation.social.map((item) => (
+              {NAVIGATION.social.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-[#CE1A19] transition-colors duration-200"
+                  className="text-white hover:text-[#CE1A19] transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm p-1"
                   aria-label={item.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <item.icon className="size-5" aria-hidden="true" />
+                  <item.icon className="w-5 h-5" aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Nav columns */}
-          <div className="mt-12 xl:mt-0 xl:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-8">
-
+          {/* Right Block — Structural Navigation Tree Links Split */}
+          <div className="mt-12 xl:mt-0 xl:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t xl:border-t-0 border-zinc-900 pt-12 xl:pt-0">
+            {/* Column 1: Qualifications Links List */}
             <div>
-              <h3 className="text-white text-xs font-semibold tracking-[3px] uppercase mb-6">
+              <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">
                 Qualifications
               </h3>
               <ul className="space-y-3">
-                {navigation.qualifications.map((item) => (
+                {NAVIGATION.qualifications.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
+                      className="text-white text-sm transition-colors duration-200 inline-flex flex-col group py-0.5 outline-none"
                     >
-                      {item.name}
+                      <span>{item.name}</span>
+                      <span className="h-px w-full bg-[#CE1A19] transform scale-x-0 origin-left transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-white text-xs font-semibold tracking-[3px] uppercase mb-6">
-                Company
-              </h3>
-              <ul className="space-y-3">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {/* Column 2: Internal Administration Company / Legal Links */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">
+                  Company
+                </h3>
+                <ul className="space-y-3">
+                  {NAVIGATION.company.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="text-white text-sm transition-colors duration-200 inline-flex flex-col group py-0.5 outline-none"
+                      >
+                        <span>{item.name}</span>
+                        <span className="h-px w-full bg-[#CE1A19] transform scale-x-0 origin-left transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <h3 className="text-white text-xs font-semibold tracking-[3px] uppercase mb-6 mt-10">
-                Legal
-              </h3>
-              <ul className="space-y-3">
-                {navigation.legal.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="text-white text-sm hover:text-[#CE1A19] transition-colors duration-200"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">
+                  Legal
+                </h3>
+                <ul className="space-y-3">
+                  {NAVIGATION.legal.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="text-white text-sm transition-colors duration-200 inline-flex flex-col group py-0.5 outline-none"
+                      >
+                        <span>{item.name}</span>
+                        <span className="h-px w-full bg-[#CE1A19] transform scale-x-0 origin-left transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="col-span-2 md:col-span-1">
-              <h3 className="text-white text-xs font-semibold tracking-[3px] uppercase mb-6">
+            {/* Column 3: Regional Verification Metadata Panel */}
+            <div className="flex flex-col items-start border-t sm:border-t-0 border-zinc-900 pt-8 sm:pt-0">
+              <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">
                 Location
               </h3>
               <address className="not-italic text-white text-sm leading-relaxed">
-                Norwich, Norfolk<br />
-                United Kingdom
+                Complete Fitness Gym
+                <br />
+                Whiffler Road, Norwich
+                <br />
+                Norfolk, NR3 2AW
               </address>
-              <Button href="/contact" variant="primary" size="sm" className="mt-6">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="sm"
+                className="mt-6 shadow-md"
+              >
                 Get In Touch
               </Button>
             </div>
-
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 space-y-3">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <p className="text-white text-xs">
-              &copy; {year} Integrity Fitness Education Ltd. All rights reserved.
+        {/* Base Structural Legal Metadata Row */}
+        <div className="mt-16 pt-8 border-t border-zinc-900 space-y-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="text-zinc-400 text-xs tracking-wide">
+              &copy; 2026 Integrity Fitness Education Ltd. All rights reserved.
             </p>
-            <p className="text-white text-xs">
+            <p className="text-zinc-400 text-xs tracking-wide font-medium">
               CIMSPA Accredited &middot; Norwich, Norfolk
             </p>
           </div>
-          <p className="text-white text-xs">
-            Integrity Fitness Education Ltd &middot; Company No. 13487683 &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP
+          <p className="text-zinc-500 text-[11px] leading-relaxed max-w-4xl">
+            Integrity Fitness Education Ltd &middot; Company No. 13487683
+            &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5
+            0DP
           </p>
         </div>
-
       </div>
     </footer>
   );

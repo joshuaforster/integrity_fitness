@@ -58,19 +58,28 @@ const VISIBLE_COUNT = 3;
 function getRelativeTimeString(dateString: string): string {
   const now = new Date();
   const past = new Date(dateString);
-  const diffInDays = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24));
+  const diffInDays = Math.floor(
+    (now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24),
+  );
   if (diffInDays < 30) return "Recent";
   const diffInMonths = Math.floor(diffInDays / 30.4375);
-  if (diffInMonths < 12) return `${diffInMonths} month${diffInMonths === 1 ? "" : "s"} ago`;
+  if (diffInMonths < 12)
+    return `${diffInMonths} month${diffInMonths === 1 ? "" : "s"} ago`;
   const diffInYears = Math.floor(diffInMonths / 12);
   return `${diffInYears} year${diffInYears === 1 ? "" : "s"} ago`;
 }
 
 function Stars() {
   return (
-    <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
+    <div className="flex gap-0.5 mb-5" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className="w-4 h-4 text-[#e7e300]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <svg
+          key={i}
+          className="w-4 h-4 text-amber-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -79,7 +88,12 @@ function Stars() {
 }
 
 function initials(name: string) {
-  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 interface CardProps {
@@ -102,23 +116,25 @@ function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
   const isDark = theme === "dark";
 
   const cardClass = isDark
-    ? "bg-white/5 border border-white/10"
-    : "bg-white border border-black/10";
+    ? "bg-zinc-900 border border-white shadow-lg"
+    : "bg-white border border-zinc-200/80 shadow-sm";
 
-  const bodyClass = isDark ? "text-white" : "text-gray-700";
-  const nameClass = isDark ? "text-white" : "text-black";
-  const metaClass = isDark ? "text-white/60" : "text-gray-600";
-  const borderClass = isDark ? "border-white/10" : "border-black/10";
+  const bodyClass = isDark ? "text-zinc-300" : "text-zinc-600";
+  const nameClass = isDark ? "text-white" : "text-zinc-950";
+  const metaClass = isDark ? "text-zinc-500" : "text-zinc-500";
+  const borderClass = isDark ? "border-zinc-900" : "border-zinc-100";
 
   const sizeClass = asGrid
     ? "w-full"
     : "w-full md:w-[calc(33.333%-16px)] flex-shrink-0";
 
   return (
-    <div className={`${cardClass} ${sizeClass} p-8 flex flex-col`}>
+    <div
+      className={`${cardClass} ${sizeClass} p-6 md:p-8 flex flex-col rounded-sm`}
+    >
       <Stars />
 
-      <div className="mb-8">
+      <div className="mb-6 ">
         <p
           ref={textRef}
           className={`${bodyClass} text-sm leading-relaxed overflow-hidden transition-[max-height] duration-300 ease-in-out ${expanded ? "max-h-[600px]" : "max-h-[7.5rem]"}`}
@@ -129,21 +145,31 @@ function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className={`mt-2 text-xs font-semibold tracking-widest uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${isDark ? "text-white hover:text-white/70" : "text-[#CE1A19] hover:text-red-400"}`}
+            className="mt-3 text-xs font-bold tracking-wider uppercase text-[#CE1A19] hover:text-red-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm"
           >
             {expanded ? "Read less ↑" : "Read more ↓"}
           </button>
         )}
       </div>
 
-      <div className={`flex items-center gap-3 pt-6 border-t ${borderClass} mt-auto`}>
-        <div className="w-9 h-9 rounded-full bg-[#CE1A19] flex items-center justify-center flex-shrink-0" aria-hidden="true">
-          <span className="text-white text-xs font-bold">{initials(t.name)}</span>
+      <div
+        className={`flex items-center gap-3 pt-5 border-t ${borderClass} mt-auto`}
+      >
+        <div
+          className="w-9 h-9 rounded-full bg-[#CE1A19] flex items-center justify-center flex-shrink-0"
+          aria-hidden="true"
+        >
+          <span className="text-white text-xs font-bold">
+            {initials(t.name)}
+          </span>
         </div>
         <div>
-          <p className={`${nameClass} text-sm font-semibold`}>{t.name}</p>
-          <p className={`${metaClass} text-xs`}>
-            {t.subtitle ?? (isMounted && t.date ? getRelativeTimeString(t.date) : "")}
+          <p className={`${nameClass} text-sm font-bold tracking-wide`}>
+            {t.name}
+          </p>
+          <p className={`${metaClass} text-xs font-medium mt-0.5`}>
+            {t.subtitle ??
+              (isMounted && t.date ? getRelativeTimeString(t.date) : "")}
           </p>
         </div>
       </div>
@@ -171,54 +197,83 @@ export default function TestimonialsSection({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => { setIsMounted(true); }, []);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  const goNext = () => setCurrentIndex((prev) => (prev >= MAX_INDEX ? 0 : prev + 1));
-  const goPrev = () => setCurrentIndex((prev) => (prev === 0 ? MAX_INDEX : prev - 1));
+  const goNext = () =>
+    setCurrentIndex((prev) => (prev >= MAX_INDEX ? 0 : prev + 1));
+  const goPrev = () =>
+    setCurrentIndex((prev) => (prev === 0 ? MAX_INDEX : prev - 1));
 
   const isDark = theme === "dark";
 
-  const sectionBg = isDark ? "bg-[#111111]" : "bg-[#F8F8F8]";
-  const headingClass = isDark ? "text-white" : "text-black";
+  const sectionBg = isDark ? "bg-zinc-950" : "bg-zinc-50";
+  const headingClass = isDark ? "text-white" : "text-zinc-950";
   const navBtnClass = isDark
-    ? "border-white/20 text-white hover:border-[#CE1A19] hover:text-[#CE1A19]"
-    : "border-black/15 text-black hover:border-[#CE1A19] hover:text-[#CE1A19]";
-  const dotInactiveClass = isDark ? "bg-white/30 hover:bg-white/60" : "bg-black/20 hover:bg-black/40";
+    ? "border-zinc-800 bg-zinc-950 text-white hover:border-[#CE1A19] hover:text-[#CE1A19]"
+    : "border-zinc-200 bg-white text-zinc-950 hover:border-[#CE1A19] hover:text-[#CE1A19]";
+  const dotInactiveClass = isDark
+    ? "bg-zinc-700 hover:bg-zinc-600"
+    : "bg-zinc-200 hover:bg-zinc-300";
 
   return (
-    <section className={`${sectionBg} py-24 overflow-hidden`}>
+    <section
+      className={`${sectionBg} py-20 md:py-28 overflow-hidden border-y ${isDark ? "border-zinc-800/60" : "border-zinc-200/80"}`}
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-14">
-          <p className={`${isDark ? "text-white" : "text-[#CE1A19]"} text-xs font-semibold tracking-[4px] uppercase mb-4`}>
+        {/* Header Block */}
+        <div className="mb-14 md:mb-16">
+          <p
+            className={`${isDark ? "text-zinc-400" : "text-[#CE1A19]"} text-xs font-bold tracking-[4px] uppercase mb-4`}
+          >
             {label}
           </p>
-          <h2 className={`text-4xl md:text-5xl font-bold ${headingClass} leading-tight max-w-xl`}>
+          <h2
+            className={`text-3xl md:text-5xl font-extrabold ${headingClass} tracking-tight leading-tight max-w-xl`}
+          >
             {heading}
           </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
+          <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
         </div>
 
         {isCarousel ? (
           <>
+            {/* Carousel Viewport Layer */}
             <div className="overflow-hidden">
-              <div className={`flex items-start gap-6 transition-transform duration-500 ease-out slider-pos-${currentIndex}`}>
+              <div
+                className="flex items-start gap-6 transition-transform duration-500 ease-out"
+                style={{
+                  transform: `translateX(calc(-${currentIndex * 33.333}% - ${currentIndex * 16}px))`,
+                }}
+              >
                 {items.map((t) => (
-                  <TestimonialCard key={t.name} t={t} isMounted={isMounted} theme={theme} />
+                  <TestimonialCard
+                    key={t.name}
+                    t={t}
+                    isMounted={isMounted}
+                    theme={theme}
+                  />
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-6 mt-10">
+            {/* Navigation Anchor and Dots Controls Row */}
+            <div className="flex items-center justify-center gap-6 mt-12">
               <button
                 type="button"
                 onClick={goPrev}
                 aria-label="Previous testimonial"
-                className={`w-10 h-10 flex items-center justify-center border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ceb919] ${navBtnClass}`}
+                className={`w-11 h-11 flex items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm ${navBtnClass}`}
               >
-                <ChevronLeftIcon className="w-5 h-5" />
+                <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
               </button>
 
-              <div className="flex gap-2" role="tablist" aria-label="Testimonial slides">
+              <div
+                className="flex gap-2"
+                role="tablist"
+                aria-label="Testimonial slides"
+              >
                 {Array.from({ length: MAX_INDEX + 1 }).map((_, i) => (
                   <button
                     key={i}
@@ -227,8 +282,10 @@ export default function TestimonialsSection({
                     aria-selected={i === currentIndex}
                     onClick={() => setCurrentIndex(i)}
                     aria-label={`Go to slide ${i + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === currentIndex ? "bg-[#CE1A19] w-6" : `w-2 ${dotInactiveClass}`
+                    className={`h-2 rounded-full transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
+                      i === currentIndex
+                        ? "bg-[#CE1A19] w-6"
+                        : `w-2 ${dotInactiveClass}`
                     }`}
                   />
                 ))}
@@ -238,16 +295,25 @@ export default function TestimonialsSection({
                 type="button"
                 onClick={goNext}
                 aria-label="Next testimonial"
-                className={`w-10 h-10 flex items-center justify-center border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1A19] ${navBtnClass}`}
+                className={`w-11 h-11 flex items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm ${navBtnClass}`}
               >
-                <ChevronRightIcon className="w-5 h-5" />
+                <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
               </button>
             </div>
           </>
         ) : (
-          <div className={`grid grid-cols-1 gap-6 ${items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"}`}>
+          /* Fallback Native Grid System Layer */
+          <div
+            className={`grid grid-cols-1 gap-6 ${items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"}`}
+          >
             {items.map((t) => (
-              <TestimonialCard key={t.name} t={t} isMounted={isMounted} theme={theme} asGrid />
+              <TestimonialCard
+                key={t.name}
+                t={t}
+                isMounted={isMounted}
+                theme={theme}
+                asGrid
+              />
             ))}
           </div>
         )}

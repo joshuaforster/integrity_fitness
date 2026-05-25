@@ -1,10 +1,8 @@
-import Link from "next/link";
+"use client";
 
-// ─── Variants ────────────────────────────────────────────────────────────────
-// primary       – red fill, white text (works on any background)
-// outline-light – dark border + dark text, for sections with a light bg
-// outline-dark  – white/30 border + white text, for sections with a dark bg
-// outline-hero  – solid white border + white text, hover fills white (video bg)
+import Link from "next/link";
+import { clsx } from "clsx"; // Install via 'npm i clsx' if not present, or replace with template strings
+
 export type ButtonVariant =
   | "primary"
   | "outline-light"
@@ -13,28 +11,26 @@ export type ButtonVariant =
 
 export type ButtonSize = "sm" | "md" | "lg";
 
-// ─── Style maps ──────────────────────────────────────────────────────────────
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#CE1A19] text-white hover:bg-red-700 focus-visible:outline-[#CE1A19]",
+    "bg-[#CE1A19] text-white hover:bg-red-700 focus-visible:ring-[#CE1A19]",
   "outline-light":
-    "border-2 border-black text-black hover:bg-black hover:text-white focus-visible:outline-black",
+    "border border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white focus-visible:ring-zinc-950",
   "outline-dark":
-    "border border-white/30 text-white hover:border-white hover:bg-white/5 focus-visible:outline-white",
+    "border border-white/20 text-white hover:border-white hover:bg-white/5 focus-visible:ring-white",
   "outline-hero":
-    "border-2 border-white text-white hover:bg-white hover:text-black focus-visible:outline-white",
+    "border-2 border-white text-white hover:bg-white hover:text-black focus-visible:ring-white",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-6 py-3 text-xs",
-  md: "px-8 py-4 text-sm",
-  lg: "px-10 py-4 text-sm",
+  sm: "px-5 py-2.5 text-xs tracking-wider",
+  md: "px-6 py-3.5 text-sm tracking-widest",
+  lg: "px-8 py-4 text-base tracking-widest",
 };
 
-const base =
-  "inline-flex items-center justify-center font-semibold tracking-widest uppercase transition-all duration-200 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2";
+const baseStyle =
+  "inline-flex items-center justify-center font-bold uppercase transition-all duration-200 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
 
-// ─── Props ───────────────────────────────────────────────────────────────────
 interface SharedProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -43,7 +39,6 @@ interface SharedProps {
   children: React.ReactNode;
 }
 
-// Renders as <Link> or <a>
 type LinkProps = SharedProps & {
   href: string;
   external?: boolean;
@@ -52,7 +47,6 @@ type LinkProps = SharedProps & {
   disabled?: never;
 };
 
-// Renders as <button>
 type NativeButtonProps = SharedProps & {
   href?: never;
   external?: never;
@@ -63,7 +57,6 @@ type NativeButtonProps = SharedProps & {
 
 type ButtonProps = LinkProps | NativeButtonProps;
 
-// ─── Component ───────────────────────────────────────────────────────────────
 export default function Button({
   variant = "primary",
   size = "md",
@@ -72,35 +65,46 @@ export default function Button({
   children,
   ...rest
 }: ButtonProps) {
-  const classes = [
-    base,
+  const combinedClasses = clsx(
+    baseStyle,
     variantStyles[variant],
     sizeStyles[size],
-    fullWidth ? "w-full" : "",
+    fullWidth && "w-full",
     className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  );
 
   if ("href" in rest && rest.href) {
     const { href, external } = rest as LinkProps;
+
     if (external) {
       return (
-        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+        <a
+          href={href}
+          className={combinedClasses}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {children}
         </a>
       );
     }
+
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={combinedClasses}>
         {children}
       </Link>
     );
   }
 
   const { type = "button", onClick, disabled } = rest as NativeButtonProps;
+
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={combinedClasses}
+    >
       {children}
     </button>
   );

@@ -80,8 +80,8 @@ export default function Header() {
             <span className="sr-only">Integrity Fitness Education</span>
             <Image
               src="/logo_white.png"
-              width={150}
-              height={50}
+              width={125}
+              height={40}
               alt="Integrity Fitness Education"
               priority
               style={{ height: "auto" }}
@@ -126,7 +126,7 @@ export default function Header() {
               <Link
                 href="/qualifications"
                 aria-current={qualActive ? "page" : undefined}
-                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 pb-1 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${qualActive ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 pb-1 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white text-white hover:text-[#CE1A19]`}
               >
                 Qualifications
                 <ChevronDownIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
@@ -179,7 +179,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-sm font-semibold transition-colors duration-200 pb-1 group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                  className={`relative text-sm font-semibold transition-colors duration-200 pb-1 group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white text-white hover:text-[#CE1A19]`}
                 >
                   {item.name}
                   <span className={`absolute bottom-0 left-0 h-px bg-[#CE1A19] transition-all duration-200 ${active ? "w-full" : "w-0 group-hover:w-full"}`} />
@@ -203,7 +203,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm text-white hover:text-[#CE1A19]`}
               >
                 <span>{item.name}</span>
                 {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
@@ -216,7 +216,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileQualOpen(!mobileQualOpen)}
-              className={`w-full flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${qualActive ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+              className={`w-full flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm text-white hover:text-[#CE1A19]`}
             >
               <span>Qualifications</span>
               <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${mobileQualOpen ? "rotate-180" : ""}`} />
@@ -251,7 +251,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 last:border-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm ${active ? "text-[#CE1A19]" : "text-white hover:text-[#CE1A19]"}`}
+                className={`flex items-center justify-between px-4 py-4 text-base font-semibold tracking-wide transition-colors border-b border-white/5 last:border-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm text-white hover:text-[#CE1A19]`}
               >
                 <span>{item.name}</span>
                 {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
