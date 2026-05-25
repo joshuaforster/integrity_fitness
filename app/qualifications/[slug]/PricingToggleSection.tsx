@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Button from "@/app/components/Button";
-import { CheckIcon } from "@heroicons/react/24/solid";
 import { type Qualification } from "@/app/data/qualifications";
 
-export default function PricingToggleSection({ qual }: { qual: Qualification }) {
+export default function PricingToggleSection({
+  qual,
+}: {
+  qual: Qualification;
+}) {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
 
   const highlightedTier = qual.pricing.find((t) => t.highlighted);
@@ -15,22 +18,34 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
       : 0;
 
   return (
-    <section className="bg-[#F8F8F8] py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section
+      aria-labelledby="pricing-heading"
+      className="bg-zinc-50 py-20 md:py-28 border-t border-zinc-200/80"
+    >
+      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Section Header & Premium Toggle System */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+            Investment
+          </p>
+          <h2
+            id="pricing-heading"
+            className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+          >
+            Choose Your Plan
+          </h2>
+          <div className="w-14 h-1 bg-[#CE1A19] mt-6 mb-8" aria-hidden="true" />
 
-        {/* Header + toggle */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">Investment</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight uppercase mb-6">Choose Your Plan</h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mb-10" />
-
-          <div className="inline-flex bg-white border border-black/10 p-1 gap-1">
+          {/* Minimal Text Switch Toggle */}
+          <div className="inline-flex bg-zinc-200/60 p-1 rounded-sm gap-1">
             <button
               type="button"
               onClick={() => setBilling("monthly")}
               aria-pressed={billing === "monthly"}
-              className={`px-6 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1A19] ${
-                billing === "monthly" ? "bg-[#CE1A19] text-white" : "text-black hover:text-[#CE1A19]"
+              className={`px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 outline-none rounded-xs ${
+                billing === "monthly"
+                  ? "bg-zinc-950 text-white shadow-sm"
+                  : "text-zinc-600 hover:text-zinc-950"
               }`}
             >
               Monthly
@@ -39,15 +54,21 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
               type="button"
               onClick={() => setBilling("yearly")}
               aria-pressed={billing === "yearly"}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1A19] ${
-                billing === "yearly" ? "bg-[#CE1A19] text-white" : "text-black hover:text-[#CE1A19]"
+              className={`inline-flex items-center gap-2 px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 outline-none rounded-xs ${
+                billing === "yearly"
+                  ? "bg-zinc-950 text-white shadow-sm"
+                  : "text-zinc-600 hover:text-zinc-950"
               }`}
             >
-              Annual
+              <span>Annual</span>
               {annualSaving > 0 && (
-                <span className={`text-[9px] font-bold px-1.5 py-0.5 leading-none ${
-                  billing === "yearly" ? "bg-white/20 text-white" : "bg-[#CE1A19] text-white"
-                }`}>
+                <span
+                  className={`text-[9px] font-black px-1.5 py-0.5 rounded-xs tracking-normal leading-none ${
+                    billing === "yearly"
+                      ? "bg-white/20 text-white"
+                      : "bg-[#CE1A19] text-white"
+                  }`}
+                >
                   SAVE £{annualSaving}
                 </span>
               )}
@@ -55,27 +76,27 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
           </div>
 
           {qual.durationMonths && (
-            <p className="text-gray-600 text-xs uppercase tracking-widest mt-5">
-              Typical completion: {qual.durationMonths}
+            <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest mt-5">
+              Typical completion timeframe: {qual.durationMonths}
             </p>
           )}
         </div>
 
-        {/* Pricing cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* 3-Column Symmetrical Pricing Matrix */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {qual.pricing.map((tier) => {
             const price =
               typeof tier.price === "number"
                 ? tier.price
                 : billing === "monthly"
-                ? tier.price.monthly
-                : tier.price.yearly;
+                  ? tier.price.monthly
+                  : tier.price.yearly;
             const period =
               typeof tier.price === "number"
-                ? "one-time"
+                ? "one-time investment"
                 : billing === "monthly"
-                ? "per month"
-                : "per year";
+                  ? "per month"
+                  : "per year";
             const saving =
               typeof tier.price !== "number" && billing === "yearly"
                 ? tier.price.monthly * 12 - tier.price.yearly
@@ -85,39 +106,61 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
               return (
                 <div
                   key={tier.name}
-                  className="relative flex flex-col bg-[#111111] p-8 border-t-4 border-[#CE1A19] md:-mt-4 md:mb-[-16px]"
+                  className="relative flex flex-col bg-zinc-950 p-6 md:p-8 border border-zinc-900 rounded-sm shadow-xl"
                 >
-                  <span className="absolute -top-3 left-8 bg-[#CE1A19] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1">
-                    Recommended
-                  </span>
+                  <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2px] px-3 py-1.5 rounded-bl-xs">
+                    Recommended Option
+                  </div>
 
-                  <p className="text-white/60 text-xs font-semibold tracking-[4px] uppercase mt-4 mb-3">{tier.name}</p>
+                  <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mt-4 mb-2">
+                    {tier.name}
+                  </p>
 
-                  <div className="mb-2">
-                    <div className="flex items-baseline gap-0.5">
-                      <span className="text-white text-lg font-bold self-start mt-2">£</span>
-                      <span className="text-6xl font-bold text-white leading-none tracking-tight">{price}</span>
+                  <div className="mb-4">
+                    <div className="flex items-baseline gap-0.5 text-white">
+                      <span className="text-xl font-bold self-start mt-1">
+                        £
+                      </span>
+                      <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
+                        {price}
+                      </span>
                     </div>
-                    <p className="text-white/60 text-xs uppercase tracking-[2px] mt-2">{period}</p>
+                    <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider mt-2.5">
+                      {period}
+                    </p>
                     {saving > 0 && (
-                      <p className="text-white text-xs font-semibold mt-1.5">Save £{saving} vs monthly</p>
+                      <p className="text-[#CE1A19] text-xs font-bold mt-2">
+                        Saving £{saving} vs monthly plan
+                      </p>
                     )}
                   </div>
 
-                  <p className="text-white/50 text-sm leading-relaxed mt-4 pb-5 mb-5 border-b border-white/10">
+                  <p className="text-zinc-400 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
                     {tier.description}
                   </p>
 
-                  <ul className="space-y-3 flex-1 mb-8">
+                  <ul className="space-y-4 flex-1 mb-8" role="list">
                     {tier.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <CheckIcon className="w-4 h-4 text-[#CE1A19] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                        <span className="text-white text-sm leading-snug">{item}</span>
+                      <li key={item} className="flex items-start gap-3 group">
+                        {/* Custom sharp visual vector indicator instead of large heavy heroicon packages */}
+                        <span
+                          className="w-1.5 h-1.5 bg-[#CE1A19] mt-2 flex-shrink-0 rounded-xs"
+                          aria-hidden="true"
+                        />
+                        <span className="text-zinc-300 text-sm leading-tight">
+                          {item}
+                        </span>
                       </li>
                     ))}
                   </ul>
 
-                  <Button href="/contact" variant="primary" fullWidth>
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    size="md"
+                    fullWidth
+                    className="shadow-md"
+                  >
                     Enquire Now
                   </Button>
                 </div>
@@ -125,41 +168,62 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
             }
 
             return (
-              <div key={tier.name} className="flex flex-col bg-white border border-black/10 p-8">
-                <p className="text-black/30 text-xs font-semibold tracking-[4px] uppercase mb-3">{tier.name}</p>
+              <div
+                key={tier.name}
+                className="flex flex-col bg-white border border-zinc-200/80 p-6 md:p-8 rounded-sm shadow-sm"
+              >
+                <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-2">
+                  {tier.name}
+                </p>
 
-                <div className="mb-2">
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-[#CE1A19] text-lg font-bold self-start mt-2">£</span>
-                    <span className="text-6xl font-bold text-black leading-none tracking-tight">{price}</span>
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-0.5 text-zinc-950">
+                    <span className="text-xl font-bold self-start mt-1">£</span>
+                    <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
+                      {price}
+                    </span>
                   </div>
-                  <p className="text-black/30 text-xs uppercase tracking-[2px] mt-2">{period}</p>
+                  <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-2.5">
+                    {period}
+                  </p>
                   {saving > 0 && (
-                    <p className="text-[#CE1A19] text-xs font-semibold mt-1.5">Save £{saving} vs monthly</p>
+                    <p className="text-[#CE1A19] text-xs font-bold mt-2">
+                      Saving £{saving} vs monthly plan
+                    </p>
                   )}
                 </div>
 
-                <p className="text-gray-500 text-sm leading-relaxed mt-4 pb-5 mb-5 border-b border-black/8">
+                <p className="text-zinc-600 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-100">
                   {tier.description}
                 </p>
 
-                <ul className="space-y-3 flex-1 mb-8">
+                <ul className="space-y-4 flex-1 mb-8" role="list">
                   {tier.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <CheckIcon className="w-4 h-4 text-[#CE1A19] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-gray-700 text-sm leading-snug">{item}</span>
+                      <span
+                        className="w-1.5 h-1.5 bg-zinc-300 mt-2 flex-shrink-0 rounded-xs"
+                        aria-hidden="true"
+                      />
+                      <span className="text-zinc-600 text-sm leading-tight">
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
-                <Button href="/contact" variant="outline-light" fullWidth>
+                <Button
+                  href="/contact"
+                  variant="outline-light"
+                  size="md"
+                  fullWidth
+                  className="bg-white"
+                >
                   Enquire Now
                 </Button>
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

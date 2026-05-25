@@ -1,19 +1,23 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import qualifications from "@/app/data/qualifications";
 import PageHero from "@/app/components/PageHero";
 import Button from "@/app/components/Button";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
-  description: "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
+  description:
+    "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
 };
 
-const ptCourses = qualifications.filter((q) => q.category === "personal-training");
-const cpdCourses = qualifications.filter((q) => q.category === "cpd");
+const PT_COURSES = qualifications.filter(
+  (q) => q.category === "personal-training",
+);
+const CPD_COURSES = qualifications.filter((q) => q.category === "cpd");
 
 export default function QualificationsPage() {
   return (
-    <main>
+    <main className="bg-zinc-50">
       <PageHero
         image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80"
         label="CIMSPA Accredited"
@@ -22,76 +26,139 @@ export default function QualificationsPage() {
         minHeight="60vh"
       />
 
-      {/* PT Courses */}
-      <section className="bg-[#111111] py-24">
+      {/* 1. Guided Career Tracks: Personal Training */}
+      <section
+        aria-labelledby="pt-heading"
+        className="py-20 md:py-28 border-b border-zinc-200/60"
+      >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-14">
-            <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
-              Personal Training
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight uppercase">
-              Become A Personal Trainer
-            </h2>
-            <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          </div>
-          <div className="space-y-4">
-            {ptCourses.map((q) => (
-              <Link
-                key={q.slug}
-                href={`/qualifications/${q.slug}`}
-                className="flex items-center justify-between p-6 border border-white/10 hover:border-[#CE1A19]/60 hover:bg-white/[0.03] transition-all duration-200 group"
-              >
-                <div className="flex items-center gap-6">
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="text-white text-xs font-semibold tracking-[3px] uppercase">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Frame: Strategic Career Path Guidance (Spans 4 Columns) */}
+            <div className="lg:col-span-4 sticky top-28 space-y-6">
+              <div>
+                <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+                  Syllabus Tracks
+                </p>
+                <h2
+                  id="pt-heading"
+                  className="text-2xl md:text-4xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+                >
+                  Personal Training
+                </h2>
+                <div
+                  className="w-14 h-1 bg-[#CE1A19] mt-5"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <div className="border-l-2 border-zinc-200 pl-5 pt-1">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-950 mb-2">
+                  Where do you start?
+                </h3>
+                <p className="text-zinc-600 text-sm leading-relaxed">
+                  If you are entirely new to fitness coaching, the{" "}
+                  <strong>Combined Diploma</strong> is your required baseline
+                  launchpad. If you already hold an accredited Level 2
+                  certificate, select the standalone{" "}
+                  <strong>Level 3 Qualification</strong> to upgrade your roster
+                  capability.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Frame: Unboxed Clean List Elements (Spans 8 Columns) */}
+            <div className="lg:col-span-8 space-y-4 w-full">
+              {PT_COURSES.map((q) => (
+                <Link
+                  key={q.slug}
+                  href={`/qualifications/${q.slug}`}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-200/60 hover:border-zinc-400 transition-all duration-200 group rounded-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+                >
+                  <div className="flex-1 max-w-2xl pr-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase">
                         {q.level}
                       </span>
                       {q.badge && (
-                        <span className="text-[10px] uppercase tracking-widest text-white border border-white/60 px-2 py-0.5 font-semibold">
+                        <span className="text-[9px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19]/20 bg-[#CE1A19]/5 px-2 py-0.5 font-black rounded-xs">
                           {q.badge}
                         </span>
                       )}
                     </div>
-                    <h3 className="text-white font-semibold text-lg">{q.title}</h3>
-                    <p className="text-white/50 text-sm mt-1">{q.tagline}</p>
+                    <h4 className="text-zinc-950 font-black text-lg md:text-xl group-hover:text-[#CE1A19] transition-colors duration-200">
+                      {q.title}
+                    </h4>
+                    <p className="text-zinc-600 text-sm mt-1.5 leading-relaxed">
+                      {q.tagline}
+                    </p>
                   </div>
-                </div>
-                <div className="flex items-center gap-4 flex-shrink-0 ml-6">
-                  <span className="text-white/60 text-xs hidden sm:block">{q.duration}</span>
-                  <span className="text-white text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </div>
-              </Link>
-            ))}
+
+                  <div className="flex items-center justify-between sm:justify-end gap-6 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-100">
+                    <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-sm">
+                      {q.duration}
+                    </span>
+                    <span
+                      className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-200 group-hover:translate-x-1.5 text-xl"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CPD Courses */}
-      <section className="bg-white py-24">
+      {/* 2. Continued Professional Development (CPD) */}
+      <section
+        aria-labelledby="cpd-heading"
+        className="py-20 md:py-28 bg-white"
+      >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-14">
-            <p className="text-[#CE1A19] text-xs font-semibold tracking-[4px] uppercase mb-4">
-              CPD
+          <div className="mb-12 md:mb-16">
+            <p className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-4">
+              Specialist Upgrades
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight uppercase">
+            <h2
+              id="cpd-heading"
+              className="text-2xl md:text-4xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+            >
               Continued Professional Development
             </h2>
-            <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
+            <div className="w-14 h-1 bg-zinc-200 mt-5" aria-hidden="true" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {cpdCourses.map((q) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CPD_COURSES.map((q) => (
               <Link
                 key={q.slug}
                 href={`/qualifications/${q.slug}`}
-                className="border border-black/10 p-8 hover:border-[#CE1A19]/50 hover:shadow-lg transition-all duration-200 group"
+                className="flex flex-col justify-between p-6 md:p-8 bg-zinc-50 border border-zinc-200/80 hover:border-zinc-400 transition-all duration-200 group rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
               >
-                <span className="text-[#CE1A19] text-xs font-semibold tracking-[3px] uppercase">{q.level}</span>
-                <h3 className="text-black font-bold text-xl mt-3 mb-3 leading-snug">{q.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">{q.tagline}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-xs">{q.duration}</span>
-                  <span className="text-[#CE1A19] text-lg group-hover:translate-x-1 transition-transform duration-200">→</span>
+                <div>
+                  <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
+                    {q.level}
+                  </span>
+                  <h3 className="text-zinc-950 font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
+                    {q.title}
+                  </h3>
+                  <p className="text-zinc-600 text-sm leading-relaxed mb-8">
+                    {q.tagline}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-zinc-200 mt-auto">
+                  <span className="text-zinc-500 text-xs font-bold tracking-wide uppercase">
+                    {q.duration}
+                  </span>
+                  <span
+                    className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-200 group-hover:translate-x-1 text-sm"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
                 </div>
               </Link>
             ))}
@@ -99,20 +166,40 @@ export default function QualificationsPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="bg-[#111111] py-20 border-t border-white/10">
+      {/* 3. Bottom Direct Guidance Action Row */}
+      <section
+        aria-labelledby="cta-heading"
+        className="py-20 md:py-24 border-t border-zinc-200 bg-zinc-50"
+      >
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
             Not Sure Where To Start?
           </p>
-          <h2 className="text-4xl font-bold text-white uppercase mb-6">We&apos;ll Point You In The Right Direction</h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mx-auto mb-8" />
-          <p className="text-white/70 text-lg mb-10 max-w-lg mx-auto">
-            Every student is different. Get in touch and Harry will help you find the right course for your goals and circumstances.
+          <h2
+            id="cta-heading"
+            className="text-2xl md:text-4xl font-black text-zinc-950 uppercase tracking-tight mb-4"
+          >
+            We&apos;ll Point You in the Right Direction.
+          </h2>
+          <div
+            className="w-14 h-1 bg-[#CE1A19] mx-auto mb-6"
+            aria-hidden="true"
+          />
+          <p className="text-zinc-600 text-sm md:text-base mb-10 max-w-lg mx-auto leading-relaxed">
+            Every student follows a distinct educational path. Get in touch
+            directly and Harry will calibrate the perfect structure matching
+            your career goals and availability constraints.
           </p>
-          <Button href="/contact" variant="primary" size="lg">
-            Get In Touch
-          </Button>
+          <div className="flex justify-center">
+            <Button
+              href="/contact"
+              variant="primary"
+              size="md"
+              className="px-10 shadow-sm"
+            >
+              Get In Touch
+            </Button>
+          </div>
         </div>
       </section>
     </main>

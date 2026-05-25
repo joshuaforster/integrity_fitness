@@ -19,10 +19,15 @@ export default function ScrollReveal() {
       { threshold: 0.07, rootMargin: "0px 0px -40px 0px" }
     );
 
-    // requestAnimationFrame ensures new page elements are in the DOM
-    // before we query — fixes the Next.js navigation timing race
     const raf = requestAnimationFrame(() => {
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document.querySelectorAll(".reveal").forEach((el) => {
+        // Elements already in the viewport on load appear immediately — no animation
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add("in-view");
+        } else {
+          observer.observe(el);
+        }
+      });
     });
 
     return () => {

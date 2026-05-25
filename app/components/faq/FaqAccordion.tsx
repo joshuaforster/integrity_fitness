@@ -1,91 +1,187 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const faqs = [
+type FAQItem = { q: string; a: string };
+type FAQGroup = { category: string; items: readonly FAQItem[] };
+
+const FAQS: readonly FAQGroup[] = [
   {
     category: "Payments & Pricing",
     items: [
-      { q: "Do you offer flexible payment options?", a: "Yes, we tailor your price to your learning needs so you can study at your own pace." },
-      { q: "What is the non-refundable deposit?", a: "£499 – this is for the fees we pay for your learning resources and registration." },
-      { q: "If I don't like the course, can I get a refund?", a: "The deposit for level 2 and level 3 is non-refundable. Any other fees are refundable during the 14-day statutory period." },
+      {
+        q: "Do you offer flexible payment options?",
+        a: "Yes, we tailor your price to your learning needs so you can study at your own pace.",
+      },
+      {
+        q: "What is the non-refundable deposit?",
+        a: "£499 – this covers the baseline cost of your learning resources and course registration with the awarding body.",
+      },
+      {
+        q: "If I don't like the course, can I get a refund?",
+        a: "The deposit for level 2 and level 3 is non-refundable. Any subsequent fees paid are fully refundable during your 14-day statutory cooling-off period.",
+      },
     ],
   },
   {
-    category: "Qualifications & Accreditation",
+    category: "Accreditation",
     items: [
-      { q: "Are your courses accredited?", a: "Yes, we are accredited by Active iQ, whose courses are recognised internationally." },
-      { q: "Are your qualifications internationally recognised?", a: "The Active IQ Level 2 & 3 qualifications are recognised in the UK and in other international countries. We recommend you speak to your country's specific awarding body to get the most up to date answer." },
-      { q: "Will I be insured to give training & nutrition advice once I finish the course?", a: "Yes, the combined diploma will allow you to get public liability & professional indemnity insurance to cover training and nutrition advice." },
-      { q: "What is CIMSPA?", a: "CIMSPA stands for the Chartered Institute for the Management of Sport and Physical Activity. It is the professional development body for the UK's sport and physical activity sector. Active IQ qualifications are recognised by CIMSPA." },
-      { q: "What is Active iQ?", a: "Active IQ is an awarding organisation for the active leisure, learning, and wellbeing sectors. It is recognised and regulated by Ofqual, Qualifications Wales, and CCEA. Active IQ works with a network of approved training organisations (like us) to deliver its qualifications." },
-      { q: "What is CPD?", a: "Continuing Professional Development. Sometimes referred to as CEUs in the USA." },
+      {
+        q: "Are your courses accredited?",
+        a: "Yes, we are fully accredited by Active IQ. Every single qualification we award is recognised internationally.",
+      },
+      {
+        q: "Will I be insured to give training & nutrition advice once I finish?",
+        a: "Yes, our combined diploma qualifies you to secure comprehensive public liability and professional indemnity insurance to cover both personal training and structural nutritional advice.",
+      },
+      {
+        q: "What is CIMSPA?",
+        a: "CIMSPA stands for the Chartered Institute for the Management of Sport and Physical Activity. It is the professional development body for the UK's physical activity sector. Active IQ qualifications are completely mapped and recognised by CIMSPA.",
+      },
     ],
   },
   {
     category: "Course Structure",
     items: [
-      { q: "Can I complete the course while I'm already working or going to University/College?", a: "Yes, the majority of the course is online with a minimum of two in-person weekends. However we take pride in our 1-1 tuition and workshops so we encourage as much in-person learning as you reasonably can." },
-      { q: "How are your qualifications taught?", a: "The theoretical side can be covered mostly online by watching webinars and participating in video conferencing with tutors and guest experts. 1-1 tuition for both the theoretical and practical side of the course is available as well as full practical workshops." },
-      { q: "How will I be assessed on the course?", a: "Level 2 and level 3 are assessed in person at an assessment day. Theory exams have multiple-choice tests which you can take online." },
-      { q: "What happens if I don't pass an exam?", a: "You're allowed up to 3 attempts at every unit, with fees applied depending on your choice of course." },
-      { q: "What if I already have a Level 2 fitness instructor qualification?", a: "Just show us proof of your certification and we can invoice you individually. Email harry@integrityfitness.education with the subject 'Level 2 verification'." },
+      {
+        q: "Can I complete the course while working or at University?",
+        a: "Yes. The vast majority of the theory architecture is delivered online. We couple this with targeted in-person practical weekend workshops tailored around your current commercial schedule.",
+      },
+      {
+        q: "How will I be assessed on the course?",
+        a: "Practical engineering competencies are assessed in person at our dedicated Norwich facility. Your theoretical units feature multiple-choice examinations that you can complete securely online.",
+      },
     ],
   },
-  {
-    category: "Timelines & Flexibility",
-    items: [
-      { q: "How long does the course take to complete?", a: "You can study at your own pace and we typically expect learners to become fully qualified within 9–14 months of enrolment. We have seen some pass in under 6 months but the maximum time allowed is 36 months." },
-      { q: "How long do I have to complete the qualification?", a: "You need to complete your certification within 36 months from your start date." },
-      { q: "What if I'm ill or go on holiday?", a: "Not a problem, all learning is done at your own pace. All of the webinars are online so you won't miss anything." },
-      { q: "How old do I need to be to do the course?", a: "You need to be 16 years of age or older." },
-    ],
-  },
-];
+] as const;
 
-function AccordionItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+// Inline utility to generate clean, URL/DOM-safe element IDs
+const formatId = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+function AccordionRow({ q, a }: FAQItem) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="border-b border-white/10 last:border-0">
+    <div className="border-b border-zinc-200 last:border-0">
       <button
         type="button"
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-6 text-left gap-6 group"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        className="w-full flex items-center justify-between py-5 md:py-6 text-left gap-6 group outline-none"
       >
-        <span className="text-white font-semibold text-base leading-snug group-hover:text-[#CE1A19] transition-colors">
+        <span className="text-zinc-950 font-extrabold text-sm md:text-base leading-snug group-hover:text-[#CE1A19] transition-colors duration-200">
           {q}
         </span>
-        <ChevronDownIcon
-          className={`w-5 h-5 text-[#CE1A19] flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-        />
+        <span
+          className="w-5 h-5 flex items-center justify-center text-[#CE1A19] flex-shrink-0 relative"
+          aria-hidden="true"
+        >
+          <span className="absolute w-3.5 h-0.5 bg-currentColor" />
+          <span
+            className={`absolute w-0.5 h-3.5 bg-currentColor transition-transform duration-200 ease-out ${isOpen ? "rotate-90" : ""}`}
+          />
+        </span>
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-6" : "max-h-0"}`}>
-        <p className="text-white/65 text-base leading-relaxed pl-4 border-l border-[#CE1A19]/30">{a}</p>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[300px] pb-6" : "max-h-0"}`}
+      >
+        <p className="text-zinc-600 text-sm md:text-base leading-relaxed pl-4 border-l-2 border-[#CE1A19]">
+          {a}
+        </p>
       </div>
     </div>
   );
 }
 
 export default function FaqAccordion() {
+  const handleScrollToSection = (category: string) => {
+    const elementId = formatId(category);
+    const targetElement = document.getElementById(elementId);
+
+    if (targetElement) {
+      // scrollIntoView with an offset calculation to account for a sticky header navbar
+      const yOffset = -100;
+      const yPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+
+      window.scrollTo({
+        top: yPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="bg-[#111111] pt-10 pb-24">
-      <div className="reveal mx-auto max-w-3xl px-6 lg:px-8">
-        {faqs.map((group, groupIndex) => (
-          <div key={group.category} className={groupIndex === 0 ? "mb-0" : "mt-20"}>
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-1 h-8 bg-[#CE1A19]" />
-              <h2 className="text-white text-xs font-semibold tracking-[4px] uppercase">
-                {group.category}
-              </h2>
-            </div>
-            <div className="border-t border-white/10">
-              {group.items.map((item) => (
-                <AccordionItem key={item.q} q={item.q} a={item.a} />
+    <section
+      aria-labelledby="faq-main-heading"
+      className="bg-zinc-50 pt-20 pb-12 md:pt-28 md:pb-16 border-t border-zinc-200/80"
+    >
+      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-16 md:mb-24">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+            Common Inquiries
+          </p>
+          <h2
+            id="faq-main-heading"
+            className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column Sidebar Menu — Now fully clickable */}
+          <div className="lg:col-span-4 hidden lg:block sticky top-28 space-y-4">
+            <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6">
+              Syllabus Categories
+            </p>
+            <nav className="space-y-3" aria-label="FAQ categories navigation">
+              {FAQS.map((group) => (
+                <button
+                  key={group.category}
+                  type="button"
+                  onClick={() => handleScrollToSection(group.category)}
+                  className="flex items-center gap-3 w-full text-left group/nav outline-none"
+                >
+                  <div className="w-1 h-3 bg-zinc-300 group-hover/nav:bg-[#CE1A19] transition-colors duration-200" />
+                  <span className="text-zinc-900 text-xs font-bold uppercase tracking-wider group-hover/nav:text-[#CE1A19] transition-colors duration-200">
+                    {group.category}
+                  </span>
+                </button>
               ))}
-            </div>
+            </nav>
           </div>
-        ))}
+
+          {/* Right Column Accordions */}
+          <div className="lg:col-span-8 space-y-12 w-full">
+            {FAQS.map((group) => (
+              <div
+                key={group.category}
+                id={formatId(group.category)} // Injects clean, targetable anchor IDs into the DOM
+                className="scroll-mt-24"
+              >
+                <div className="flex items-center gap-3 mb-4 lg:mb-6">
+                  <div className="w-1 h-4 bg-[#CE1A19]" aria-hidden="true" />
+                  <h3 className="text-zinc-950 text-xs font-black uppercase tracking-widest">
+                    {group.category}
+                  </h3>
+                </div>
+
+                <div className="border-t border-zinc-200">
+                  {group.items.map((item) => (
+                    <AccordionRow key={item.q} q={item.q} a={item.a} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
