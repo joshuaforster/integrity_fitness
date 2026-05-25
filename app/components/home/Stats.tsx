@@ -5,7 +5,7 @@ import Button from "@/app/components/Button";
 
 export default function Stats() {
   return (
-    <section className="bg-zinc-900 py-24 md:py-32 border-y border-zinc-800/60">
+    <section className="bg-zinc-900 texture-dots-dark py-24 md:py-32 border-y border-zinc-800/60">
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         {/* Asymmetric Split Layout Grid — items-center handles desktop vertical alignment */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -37,27 +37,30 @@ export default function Stats() {
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-16">
               {/* Stat 1: Established */}
               <div className="flex flex-col items-start border-l-2 border-zinc-800 pl-6">
-                <dd className="text-4xl md:text-5xl font-black text-white tracking-tight m-0 leading-none">
-                  2015
-                </dd>
-                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold">
+                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold order-last">
                   Established
                 </dt>
+                <dd className="text-4xl md:text-5xl font-black text-white tracking-tight m-0 leading-none order-first">
+                  2015
+                </dd>
               </div>
 
               {/* Stat 2: Qualifications */}
               <div className="flex flex-col items-start border-l-2 border-zinc-800 pl-6">
-                <dd className="text-4xl md:text-5xl font-black text-white tracking-tight m-0 leading-none">
-                  6
-                </dd>
-                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold">
+                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold order-last">
                   Qualifications Offered
                 </dt>
+                <dd className="text-4xl md:text-5xl font-black text-white tracking-tight m-0 leading-none order-first">
+                  6
+                </dd>
               </div>
 
               {/* Stat 3: Active IQ Logo Box (Inverted White) */}
               <div className="flex flex-col items-start border-l-2 border-zinc-800 pl-6">
-                <div className="h-8 w-auto relative flex items-center">
+                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold order-last">
+                  Approved Centre
+                </dt>
+                <dd className="h-8 w-auto relative flex items-center order-first">
                   <Image
                     src="/activeiq.png"
                     alt="Active IQ"
@@ -66,15 +69,15 @@ export default function Stats() {
                     priority
                     className="h-full w-auto object-contain brightness-0 invert"
                   />
-                </div>
-                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold">
-                  Approved Centre
-                </dt>
+                </dd>
               </div>
 
               {/* Stat 4: CIMSPA Logo Box (Inverted White) */}
               <div className="flex flex-col items-start border-l-2 border-zinc-800 pl-6">
-                <div className="h-8 w-auto relative flex items-center">
+                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold order-last">
+                  Accredited Partner
+                </dt>
+                <dd className="h-8 w-auto relative flex items-center order-first">
                   <Image
                     src="/cimspa.webp"
                     alt="CIMSPA"
@@ -83,10 +86,7 @@ export default function Stats() {
                     priority
                     className="h-full w-auto object-contain brightness-0 invert"
                   />
-                </div>
-                <dt className="text-xs text-zinc-400 uppercase tracking-[2px] mt-3 font-bold">
-                  Accredited Partner
-                </dt>
+                </dd>
               </div>
             </dl>
           </div>

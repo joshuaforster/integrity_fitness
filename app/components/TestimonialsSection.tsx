@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore, MouseEvent, TouchEvent } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export interface TestimonialItem {
@@ -10,7 +10,7 @@ export interface TestimonialItem {
   subtitle?: string;
 }
 
-const defaultTestimonials: TestimonialItem[] = [
+const DEFAULT_TESTIMONIALS: readonly TestimonialItem[] = [
   {
     name: "Grace Sandford",
     date: "2025-08-15",
@@ -51,20 +51,15 @@ const defaultTestimonials: TestimonialItem[] = [
     date: "2024-06-01",
     body: "Amazing experience! Both Paris and Harry have been super helpful throughout the whole course! They allowed me to go at my pace as I had a time frame before moving country and they were excellent in making sure I was able to achieve that!",
   },
-];
-
-const VISIBLE_COUNT = 3;
+] as const;
 
 function getRelativeTimeString(dateString: string): string {
   const now = new Date();
   const past = new Date(dateString);
-  const diffInDays = Math.floor(
-    (now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24),
-  );
+  const diffInDays = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24));
   if (diffInDays < 30) return "Recent";
   const diffInMonths = Math.floor(diffInDays / 30.4375);
-  if (diffInMonths < 12)
-    return `${diffInMonths} month${diffInMonths === 1 ? "" : "s"} ago`;
+  if (diffInMonths < 12) return `${diffInMonths} month${diffInMonths === 1 ? "" : "s"} ago`;
   const diffInYears = Math.floor(diffInMonths / 12);
   return `${diffInYears} year${diffInYears === 1 ? "" : "s"} ago`;
 }
@@ -73,13 +68,7 @@ function Stars() {
   return (
     <div className="flex gap-0.5 mb-5" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg
-          key={i}
-          className="w-4 h-4 text-amber-400"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
+        <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -88,22 +77,10 @@ function Stars() {
 }
 
 function initials(name: string) {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
 }
 
-interface CardProps {
-  t: TestimonialItem;
-  isMounted: boolean;
-  theme: "dark" | "light";
-  asGrid?: boolean;
-}
-
-function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
+function TestimonialCard({ t, isMounted, theme }: { t: TestimonialItem; isMounted: boolean; theme: "dark" | "light" }) {
   const [expanded, setExpanded] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -115,61 +92,39 @@ function TestimonialCard({ t, isMounted, theme, asGrid }: CardProps) {
 
   const isDark = theme === "dark";
 
-  const cardClass = isDark
-    ? "bg-zinc-900 border border-white shadow-lg"
-    : "bg-white border border-zinc-200/80 shadow-sm";
-
-  const bodyClass = isDark ? "text-zinc-300" : "text-zinc-600";
-  const nameClass = isDark ? "text-white" : "text-zinc-950";
-  const metaClass = isDark ? "text-zinc-500" : "text-zinc-500";
-  const borderClass = isDark ? "border-zinc-900" : "border-zinc-100";
-
-  const sizeClass = asGrid
-    ? "w-full"
-    : "w-full md:w-[calc(33.333%-16px)] flex-shrink-0";
-
   return (
-    <div
-      className={`${cardClass} ${sizeClass} p-6 md:p-8 flex flex-col rounded-sm`}
-    >
+    <div className={`w-[310px] md:w-[380px] shrink-0 p-6 md:p-8 flex flex-col rounded-sm border select-none transition-colors duration-200 ${
+      isDark ? "bg-zinc-900 border-zinc-800 shadow-xl" : "bg-white border-zinc-200/80 shadow-xs"
+    }`}>
       <Stars />
-
-      <div className="mb-6 ">
+      <div className="mb-6">
         <p
           ref={textRef}
-          className={`${bodyClass} text-sm leading-relaxed overflow-hidden transition-[max-height] duration-300 ease-in-out ${expanded ? "max-h-[600px]" : "max-h-[7.5rem]"}`}
+          className={`text-sm leading-relaxed overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+            isDark ? "text-zinc-300" : "text-zinc-600"
+          } ${expanded ? "max-h-[600px]" : "max-h-[7.5rem]"}`}
         >
           {t.body}
         </p>
         {isClamped && (
           <button
             type="button"
-            onClick={() => setExpanded((v) => !v)}
-            className="mt-3 text-xs font-bold tracking-wider uppercase text-[#CE1A19] hover:text-red-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm"
+            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            className="mt-3 text-xs font-bold tracking-wider uppercase text-[#CE1A19] hover:text-red-500 transition-colors outline-none"
           >
             {expanded ? "Read less ↑" : "Read more ↓"}
           </button>
         )}
       </div>
 
-      <div
-        className={`flex items-center gap-3 pt-5 border-t ${borderClass} mt-auto`}
-      >
-        <div
-          className="w-9 h-9 rounded-full bg-[#CE1A19] flex items-center justify-center flex-shrink-0"
-          aria-hidden="true"
-        >
-          <span className="text-white text-xs font-bold">
-            {initials(t.name)}
-          </span>
+      <div className={`flex items-center gap-3 pt-5 border-t mt-auto ${isDark ? "border-zinc-800" : "border-zinc-100"}`}>
+        <div className="w-9 h-9 rounded-full bg-[#CE1A19] flex items-center justify-center shrink-0" aria-hidden="true">
+          <span className="text-white text-xs font-bold">{initials(t.name)}</span>
         </div>
         <div>
-          <p className={`${nameClass} text-sm font-bold tracking-wide`}>
-            {t.name}
-          </p>
-          <p className={`${metaClass} text-xs font-medium mt-0.5`}>
-            {t.subtitle ??
-              (isMounted && t.date ? getRelativeTimeString(t.date) : "")}
+          <p className={`text-sm font-bold tracking-wide ${isDark ? "text-white" : "text-zinc-950"}`}>{t.name}</p>
+          <p className="text-zinc-500 text-xs font-medium mt-0.5">
+            {t.subtitle ?? (isMounted && t.date ? getRelativeTimeString(t.date) : "")}
           </p>
         </div>
       </div>
@@ -190,133 +145,117 @@ export default function TestimonialsSection({
   label = "Google Reviews",
   heading = "What Our Students Say",
 }: Props) {
-  const items = testimonials ?? defaultTestimonials;
-  const isCarousel = items.length > VISIBLE_COUNT;
-  const MAX_INDEX = isCarousel ? items.length - VISIBLE_COUNT : 0;
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const goNext = () =>
-    setCurrentIndex((prev) => (prev >= MAX_INDEX ? 0 : prev + 1));
-  const goPrev = () =>
-    setCurrentIndex((prev) => (prev === 0 ? MAX_INDEX : prev - 1));
-
+  const items = testimonials ?? DEFAULT_TESTIMONIALS;
   const isDark = theme === "dark";
 
-  const sectionBg = isDark ? "bg-zinc-950" : "bg-zinc-50";
-  const headingClass = isDark ? "text-white" : "text-zinc-950";
-  const navBtnClass = isDark
-    ? "border-zinc-800 bg-zinc-950 text-white hover:border-[#CE1A19] hover:text-[#CE1A19]"
-    : "border-zinc-200 bg-white text-zinc-950 hover:border-[#CE1A19] hover:text-[#CE1A19]";
-  const dotInactiveClass = isDark
-    ? "bg-zinc-700 hover:bg-zinc-600"
-    : "bg-zinc-200 hover:bg-zinc-300";
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+
+  const handleScrollAction = (direction: "left" | "right") => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const scrollAmount = 400;
+    container.scrollTo({
+      left: container.scrollLeft + (direction === "left" ? -scrollAmount : scrollAmount),
+      behavior: "smooth"
+    });
+  };
+
+  const startDrag = (clientX: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    setIsDragging(true);
+    setStartX(clientX - container.offsetLeft);
+    setScrollLeftState(container.scrollLeft);
+  };
+
+  const doDrag = (clientX: number) => {
+    if (!isDragging) return;
+    const container = scrollRef.current;
+    if (!container) return;
+    const x = clientX - container.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    container.scrollLeft = scrollLeftState - walk;
+  };
+
+  const stopDrag = () => {
+    setIsDragging(false);
+  };
 
   return (
-    <section
-      className={`${sectionBg} py-20 md:py-28 overflow-hidden border-y ${isDark ? "border-zinc-800/60" : "border-zinc-200/80"}`}
-    >
+    <section className={`py-20 md:py-28 overflow-hidden border-y transition-colors duration-200 ${
+      isDark ? "bg-zinc-950 border-zinc-900" : "bg-zinc-50 border-zinc-200/80"
+    }`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header Block */}
-        <div className="mb-14 md:mb-16">
-          <p
-            className={`${isDark ? "text-zinc-400" : "text-[#CE1A19]"} text-xs font-bold tracking-[4px] uppercase mb-4`}
-          >
-            {label}
-          </p>
-          <h2
-            className={`text-3xl md:text-5xl font-extrabold ${headingClass} tracking-tight leading-tight max-w-xl`}
-          >
-            {heading}
-          </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 md:mb-16">
+          <div>
+            <p className={`text-xs font-bold tracking-[4px] uppercase mb-4 ${isDark ? "text-zinc-400" : "text-[#CE1A19]"}`}>
+              {label}
+            </p>
+            <h2 className={`text-3xl md:text-5xl font-black tracking-tight leading-none uppercase ${isDark ? "text-white" : "text-zinc-950"}`}>
+              {heading}
+            </h2>
+            <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
+          </div>
+
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              type="button"
+              onClick={() => handleScrollAction("left")}
+              aria-label="Scroll reviews left"
+              className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
+                isDark
+                  ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
+                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
+              }`}
+            >
+              <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollAction("right")}
+              aria-label="Scroll reviews right"
+              className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
+                isDark
+                  ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
+                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
+              }`}
+            >
+              <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
+            </button>
+          </div>
         </div>
 
-        {isCarousel ? (
-          <>
-            {/* Carousel Viewport Layer */}
-            <div className="overflow-hidden">
-              <div
-                className="flex items-start gap-6 transition-transform duration-500 ease-out"
-                style={{
-                  transform: `translateX(calc(-${currentIndex * 33.333}% - ${currentIndex * 16}px))`,
-                }}
-              >
-                {items.map((t) => (
-                  <TestimonialCard
-                    key={t.name}
-                    t={t}
-                    isMounted={isMounted}
-                    theme={theme}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation Anchor and Dots Controls Row */}
-            <div className="flex items-center justify-center gap-6 mt-12">
-              <button
-                type="button"
-                onClick={goPrev}
-                aria-label="Previous testimonial"
-                className={`w-11 h-11 flex items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm ${navBtnClass}`}
-              >
-                <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
-              </button>
-
-              <div
-                className="flex gap-2"
-                role="tablist"
-                aria-label="Testimonial slides"
-              >
-                {Array.from({ length: MAX_INDEX + 1 }).map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    role="tab"
-                    aria-selected={i === currentIndex}
-                    onClick={() => setCurrentIndex(i)}
-                    aria-label={`Go to slide ${i + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
-                      i === currentIndex
-                        ? "bg-[#CE1A19] w-6"
-                        : `w-2 ${dotInactiveClass}`
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={goNext}
-                aria-label="Next testimonial"
-                className={`w-11 h-11 flex items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] rounded-sm ${navBtnClass}`}
-              >
-                <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
-              </button>
-            </div>
-          </>
-        ) : (
-          /* Fallback Native Grid System Layer */
-          <div
-            className={`grid grid-cols-1 gap-6 ${items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"}`}
-          >
-            {items.map((t) => (
+        <div
+          ref={scrollRef}
+          onMouseDown={(e: MouseEvent) => startDrag(e.clientX)}
+          onMouseMove={(e: MouseEvent) => doDrag(e.clientX)}
+          onMouseUp={stopDrag}
+          onMouseLeave={stopDrag}
+          onTouchStart={(e: TouchEvent) => startDrag(e.touches[0].clientX)}
+          onTouchMove={(e: TouchEvent) => doDrag(e.touches[0].clientX)}
+          onTouchEnd={stopDrag}
+          className="flex gap-6 overflow-x-auto scrollbar-none pb-4 cursor-grab select-none active:cursor-grabbing snap-x snap-mandatory lg:snap-none will-change-scroll"
+        >
+          {items.map((t, idx) => (
+            <div key={idx} className="snap-center shrink-0">
               <TestimonialCard
-                key={t.name}
                 t={t}
                 isMounted={isMounted}
                 theme={theme}
-                asGrid
               />
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

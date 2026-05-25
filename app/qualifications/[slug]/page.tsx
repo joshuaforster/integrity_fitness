@@ -8,6 +8,8 @@ import qualifications, {
 import Button from "@/app/components/Button";
 import TestimonialsSection from "@/app/components/TestimonialsSection";
 import PricingToggleSection from "./PricingToggleSection";
+import ModulesAccordion from "./ModulesAccordion";
+import CoursePreviewBook from "./CoursePreviewBook";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -184,7 +186,7 @@ export default async function QualificationPage({ params }: PageProps) {
       {/* 2. Overview & Syllabus Information Area */}
       <section
         aria-labelledby="overview-heading"
-        className="bg-white py-20 md:py-28"
+        className="bg-white texture-grid-light py-20 md:py-28"
       >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -206,6 +208,8 @@ export default async function QualificationPage({ params }: PageProps) {
                   <p key={i}>{para}</p>
                 ))}
               </div>
+
+              <CoursePreviewBook qualTitle={qual.title} modules={qual.modules} />
             </div>
 
             {/* Right Column: Key Takeaways & Pre-requisites (Spans 5 Columns) */}
@@ -268,7 +272,7 @@ export default async function QualificationPage({ params }: PageProps) {
       {/* 3. Detailed Curricular Modules */}
       <section
         aria-labelledby="modules-heading"
-        className="bg-zinc-900 py-20 md:py-24 border-b border-zinc-950"
+        className="bg-zinc-900 texture-dots-dark py-20 md:py-24 border-b border-zinc-950"
       >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12 md:mb-16">
@@ -284,34 +288,7 @@ export default async function QualificationPage({ params }: PageProps) {
             <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {qual.modules.map((mod, i) => (
-              <div
-                key={mod.title}
-                className="bg-zinc-950 border border-zinc-950 p-6 md:p-8 rounded-sm shadow-md"
-              >
-                <p className="text-[#CE1A19] text-[10px] font-black tracking-[3px] uppercase mb-1">
-                  Module 0{i + 1}
-                </p>
-                <h3 className="text-white font-extrabold text-lg mb-5 tracking-wide">
-                  {mod.title}
-                </h3>
-                <ul className="space-y-3" role="list">
-                  {mod.topics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-3">
-                      <span
-                        className="w-1 h-1 bg-zinc-700 mt-2.5 flex-shrink-0 rounded-full"
-                        aria-hidden="true"
-                      />
-                      <span className="text-zinc-400 text-sm leading-snug">
-                        {topic}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <ModulesAccordion modules={qual.modules} />
         </div>
       </section>
 
@@ -335,7 +312,7 @@ export default async function QualificationPage({ params }: PageProps) {
       {/* 6. Closing Direct Conversion Module Footer */}
       <section
         aria-labelledby="final-cta-heading"
-        className="bg-zinc-950 py-20 border-t border-zinc-900"
+        className="bg-zinc-950 texture-grid-dark py-20 border-t border-zinc-900"
       >
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">

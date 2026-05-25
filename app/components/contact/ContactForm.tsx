@@ -77,7 +77,7 @@ export default function ContactForm() {
   return (
     <section
       aria-labelledby="contact-heading"
-      className="bg-white py-20 md:py-28 border-t border-zinc-100"
+      className="bg-white texture-grid-light py-20 md:py-28 border-t border-zinc-100"
     >
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">

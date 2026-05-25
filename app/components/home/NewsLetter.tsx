@@ -6,7 +6,7 @@ export default function Newsletter() {
   return (
     <section
       aria-labelledby="newsletter-heading"
-      className="bg-zinc-900 py-20 md:py-24 border-y border-zinc-800/60"
+      className="bg-zinc-900 texture-diag-dark py-20 md:py-24 border-y border-zinc-800/60"
     >
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

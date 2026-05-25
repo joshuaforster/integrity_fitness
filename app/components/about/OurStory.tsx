@@ -29,7 +29,7 @@ export default function OurStory() {
   return (
     <section
       aria-labelledby="team-heading"
-      className="bg-zinc-50 py-20 md:py-28 border-t border-zinc-200/80"
+      className="bg-zinc-50 texture-diag-light py-20 md:py-28 border-t border-zinc-200/80"
     >
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header Stack */}

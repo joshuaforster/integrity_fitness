@@ -119,7 +119,7 @@ export default function FaqAccordion() {
   return (
     <section
       aria-labelledby="faq-main-heading"
-      className="bg-zinc-50 pt-20 pb-12 md:pt-28 md:pb-16 border-t border-zinc-200/80"
+      className="bg-zinc-50 texture-dots-light pt-20 pb-12 md:pt-28 md:pb-16 border-t border-zinc-200/80"
     >
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-16 md:mb-24">

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="bg-zinc-50">
+    <main className="bg-white">
       <PageHero
         image="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80"
         label="Behind The Scenes"
@@ -19,18 +19,39 @@ export default function GalleryPage() {
         minHeight="60vh"
       />
 
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-12">
-            <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
-              Our Work
-            </p>
-            <h2 className="text-2xl md:text-4xl font-black text-zinc-950 tracking-tight uppercase leading-none">
-              Life At Integrity
-            </h2>
-            <div className="w-14 h-1 bg-[#CE1A19] mt-5" aria-hidden="true" />
+      {/* Spacious, breathable layout container segment */}
+      <section
+        aria-labelledby="gallery-heading"
+        className="py-20 md:py-28 bg-white"
+      >
+        <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Asymmetric Section Header Block Split */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-start mb-16 md:mb-20">
+            {/* Left Anchor (Spans 4 Columns) */}
+            <div className="lg:col-span-4">
+              <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase">
+                Our Work
+              </p>
+              <div className="w-14 h-1 bg-[#CE1A19] mt-4" aria-hidden="true" />
+            </div>
+
+            {/* Right Anchor (Spans 8 Columns) */}
+            <div className="lg:col-span-8 lg:pl-4">
+              <h2
+                id="gallery-heading"
+                className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+              >
+                Life at Integrity
+              </h2>
+              <p className="text-zinc-500 text-sm md:text-base leading-relaxed mt-4 max-w-xl">
+                Real setups, authentic practical engineering metrics, and
+                student cohorts execution. Use the options below to filter
+                across our facility zones.
+              </p>
+            </div>
           </div>
 
+          {/* Child client-side rendering matrix grid */}
           <GalleryGrid />
         </div>
       </section>

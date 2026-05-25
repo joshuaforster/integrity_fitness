@@ -69,7 +69,7 @@ const NAVIGATION = {
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-900 text-white">
+    <footer className="bg-zinc-950 texture-grid-dark border-t border-zinc-900 text-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-16 pb-10">
         <div className="xl:grid grid-cols-1 xl:grid-cols-3 xl:gap-16">
           {/* Left Block — Identity Brand Panel */}

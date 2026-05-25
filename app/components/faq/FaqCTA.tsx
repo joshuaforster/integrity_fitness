@@ -6,7 +6,7 @@ export default function FaqCTA() {
   return (
     <section
       aria-labelledby="faq-cta-heading"
-      className="bg-zinc-50 pb-20 md:pb-28"
+      className="bg-zinc-50 texture-diag-light pb-20 md:pb-28"
     >
       <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
         <div className="pt-12 border-t border-zinc-200/80 text-center max-w-3xl mx-auto">

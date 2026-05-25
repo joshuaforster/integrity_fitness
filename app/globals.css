@@ -5,7 +5,6 @@
   --foreground: #171717;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -20,13 +19,101 @@ body {
   line-height: 1.5;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+/* ── Tailwind v4 Theme Configuration ────────────────────────────────────────── */
+@theme {
+  /* Direct registration of utility tokens to prevent compiling layout shifts */
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-infinite-scroll: infinite-scroll 45s linear infinite;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
-  100% {
-    transform: translateX(-50%);
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(60px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-60px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes modalBackdropIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modalContentIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.985);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes modalBackdropOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* ── Layout & Performance Optimization Utilities ────────────────────────────── */
+
+/* Clean layout strip utility for horizontal tracking layers */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+
+  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 }
 
@@ -35,23 +122,20 @@ body {
   opacity: 0;
   transform: translateY(36px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: transform, opacity;
 }
+
 .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-@keyframes slideInFromRight {
-  from { transform: translateX(60px); opacity: 0; }
-  to   { transform: translateX(0);    opacity: 1; }
-}
-
-@keyframes slideInFromLeft {
-  from { transform: translateX(-60px); opacity: 0; }
-  to   { transform: translateX(0);     opacity: 1; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .testimonial-slide-next {
@@ -62,14 +146,77 @@ body {
   animation: slideInFromLeft 0.35s ease-out both;
 }
 
-/* Testimonial slider track positions — one class per possible index */
-.slider-pos-0 { transform: translateX(0%); }
-.slider-pos-1 { transform: translateX(calc(-100% / 3)); }
-.slider-pos-2 { transform: translateX(calc(-200% / 3)); }
-.slider-pos-3 { transform: translateX(-100%); }
-.slider-pos-4 { transform: translateX(calc(-400% / 3)); }
-.slider-pos-5 { transform: translateX(calc(-500% / 3)); }
+/* Testimonial slider track positions — fallback indices mappings */
+.slider-pos-0 {
+  transform: translateX(0%);
+}
 
-@theme {
-  --animate-marquee: marquee 30s linear infinite;
+.slider-pos-1 {
+  transform: translateX(calc(-100% / 3));
+}
+
+.slider-pos-2 {
+  transform: translateX(calc(-200% / 3));
+}
+
+.slider-pos-3 {
+  transform: translateX(-100%);
+}
+
+.slider-pos-4 {
+  transform: translateX(calc(-400% / 3));
+}
+
+.slider-pos-5 {
+  transform: translateX(calc(-500% / 3));
+}
+
+/* ── Texture utilities ─────────────────────────────────────────────────────── */
+.texture-dots-dark {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.texture-dots-light {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.texture-diag-dark {
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(255, 255, 255, 0.028) 12px, rgba(255, 255, 255, 0.028) 13px);
+}
+
+.texture-diag-light {
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(0, 0, 0, 0.032) 12px, rgba(0, 0, 0, 0.032) 13px);
+}
+
+.texture-grid-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.texture-grid-light {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* ── Modal & Portals Layer Classes ────────────────────────────────────────── */
+.modal-backdrop-in {
+  animation: modalBackdropIn 0.22s ease-out both;
+}
+
+.modal-content-in {
+  animation: modalContentIn 0.28s ease-out both;
+}
+
+.modal-backdrop-out {
+  animation: modalBackdropOut 0.22s ease-in both;
+}
+
+.book-scale-wrapper {
+  transform-origin: center center;
 }
