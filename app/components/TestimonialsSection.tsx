@@ -206,32 +206,34 @@ export default function TestimonialsSection({
             <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              type="button"
-              onClick={() => handleScrollAction("left")}
-              aria-label="Scroll reviews left"
-              className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
-                isDark
-                  ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
-                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
-              }`}
-            >
-              <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
-            </button>
-            <button
-              type="button"
-              onClick={() => handleScrollAction("right")}
-              aria-label="Scroll reviews right"
-              className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
-                isDark
-                  ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
-                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
-              }`}
-            >
-              <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
-            </button>
-          </div>
+          {items.length > 3 && (
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => handleScrollAction("left")}
+                aria-label="Scroll reviews left"
+                className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
+                  isDark
+                    ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
+                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
+                }`}
+              >
+                <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleScrollAction("right")}
+                aria-label="Scroll reviews right"
+                className={`w-11 h-11 flex items-center justify-center border transition-all duration-200 outline-none rounded-sm active:scale-95 ${
+                  isDark
+                    ? "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-white hover:text-white"
+                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-950 hover:text-zinc-950"
+                }`}
+              >
+                <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
+              </button>
+            </div>
+          )}
         </div>
 
         <div

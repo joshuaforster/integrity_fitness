@@ -209,7 +209,7 @@ export default async function QualificationPage({ params }: PageProps) {
                 ))}
               </div>
 
-              <CoursePreviewBook qualTitle={qual.title} modules={qual.modules} />
+              <CoursePreviewBook qualTitle={qual.title} bookletFolder={qual.bookletFolder} bookletPageCount={qual.bookletPageCount} bookletPdfPath={qual.bookletPdfPath} />
             </div>
 
             {/* Right Column: Key Takeaways & Pre-requisites (Spans 5 Columns) */}
@@ -288,7 +288,7 @@ export default async function QualificationPage({ params }: PageProps) {
             <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
           </div>
 
-          <ModulesAccordion modules={qual.modules} />
+          <ModulesAccordion modules={qual.modules} bookletFolder={qual.bookletFolder} bookletPageCount={qual.bookletPageCount} />
         </div>
       </section>
 

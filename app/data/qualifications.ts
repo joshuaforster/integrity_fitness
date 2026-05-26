@@ -31,6 +31,9 @@ export type Qualification = {
   hasBillingToggle: boolean;
   badge?: string;
   testimonials?: Testimonial[];
+  bookletFolder?: string;
+  bookletPageCount?: number;
+  bookletPdfPath?: string;
 };
 
 const qualifications: Qualification[] = [
@@ -148,6 +151,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    bookletFolder: "level-3-diploma",
+    bookletPageCount: 44,
+    bookletPdfPath: "/Level3 Diploma .pdf",
     testimonials: [
       {
         quote: "I qualified in under a year while working full time. The one-to-one sessions meant I could actually ask questions — not just sit in a room waiting for the tutor to get round to me.",
@@ -259,6 +265,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    bookletFolder: "level-2-diploma",
+    bookletPageCount: 24,
+    bookletPdfPath: "/Level2 Diploma.pdf",
     testimonials: [
       {
         quote: "Straightforward, practical, and no fluff. I passed first time and started on the gym floor within a few weeks of finishing.",
@@ -374,6 +383,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: true,
+    bookletFolder: "level-3-only",
+    bookletPageCount: 30,
+    bookletPdfPath: "/level3only.pdf",
     testimonials: [
       {
         quote: "I already had my Level 2 and just needed the PT qualification. The programme design module changed how I approach every session with clients.",
@@ -458,6 +470,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: false,
+    bookletFolder: "mental-health",
+    bookletPageCount: 8,
+    bookletPdfPath: "/mentalhealth.pdf",
   },
   {
     slug: "pre-post-natal",
@@ -530,6 +545,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: false,
+    bookletFolder: "pre-post-natal",
+    bookletPageCount: 12,
+    bookletPdfPath: "/pre_post.pdf",
   },
   {
     slug: "emergency-first-aid",
@@ -602,6 +620,9 @@ const qualifications: Qualification[] = [
       },
     ],
     hasBillingToggle: false,
+    bookletFolder: "first-aid",
+    bookletPageCount: 17,
+    bookletPdfPath: "/firstaid.pdf",
   },
 ];
 
