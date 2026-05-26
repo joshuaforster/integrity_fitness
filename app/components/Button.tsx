@@ -1,7 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { clsx } from "clsx"; // Install via 'npm i clsx' if not present, or replace with template strings
+import { clsx } from "clsx";
 
 export type ButtonVariant =
   | "primary"
@@ -29,7 +30,15 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 const baseStyle =
-  "inline-flex items-center justify-center font-bold uppercase transition-all duration-200 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
+  "inline-flex items-center justify-center font-bold uppercase transition-colors duration-200 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+
+const motionProps = {
+  whileHover: { scale: 1.04 },
+  whileTap: { scale: 0.95 },
+  transition: { duration: 0.18, ease: "easeOut" as const },
+};
+
+const MotionLink = motion(Link);
 
 interface SharedProps {
   variant?: ButtonVariant;
@@ -78,34 +87,36 @@ export default function Button({
 
     if (external) {
       return (
-        <a
+        <motion.a
           href={href}
           className={combinedClasses}
           target="_blank"
           rel="noopener noreferrer"
+          {...motionProps}
         >
           {children}
-        </a>
+        </motion.a>
       );
     }
 
     return (
-      <Link href={href} className={combinedClasses}>
+      <MotionLink href={href} className={combinedClasses} {...motionProps}>
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   const { type = "button", onClick, disabled } = rest as NativeButtonProps;
 
   return (
-    <button
+    <motion.button
       type={type}
       onClick={onClick}
       disabled={disabled}
       className={combinedClasses}
+      {...motionProps}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

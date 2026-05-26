@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export default function FaqCTA() {
   return (
@@ -8,7 +9,7 @@ export default function FaqCTA() {
       aria-labelledby="faq-cta-heading"
       className="bg-zinc-50 texture-diag-light pb-20 md:pb-28"
     >
-      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+      <SectionWrapper reveal>
         <div className="pt-12 border-t border-zinc-200/80 text-center max-w-3xl mx-auto">
           <p className="text-[#CE1A19] text-xs font-bold tracking-[3px] uppercase mb-4">
             Still Have Questions?
@@ -23,14 +24,8 @@ export default function FaqCTA() {
             Can&apos;t find the exact answer you need? Get in touch directly and
             our trainers will answer your queries.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
-            <Button
-              href="/contact"
-              variant="primary"
-              size="md"
-              className="px-8 shadow-sm"
-            >
+            <Button href="/contact" variant="primary" size="md" className="px-8 shadow-sm">
               Get In Touch
             </Button>
             <Button
@@ -44,7 +39,7 @@ export default function FaqCTA() {
             </Button>
           </div>
         </div>
-      </div>
+      </SectionWrapper>
     </section>
   );
 }

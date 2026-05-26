@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import FaqCategoryNav from "./FaqCategoryNav";
+import FaqGroup, { type FAQGroup } from "./FaqGroup";
 
-type FAQItem = { q: string; a: string };
-type FAQGroup = { category: string; items: readonly FAQItem[] };
-
-const FAQS: readonly FAQGroup[] = [
+const FAQS: FAQGroup[] = [
   {
     category: "Payments & Pricing",
     items: [
@@ -53,75 +52,15 @@ const FAQS: readonly FAQGroup[] = [
       },
     ],
   },
-] as const;
-
-// Inline utility to generate clean, URL/DOM-safe element IDs
-const formatId = (text: string) =>
-  text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-
-function AccordionRow({ q, a }: FAQItem) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="border-b border-zinc-200 last:border-0">
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-        className="w-full flex items-center justify-between py-5 md:py-6 text-left gap-6 group outline-none"
-      >
-        <span className="text-zinc-950 font-extrabold text-sm md:text-base leading-snug group-hover:text-[#CE1A19] transition-colors duration-200">
-          {q}
-        </span>
-        <span
-          className="w-5 h-5 flex items-center justify-center text-[#CE1A19] flex-shrink-0 relative"
-          aria-hidden="true"
-        >
-          <span className="absolute w-3.5 h-0.5 bg-currentColor" />
-          <span
-            className={`absolute w-0.5 h-3.5 bg-currentColor transition-transform duration-200 ease-out ${isOpen ? "rotate-90" : ""}`}
-          />
-        </span>
-      </button>
-
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[300px] pb-6" : "max-h-0"}`}
-      >
-        <p className="text-zinc-600 text-sm md:text-base leading-relaxed pl-4 border-l-2 border-[#CE1A19]">
-          {a}
-        </p>
-      </div>
-    </div>
-  );
-}
+];
 
 export default function FaqAccordion() {
-  const handleScrollToSection = (category: string) => {
-    const elementId = formatId(category);
-    const targetElement = document.getElementById(elementId);
-
-    if (targetElement) {
-      // scrollIntoView with an offset calculation to account for a sticky header navbar
-      const yOffset = -100;
-      const yPosition =
-        targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
-
-      window.scrollTo({
-        top: yPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <section
       aria-labelledby="faq-main-heading"
       className="bg-zinc-50 texture-dots-light pt-20 pb-12 md:pt-28 md:pb-16 border-t border-zinc-200/80"
     >
-      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+      <SectionWrapper reveal>
         <div className="mb-16 md:mb-24">
           <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
             Common Inquiries
@@ -136,53 +75,15 @@ export default function FaqAccordion() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column Sidebar Menu — Now fully clickable */}
-          <div className="lg:col-span-4 hidden lg:block sticky top-28 space-y-4">
-            <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6">
-              Syllabus Categories
-            </p>
-            <nav className="space-y-3" aria-label="FAQ categories navigation">
-              {FAQS.map((group) => (
-                <button
-                  key={group.category}
-                  type="button"
-                  onClick={() => handleScrollToSection(group.category)}
-                  className="flex items-center gap-3 w-full text-left group/nav outline-none"
-                >
-                  <div className="w-1 h-3 bg-zinc-300 group-hover/nav:bg-[#CE1A19] transition-colors duration-200" />
-                  <span className="text-zinc-900 text-xs font-bold uppercase tracking-wider group-hover/nav:text-[#CE1A19] transition-colors duration-200">
-                    {group.category}
-                  </span>
-                </button>
-              ))}
-            </nav>
-          </div>
+          <FaqCategoryNav groups={FAQS} />
 
-          {/* Right Column Accordions */}
           <div className="lg:col-span-8 space-y-12 w-full">
             {FAQS.map((group) => (
-              <div
-                key={group.category}
-                id={formatId(group.category)} // Injects clean, targetable anchor IDs into the DOM
-                className="scroll-mt-24"
-              >
-                <div className="flex items-center gap-3 mb-4 lg:mb-6">
-                  <div className="w-1 h-4 bg-[#CE1A19]" aria-hidden="true" />
-                  <h3 className="text-zinc-950 text-xs font-black uppercase tracking-widest">
-                    {group.category}
-                  </h3>
-                </div>
-
-                <div className="border-t border-zinc-200">
-                  {group.items.map((item) => (
-                    <AccordionRow key={item.q} q={item.q} a={item.a} />
-                  ))}
-                </div>
-              </div>
+              <FaqGroup key={group.category} group={group} />
             ))}
           </div>
         </div>
-      </div>
+      </SectionWrapper>
     </section>
   );
 }

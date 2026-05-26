@@ -6,6 +6,11 @@ export type PricingTier = {
   highlighted?: boolean;
 };
 
+export type ComparisonFeature = {
+  label: string;
+  values: (boolean | string)[];
+};
+
 export type Testimonial = {
   quote: string;
   name: string;
@@ -28,6 +33,7 @@ export type Qualification = {
   entryRequirements: string[];
   modules: { title: string; topics: string[] }[];
   pricing: PricingTier[];
+  comparisonFeatures?: ComparisonFeature[];
   hasBillingToggle: boolean;
   badge?: string;
   testimonials?: Testimonial[];
@@ -150,6 +156,19 @@ const qualifications: Qualification[] = [
         ],
       },
     ],
+    comparisonFeatures: [
+      { label: "Full Level 2 & 3 course materials", values: [true, true, true] },
+      { label: "Online learning portal access", values: [true, true, true] },
+      { label: "Written assessments & marking", values: [true, true, true] },
+      { label: "Active IQ qualification on completion", values: [true, true, true] },
+      { label: "Weekly one-to-one sessions with Harry", values: [false, true, true] },
+      { label: "Practical assessment support", values: [false, true, true] },
+      { label: "Ongoing feedback & mentoring", values: [false, true, true] },
+      { label: "Multiple sessions per week", values: [false, false, true] },
+      { label: "Priority scheduling", values: [false, false, true] },
+      { label: "Post-qualification career guidance", values: [false, false, true] },
+      { label: "Free CPD course of your choice", values: [false, false, true] },
+    ],
     hasBillingToggle: true,
     bookletFolder: "level-3-diploma",
     bookletPageCount: 44,
@@ -263,6 +282,18 @@ const qualifications: Qualification[] = [
           "Post-qualification career guidance",
         ],
       },
+    ],
+    comparisonFeatures: [
+      { label: "Full Level 2 course materials", values: [true, true, true] },
+      { label: "Online learning portal access", values: [true, true, true] },
+      { label: "Written assessments & marking", values: [true, true, true] },
+      { label: "Active IQ qualification on completion", values: [true, true, true] },
+      { label: "Weekly one-to-one sessions with Harry", values: [false, true, true] },
+      { label: "Practical assessment support", values: [false, true, true] },
+      { label: "Ongoing feedback & mentoring", values: [false, true, true] },
+      { label: "Multiple sessions per week", values: [false, false, true] },
+      { label: "Priority scheduling", values: [false, false, true] },
+      { label: "Post-qualification career guidance", values: [false, false, true] },
     ],
     hasBillingToggle: true,
     bookletFolder: "level-2-diploma",
@@ -381,6 +412,18 @@ const qualifications: Qualification[] = [
           "Post-qualification career guidance",
         ],
       },
+    ],
+    comparisonFeatures: [
+      { label: "Full Level 3 course materials", values: [true, true, true] },
+      { label: "Online learning portal access", values: [true, true, true] },
+      { label: "Written assessments & marking", values: [true, true, true] },
+      { label: "Active IQ qualification on completion", values: [true, true, true] },
+      { label: "Weekly one-to-one sessions with Harry", values: [false, true, true] },
+      { label: "Practical assessment support", values: [false, true, true] },
+      { label: "Ongoing feedback & mentoring", values: [false, true, true] },
+      { label: "Multiple sessions per week", values: [false, false, true] },
+      { label: "Priority scheduling", values: [false, false, true] },
+      { label: "Post-qualification career guidance", values: [false, false, true] },
     ],
     hasBillingToggle: true,
     bookletFolder: "level-3-only",

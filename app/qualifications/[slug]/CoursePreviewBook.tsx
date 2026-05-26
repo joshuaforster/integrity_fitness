@@ -9,6 +9,7 @@ import {
   forwardRef,
   useSyncExternalStore,
 } from "react";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import HTMLFlipBook from "react-pageflip";
 import Image from "next/image";
@@ -227,9 +228,44 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
             </div>
 
             {/* Hint text outside the scaled div so it doesn't affect scale calculation */}
-            <p className="text-center text-zinc-600 text-[10px] font-bold tracking-[2px] uppercase mt-4 flex-shrink-0">
-              Click pages to turn · Drag to flip
-            </p>
+            <div className="flex flex-col items-center gap-2 mt-4 flex-shrink-0">
+              {/* Animated hand that taps then drags left */}
+              <div className="flex items-center gap-4">
+                {/* Tap gesture */}
+                <div className="flex flex-col items-center gap-1">
+                  <motion.div
+                    className="w-5 h-5 rounded-full border-2 border-white/50 bg-white/15"
+                    animate={{ scale: [1, 0.65, 1, 1], y: [0, 3, 0, 0] }}
+                    transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.5, times: [0, 0.25, 0.45, 1], ease: "easeInOut" }}
+                  />
+                  <span className="text-zinc-600 text-[8px] font-bold tracking-[1px] uppercase">Click</span>
+                </div>
+                <span className="text-zinc-700 text-xs">·</span>
+                {/* Drag gesture */}
+                <div className="flex flex-col items-center gap-1">
+                  <div className="relative h-5 w-14 flex items-center">
+                    <motion.div
+                      className="absolute w-4 h-4 rounded-full border-2 border-white/50 bg-white/15"
+                      animate={{ x: [0, 32, 32, 0], opacity: [1, 1, 0, 0] }}
+                      transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.5, times: [0, 0.5, 0.6, 1], ease: "easeInOut" }}
+                    />
+                    {/* Trail arrow */}
+                    <motion.svg
+                      width="32" height="12" viewBox="0 0 32 12" fill="none"
+                      className="absolute right-0"
+                      animate={{ opacity: [0, 0, 0.6, 0] }}
+                      transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.5, times: [0, 0.3, 0.55, 1] }}
+                    >
+                      <path d="M0 6 L24 6 M20 2 L26 6 L20 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+                    </motion.svg>
+                  </div>
+                  <span className="text-zinc-600 text-[8px] font-bold tracking-[1px] uppercase">Drag</span>
+                </div>
+              </div>
+              <p className="text-center text-zinc-500 text-[9px] font-bold tracking-[2px] uppercase">
+                Click pages to turn · Drag to flip
+              </p>
+            </div>
           </div>
         </div>
 

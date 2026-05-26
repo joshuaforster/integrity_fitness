@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import qualifications from "@/app/data/qualifications";
 import PageHero from "@/app/components/PageHero";
 import Button from "@/app/components/Button";
+import PTCourseList from "./PTCourseList";
+import CPDCourseGrid from "./CPDCourseGrid";
 
 export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
@@ -67,46 +68,7 @@ export default function QualificationsPage() {
             </div>
 
             {/* Right Frame: Unboxed Clean List Elements (Spans 8 Columns) */}
-            <div className="lg:col-span-8 space-y-4 w-full">
-              {PT_COURSES.map((q) => (
-                <Link
-                  key={q.slug}
-                  href={`/qualifications/${q.slug}`}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-200/60 hover:border-zinc-400 transition-all duration-200 group rounded-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
-                >
-                  <div className="flex-1 max-w-2xl pr-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase">
-                        {q.level}
-                      </span>
-                      {q.badge && (
-                        <span className="text-[9px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19]/20 bg-[#CE1A19]/5 px-2 py-0.5 font-black rounded-xs">
-                          {q.badge}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="text-zinc-950 font-black text-lg md:text-xl group-hover:text-[#CE1A19] transition-colors duration-200">
-                      {q.title}
-                    </h4>
-                    <p className="text-zinc-600 text-sm mt-1.5 leading-relaxed">
-                      {q.tagline}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between sm:justify-end gap-6 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-100">
-                    <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-sm">
-                      {q.duration}
-                    </span>
-                    <span
-                      className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-200 group-hover:translate-x-1.5 text-xl"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <PTCourseList courses={PT_COURSES} />
           </div>
         </div>
       </section>
@@ -130,39 +92,7 @@ export default function QualificationsPage() {
             <div className="w-14 h-1 bg-zinc-200 mt-5" aria-hidden="true" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CPD_COURSES.map((q) => (
-              <Link
-                key={q.slug}
-                href={`/qualifications/${q.slug}`}
-                className="flex flex-col justify-between p-6 md:p-8 bg-zinc-50 border border-zinc-200/80 hover:border-zinc-400 transition-all duration-200 group rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
-              >
-                <div>
-                  <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
-                    {q.level}
-                  </span>
-                  <h3 className="text-zinc-950 font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
-                    {q.title}
-                  </h3>
-                  <p className="text-zinc-600 text-sm leading-relaxed mb-8">
-                    {q.tagline}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-zinc-200 mt-auto">
-                  <span className="text-zinc-500 text-xs font-bold tracking-wide uppercase">
-                    {q.duration}
-                  </span>
-                  <span
-                    className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-200 group-hover:translate-x-1 text-sm"
-                    aria-hidden="true"
-                  >
-                    →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <CPDCourseGrid courses={CPD_COURSES} />
         </div>
       </section>
 

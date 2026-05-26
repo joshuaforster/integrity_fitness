@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 
 const STATS = [
@@ -22,13 +23,34 @@ const STATS = [
   },
 ] as const;
 
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.8 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
+};
+
 export default function HeroStats() {
   return (
-    <div className="w-full mt-12 max-w-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-sm">
-      <dl className="grid grid-cols-3 divide-x divide-white/20 text-center">
+    <motion.div
+      className="w-full mt-12 max-w-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-sm"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+    >
+      <motion.dl
+        className="grid grid-cols-3 divide-x divide-white/20 text-center"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
         {STATS.map((stat, index) => (
-          <div
+          <motion.div
             key={stat.label}
+            variants={item}
             className={`flex flex-col-reverse items-center ${index === 0 ? "" : "pl-3 md:pl-6"}`}
           >
             <dt className="text-[9px] md:text-[10px] text-zinc-400 uppercase tracking-[2px] mt-2 font-semibold">
@@ -36,7 +58,7 @@ export default function HeroStats() {
             </dt>
             <dd className="m-0">
               {stat.type === "image" ? (
-                <div className="h-7 w-20 md:h-8 md:w-24 relative">
+                <div className="h-9 w-24 md:h-11 md:w-28 relative">
                   <Image
                     src={stat.value}
                     alt={stat.alt}
@@ -52,9 +74,9 @@ export default function HeroStats() {
                 </span>
               )}
             </dd>
-          </div>
+          </motion.div>
         ))}
-      </dl>
-    </div>
+      </motion.dl>
+    </motion.div>
   );
 }

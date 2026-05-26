@@ -1,8 +1,12 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/Button";
+import SectionHeader from "@/app/components/ui/SectionHeader";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import DifferentiatorItem, { type Differentiator } from "./DifferentiatorItem";
 
-const DIFFERENTIATORS = [
+const DIFFERENTIATORS: Differentiator[] = [
   {
     title: "1:1 Dedicated Mentorship",
     description:
@@ -23,24 +27,36 @@ const DIFFERENTIATORS = [
     description:
       "An active professional network that supports your commercial lead generation long after your diploma wraps.",
   },
-] as const;
+];
+
+const listVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+};
+
+const itemVariant: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
+};
 
 export default function AboutMission() {
   return (
     <section className="bg-white py-20 md:py-28 border-t border-zinc-100">
-      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+      <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column — Core Mission Statement Block (Spans 6 Columns) */}
-          <div className="lg:col-span-6">
-            <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
-              Our Mission
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black text-zinc-950 leading-tight uppercase tracking-tight mb-6 max-w-xl">
-              Education That Actually Changes Your Life.
-            </h2>
-            <div className="w-14 h-1 bg-[#CE1A19] mb-8" aria-hidden="true" />
 
-            <div className="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed">
+          <motion.div
+            className="lg:col-span-6"
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <SectionHeader
+              label="Our Mission"
+              heading="Education That Actually Changes Your Life."
+            />
+            <div className="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed mt-8">
               <p>
                 Since 2015, Integrity Fitness Education has been rewriting the
                 rules of personal training education in Norwich, Norfolk. Where
@@ -55,46 +71,35 @@ export default function AboutMission() {
                 they love?
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column — Structured Differentiators Column (Spans 6 Columns) */}
           <div className="lg:col-span-6 lg:pl-6">
             <p className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-8">
               What Sets Us Apart
             </p>
-
-            <ul className="space-y-8" role="list">
+            <motion.ul
+              className="space-y-8"
+              role="list"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+            >
               {DIFFERENTIATORS.map((item) => (
-                <li key={item.title} className="flex items-start gap-4 group">
-                  {/* Sharp mechanical indicator marker accent */}
-                  <span
-                    className="w-1.5 h-1.5 bg-[#CE1A19] mt-2 flex-shrink-0 rounded-sm"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <h3 className="text-sm font-extrabold text-zinc-950 tracking-wide uppercase mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </li>
+                <motion.li key={item.title} variants={itemVariant}>
+                  <DifferentiatorItem item={item} />
+                </motion.li>
               ))}
-            </ul>
-
+            </motion.ul>
             <div className="mt-10 md:mt-12">
-              <Button
-                href="/qualifications"
-                variant="primary"
-                className="w-full sm:w-auto px-8"
-              >
+              <Button href="/qualifications" variant="primary" className="w-full sm:w-auto px-8">
                 View Qualifications
               </Button>
             </div>
           </div>
+
         </div>
-      </div>
+      </SectionWrapper>
     </section>
   );
 }

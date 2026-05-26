@@ -2,41 +2,67 @@
 
 import { useState } from "react";
 import Button from "@/app/components/Button";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
+import PricingComparisonTable from "./PricingComparisonTable";
 import { type Qualification } from "@/app/data/qualifications";
 
-export default function PricingToggleSection({
-  qual,
-}: {
+interface Props {
   qual: Qualification;
-}) {
-  const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  theme?: "light" | "dark";
+}
 
-  const highlightedTier = qual.pricing.find((t) => t.highlighted);
+const themes = {
+  light: {
+    section: "bg-zinc-50 border-t border-zinc-200/80",
+    heading: "text-zinc-950",
+    standardCard: "bg-white border-zinc-200/80",
+    standardPrice: "text-zinc-950",
+    standardPeriod: "text-zinc-500",
+    standardDesc: "text-zinc-600",
+    standardDescBorder: "border-zinc-100",
+    standardFeature: "text-zinc-600",
+    standardBullet: "bg-zinc-300",
+  },
+  dark: {
+    section: "bg-zinc-900 border-t border-zinc-800/60",
+    heading: "text-white",
+    standardCard: "bg-zinc-800 border-zinc-700",
+    standardPrice: "text-white",
+    standardPeriod: "text-zinc-400",
+    standardDesc: "text-zinc-400",
+    standardDescBorder: "border-zinc-700",
+    standardFeature: "text-zinc-300",
+    standardBullet: "bg-zinc-600",
+  },
+} as const;
+
+export default function PricingToggleSection({ qual, theme = "light" }: Props) {
+  const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const t = themes[theme];
+
+  const highlightedTier = qual.pricing.find((tier) => tier.highlighted);
   const annualSaving =
     highlightedTier && typeof highlightedTier.price !== "number"
       ? highlightedTier.price.monthly * 12 - highlightedTier.price.yearly
       : 0;
 
   return (
-    <section
-      aria-labelledby="pricing-heading"
-      className="bg-zinc-50 py-20 md:py-28 border-t border-zinc-200/80"
-    >
-      <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section Header & Premium Toggle System */}
+    <section aria-labelledby="pricing-heading" className={`py-20 md:py-28 ${t.section}`}>
+      <SectionWrapper reveal>
+        {/* Header + toggle */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
             Investment
           </p>
           <h2
             id="pricing-heading"
-            className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+            className={`text-3xl md:text-5xl font-black tracking-tight uppercase leading-none ${t.heading}`}
           >
             Choose Your Plan
           </h2>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6 mb-8" aria-hidden="true" />
 
-          {/* Minimal Text Switch Toggle */}
           <div className="inline-flex bg-zinc-200/60 p-1 rounded-sm gap-1">
             <button
               type="button"
@@ -82,7 +108,7 @@ export default function PricingToggleSection({
           )}
         </div>
 
-        {/* 3-Column Symmetrical Pricing Matrix */}
+        {/* Pricing cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {qual.pricing.map((tier) => {
             const price =
@@ -111,16 +137,12 @@ export default function PricingToggleSection({
                   <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2px] px-3 py-1.5 rounded-bl-xs">
                     Recommended Option
                   </div>
-
                   <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mt-4 mb-2">
                     {tier.name}
                   </p>
-
                   <div className="mb-4">
                     <div className="flex items-baseline gap-0.5 text-white">
-                      <span className="text-xl font-bold self-start mt-1">
-                        £
-                      </span>
+                      <span className="text-xl font-bold self-start mt-1">£</span>
                       <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
                         {price}
                       </span>
@@ -134,33 +156,18 @@ export default function PricingToggleSection({
                       </p>
                     )}
                   </div>
-
                   <p className="text-zinc-400 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
                     {tier.description}
                   </p>
-
                   <ul className="space-y-4 flex-1 mb-8" role="list">
-                    {tier.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-3 group">
-                        {/* Custom sharp visual vector indicator instead of large heavy heroicon packages */}
-                        <span
-                          className="w-1.5 h-1.5 bg-[#CE1A19] mt-2 flex-shrink-0 rounded-xs"
-                          aria-hidden="true"
-                        />
-                        <span className="text-zinc-300 text-sm leading-tight">
-                          {item}
-                        </span>
+                    {tier.includes.map((item, j) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <AnimatedCheck size={16} delay={j * 0.07} />
+                        <span className="text-zinc-300 text-sm leading-tight">{item}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <Button
-                    href="/contact"
-                    variant="primary"
-                    size="md"
-                    fullWidth
-                    className="shadow-md"
-                  >
+                  <Button href="/contact" variant="primary" size="md" fullWidth className="shadow-md">
                     Enquire Now
                   </Button>
                 </div>
@@ -170,20 +177,19 @@ export default function PricingToggleSection({
             return (
               <div
                 key={tier.name}
-                className="flex flex-col bg-white border border-zinc-200/80 p-6 md:p-8 rounded-sm shadow-sm"
+                className={`flex flex-col p-6 md:p-8 border rounded-sm shadow-sm ${t.standardCard}`}
               >
                 <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-2">
                   {tier.name}
                 </p>
-
                 <div className="mb-4">
-                  <div className="flex items-baseline gap-0.5 text-zinc-950">
+                  <div className={`flex items-baseline gap-0.5 ${t.standardPrice}`}>
                     <span className="text-xl font-bold self-start mt-1">£</span>
                     <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
                       {price}
                     </span>
                   </div>
-                  <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-2.5">
+                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-2.5 ${t.standardPeriod}`}>
                     {period}
                   </p>
                   {saving > 0 && (
@@ -192,39 +198,34 @@ export default function PricingToggleSection({
                     </p>
                   )}
                 </div>
-
-                <p className="text-zinc-600 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-100">
+                <p className={`text-sm leading-relaxed mt-2 pb-6 mb-6 border-b ${t.standardDescBorder} ${t.standardDesc}`}>
                   {tier.description}
                 </p>
-
                 <ul className="space-y-4 flex-1 mb-8" role="list">
-                  {tier.includes.map((item) => (
+                  {tier.includes.map((item, j) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span
-                        className="w-1.5 h-1.5 bg-zinc-300 mt-2 flex-shrink-0 rounded-xs"
-                        aria-hidden="true"
-                      />
-                      <span className="text-zinc-600 text-sm leading-tight">
-                        {item}
-                      </span>
+                      <AnimatedCheck size={16} delay={j * 0.07} color={theme === "dark" ? "#a1a1aa" : "#CE1A19"} />
+                      <span className={`text-sm leading-tight ${t.standardFeature}`}>{item}</span>
                     </li>
                   ))}
                 </ul>
-
-                <Button
-                  href="/contact"
-                  variant="outline-light"
-                  size="md"
-                  fullWidth
-                  className="bg-white"
-                >
+                <Button href="/contact" variant="outline-light" size="md" fullWidth>
                   Enquire Now
                 </Button>
               </div>
             );
           })}
         </div>
-      </div>
+
+        {qual.comparisonFeatures && qual.comparisonFeatures.length > 0 && (
+          <PricingComparisonTable
+            features={qual.comparisonFeatures}
+            tiers={qual.pricing}
+            billing={billing}
+            theme={theme}
+          />
+        )}
+      </SectionWrapper>
     </section>
   );
 }
