@@ -6,7 +6,7 @@ export type MainCourse = {
 
 export default function FlagshipCourseCard({ course }: { course: MainCourse }) {
   return (
-    <div className="lg:col-span-7 bg-zinc-950 border border-zinc-800 p-8 md:p-10 rounded-sm shadow-xl relative group">
+    <div className="lg:col-span-7 bg-zinc-950 border border-zinc-800 p-8 md:p-10 clip-br-lg shadow-xl relative group">
       <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[10px] font-black uppercase tracking-[2px] px-4 py-1.5 rounded-bl-sm">
         Flagship Diploma
       </div>

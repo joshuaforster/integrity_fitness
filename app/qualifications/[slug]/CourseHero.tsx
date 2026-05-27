@@ -56,12 +56,17 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
             )}
           </motion.div>
 
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-none uppercase tracking-tight max-w-4xl mb-4"
-          >
-            {qual.title}
-          </motion.h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-none uppercase tracking-tight max-w-4xl mb-4">
+            {qual.title.split(" ").map((word: string, i: number) => (
+              <motion.span
+                key={i}
+                variants={fadeUp}
+                className="inline-block mr-[0.22em]"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
 
           <motion.div variants={fadeIn} className="w-14 h-1 bg-[#CE1A19] mb-6 origin-left" />
 

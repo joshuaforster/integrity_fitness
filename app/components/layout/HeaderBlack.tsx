@@ -88,11 +88,10 @@ export default function Header() {
       c.courses.some((course) => pathname === course.href),
     );
 
-  // Premium, high-contrast frosting architecture variables
   const bgClass = mobileMenuOpen
-    ? "bg-zinc-950 border-b border-zinc-900"
+    ? "backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/80 border-b border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.55)]"
     : scrolled
-      ? "backdrop-blur-md backdrop-saturate-150 bg-zinc-950/70 border-b border-zinc-900/60 shadow-xl"
+      ? "backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/40 border-b border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.07)]"
       : "bg-gradient-to-b from-zinc-950/80 to-transparent";
 
   return (
@@ -167,7 +166,7 @@ export default function Header() {
 
               {/* Panel Drop Frame */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                <div className="bg-zinc-950 border border-zinc-900 w-[580px] p-6 shadow-2xl rounded-sm">
+                <div className="backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/85 border border-white/10 w-[580px] p-6 shadow-[0_24px_64px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.07)] rounded-sm">
                   <p className="text-zinc-500 text-[10px] font-black tracking-[4px] uppercase mb-5">
                     Course Directory
                   </p>
@@ -175,7 +174,7 @@ export default function Header() {
                   <div className="grid grid-cols-2 gap-8">
                     {QUAL_CATEGORIES.map((cat) => (
                       <div key={cat.title}>
-                        <p className="text-white text-xs font-black uppercase tracking-wider mb-3 pb-2 border-b border-zinc-900">
+                        <p className="text-white text-xs font-black uppercase tracking-wider mb-3 pb-2 border-b border-white/10">
                           {cat.title}
                         </p>
                         <ul className="space-y-2.5">
@@ -201,7 +200,7 @@ export default function Header() {
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-zinc-900">
+                  <div className="mt-6 pt-4 border-t border-white/10">
                     <Link
                       href="/qualifications"
                       className="inline-flex items-center gap-1.5 text-white text-xs font-bold tracking-[3px] uppercase hover:text-[#CE1A19] transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
@@ -237,7 +236,7 @@ export default function Header() {
       {/* Mobile Accordion Menu System Overlay Drawer */}
       <div
         id="mobile-menu"
-        className={`lg:hidden absolute left-0 right-0 top-full bg-zinc-950 border-b border-zinc-900 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-2xl" : "max-h-0 opacity-0 pointer-events-none"}`}
+        className={`lg:hidden absolute left-0 right-0 top-full backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/90 border-b border-white/10 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_24px_48px_rgba(0,0,0,0.6)]" : "max-h-0 opacity-0 pointer-events-none"}`}
       >
         <div className="px-6 py-4 space-y-1">
           {NAV_LINKS.slice(0, 2).map((item) => {

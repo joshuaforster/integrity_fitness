@@ -19,10 +19,6 @@ const itemVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const dotVariants: Variants = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: "backOut" } },
-};
 
 export default function BulletList({
   items,
@@ -40,15 +36,7 @@ export default function BulletList({
     >
       {items.map((item) => (
         <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
-          {bulletColor === "red" ? (
-            <AnimatedCheck size={16} delay={0} />
-          ) : (
-            <motion.span
-              className="w-1.5 h-1.5 mt-2 flex-shrink-0 rounded-xs bg-zinc-300"
-              aria-hidden="true"
-              variants={dotVariants}
-            />
-          )}
+          <AnimatedCheck size={16} delay={0} color={bulletColor === "red" ? "#CE1A19" : "#a1a1aa"} />
           <p className={`text-sm md:text-base leading-relaxed ${textColor}`}>{item}</p>
         </motion.li>
       ))}

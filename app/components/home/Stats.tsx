@@ -24,11 +24,11 @@ export default function Stats() {
     { type: "counter" as const, value: 2021, label: "Established" },
     { type: "counter" as const, value: combinedYears, label: "Years Combined Teaching" },
     { type: "image" as const, src: "/activeiq.png", alt: "Active IQ", width: 136, height: 29, label: "Approved Centre" },
-    { type: "image" as const, src: "/cimspa.webp", alt: "CIMSPA", width: 136, height: 29, label: "Accredited Partner" },
+    { type: "image" as const, src: "/cimspa.webp", alt: "CIMSPA", width: 136, height: 136, label: "Accredited Partner", containerClass: "h-16 w-16" },
   ];
 
   return (
-    <section className="bg-zinc-900 texture-dots-dark py-24 md:py-32 border-y border-zinc-800/60">
+    <section className="bg-zinc-900 texture-dots-dark angle-tl-lg pb-24 md:pb-32 pt-[168px] md:pt-[200px]">
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
@@ -39,7 +39,7 @@ export default function Stats() {
               theme="dark"
               headingSize="sm"
             />
-            <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8 max-w-md mt-8">
+            <p className="text-zinc-200 text-base md:text-lg leading-relaxed mb-8 max-w-md mt-8">
               A track record built on transparency and regulatory excellence. We
               deliver premium, recognised qualifications that carry weight in
               the industry.

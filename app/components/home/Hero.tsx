@@ -3,7 +3,10 @@
 import { useEffect, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/Button";
+import MagneticButton from "@/app/components/ui/MagneticButton";
 import HeroStats from "./HeroStats";
+
+const HERO_WORDS = "Raising The Standards Of Personal Training Qualifications".split(" ");
 
 const container: Variants = {
   hidden: {},
@@ -69,13 +72,22 @@ export default function Hero() {
               Integrity Fitness Education · Norwich, Norfolk
             </motion.p>
 
-            <motion.h1
-              variants={fadeUp}
+            <h1
               id="hero-heading"
               className="text-4xl md:text-5xl font-bold leading-tight max-w-2xl mb-4 text-white"
             >
-              Raising The Standards Of Personal Training Qualifications
-            </motion.h1>
+              {HERO_WORDS.map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 + i * 0.08, duration: 0.55, ease: "easeOut" }}
+                  className="inline-block mr-[0.28em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </h1>
 
             <motion.div
               variants={fadeIn}
@@ -92,20 +104,24 @@ export default function Hero() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
-              <Button
-                href="#courses"
-                variant="outline-hero"
-                className="w-full sm:w-auto bg-[#CE1A19]"
-              >
-                Become A Personal Trainer
-              </Button>
-              <Button
-                href="#qualifications"
-                variant="outline-hero"
-                className="w-full sm:w-auto"
-              >
-                View Qualifications
-              </Button>
+              <MagneticButton>
+                <Button
+                  href="#courses"
+                  variant="outline-hero"
+                  className="w-full sm:w-auto bg-[#CE1A19]"
+                >
+                  Become A Personal Trainer
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button
+                  href="#qualifications"
+                  variant="outline-hero"
+                  className="w-full sm:w-auto"
+                >
+                  View Qualifications
+                </Button>
+              </MagneticButton>
             </motion.div>
           </motion.div>
 

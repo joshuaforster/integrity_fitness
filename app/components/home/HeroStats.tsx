@@ -58,7 +58,7 @@ export default function HeroStats() {
             </dt>
             <dd className="m-0">
               {stat.type === "image" ? (
-                <div className="h-9 w-24 md:h-11 md:w-28 relative">
+                <div className={`relative ${stat.alt === "CIMSPA" ? "h-10 w-10 md:h-12 md:w-12" : "h-9 w-24 md:h-11 md:w-28"}`}>
                   <Image
                     src={stat.value}
                     alt={stat.alt}

@@ -42,7 +42,12 @@ export default function CTAPanels() {
       viewport={{ once: false, amount: 0.1 }}
     >
       {PANELS.map((panel) => (
-        <motion.div key={panel.title} variants={panelVariant}>
+        <motion.div 
+          key={panel.title} 
+          variants={panelVariant}
+          className="flex h-full w-full items-center justify-center text-center"
+        >
+          {/* Note: If your text remains stuck to the bottom of the card, open your internal CTAPanel component file and strip out classes like 'justify-end', 'mt-auto', or 'pb-...' */}
           <CTAPanel panel={panel} />
         </motion.div>
       ))}

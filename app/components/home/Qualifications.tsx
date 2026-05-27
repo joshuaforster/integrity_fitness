@@ -47,7 +47,7 @@ const slideUp: Variants = {
 
 export default function Qualifications() {
   return (
-    <section className="bg-zinc-900 py-20 md:py-28 border-y border-zinc-800/60">
+    <section className="bg-zinc-900 angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]">
       <SectionWrapper reveal>
 
         <div className="mb-16 md:mb-20">

@@ -14,7 +14,7 @@ export type CredentialCard =
 export default function CredentialCard({ item }: { item: CredentialCard }) {
   if (item.type === "brand") {
     return (
-      <div className="p-6 md:p-8 bg-zinc-50 rounded-sm flex flex-col justify-between min-h-[160px]">
+      <div className="p-6 md:p-8 bg-zinc-50 clip-tr flex flex-col justify-between min-h-[160px]">
         <div className="flex items-center h-16">
           <Image
             src={item.src}
@@ -33,7 +33,7 @@ export default function CredentialCard({ item }: { item: CredentialCard }) {
   }
 
   return (
-    <div className="p-6 md:p-8 bg-zinc-50 border border-zinc-200/60 rounded-sm flex flex-col justify-between min-h-[160px] group hover:border-zinc-300 transition-colors duration-200">
+    <div className="p-6 md:p-8 bg-zinc-50 border border-zinc-200/60 clip-bl flex flex-col justify-between min-h-[160px] group hover:border-zinc-300 transition-colors duration-200">
       <div>
         <span className="text-3xl md:text-4xl font-black text-zinc-950 tracking-tight block leading-none">
           {item.value}

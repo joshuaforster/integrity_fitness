@@ -76,7 +76,7 @@ export default function QualificationsPage() {
       {/* 2. Continued Professional Development (CPD) */}
       <section
         aria-labelledby="cpd-heading"
-        className="py-20 md:py-28 bg-white"
+        className="bg-white angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
       >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12 md:mb-16">
@@ -99,7 +99,7 @@ export default function QualificationsPage() {
       {/* 3. Bottom Direct Guidance Action Row */}
       <section
         aria-labelledby="cta-heading"
-        className="py-20 md:py-24 border-t border-zinc-200 bg-zinc-50"
+        className="bg-zinc-50 angle-tr pb-20 md:pb-24 pt-[132px] md:pt-[148px]"
       >
         <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">

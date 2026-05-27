@@ -4,7 +4,7 @@ export default function Testimonial() {
   return (
     <section
       aria-label="Featured graduate testimonial"
-      className="bg-zinc-900 texture-dots-dark py-20 md:py-28 border-y border-zinc-800/60 relative overflow-hidden"
+      className="bg-zinc-900 texture-dots-dark angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px] relative overflow-hidden"
     >
       {/* Subtle background ambient graphic mark */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 text-zinc-950 font-black text-[12rem] md:text-[16rem] select-none opacity-20 pointer-events-none leading-none z-0">

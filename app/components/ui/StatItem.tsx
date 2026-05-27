@@ -16,6 +16,7 @@ type ImageStat = {
   label: string;
   theme?: "dark" | "light";
   invert?: boolean;
+  containerClass?: string;
 };
 
 type StatItemProps = TextStat | ImageStat;
@@ -46,7 +47,7 @@ export default function StatItem(props: StatItemProps) {
           {props.value}
         </p>
       ) : (
-        <div className="h-12 w-auto relative flex items-center order-first">
+        <div className={`relative flex items-center order-first ${props.containerClass ?? "h-12 w-auto"}`}>
           <Image
             src={props.src}
             alt={props.alt}

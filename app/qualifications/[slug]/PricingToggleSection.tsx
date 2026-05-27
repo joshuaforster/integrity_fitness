@@ -1,11 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 import PricingComparisonTable from "./PricingComparisonTable";
 import { type Qualification } from "@/app/data/qualifications";
+
+const listVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
 
 interface Props {
   qual: Qualification;
@@ -159,14 +170,21 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                   <p className="text-zinc-400 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
                     {tier.description}
                   </p>
-                  <ul className="space-y-4 flex-1 mb-8" role="list">
-                    {tier.includes.map((item, j) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <AnimatedCheck size={16} delay={j * 0.07} />
+                  <motion.ul
+                    className="space-y-4 flex-1 mb-8"
+                    role="list"
+                    variants={listVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, amount: 0.1 }}
+                  >
+                    {tier.includes.map((item) => (
+                      <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
+                        <AnimatedCheck size={16} delay={0} />
                         <span className="text-zinc-300 text-sm leading-tight">{item}</span>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
                   <Button href="/contact" variant="primary" size="md" fullWidth className="shadow-md">
                     Enquire Now
                   </Button>
@@ -201,14 +219,21 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                 <p className={`text-sm leading-relaxed mt-2 pb-6 mb-6 border-b ${t.standardDescBorder} ${t.standardDesc}`}>
                   {tier.description}
                 </p>
-                <ul className="space-y-4 flex-1 mb-8" role="list">
-                  {tier.includes.map((item, j) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <AnimatedCheck size={16} delay={j * 0.07} color={theme === "dark" ? "#a1a1aa" : "#CE1A19"} />
+                <motion.ul
+                  className="space-y-4 flex-1 mb-8"
+                  role="list"
+                  variants={listVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.1 }}
+                >
+                  {tier.includes.map((item) => (
+                    <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
+                      <AnimatedCheck size={16} delay={0} color={theme === "dark" ? "#a1a1aa" : "#CE1A19"} />
                       <span className={`text-sm leading-tight ${t.standardFeature}`}>{item}</span>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
                 <Button href="/contact" variant="outline-light" size="md" fullWidth>
                   Enquire Now
                 </Button>

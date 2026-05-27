@@ -36,7 +36,99 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
         Feature Comparison
       </p>
 
-      <div className="overflow-x-auto -mx-6 lg:mx-0 px-6 lg:px-0">
+      {/* Mobile: stacked tier cards */}
+      <div className="md:hidden space-y-4">
+        {tiers.map((tier, tierIndex) => {
+          const price = resolvePrice(tier, billing);
+          const period = billing === "monthly" ? "/mo" : "/yr";
+          return (
+            <div
+              key={tier.name}
+              className={`border rounded-sm overflow-hidden ${
+                tier.highlighted ? "border-zinc-950" : borderColor
+              }`}
+            >
+              <div
+                className={`px-4 py-3 ${
+                  tier.highlighted ? "bg-zinc-950" : headerBg
+                }`}
+              >
+                <span
+                  className={`block text-[10px] font-bold uppercase tracking-widest mb-0.5 ${
+                    tier.highlighted ? "text-zinc-400" : headerText
+                  }`}
+                >
+                  {tier.name}
+                </span>
+                <span
+                  className={`block text-xl font-black ${
+                    tier.highlighted ? "text-white" : priceColor
+                  }`}
+                >
+                  £{price}
+                  <span
+                    className={`text-[10px] font-bold ml-0.5 ${
+                      tier.highlighted
+                        ? "text-zinc-500"
+                        : isLight
+                        ? "text-zinc-400"
+                        : "text-zinc-500"
+                    }`}
+                  >
+                    {period}
+                  </span>
+                </span>
+              </div>
+              <div>
+                {features.map((feature, i) => {
+                  const val = feature.values[tierIndex];
+                  return (
+                    <motion.div
+                      key={feature.label}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: false }}
+                      transition={{ delay: i * 0.04, duration: 0.3 }}
+                      className={`flex items-center justify-between px-4 py-2.5 border-t ${rowBorder}`}
+                    >
+                      <span className={`text-xs font-medium leading-snug pr-3 ${featureColor}`}>
+                        {feature.label}
+                      </span>
+                      <span className="flex-shrink-0">
+                        {val === true ? (
+                          <AnimatedCheck size={14} delay={i * 0.04} color="#CE1A19" />
+                        ) : val === false ? (
+                          <span
+                            className={`text-sm font-semibold leading-none ${dashColor}`}
+                            aria-label="Not included"
+                          >
+                            —
+                          </span>
+                        ) : (
+                          <span
+                            className={`text-xs font-bold ${
+                              tier.highlighted
+                                ? "text-zinc-300"
+                                : isLight
+                                ? "text-zinc-600"
+                                : "text-zinc-400"
+                            }`}
+                          >
+                            {val}
+                          </span>
+                        )}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop: comparison table */}
+      <div className="hidden md:block overflow-x-auto">
         <table className={`w-full min-w-[520px] text-sm ${featureColor}`}>
           <thead>
             <tr className={headerBg}>
@@ -102,7 +194,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                         <AnimatedCheck
                           size={16}
                           delay={i * 0.04}
-                          color={tiers[j]?.highlighted ? "#CE1A19" : "#CE1A19"}
+                          color="#CE1A19"
                         />
                       </span>
                     ) : val === false ? (

@@ -25,7 +25,7 @@ const STATS = [
 
 export default function AboutStats() {
   return (
-    <section className="bg-zinc-50 texture-dots-light py-16 md:py-20 border-y border-zinc-200/80">
+    <section className="bg-zinc-50 texture-dots-light angle-tl pb-16 md:pb-20 pt-[116px] md:pt-[132px]">
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-12 sm:gap-y-0">
           {STATS.map((stat) => (

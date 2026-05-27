@@ -1,15 +1,11 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 
 export type Differentiator = {
   title: string;
   description: string;
-};
-
-const dotVariant: Variants = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
 };
 
 const contentVariant: Variants = {
@@ -20,11 +16,7 @@ const contentVariant: Variants = {
 export default function DifferentiatorItem({ item }: { item: Differentiator }) {
   return (
     <div className="flex items-start gap-4 group">
-      <motion.span
-        className="w-2 h-2 bg-[#CE1A19] mt-1.5 flex-shrink-0 rounded-sm"
-        aria-hidden="true"
-        variants={dotVariant}
-      />
+      <AnimatedCheck size={18} delay={0} />
       <motion.div variants={contentVariant}>
         <h3 className="text-sm font-extrabold text-zinc-950 tracking-wide uppercase mb-1">
           {item.title}

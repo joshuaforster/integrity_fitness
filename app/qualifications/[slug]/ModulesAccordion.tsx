@@ -7,18 +7,39 @@ import Image from "next/image";
 
 const topicContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.09 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const topicItem: Variants = {
   hidden: { opacity: 0, x: -14 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: "easeOut" } },
 };
 
-const dotVariant: Variants = {
-  hidden: { scale: 0 },
-  visible: { scale: 1, transition: { duration: 0.3, ease: "backOut" } },
+const checkCircle: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: { pathLength: 1, opacity: 1, transition: { duration: 0.7, ease: "easeInOut" } },
 };
+
+const checkMark: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: { pathLength: 1, opacity: 1, transition: { duration: 0.45, ease: "easeInOut", delay: 0.55 } },
+};
+
+function TopicCheck() {
+  return (
+    <motion.svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+      className="flex-shrink-0 mt-0.5"
+    >
+      <motion.circle cx="8" cy="8" r="7" stroke="#CE1A19" strokeWidth="1.5" fill="none" variants={checkCircle} />
+      <motion.path d="M5 8L7.2 10.2L11 6" stroke="#CE1A19" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" variants={checkMark} />
+    </motion.svg>
+  );
+}
 
 type Module = { title: string; topics: string[] };
 
@@ -30,6 +51,22 @@ type Props = {
 
 function fmt(n: number) {
   return String(n + 1).padStart(2, "0");
+}
+
+function easeScroll(container: HTMLDivElement, target: number, duration = 750) {
+  const start = container.scrollTop;
+  const distance = target - start;
+  if (Math.abs(distance) < 2) return () => {};
+  const startTime = performance.now();
+  let raf: number;
+  function step(now: number) {
+    const p = Math.min((now - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    container.scrollTop = start + distance * ease;
+    if (p < 1) raf = requestAnimationFrame(step);
+  }
+  raf = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(raf);
 }
 
 // ── Pure booklet pages — no labels, no chrome, just the images ────────────────
@@ -56,7 +93,9 @@ function BookletPages({
     if (!section || !container) return;
     const sectionTop = section.getBoundingClientRect().top;
     const containerTop = container.getBoundingClientRect().top;
-    container.scrollTo({ top: container.scrollTop + (sectionTop - containerTop), behavior: "smooth" });
+    const target = container.scrollTop + (sectionTop - containerTop);
+    const cancel = easeScroll(container, target, 750);
+    return cancel;
   }, [active, scrollRef, sectionRefs]);
 
   if (pages.length === 0) {
@@ -376,9 +415,9 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                   className="text-xs font-black tabular-nums tracking-widest w-6 flex-shrink-0"
                   animate={{
                     color: i === active ? "#CE1A19" : "#71717a",
-                    scale: i === active ? [1, 1.35, 1] : 1,
+                    scale: i === active ? [1, 1.4, 1] : 1,
                   }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
                 >
                   {fmt(i)}
                 </motion.span>
@@ -411,7 +450,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
 
               {/* Topics panel */}
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openIndex === i ? "max-h-[600px] pb-5" : "max-h-0"
                 }`}
               >
@@ -428,11 +467,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                   >
                     {mod.topics.map((topic) => (
                       <motion.li key={topic} variants={topicItem} className="flex items-start gap-3">
-                        <motion.span
-                          variants={dotVariant}
-                          className="w-1.5 h-1.5 bg-[#CE1A19] mt-1.5 flex-shrink-0 rounded-full"
-                          aria-hidden="true"
-                        />
+                        <TopicCheck />
                         <span className="text-white text-sm leading-snug">{topic}</span>
                       </motion.li>
                     ))}

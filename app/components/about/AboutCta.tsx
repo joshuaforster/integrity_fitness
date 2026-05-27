@@ -41,7 +41,7 @@ export default function AboutCTA() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="bg-white texture-grid-light py-20 md:py-28 border-t border-zinc-100"
+      className="bg-white texture-grid-light angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
     >
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

@@ -12,12 +12,17 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
 }
+
 
 /* ── Tailwind v4 Theme Configuration ────────────────────────────────────────── */
 @theme {
@@ -204,6 +209,41 @@ body {
   background-size: 36px 36px;
 }
 
+/* ── Paper map mockup ─────────────────────────────────────────────────────── */
+.paper-map {
+  box-shadow:
+    0 12px 40px -4px rgba(0, 0, 0, 0.22),
+    0 4px 14px -2px rgba(0, 0, 0, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 212, 216, 0.7);
+}
+
+.paper-fold-v {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(161, 161, 170, 0.55) 20%,
+    rgba(161, 161, 170, 0.55) 80%,
+    transparent
+  );
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.09), -1px 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.paper-fold-h {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(161, 161, 170, 0.35) 15%,
+    rgba(161, 161, 170, 0.35) 85%,
+    transparent
+  );
+}
+
+.paper-crease-tl { background: radial-gradient(circle at 0% 0%, rgba(0, 0, 0, 0.055) 0%, transparent 65%); }
+.paper-crease-tr { background: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0.055) 0%, transparent 65%); }
+.paper-crease-bl { background: radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.055) 0%, transparent 65%); }
+.paper-crease-br { background: radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.055) 0%, transparent 65%); }
+
 /* ── Modal & Portals Layer Classes ────────────────────────────────────────── */
 .modal-backdrop-in {
   animation: modalBackdropIn 0.22s ease-out both;
@@ -219,4 +259,64 @@ body {
 
 .book-scale-wrapper {
   transform-origin: center center;
+}
+
+/* ── Section diagonal dividers ──────────────────────────────────────────── */
+/* Overlap the previous section via negative margin; clip-path cuts the top */
+.angle-tl {
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(0 52px, 100% 0, 100% 100%, 0 100%);
+  margin-top: -52px;
+}
+
+.angle-tr {
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 52px, 100% 100%, 0 100%);
+  margin-top: -52px;
+}
+
+.angle-tl-lg {
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(0 72px, 100% 0, 100% 100%, 0 100%);
+  margin-top: -72px;
+}
+
+.angle-tr-lg {
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 72px, 100% 100%, 0 100%);
+  margin-top: -72px;
+}
+
+/* ── Component corner clips ─────────────────────────────────────────────── */
+/* Cut a single corner with a 20 px or 32 px diagonal notch */
+.clip-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+.clip-tr {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+.clip-bl {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.clip-tl {
+  clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+}
+.clip-br-lg {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%);
+}
+.clip-tr-lg {
+  clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%);
+}
+
+/* ── Map vintage filter ─────────────────────────────────────────────────── */
+.map-vintage {
+  filter: sepia(0.14) saturate(0.88) brightness(0.97);
+}
+
+.paper-map-tilt {
+  transform: rotate(-0.4deg);
 }

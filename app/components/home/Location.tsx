@@ -39,7 +39,7 @@ export default function Location() {
   return (
     <section
       aria-labelledby="location-heading"
-      className="bg-zinc-50 py-20 md:py-28 border-t border-zinc-200/80"
+      className="bg-zinc-50 angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px]"
     >
       <Script
         id="location-structured-data"
@@ -104,21 +104,65 @@ export default function Location() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-7 w-full relative aspect-[4/3] overflow-hidden bg-zinc-100 border border-zinc-300/60 shadow-sm rounded-sm"
+            className="lg:col-span-7 w-full"
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
-            <iframe
-              title="Complete Fitness Gym Norwich — location map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
-              width="100%"
-              height="100%"
-              className="absolute inset-0 w-full h-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {/* ── Paper map mockup ── */}
+            <div className="relative bg-stone-50 p-4 md:p-5 paper-map paper-map-tilt">
+
+              {/* Fold lines — pointer-events-none, sit above the iframe */}
+              <div className="absolute inset-0 pointer-events-none z-20">
+                <div className="absolute top-0 bottom-0 left-1/2 -translate-x-px w-px paper-fold-v" />
+                <div className="absolute left-0 right-0 top-[33.33%] h-px paper-fold-h" />
+                <div className="absolute left-0 right-0 top-[66.66%] h-px paper-fold-h" />
+              </div>
+
+              {/* Corner crease shadows */}
+              <div className="absolute top-0 left-0 w-24 h-24 pointer-events-none z-10 paper-crease-tl" />
+              <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none z-10 paper-crease-tr" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 pointer-events-none z-10 paper-crease-bl" />
+              <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none z-10 paper-crease-br" />
+
+              {/* The actual map */}
+              <div className="relative w-full aspect-[4/3] overflow-hidden border border-zinc-300/50 map-vintage">
+                <iframe
+                  title="Complete Fitness Gym Norwich — location map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
+                  width="100%"
+                  height="100%"
+                  className="absolute inset-0 w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              {/* Legend strip */}
+              <div className="flex items-center justify-between mt-3.5 px-0.5">
+                <div>
+                  <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-[2.5px] leading-none">
+                    Complete Fitness Gym
+                  </p>
+                  <p className="text-zinc-400 text-[9px] uppercase tracking-[1.5px] leading-none mt-1.5">
+                    Whiffler Road · Norwich · NR3 2AW
+                  </p>
+                </div>
+
+                {/* Compass rose */}
+                <div className="flex flex-col items-center gap-0.5 select-none">
+                  <svg width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
+                    <polygon points="10,0 13,12 10,10 7,12" fill="#CE1A19" opacity="0.88" />
+                    <polygon points="10,24 13,12 10,14 7,12" fill="#a1a1aa" opacity="0.65" />
+                    <polygon points="20,12 8,9 10,12 8,15" fill="#a1a1aa" opacity="0.5" />
+                    <polygon points="0,12 12,9 10,12 12,15" fill="#a1a1aa" opacity="0.5" />
+                    <circle cx="10" cy="12" r="2.5" fill="white" stroke="#d4d4d8" strokeWidth="1" />
+                  </svg>
+                  <span className="text-[#CE1A19] text-[8px] font-black uppercase tracking-widest leading-none">N</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
         </div>

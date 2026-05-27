@@ -1,9 +1,20 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 import { type Qualification } from "@/app/data/qualifications";
+
+const listVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
 
 interface CPDPricingSectionProps {
   qual: Qualification;
@@ -100,16 +111,23 @@ export default function CPDPricingSection({ qual, theme = "dark" }: CPDPricingSe
                 {tier.description}
               </p>
 
-              <ul className="space-y-4 mb-8" role="list">
-                {tier.includes.map((item, j) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <AnimatedCheck size={16} delay={j * 0.07} />
+              <motion.ul
+                className="space-y-4 mb-8"
+                role="list"
+                variants={listVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+              >
+                {tier.includes.map((item) => (
+                  <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
+                    <AnimatedCheck size={16} delay={0} />
                     <span className={`text-sm leading-tight ${featureText[theme]}`}>
                       {item}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
 
               <Button href="/contact" variant="primary" size="md" fullWidth className="shadow-md">
                 Book Your Place
