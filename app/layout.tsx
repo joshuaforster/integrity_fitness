@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./components/layout/HeaderBlack";
 import Footer from "./components/layout/Footer";
 import ScrollReveal from "./components/layout/ScrollReveal";
-import SmoothScroll from "./components/layout/SmoothScroll";
 import SiteProgressBar from "./components/ui/CourseProgressBar";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import "./globals.css";
@@ -31,7 +30,6 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScroll />
         <SiteProgressBar />
         <Header />
         <ScrollReveal />

@@ -161,6 +161,11 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                     <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider mt-2.5">
                       {period}
                     </p>
+                    {tier.deposit && billing === "monthly" && (
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-1">
+                        After a £{tier.deposit} deposit
+                      </p>
+                    )}
                     {saving > 0 && (
                       <p className="text-[#CE1A19] text-xs font-bold mt-2">
                         Saving £{saving} vs monthly plan
@@ -210,6 +215,11 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                   <p className={`text-[10px] font-bold uppercase tracking-wider mt-2.5 ${t.standardPeriod}`}>
                     {period}
                   </p>
+                  {tier.deposit && billing === "monthly" && (
+                    <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider mt-1">
+                      After a £{tier.deposit} deposit
+                    </p>
+                  )}
                   {saving > 0 && (
                     <p className="text-[#CE1A19] text-xs font-bold mt-2">
                       Saving £{saving} vs monthly plan
@@ -229,7 +239,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                 >
                   {tier.includes.map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
-                      <AnimatedCheck size={16} delay={0} color={theme === "dark" ? "#a1a1aa" : "#CE1A19"} />
+                      <AnimatedCheck size={16} delay={0} color={theme === "dark" ? "#a1a1aa" : "#16a34a"} />
                       <span className={`text-sm leading-tight ${t.standardFeature}`}>{item}</span>
                     </motion.li>
                   ))}

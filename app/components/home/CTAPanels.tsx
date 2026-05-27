@@ -5,20 +5,20 @@ import CTAPanel, { type CTAPanelData } from "./CTAPanel";
 
 const PANELS: CTAPanelData[] = [
   {
-    label: "Est. 2015",
+    label: "Est. 2021",
     title: "Who Are We?",
     cta: "About Us",
     href: "/about",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80",
-    alt: "Integrity Fitness personal training facility and coaching environment",
+    image: "/harry.png",
+    alt: "Harry Matthews — Lead Instructor at Integrity Fitness Education",
   },
   {
     label: "Norwich, Norfolk",
     title: "Get In Touch",
     cta: "Contact Us",
     href: "/contact",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80",
-    alt: "Fully equipped free-weights and lifting area at our Norwich centre",
+    image: "/paris.webp",
+    alt: "Paris Matthews — Co-Founder at Integrity Fitness Education",
   },
 ];
 

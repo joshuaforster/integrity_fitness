@@ -3,7 +3,7 @@ import PageHero from "@/app/components/PageHero";
 export default function FaqHero() {
   return (
     <PageHero
-      image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80"
+      image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Duncan/20221115-IFE-CF_010.JPG"
       label="Got Questions?"
       title={
         <>

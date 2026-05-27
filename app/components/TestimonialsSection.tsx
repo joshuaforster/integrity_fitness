@@ -103,26 +103,26 @@ export default function StackedTestimonials({
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
-  const handleNext = () => {
+  function handleNext() {
     setCurrentIndex((prev) => (prev + 1) % items.length);
-  };
+  }
 
-  const handlePrev = () => {
+  function handlePrev() {
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-  };
+  }
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  function handleTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX;
-  };
+  }
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  function handleTouchEnd(e: React.TouchEvent) {
     if (touchStartX.current === null) return;
     const delta = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(delta) > 40) {
       delta > 0 ? handleNext() : handlePrev();
     }
     touchStartX.current = null;
-  };
+  }
 
   if (items.length === 0) return null;
 

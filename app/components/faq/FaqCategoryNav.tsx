@@ -2,20 +2,21 @@
 
 import { type FAQGroup } from "./FaqGroup";
 
-const formatId = (text: string) =>
-  text
+function formatId(text: string) {
+  return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+}
 
 export default function FaqCategoryNav({ groups }: { groups: readonly FAQGroup[] }) {
-  const scrollToSection = (category: string) => {
+  function scrollToSection(category: string) {
     const el = document.getElementById(formatId(category));
     if (!el) return;
     const yOffset = -100;
     const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
-  };
+  }
 
   return (
     <div className="lg:col-span-4 hidden lg:block sticky top-28 space-y-4">

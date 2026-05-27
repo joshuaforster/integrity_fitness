@@ -8,7 +8,7 @@ interface Props {
   delay?: number;
 }
 
-export default function AnimatedCheck({ color = "#CE1A19", size = 16, delay = 0 }: Props) {
+export default function AnimatedCheck({ color = "#16a34a", size = 16, delay = 0 }: Props) {
   return (
     <motion.svg
       width={size}

@@ -31,7 +31,7 @@ export default function AboutStats() {
           {STATS.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col items-start border-l-2 border-zinc-200 pl-6"
+              className={`flex flex-col items-start pl-6 ${stat.label !== "Accredited Partner" ? "border-l-2 border-zinc-200" : ""}`}
             >
               <p className="text-xs text-zinc-600 uppercase tracking-[2px] mt-4 font-bold order-last">
                 {stat.label}
@@ -44,7 +44,7 @@ export default function AboutStats() {
                     width={stat.width}
                     height={stat.height}
                     priority
-                    className="h-7 w-auto object-contain block"
+                    className={`${stat.alt === "CIMSPA" ? "h-10" : "h-7"} w-auto object-contain block`}
                   />
                 </div>
               ) : (

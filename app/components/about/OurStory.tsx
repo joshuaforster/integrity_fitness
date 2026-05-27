@@ -15,7 +15,7 @@ const TEAM: TeamMember[] = [
     name: "Harry",
     role: "Founder & Lead Tutor",
     image: "/harry.png",
-    meta: "Teaching Since 2015",
+    meta: "Teaching Since 2021",
     bio: [
       "After completing the combined Level 2 & 3 Personal Training Diploma, Harry began his career as a self-employed PT at The Gym Group in Norwich. After building his client base and specialising in exercise referral, he established a reputation that led to a role as a tutor and assessor.",
       "Over the next 5 years he worked with hundreds of students, finding the same passion for helping people that first attracted him to personal training. He built a team of likeminded individuals under a unified company: Integrity Fitness Education.",

@@ -15,7 +15,7 @@ export default function CustomCursor() {
   const ringY = useSpring(dotY, { stiffness: 140, damping: 20, mass: 0.5 });
 
   useEffect(() => {
-    const move = (e: MouseEvent) => {
+    function move(e: MouseEvent) {
       dotX.set(e.clientX);
       dotY.set(e.clientY);
       if (!active) setActive(true);
@@ -27,7 +27,7 @@ export default function CustomCursor() {
       const tag = el.tagName.toLowerCase();
       setIsPointer(computed === "pointer" || tag === "a" || tag === "button" || el.closest("a, button") !== null);
       setIsText(computed === "text" || tag === "input" || tag === "textarea");
-    };
+    }
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);

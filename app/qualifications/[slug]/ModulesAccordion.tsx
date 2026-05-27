@@ -35,8 +35,8 @@ function TopicCheck() {
       aria-hidden="true"
       className="flex-shrink-0 mt-0.5"
     >
-      <motion.circle cx="8" cy="8" r="7" stroke="#CE1A19" strokeWidth="1.5" fill="none" variants={checkCircle} />
-      <motion.path d="M5 8L7.2 10.2L11 6" stroke="#CE1A19" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" variants={checkMark} />
+      <motion.circle cx="8" cy="8" r="7" stroke="#16a34a" strokeWidth="1.5" fill="none" variants={checkCircle} />
+      <motion.path d="M5 8L7.2 10.2L11 6" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" variants={checkMark} />
     </motion.svg>
   );
 }
@@ -272,7 +272,7 @@ function FullscreenOverlay({
   }, []);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    function onKey(e: KeyboardEvent) { if (e.key === "Escape") close(); }
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -391,10 +391,10 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
       : [];
   const pagesPerModule = total > 0 ? Math.ceil(total / modules.length) : 0;
 
-  const handleClick = (i: number) => {
+  function handleClick(i: number) {
     setActive(i);
     setOpenIndex((prev) => (prev === i ? null : i));
-  };
+  }
 
   return (
     <>

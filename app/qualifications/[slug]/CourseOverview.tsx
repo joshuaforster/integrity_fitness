@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { type Qualification } from "@/app/data/qualifications";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import BulletList from "@/app/components/ui/BulletList";
@@ -51,7 +52,7 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
               <p className="text-zinc-400 text-xs font-bold tracking-[3px] uppercase mb-5">
                 Entry Requirements
               </p>
-              <BulletList items={qual.entryRequirements} bulletColor="zinc" />
+              <BulletList items={qual.entryRequirements} bulletColor="green" />
             </div>
 
             <div className="pt-6 border-t border-zinc-100">
@@ -59,8 +60,9 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
                 <div>
                   <span className="text-zinc-950">Duration:</span> {qual.duration}
                 </div>
-                <div>
-                  <span className="text-zinc-950">Awarding Body:</span> {qual.awardingBody}
+                <div className="flex items-center gap-2">
+                  <span className="text-zinc-950">Awarding Body:</span>
+                  <Image src="/activeiq.png" alt="Active IQ awarding body logo" width={80} height={17} className="h-4 w-auto" />
                 </div>
               </div>
             </div>

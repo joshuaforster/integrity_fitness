@@ -68,7 +68,7 @@ export default function AboutMission() {
 
             <div className="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed mt-8">
               <motion.p variants={textFadeVariants}>
-                Since 2015, Integrity Fitness Education has been rewriting the
+                Since 2021, Integrity Fitness Education has been rewriting the
                 rules of personal training education in Norwich, Norfolk. Where
                 others offer courses, we offer transformation — the kind that
                 sticks.

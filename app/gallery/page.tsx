@@ -12,7 +12,7 @@ export default function GalleryPage() {
   return (
     <main className="bg-white">
       <PageHero
-        image="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80"
+        image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-GYM-FLOOR-720220124-IFE-TGGNCC019.jpg"
         label="Behind The Scenes"
         title="Gallery"
         subtitle="A look inside our sessions, facilities, and the moments that define Integrity."

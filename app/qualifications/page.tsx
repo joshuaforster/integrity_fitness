@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import qualifications from "@/app/data/qualifications";
 import PageHero from "@/app/components/PageHero";
-import Button from "@/app/components/Button";
 import PTCourseList from "./PTCourseList";
 import CPDCourseGrid from "./CPDCourseGrid";
+import ReadyToStartCTA from "@/app/components/ReadyToStartCTA";
 
 export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
@@ -20,7 +20,7 @@ export default function QualificationsPage() {
   return (
     <main className="bg-zinc-50">
       <PageHero
-        image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80"
+        image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/ANATOMY-AND-PHYSIOLOGY-EXAM-20220124-IFE-TGGNCC044.jpg"
         label="CIMSPA Accredited"
         title="Qualifications"
         subtitle="One-to-one education built for real careers. Every course delivered personally by Harry."
@@ -96,42 +96,8 @@ export default function QualificationsPage() {
         </div>
       </section>
 
-      {/* 3. Bottom Direct Guidance Action Row */}
-      <section
-        aria-labelledby="cta-heading"
-        className="bg-zinc-50 angle-tr pb-20 md:pb-24 pt-[132px] md:pt-[148px]"
-      >
-        <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
-            Not Sure Where To Start?
-          </p>
-          <h2
-            id="cta-heading"
-            className="text-2xl md:text-4xl font-black text-zinc-950 uppercase tracking-tight mb-4"
-          >
-            We&apos;ll Point You in the Right Direction.
-          </h2>
-          <div
-            className="w-14 h-1 bg-[#CE1A19] mx-auto mb-6"
-            aria-hidden="true"
-          />
-          <p className="text-zinc-600 text-sm md:text-base mb-10 max-w-lg mx-auto leading-relaxed">
-            Every student follows a distinct educational path. Get in touch
-            directly and Harry will calibrate the perfect structure matching
-            your career goals and availability constraints.
-          </p>
-          <div className="flex justify-center">
-            <Button
-              href="/contact"
-              variant="primary"
-              size="md"
-              className="px-10 shadow-sm"
-            >
-              Get In Touch
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* 3. Bottom CTA */}
+      <ReadyToStartCTA />
     </main>
   );
 }

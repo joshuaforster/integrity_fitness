@@ -27,7 +27,7 @@ export default function GalleryImageTile({ img, onClick }: GalleryImageTileProps
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
       />
-      <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/40 transition-colors duration-300 flex items-end p-6">
+      <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/60 transition-colors duration-300 flex items-end p-6">
         <div className="text-left opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
           <span className="text-[#CE1A19] text-[10px] font-black uppercase tracking-widest block mb-1">
             {img.category}

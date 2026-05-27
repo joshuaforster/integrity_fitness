@@ -5,7 +5,7 @@ import AnimatedCheck from "./AnimatedCheck";
 
 interface BulletListProps {
   items: string[];
-  bulletColor?: "red" | "zinc";
+  bulletColor?: "red" | "zinc" | "green";
   textColor?: string;
 }
 
@@ -22,7 +22,7 @@ const itemVariants: Variants = {
 
 export default function BulletList({
   items,
-  bulletColor = "red",
+  bulletColor = "green",
   textColor = "text-zinc-600",
 }: BulletListProps) {
   return (
@@ -36,7 +36,7 @@ export default function BulletList({
     >
       {items.map((item) => (
         <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
-          <AnimatedCheck size={16} delay={0} color={bulletColor === "red" ? "#CE1A19" : "#a1a1aa"} />
+          <AnimatedCheck size={16} delay={0} color={bulletColor === "red" ? "#CE1A19" : bulletColor === "green" ? "#16a34a" : "#a1a1aa"} />
           <p className={`text-sm md:text-base leading-relaxed ${textColor}`}>{item}</p>
         </motion.li>
       ))}

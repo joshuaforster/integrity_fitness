@@ -22,8 +22,8 @@ export default function Marquee() {
 
       {/* Outer flex container tracking hardware-accelerated scroll keyframes */}
       <div className="flex whitespace-nowrap min-w-full">
-        <div className="flex animate-marquee shrink-0 items-center justify-around min-w-full gap-8 pr-8">
-          {[...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (
+        <div className="flex animate-marquee shrink-0 items-center min-w-full gap-8 pr-8">
+          {[...ITEMS, ...ITEMS].map((item, i) => (
             <span
               key={i}
               className="inline-flex items-center text-white text-xs font-black uppercase tracking-[3px]"

@@ -96,7 +96,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                       </span>
                       <span className="flex-shrink-0">
                         {val === true ? (
-                          <AnimatedCheck size={14} delay={i * 0.04} color="#CE1A19" />
+                          <AnimatedCheck size={14} delay={i * 0.04} color="#16a34a" />
                         ) : val === false ? (
                           <span
                             className={`text-sm font-semibold leading-none ${dashColor}`}
@@ -194,7 +194,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                         <AnimatedCheck
                           size={16}
                           delay={i * 0.04}
-                          color="#CE1A19"
+                          color="#16a34a"
                         />
                       </span>
                     ) : val === false ? (

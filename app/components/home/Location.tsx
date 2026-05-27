@@ -91,7 +91,7 @@ export default function Location() {
             </address>
 
             <a
-              href="https://maps.google.com"
+              href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gym+Whiffler+Road+Norwich+NR3+2AW"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-sm font-bold tracking-wide uppercase hover:bg-zinc-950 hover:text-white transition-colors duration-200 rounded-sm"

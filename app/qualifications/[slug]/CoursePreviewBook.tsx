@@ -72,12 +72,12 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
     el.style.transform = `scale(${Math.max(s, 0.3)})`;
   }, []);
 
-  const open = () => {
+  function open() {
     setMobilePage(0);
     setCurrentPage(0);
     setIsOpen(true);
     requestAnimationFrame(() => requestAnimationFrame(() => setIsVisible(true)));
-  };
+  }
 
   const close = useCallback(() => {
     setIsVisible(false);
@@ -93,7 +93,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    function onKey(e: KeyboardEvent) { if (e.key === "Escape") close(); }
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -107,7 +107,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
   const rightPage = Math.min(currentPage + 2, total);
   const progressPct = total > 1 ? Math.round((currentPage / (total - 1)) * 100) : 0;
 
-  const renderModal = () => (
+  function renderModal() { return (
     <div
       className={`fixed inset-0 z-[9999] bg-zinc-950 flex flex-col transition-opacity duration-[240ms] ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}
       role="dialog"
@@ -358,7 +358,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
       </div>
     </div>
-  );
+  ); }
 
   if (!bookletFolder || !bookletPageCount) return null;
 
