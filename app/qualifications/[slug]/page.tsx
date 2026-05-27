@@ -53,9 +53,6 @@ export default async function QualificationPage({ params }: PageProps) {
 
       {qual.testimonials && qual.testimonials.length > 0 && (
         <TestimonialsSection
-          theme="light"
-          label="Student Stories"
-          heading="What Our Students Say"
           testimonials={qual.testimonials.map((t) => ({
             body: t.quote,
             name: t.name,

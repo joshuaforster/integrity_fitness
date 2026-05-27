@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
@@ -101,6 +101,7 @@ export default function StackedTestimonials({
 }) {
   const items = testimonials ?? DEFAULT_TESTIMONIALS;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % items.length);
@@ -110,10 +111,27 @@ export default function StackedTestimonials({
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      delta > 0 ? handleNext() : handlePrev();
+    }
+    touchStartX.current = null;
+  };
+
   if (items.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24 lg:py-28 bg-zinc-50 border-y border-zinc-200/80 overflow-hidden w-full">
+    <section
+      className="py-16 md:py-24 lg:py-28 bg-zinc-50 border-y border-zinc-200/80 overflow-hidden w-full"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left Column: Headings & Navigation Controls */}
         <div className="lg:col-span-5 text-left flex flex-col items-start w-full">
