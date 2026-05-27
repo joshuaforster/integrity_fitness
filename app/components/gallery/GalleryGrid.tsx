@@ -1,40 +1,181 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import AnimatedTextFilter from "@/app/components/ui/AnimatedTextFilter";
 import GalleryImageTile, { type GalleryItem } from "./GalleryImageTile";
 import GalleryLightbox from "./GalleryLightbox";
 
+const BUCKET_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD";
+
 const IMAGES: GalleryItem[] = [
-  { id: 1, src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80", alt: "Personal training session", category: "Training" },
-  { id: 2, src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80", alt: "Gym equipment", category: "Facilities" },
-  { id: 3, src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80", alt: "Weight training", category: "Training" },
-  { id: 4, src: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80", alt: "Group class", category: "Classes" },
-  { id: 5, src: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80", alt: "Coaching session", category: "Training" },
-  { id: 6, src: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80", alt: "Modern gym floor", category: "Facilities" },
-  { id: 7, src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80", alt: "Stretching and mobility", category: "Classes" },
-  { id: 8, src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=800&q=80", alt: "Cardio training", category: "Training" },
-  { id: 9, src: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80", alt: "Dumbbell rack", category: "Facilities" },
-  { id: 10, src: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=800&q=80", alt: "One-to-one coaching", category: "Training" },
-  { id: 11, src: "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=800&q=80", alt: "Strength training", category: "Classes" },
-  { id: 12, src: "https://images.unsplash.com/photo-1559505030-85b97eaee08c?auto=format&fit=crop&w=800&q=80", alt: "Qualification ceremony", category: "Events" },
+  {
+    id: 1,
+    src: `${BUCKET_URL}/ANATOMY-AND-PHYSIOLOGY-THEORY-EXAM-IFE-TGGNHR_012.jpg`,
+    alt: "Anatomy and physiology theory exam session",
+    category: "Events",
+  },
+  {
+    id: 2,
+    src: `${BUCKET_URL}/ANATOMY-AND-PHYSIOLOGY-THEORY-EXAM2-IFE-TGGNHR_013.jpg`,
+    alt: "Anatomy and physiology theory exam paper overview",
+    category: "Events",
+  },
+  {
+    id: 3,
+    src: `${BUCKET_URL}/ANATOMY-AND-PHYSIOLOGY-THEORY-EXAM3-IFE-TGGNHR_014.jpg`,
+    alt: "Anatomy and physiology theory exam documents",
+    category: "Events",
+  },
+  {
+    id: 4,
+    src: `${BUCKET_URL}/ANATOMY-AND-PHYSIOLOGY-THEORY-EXAM4-IFE-TGGNHR_015.jpg`,
+    alt: "Anatomy and physiology theory exam learning environment",
+    category: "Events",
+  },
+  {
+    id: 5,
+    src: `${BUCKET_URL}/BECOME-A-PERSONAL-TRAINER-CAREER-OPTIONS-IFE-TGGNHR_011.jpg`,
+    alt: "Become a personal trainer career options presentation",
+    category: "Events",
+  },
+  {
+    id: 6,
+    src: `${BUCKET_URL}/BURY-BASKETBALL-HARRY-IFE-TGGNHR_035.jpg`,
+    alt: "Bury basketball training with Harry",
+    category: "Training",
+  },
+  {
+    id: 7,
+    src: `${BUCKET_URL}/BURY-BASKETBALL-HARRY2-IFE-TGGNHR_036.jpg`,
+    alt: "Bury basketball practice match with Harry",
+    category: "Training",
+  },
+  {
+    id: 8,
+    src: `${BUCKET_URL}/BURY-BASKETBALL-HARRY3-IFE-TGGNHR_037.jpg`,
+    alt: "Bury basketball court drills with Harry",
+    category: "Training",
+  },
+  {
+    id: 9,
+    src: `${BUCKET_URL}/FITNESS-DISCUSSION-IFE-TGGNHR_006.jpg`,
+    alt: "Fitness discussion group session",
+    category: "Classes",
+  },
+  {
+    id: 10,
+    src: `${BUCKET_URL}/FITNESS-DISCUSSION-2-IFE-TGGNHR_007.jpg`,
+    alt: "Fitness discussion review",
+    category: "Classes",
+  },
+  {
+    id: 11,
+    src: `${BUCKET_URL}/FITNESS-DISCUSSION2-IFE-TGGNHR_039.jpg`,
+    alt: "Fitness consultation and review",
+    category: "Classes",
+  },
+  {
+    id: 12,
+    src: `${BUCKET_URL}/GYM-FLOOR%20CHAT-IFE-TGGNHR_005.jpg`,
+    alt: "Gym floor client interaction",
+    category: "Training",
+  },
+  {
+    id: 13,
+    src: `${BUCKET_URL}/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg`,
+    alt: "Gym floor exercise explanation",
+    category: "Training",
+  },
+  {
+    id: 14,
+    src: `${BUCKET_URL}/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg`,
+    alt: "Gym floor practical education delivery",
+    category: "Training",
+  },
+  {
+    id: 15,
+    src: `${BUCKET_URL}/GYM-FLOOR%20EDUCATION2-IFE-TGGNHR_009.jpg`,
+    alt: "Gym floor practical instruction methods",
+    category: "Training",
+  },
+  {
+    id: 16,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS-IFE-TGGNHR_026.jpg`,
+    alt: "Harry and Paris personal training session",
+    category: "Training",
+  },
+  {
+    id: 17,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS2-IFE-TGGNHR_027.jpg`,
+    alt: "Harry and Paris practical gym assessment",
+    category: "Training",
+  },
+  {
+    id: 18,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS3-IFE-TGGNHR_028.jpg`,
+    alt: "Harry and Paris functional training review",
+    category: "Training",
+  },
+  {
+    id: 19,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS4-IFE-TGGNHR_029.jpg`,
+    alt: "Harry and Paris resistance training oversight",
+    category: "Training",
+  },
+  {
+    id: 20,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS4-IFE-TGGNHR_030.jpg`,
+    alt: "Harry and Paris exercise technique analysis",
+    category: "Training",
+  },
+  {
+    id: 21,
+    src: `${BUCKET_URL}/HARRY-AND-PARIS5-IFE-TGGNHR_031.jpg`,
+    alt: "Harry and Paris post-workout debrief",
+    category: "Training",
+  },
+  {
+    id: 22,
+    src: `${BUCKET_URL}/HARRY-MATTHEWS-DUMBBELL-MACBOOK-AIR-IPAD-IFE-TGGNHR_032.jpg`,
+    alt: "Harry Matthews reviewing data with dumbbell, MacBook Air, and iPad",
+    category: "Facilities",
+  },
+  {
+    id: 23,
+    src: `${BUCKET_URL}/HARRY-MATTHEWS-DUMBBELL-MACBOOK-AIR-IPAD2-IFE-TGGNHR_033.jpg`,
+    alt: "Harry Matthews planning programs using digital workspace on gym floor",
+    category: "Facilities",
+  },
+  {
+    id: 24,
+    src: `${BUCKET_URL}/HARRY-MATTHEWS-PROFILE-GYM-FLOOR-IFE-TGGNHR_034.jpg`,
+    alt: "Harry Matthews profile portrait on the gym floor",
+    category: "Facilities",
+  },
 ];
 
-const CATEGORIES = ["All", ...Array.from(new Set(IMAGES.map((i) => i.category)))] as const;
+const CATEGORIES = [
+  "All",
+  ...Array.from(new Set(IMAGES.map((i) => i.category))),
+] as const;
+
+const emptySubscribe = () => () => {};
+
+function ClientPortal({ children }: { children: ReactNode }) {
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  if (!mounted) return null;
+  return createPortal(children, document.body);
+}
 
 export default function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [activeImageId, setActiveImageId] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
 
   const filtered =
-    activeCategory === "All" ? IMAGES : IMAGES.filter((img) => img.category === activeCategory);
+    activeCategory === "All"
+      ? IMAGES
+      : IMAGES.filter((img) => img.category === activeCategory);
 
   const currentIdx = filtered.findIndex((img) => img.id === activeImageId);
 
@@ -42,7 +183,9 @@ export default function GalleryGrid() {
 
   const prev = useCallback(() => {
     if (currentIdx === -1) return;
-    setActiveImageId(filtered[(currentIdx - 1 + filtered.length) % filtered.length].id);
+    setActiveImageId(
+      filtered[(currentIdx - 1 + filtered.length) % filtered.length].id,
+    );
   }, [currentIdx, filtered]);
 
   const next = useCallback(() => {
@@ -63,7 +206,9 @@ export default function GalleryGrid() {
 
   useEffect(() => {
     document.body.style.overflow = activeImageId !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [activeImageId]);
 
   return (
@@ -76,7 +221,10 @@ export default function GalleryGrid() {
             label={cat}
             isSelected={activeCategory === cat}
             size="sm"
-            onClick={() => { setActiveCategory(cat); setActiveImageId(null); }}
+            onClick={() => {
+              setActiveCategory(cat);
+              setActiveImageId(null);
+            }}
           />
         ))}
       </div>
@@ -88,8 +236,8 @@ export default function GalleryGrid() {
         ))}
       </div>
 
-      {activeImageId !== null && mounted && currentIdx !== -1 &&
-        createPortal(
+      {activeImageId !== null && currentIdx !== -1 && (
+        <ClientPortal>
           <GalleryLightbox
             filtered={filtered}
             currentIdx={currentIdx}
@@ -97,9 +245,9 @@ export default function GalleryGrid() {
             onPrev={prev}
             onNext={next}
             onJump={setActiveImageId}
-          />,
-          document.body,
-        )}
+          />
+        </ClientPortal>
+      )}
     </div>
   );
 }
