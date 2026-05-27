@@ -27,8 +27,18 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      videoRef.current?.pause();
+      video.pause();
+    }
+
+    const skipIntro = () => { video.currentTime = 8.5; };
+    if (video.readyState >= 1) {
+      skipIntro();
+    } else {
+      video.addEventListener("loadedmetadata", skipIntro, { once: true });
     }
   }, []);
 
@@ -46,24 +56,20 @@ export default function Hero() {
           loop
           playsInline
           tabIndex={-1}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover [filter:contrast(1.08)_saturate(1.15)_brightness(1.02)]"
         >
           <source
-            src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/5319998-uhd_3840_2160_25fps.mp4"
+            src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Integrity%2016-9.mp4"
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.75)_35%,rgba(0,0,0,0.18)_65%,transparent_85%)]" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-24 pb-16 md:pt-32">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-          >
+          <motion.div variants={container} initial="hidden" animate="visible">
             <motion.p
               variants={fadeUp}
               className="flex items-center gap-3 text-white text-xs font-semibold tracking-[4px] uppercase mb-4"
@@ -81,7 +87,11 @@ export default function Hero() {
                   key={i}
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35 + i * 0.08, duration: 0.55, ease: "easeOut" }}
+                  transition={{
+                    delay: 0.35 + i * 0.08,
+                    duration: 0.55,
+                    ease: "easeOut",
+                  }}
                   className="inline-block mr-[0.28em]"
                 >
                   {word}
@@ -99,11 +109,15 @@ export default function Hero() {
               variants={fadeUp}
               className="text-white max-w-lg leading-relaxed mb-8 text-base md:text-lg opacity-95"
             >
-              One-to-one learning like no other. We prepare the next generation of
-              personal trainers to enter the fitness industry with confidence.
+              One-to-one learning like no other. We prepare the next generation
+              of personal trainers to enter the fitness industry with
+              confidence.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <MagneticButton>
                 <Button
                   href="#courses"
