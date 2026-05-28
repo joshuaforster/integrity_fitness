@@ -111,7 +111,7 @@ export default function Header() {
               src="/logo_white.png"
               width={125}
               height={40}
-              alt="Integrity Fitness Education"
+              alt=""
               priority
               className="h-auto w-auto object-contain"
             />

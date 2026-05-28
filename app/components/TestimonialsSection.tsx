@@ -56,7 +56,7 @@ const DEFAULT_TESTIMONIALS: readonly TestimonialItem[] = [
 
 function Stars() {
   return (
-    <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
+    <div className="flex gap-0.5 mb-4" role="img" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
@@ -277,7 +277,7 @@ export default function StackedTestimonials({
                       <div className="w-full">
                         <Stars />
                         {/* Responsive clamp boundaries prevent long blocks from pushing content lines down */}
-                        <p className="text-zinc-700 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium line-clamp-5 sm:line-clamp-4 pr-3">
+                        <p className="text-zinc-900 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium line-clamp-5 sm:line-clamp-4 pr-3">
                           &ldquo;{t.body}&rdquo;
                         </p>
                       </div>
@@ -326,13 +326,15 @@ export default function StackedTestimonials({
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setCurrentIndex(i)}
-                    className={`h-1 rounded-full transition-all duration-300 outline-none cursor-pointer ${
+                    className="flex items-center justify-center w-6 h-6 outline-none cursor-pointer touch-manipulation"
+                    aria-label={`Go to review ${i + 1}`}
+                  >
+                    <span className={`block rounded-full transition-all duration-300 ${
                       isActive
-                        ? "bg-[#CE1A19] w-4 sm:w-5"
-                        : "w-1.5 bg-zinc-200 hover:bg-zinc-300"
-                    }`}
-                    aria-label={`Jump inside stack deck to index card view number ${i + 1}`}
-                  />
+                        ? "bg-[#CE1A19] w-4 sm:w-5 h-1"
+                        : "w-1.5 h-1.5 bg-zinc-200 hover:bg-zinc-300"
+                    }`} />
+                  </button>
                 );
               })}
             </div>

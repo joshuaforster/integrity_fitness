@@ -54,7 +54,7 @@ export default function Footer() {
           <div className="space-y-6 flex flex-col items-start">
             <Image
               src="/logo_white.png"
-              alt="Integrity Fitness Education"
+              alt=""
               width={160}
               height={54}
               priority

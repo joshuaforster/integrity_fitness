@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
@@ -36,6 +37,20 @@ const STRUCTURED_DATA = {
 };
 
 export default function Location() {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [mapVisible, setMapVisible] = useState(false);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setMapVisible(true); observer.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       aria-labelledby="location-heading"
@@ -127,16 +142,19 @@ export default function Location() {
               <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none z-10 paper-crease-br" />
 
               {/* The actual map */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden border border-zinc-300/50 map-vintage">
-                <iframe
-                  title="Complete Fitness Gym Norwich — location map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
-                  width="100%"
-                  height="100%"
-                  className="absolute inset-0 w-full h-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+              <div ref={mapRef} className="relative w-full aspect-[4/3] overflow-hidden border border-zinc-300/50 map-vintage">
+                {mapVisible ? (
+                  <iframe
+                    title="Complete Fitness Gym Norwich — location map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
+                    width="100%"
+                    height="100%"
+                    className="absolute inset-0 w-full h-full border-0"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-stone-100 animate-pulse" />
+                )}
               </div>
 
               {/* Legend strip */}

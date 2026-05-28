@@ -113,14 +113,13 @@ export default function Hero() {
               aria-hidden="true"
             />
 
-            <motion.p
-              variants={fadeUp}
-              className="text-white max-w-lg leading-relaxed mb-8 text-base md:text-lg opacity-95"
+            <p
+              className="text-white max-w-lg leading-relaxed mb-8 text-base md:text-lg"
             >
               One-to-one learning like no other. We prepare the next generation
               of personal trainers to enter the fitness industry with
               confidence.
-            </motion.p>
+            </p>
 
             <motion.div
               variants={fadeUp}
