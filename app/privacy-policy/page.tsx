@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Integrity Fitness Education",
   description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",
+  alternates: {
+    canonical: "https://www.integrityfitnesseducation.co.uk/privacy-policy",
+  },
   openGraph: {
     title: "Privacy Policy | Integrity Fitness Education",
     description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",

@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms & Conditions | Integrity Fitness Education",
   description: "Read the full Terms & Conditions for Integrity Fitness Education — enrolment, cancellation, intellectual property, and your rights as a learner.",
+  alternates: {
+    canonical: "https://www.integrityfitnesseducation.co.uk/terms",
+  },
   openGraph: {
     title: "Terms & Conditions | Integrity Fitness Education",
     description: "Full Terms & Conditions for Integrity Fitness Education personal trainer courses — enrolment, cancellation, and learner rights.",

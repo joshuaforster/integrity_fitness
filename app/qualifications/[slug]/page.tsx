@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${qual.title} | Integrity Fitness Education`,
     description: qual.tagline,
+    alternates: {
+      canonical: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+    },
   };
 }
 

@@ -4,6 +4,9 @@ import Hero from "./components/home/Hero";
 export const metadata: Metadata = {
   title: "Integrity Fitness Education | Personal Training Courses Norwich",
   description: "CIMSPA-accredited personal trainer qualifications in Norwich, Norfolk. One-to-one learning with industry professionals. Level 2, Level 3 and CPD courses available.",
+  alternates: {
+    canonical: "https://www.integrityfitnesseducation.co.uk",
+  },
   openGraph: {
     title: "Integrity Fitness Education | Personal Training Courses Norwich",
     description: "CIMSPA-accredited personal trainer qualifications in Norwich, Norfolk. One-to-one learning with industry professionals.",

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
   description:
     "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
+  alternates: {
+    canonical: "https://www.integrityfitnesseducation.co.uk/qualifications",
+  },
 };
 
 const PT_COURSES = qualifications.filter(

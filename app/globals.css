@@ -124,6 +124,20 @@ body {
   }
 }
 
+/* Page enter animation — CSS-only so content is visible from SSR */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.page-enter {
+  animation: page-enter 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
+}
+
 /* Scroll reveal — applied by IntersectionObserver in ScrollReveal.tsx */
 .reveal {
   opacity: 0;
