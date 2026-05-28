@@ -209,8 +209,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
                 {/* Spine — faint centre line between left and right pages */}
                 <div
-                  className="absolute inset-y-0 pointer-events-none"
-                  style={{ left: PAGE_W - 1, width: 2 }}
+                  className="absolute inset-y-0 left-[439px] w-[2px] pointer-events-none"
                   aria-hidden="true"
                 >
                   <div className="w-full h-full bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
@@ -218,8 +217,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
                 {/* Bottom edge page-stack illusion */}
                 <div
-                  className="absolute left-0 right-0 pointer-events-none"
-                  style={{ top: PAGE_H, height: 4 }}
+                  className="absolute left-0 right-0 top-[580px] h-1 pointer-events-none"
                   aria-hidden="true"
                 >
                   <div className="w-full h-full bg-gradient-to-b from-zinc-400/30 to-transparent" />
@@ -301,8 +299,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               else if (dx > 40) setMobilePage((p) => Math.max(0, p - 1));
             }}
           >
-            <div className="relative w-full max-w-xs shadow-[0_20px_60px_rgba(0,0,0,0.8)] rounded-[1px] overflow-hidden"
-              style={{ aspectRatio: `${PAGE_W} / ${PAGE_H}` }}
+            <div className="relative w-full max-w-xs shadow-[0_20px_60px_rgba(0,0,0,0.8)] rounded-[1px] overflow-hidden aspect-[440/580]"
             >
               <Image
                 src={pages[mobilePage]}

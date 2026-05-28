@@ -25,8 +25,7 @@ export default function NotFound() {
         {/* Big 404 */}
         <motion.div variants={item} className="relative mb-8 select-none">
           <span
-            className="text-[clamp(7rem,20vw,14rem)] font-black text-zinc-950 leading-none"
-            style={{ WebkitTextStroke: "2px #CE1A19" }}
+            className="text-[clamp(7rem,20vw,14rem)] font-black text-zinc-950 leading-none text-stroke-red"
             aria-hidden="true"
           >
             404

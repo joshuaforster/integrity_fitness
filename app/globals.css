@@ -153,6 +153,10 @@ body {
   animation: slideInFromLeft 0.35s ease-out both;
 }
 
+.text-stroke-red {
+  -webkit-text-stroke: 2px #CE1A19;
+}
+
 /* Testimonial slider track positions — fallback indices mappings */
 .slider-pos-0 {
   transform: translateX(0%);
