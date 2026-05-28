@@ -60,7 +60,7 @@ export default function Footer() {
               priority
               className="h-auto w-auto object-contain"
             />
-            <p className="text-zinc-300 text-sm leading-relaxed max-w-xs">
+            <p className="text-white text-sm leading-relaxed max-w-xs">
               One-to-one fitness education in Norwich, Norfolk. CIMSPA
               accredited, Level 3 qualified, and built around you.
             </p>
@@ -106,14 +106,14 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-zinc-400 text-xs tracking-wide">
+            <p className="text-white text-xs tracking-wide">
               &copy; 2026 Integrity Fitness Education Ltd. All rights reserved.
             </p>
-            <p className="text-zinc-400 text-xs tracking-wide font-medium">
+            <p className="text-white text-xs tracking-wide font-medium">
               CIMSPA Accredited &middot; Norwich, Norfolk
             </p>
           </div>
-          <p className="text-zinc-500 text-[11px] leading-relaxed max-w-4xl">
+          <p className="text-white text-[11px] leading-relaxed max-w-4xl">
             Integrity Fitness Education Ltd &middot; Company No. 13487683
             &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP
           </p>

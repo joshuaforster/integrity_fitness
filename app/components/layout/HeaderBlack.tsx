@@ -140,7 +140,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-zinc-200 hover:text-white"}`}
+                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-white hover:text-white"}`}
                 >
                   <span>{item.name}</span>
                   <span
@@ -155,7 +155,7 @@ export default function Header() {
               <Link
                 href="/qualifications"
                 aria-current={qualActive ? "page" : undefined}
-                className={`relative flex items-center gap-1.5 text-sm font-bold tracking-wide transition-colors duration-200 pb-1 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${qualActive ? "text-white" : "text-zinc-200 hover:text-white"}`}
+                className={`relative flex items-center gap-1.5 text-sm font-bold tracking-wide transition-colors duration-200 pb-1 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${qualActive ? "text-white" : "text-white hover:text-white"}`}
               >
                 <span>Qualifications</span>
                 <ChevronDownIcon className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-200 group-hover:rotate-180" />
@@ -167,7 +167,7 @@ export default function Header() {
               {/* Panel Drop Frame */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/85 border border-white/10 w-[580px] p-6 shadow-[0_24px_64px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.07)] rounded-sm">
-                  <p className="text-zinc-500 text-[10px] font-black tracking-[4px] uppercase mb-5">
+                  <p className="text-white text-[10px] font-black tracking-[4px] uppercase mb-5">
                     Course Directory
                   </p>
 
@@ -185,7 +185,7 @@ export default function Header() {
                               <Link
                                 href={course.href}
                                 aria-current={courseActive ? "page" : undefined}
-                                className={`flex items-start gap-2 text-sm font-medium leading-snug transition-colors group/item outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] ${courseActive ? "text-white" : "text-zinc-300 hover:text-white"}`}
+                                className={`flex items-start gap-2 text-sm font-medium leading-snug transition-colors group/item outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] ${courseActive ? "text-white" : "text-white hover:text-white"}`}
                               >
                                 <span className={`w-1 h-1 bg-[#CE1A19] mt-2 flex-shrink-0 transition-opacity rounded-full ${courseActive ? "opacity-100" : "opacity-0 group-hover/item:opacity-100"}`} />
                                 <span className={`transition-transform duration-200 ${courseActive ? "translate-x-1 underline underline-offset-2 decoration-[#CE1A19]/60" : "group-hover/item:translate-x-1"}`}>
@@ -220,7 +220,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-zinc-200 hover:text-white"}`}
+                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-white hover:text-white"}`}
                 >
                   <span>{item.name}</span>
                   <span
@@ -247,7 +247,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-zinc-300"}`}
+                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
               >
                 <span>{item.name}</span>
                 {active && (
@@ -265,7 +265,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileQualOpen(!mobileQualOpen)}
-              className="w-full flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider text-zinc-300 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+              className="w-full flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
             >
               <span>Qualifications</span>
               <ChevronDownIcon
@@ -278,7 +278,7 @@ export default function Header() {
             >
               {QUAL_CATEGORIES.map((cat) => (
                 <div key={cat.title} className="px-4 pt-2 pb-3">
-                  <p className="text-zinc-500 text-[10px] font-black tracking-[2px] uppercase mb-2">
+                  <p className="text-white text-[10px] font-black tracking-[2px] uppercase mb-2">
                     {cat.title}
                   </p>
                   {cat.courses.map((course) => (
@@ -289,7 +289,7 @@ export default function Header() {
                         setMobileMenuOpen(false);
                         setMobileQualOpen(false);
                       }}
-                      className="block py-2.5 pl-3 text-xs text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 mb-1 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                      className="block py-2.5 pl-3 text-xs text-white transition-colors border-l border-zinc-800 mb-1 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                     >
                       {course.name}
                     </Link>
@@ -307,7 +307,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 last:border-0 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-zinc-300"}`}
+                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 last:border-0 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
               >
                 <span>{item.name}</span>
                 {active && (

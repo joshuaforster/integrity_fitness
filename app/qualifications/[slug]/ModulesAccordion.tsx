@@ -423,7 +423,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                 </motion.span>
                 <span
                   className={`flex-1 text-left text-sm font-bold tracking-wide uppercase transition-colors duration-150 ${
-                    i === active ? "text-white" : "text-zinc-300"
+                    i === active ? "text-white" : "text-white"
                   }`}
                 >
                   {mod.title}
@@ -435,7 +435,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                 >
                   <svg
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      i === active ? "text-white rotate-90" : "text-zinc-400"
+                      i === active ? "text-white rotate-90" : "text-white"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -455,7 +455,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                 }`}
               >
                 <div className="pl-10 pr-1 pt-2">
-                  <p className="text-zinc-500 text-[10px] font-black tracking-[3px] uppercase mb-3">
+                  <p className="text-white text-[10px] font-black tracking-[3px] uppercase mb-3">
                     What you&apos;ll cover
                   </p>
                   <motion.ul

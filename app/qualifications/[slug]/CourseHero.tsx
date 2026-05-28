@@ -43,7 +43,7 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
               {qual.awardingBody}
             </span>
             <span className="w-1 h-1 rounded-full bg-zinc-700" />
-            <span className="text-zinc-300 text-xs font-bold tracking-[2px] uppercase">
+            <span className="text-white text-xs font-bold tracking-[2px] uppercase">
               {qual.level}
             </span>
             {qual.badge && (
@@ -72,7 +72,7 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
 
           <motion.p
             variants={fadeUp}
-            className="text-zinc-200 text-base md:text-xl max-w-2xl leading-relaxed mb-10 opacity-95"
+            className="text-white text-base md:text-xl max-w-2xl leading-relaxed mb-10"
           >
             {qual.tagline}
           </motion.p>

@@ -39,7 +39,7 @@ export default function Stats() {
               theme="dark"
               headingSize="sm"
             />
-            <p className="text-zinc-200 text-base md:text-lg leading-relaxed mb-8 max-w-md mt-8">
+            <p className="text-white text-base md:text-lg leading-relaxed mb-8 max-w-md mt-8">
               A track record built on transparency and regulatory excellence. We
               deliver premium, recognised qualifications that carry weight in
               the industry.
@@ -64,7 +64,7 @@ export default function Stats() {
                       <p className="text-3xl md:text-4xl font-black text-white tabular-nums">
                         <AnimatedCounter target={stat.value} />
                       </p>
-                      <p className="text-zinc-400 text-xs font-bold uppercase tracking-widest mt-2">
+                      <p className="text-white text-xs font-bold uppercase tracking-widest mt-2">
                         {stat.label}
                       </p>
                     </div>

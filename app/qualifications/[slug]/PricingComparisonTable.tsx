@@ -21,10 +21,10 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
 
   const borderColor = isLight ? "border-zinc-200/80" : "border-zinc-700/60";
   const rowBorder = isLight ? "border-zinc-100" : "border-zinc-800/60";
-  const labelColor = isLight ? "text-zinc-500" : "text-zinc-500";
-  const featureColor = isLight ? "text-zinc-700" : "text-zinc-300";
+  const labelColor = isLight ? "text-zinc-500" : "text-white";
+  const featureColor = isLight ? "text-zinc-700" : "text-white";
   const headerBg = isLight ? "bg-zinc-50" : "bg-zinc-800/40";
-  const headerText = isLight ? "text-zinc-500" : "text-zinc-400";
+  const headerText = isLight ? "text-zinc-500" : "text-white";
   const priceColor = isLight ? "text-zinc-950" : "text-white";
   const rowHover = isLight ? "hover:bg-zinc-50/80" : "hover:bg-zinc-800/20";
   const dashColor = isLight ? "text-zinc-200" : "text-zinc-700";
@@ -55,7 +55,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
               >
                 <span
                   className={`block text-[10px] font-bold uppercase tracking-widest mb-0.5 ${
-                    tier.highlighted ? "text-zinc-400" : headerText
+                    tier.highlighted ? "text-white" : headerText
                   }`}
                 >
                   {tier.name}
@@ -69,10 +69,10 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                   <span
                     className={`text-[10px] font-bold ml-0.5 ${
                       tier.highlighted
-                        ? "text-zinc-500"
+                        ? "text-white"
                         : isLight
                         ? "text-zinc-400"
-                        : "text-zinc-500"
+                        : "text-white"
                     }`}
                   >
                     {period}
@@ -108,10 +108,10 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                           <span
                             className={`text-xs font-bold ${
                               tier.highlighted
-                                ? "text-zinc-300"
+                                ? "text-white"
                                 : isLight
                                 ? "text-zinc-600"
-                                : "text-zinc-400"
+                                : "text-white"
                             }`}
                           >
                             {val}
@@ -151,7 +151,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                   >
                     <span
                       className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${
-                        tier.highlighted ? "text-zinc-400" : ""
+                        tier.highlighted ? "text-white" : ""
                       }`}
                     >
                       {tier.name}
@@ -160,7 +160,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                       £{price}
                       <span
                         className={`text-[10px] font-bold ml-0.5 ${
-                          tier.highlighted ? "text-zinc-500" : isLight ? "text-zinc-400" : "text-zinc-500"
+                          tier.highlighted ? "text-white" : isLight ? "text-zinc-400" : "text-white"
                         }`}
                       >
                         {period}
@@ -207,7 +207,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                     ) : (
                       <span
                         className={`text-xs font-bold ${
-                          tiers[j]?.highlighted ? "text-zinc-300" : isLight ? "text-zinc-600" : "text-zinc-400"
+                          tiers[j]?.highlighted ? "text-white" : isLight ? "text-zinc-600" : "text-white"
                         }`}
                       >
                         {val}

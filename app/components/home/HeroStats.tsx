@@ -53,7 +53,7 @@ export default function HeroStats() {
             variants={item}
             className={`flex flex-col-reverse items-center ${index === 0 ? "" : "pl-3 md:pl-6"}`}
           >
-            <dt className="text-[9px] md:text-[10px] text-zinc-400 uppercase tracking-[2px] mt-2 font-semibold">
+            <dt className="text-[9px] md:text-[10px] text-white uppercase tracking-[2px] mt-2 font-semibold">
               {stat.label}
             </dt>
             <dd className="m-0">

@@ -9,10 +9,10 @@ export default function CPDCourseLink({ course }: { course: CPDCourse }) {
       href={course.href}
       className="flex items-center justify-between p-4 bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 transition-all duration-200 rounded-sm group text-left"
     >
-      <span className="text-xs font-medium text-zinc-300 group-hover:text-white transition-colors pr-4">
+      <span className="text-xs font-medium text-white pr-4">
         {course.title}
       </span>
-      <span className="text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-transform text-sm">
+      <span className="text-white group-hover:translate-x-1 transition-transform text-sm">
         →
       </span>
     </a>

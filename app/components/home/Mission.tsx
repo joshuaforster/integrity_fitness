@@ -70,7 +70,7 @@ export default function Mission() {
                 <blockquote className="text-white text-lg md:text-xl font-medium leading-relaxed tracking-wide mb-6">
                   Develop a passion for learning. If you do, you will never cease to grow.
                 </blockquote>
-                <cite className="text-zinc-400 text-xs tracking-[2px] uppercase font-semibold not-italic block">
+                <cite className="text-white text-xs tracking-[2px] uppercase font-semibold not-italic block">
                   — Anthony J. D&apos;Angelo
                 </cite>
               </div>

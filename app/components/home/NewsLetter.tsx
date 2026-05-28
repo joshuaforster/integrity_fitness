@@ -27,7 +27,7 @@ export default function Newsletter() {
               id="newsletter-heading"
               theme="dark"
             />
-            <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-md mt-6">
+            <p className="text-white text-base md:text-lg leading-relaxed max-w-md mt-6">
               Be the first to hear about new courses, industry tips, and career
               advice straight from our qualified trainers.
             </p>
@@ -70,7 +70,7 @@ export default function Newsletter() {
                   Subscribe
                 </Button>
               </div>
-              <p className="text-zinc-500 text-xs tracking-wide">No spam. Unsubscribe at any time.</p>
+              <p className="text-white text-xs tracking-wide">No spam. Unsubscribe at any time.</p>
             </form>
           </motion.div>
 

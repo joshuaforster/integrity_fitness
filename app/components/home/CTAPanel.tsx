@@ -30,7 +30,7 @@ export default function CTAPanel({ panel }: { panel: CTAPanelData }) {
       {/* Swapped justify-end for justify-center & text-left for text-center */}
       <div className="absolute inset-0 flex flex-col justify-center items-center p-8 md:p-16 text-center">
         <div className="max-w-md transform transition-transform duration-500 ease-out group-hover:translate-y-[-4px] flex flex-col items-center">
-          <p className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-3">
+          <p className="text-white text-xs font-bold tracking-[4px] uppercase mb-3">
             {panel.label}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight leading-tight uppercase">

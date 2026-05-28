@@ -27,7 +27,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">
         <SiteProgressBar />

@@ -29,8 +29,8 @@ export default function Testimonial() {
           />
 
           <footer className="mt-6">
-            <cite className="not-italic text-zinc-400 text-xs font-bold tracking-[3px] uppercase">
-              Jamie T. <span className="text-zinc-600">&middot;</span> 2024
+            <cite className="not-italic text-white text-xs font-bold tracking-[3px] uppercase">
+              Jamie T. <span className="text-white">&middot;</span> 2024
               Graduate
             </cite>
           </footer>

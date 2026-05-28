@@ -42,7 +42,7 @@ const priceColor = {
 };
 
 const periodColor = {
-  dark: "text-zinc-400",
+  dark: "text-white",
   light: "text-zinc-500",
 };
 
@@ -52,12 +52,12 @@ const descBorder = {
 };
 
 const descText = {
-  dark: "text-zinc-400",
+  dark: "text-white",
   light: "text-zinc-600",
 };
 
 const featureText = {
-  dark: "text-zinc-300",
+  dark: "text-white",
   light: "text-zinc-600",
 };
 
@@ -90,7 +90,7 @@ export default function CPDPricingSection({ qual, theme = "dark" }: CPDPricingSe
               className={`p-6 md:p-8 border rounded-sm shadow-xl flex flex-col ${cardBg[theme]}`}
             >
               <p className={`text-xs font-bold tracking-widest uppercase mb-3 ${
-                theme === "dark" ? "text-zinc-500" : "text-zinc-400"
+                theme === "dark" ? "text-white" : "text-zinc-400"
               }`}>
                 {tier.name}
               </p>

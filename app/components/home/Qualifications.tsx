@@ -71,7 +71,7 @@ export default function Qualifications() {
           </motion.div>
 
           <div className="lg:col-span-5 space-y-4 h-full flex flex-col justify-between">
-            <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase px-1 mb-2 lg:mb-0">
+            <p className="text-white text-xs font-bold tracking-widest uppercase px-1 mb-2 lg:mb-0">
               Core Technical Certificates
             </p>
             {MAIN_COURSES.slice(1).map((course) => (
@@ -84,7 +84,7 @@ export default function Qualifications() {
 
         {/* CPD strip */}
         <div className="mb-16">
-          <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6 px-1">
+          <p className="text-white text-xs font-bold tracking-widest uppercase mb-6 px-1">
             Continued Professional Development (CPD)
           </p>
           <motion.div
@@ -112,10 +112,10 @@ export default function Qualifications() {
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
             <div>
-              <p className="text-zinc-500 text-xs font-bold tracking-[3px] uppercase mb-1">
+              <p className="text-white text-xs font-bold tracking-[3px] uppercase mb-1">
                 Not sure where to start?
               </p>
-              <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
+              <p className="text-white text-sm md:text-base leading-relaxed">
                 Get in touch and we&apos;ll point you in the right direction.
               </p>
             </div>

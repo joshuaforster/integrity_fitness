@@ -58,7 +58,7 @@ export default function NotFound() {
         </motion.h1>
 
         {/* Subtext */}
-        <motion.p variants={item} className="text-zinc-500 text-sm md:text-base leading-relaxed mb-10">
+        <motion.p variants={item} className="text-white text-sm md:text-base leading-relaxed mb-10">
           Looks like this URL dropped out early. The page you&apos;re looking for doesn&apos;t exist — but your fitness career still can.
         </motion.p>
 
@@ -103,7 +103,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/qualifications"
-            className="inline-flex items-center justify-center gap-2 border border-zinc-700 text-zinc-300 text-xs font-black uppercase tracking-[2px] px-7 py-4 rounded-sm hover:border-zinc-500 hover:text-white transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 border border-zinc-700 text-white text-xs font-black uppercase tracking-[2px] px-7 py-4 rounded-sm hover:border-zinc-500 transition-colors duration-200"
           >
             View Qualifications
           </Link>

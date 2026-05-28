@@ -36,7 +36,7 @@ export default function Hero() {
 
     function skipIntro() { el.currentTime = 8.5; }
     function skipLastFive() {
-      if (el.duration && el.currentTime > el.duration - 5) {
+      if (el.duration && el.currentTime > el.duration - 9) {
         el.currentTime = 8.5;
       }
     }

@@ -10,7 +10,7 @@ export default function CourseModulesSection({ qual }: { qual: Qualification }) 
     >
       <SectionWrapper reveal>
         <div className="mb-12 md:mb-16">
-          <p className="text-zinc-500 text-xs font-bold tracking-[4px] uppercase mb-4">
+          <p className="text-white text-xs font-bold tracking-[4px] uppercase mb-4">
             Syllabus
           </p>
           <h2

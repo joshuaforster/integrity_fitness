@@ -127,7 +127,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               <a
                 href={bookletPdfPath}
                 download
-                className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-black tracking-[2px] uppercase text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-black tracking-[2px] uppercase text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                 aria-label="Download PDF"
               >
                 <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
             <button
               type="button"
               onClick={close}
-              className="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+              className="w-9 h-9 flex items-center justify-center text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
               aria-label="Close booklet"
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -154,7 +154,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
           {/* Progress / page info strip */}
           <div className="flex-shrink-0 flex items-center justify-between px-8 py-3 bg-zinc-950 border-b border-zinc-900/60">
-            <span className="text-zinc-500 text-[10px] font-bold tracking-[2px] uppercase">
+            <span className="text-white text-[10px] font-bold tracking-[2px] uppercase">
               Active IQ — Official Qualification Guide
             </span>
             <div className="flex items-center gap-4">
@@ -165,7 +165,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                   style={{ width: `${progressPct}%` }}
                 />
               </div>
-              <span className="text-zinc-400 font-mono text-xs tabular-nums">
+              <span className="text-white font-mono text-xs tabular-nums">
                 {currentPage === 0
                   ? `Cover · ${total} pages`
                   : `${leftPage}–${rightPage} of ${total}`}
@@ -262,7 +262,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                   <span className="text-zinc-600 text-[8px] font-bold tracking-[1px] uppercase">Drag</span>
                 </div>
               </div>
-              <p className="text-center text-zinc-500 text-[9px] font-bold tracking-[2px] uppercase">
+              <p className="text-center text-white text-[9px] font-bold tracking-[2px] uppercase">
                 Click pages to turn · Drag to flip
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
         <div className="lg:hidden flex flex-col flex-1 min-h-0 bg-zinc-900">
           {/* Mobile progress strip */}
           <div className="flex-shrink-0 flex items-center justify-between px-5 py-3 border-b border-zinc-800">
-            <span className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase">
+            <span className="text-white text-[10px] font-bold tracking-widest uppercase">
               {mobilePage === 0 ? "Cover" : `Page ${mobilePage + 1}`}
             </span>
             <div className="flex items-center gap-3">
@@ -283,7 +283,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                   style={{ width: `${Math.round(((mobilePage + 1) / total) * 100)}%` }}
                 />
               </div>
-              <span className="text-zinc-400 font-mono text-[11px] tabular-nums">
+              <span className="text-white font-mono text-[11px] tabular-nums">
                 {mobilePage + 1} / {total}
               </span>
             </div>
@@ -342,7 +342,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                 ))}
               </div>
             ) : (
-              <span className="text-zinc-500 font-mono text-xs">{mobilePage + 1} / {total}</span>
+              <span className="text-white font-mono text-xs">{mobilePage + 1} / {total}</span>
             )}
             <button
               type="button"

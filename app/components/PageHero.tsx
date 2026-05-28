@@ -109,7 +109,7 @@ export default function PageHero({
 
           {/* Subtitle */}
           <motion.p
-            className="text-zinc-200 text-base md:text-lg max-w-xl leading-relaxed opacity-95"
+            className="text-white text-base md:text-lg max-w-xl leading-relaxed"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
@@ -128,7 +128,7 @@ export default function PageHero({
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.6 }}
         >
-          <div className="flex flex-col items-center gap-1.5 animate-bounce text-zinc-500 hover:text-white transition-colors duration-200">
+          <div className="flex flex-col items-center gap-1.5 animate-bounce text-white transition-colors duration-200">
             <span className="text-[9px] tracking-[3px] uppercase font-bold">Scroll</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />

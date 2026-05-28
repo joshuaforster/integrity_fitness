@@ -40,10 +40,10 @@ const themes = {
     heading: "text-white",
     standardCard: "bg-zinc-800 border-zinc-700",
     standardPrice: "text-white",
-    standardPeriod: "text-zinc-400",
-    standardDesc: "text-zinc-400",
+    standardPeriod: "text-white",
+    standardDesc: "text-white",
     standardDescBorder: "border-zinc-700",
-    standardFeature: "text-zinc-300",
+    standardFeature: "text-white",
     standardBullet: "bg-zinc-600",
   },
 } as const;
@@ -113,7 +113,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
           </div>
 
           {qual.durationMonths && (
-            <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest mt-5">
+            <p className={`text-[10px] font-bold uppercase tracking-widest mt-5 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
               Typical completion timeframe: {qual.durationMonths}
             </p>
           )}
@@ -148,7 +148,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                   <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2px] px-3 py-1.5 rounded-bl-xs">
                     Recommended Option
                   </div>
-                  <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mt-4 mb-2">
+                  <p className="text-white text-xs font-bold tracking-widest uppercase mt-4 mb-2">
                     {tier.name}
                   </p>
                   <div className="mb-4">
@@ -158,11 +158,11 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                         {price}
                       </span>
                     </div>
-                    <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider mt-2.5">
+                    <p className="text-white text-[10px] font-bold uppercase tracking-wider mt-2.5">
                       {period}
                     </p>
                     {tier.deposit && billing === "monthly" && (
-                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-1">
+                      <p className="text-white text-[10px] font-bold uppercase tracking-wider mt-1">
                         After a £{tier.deposit} deposit
                       </p>
                     )}
@@ -172,7 +172,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                       </p>
                     )}
                   </div>
-                  <p className="text-zinc-400 text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
+                  <p className="text-white text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
                     {tier.description}
                   </p>
                   <motion.ul
@@ -186,7 +186,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                     {tier.includes.map((item) => (
                       <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
                         <AnimatedCheck size={16} delay={0} />
-                        <span className="text-zinc-300 text-sm leading-tight">{item}</span>
+                        <span className="text-white text-sm leading-tight">{item}</span>
                       </motion.li>
                     ))}
                   </motion.ul>
@@ -202,7 +202,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                 key={tier.name}
                 className={`flex flex-col p-6 md:p-8 border rounded-sm shadow-sm ${t.standardCard}`}
               >
-                <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-2">
+                <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
                   {tier.name}
                 </p>
                 <div className="mb-4">
@@ -216,7 +216,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                     {period}
                   </p>
                   {tier.deposit && billing === "monthly" && (
-                    <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider mt-1">
+                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-1 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
                       After a £{tier.deposit} deposit
                     </p>
                   )}

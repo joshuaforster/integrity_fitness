@@ -11,13 +11,13 @@ export default function FlagshipCourseCard({ course }: { course: MainCourse }) {
         Flagship Diploma
       </div>
 
-      <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mb-4">
+      <p className="text-white text-xs font-bold tracking-widest uppercase mb-4">
         Become a Personal Trainer
       </p>
       <h3 className="text-xl md:text-2xl font-extrabold text-white leading-tight mb-4 max-w-md">
         {course.title}
       </h3>
-      <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-8 max-w-xl">
+      <p className="text-white text-sm md:text-base leading-relaxed mb-8 max-w-xl">
         {course.description}
       </p>
 

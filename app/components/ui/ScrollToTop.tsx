@@ -31,7 +31,8 @@ export default function ScrollToTop() {
           transition={{ duration: 0.25, ease: "easeOut" }}
           whileHover={{ y: -3 }}
           whileTap={{ scale: 0.92 }}
-          className="fixed bottom-6 right-6 z-[150] w-11 h-11 flex items-center justify-center bg-[#CE1A19] text-white shadow-[0_4px_20px_rgba(206,26,25,0.45)] hover:bg-red-700 transition-colors duration-200"
+          style={{ bottom: "max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem))" }}
+          className="fixed right-6 z-[150] w-12 h-12 flex items-center justify-center bg-[#CE1A19] text-white shadow-[0_4px_20px_rgba(206,26,25,0.45)] hover:bg-red-700 transition-colors duration-200 touch-manipulation"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M18 15l-6-6-6 6" />
