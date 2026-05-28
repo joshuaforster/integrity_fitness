@@ -1,16 +1,25 @@
 "use client";
 
-import { useState, useEffect, useRef, useSyncExternalStore, type ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { createPortal } from "react-dom";
-import AnimatedTextFilter from "@/app/components/ui/AnimatedTextFilter";
 import GalleryImageTile, { type GalleryItem } from "./GalleryImageTile";
 import GalleryLightbox from "./GalleryLightbox";
 
-const BUCKET_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD";
-const NORWICH_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich";
+const BUCKET_URL =
+  "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD";
+const NORWICH_URL =
+  "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich";
 const DUNCAN_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Duncan";
-const CFG_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/CFG%20Group%20induction%20final%20edits";
-
+const CFG_URL =
+  "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/CFG%20Group%20induction%20final%20edits";
 
 const IMAGES: GalleryItem[] = [
   // Classes — student practical sessions (front)
@@ -586,23 +595,65 @@ const IMAGES: GalleryItem[] = [
 const CATEGORIES = [
   "All",
   ...Array.from(new Set(IMAGES.map((i) => i.category))),
-] as const;
+] as string[];
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 12;
 
-function emptySubscribe() { return () => {}; }
+const HERO_IMAGES = [
+  `${NORWICH_URL}/HARRY-GYM-FLOOR-720220124-IFE-TGGNCC019.jpg`,
+  `${BUCKET_URL}/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg`,
+  `${CFG_URL}/IFE%20PT%20COURSE%20ASSESSMENT%20TEAM.JPG`,
+  `${NORWICH_URL}/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg`,
+];
+
+function emptySubscribe() {
+  return () => {};
+}
 
 function ClientPortal({ children }: { children: ReactNode }) {
-  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   if (!mounted) return null;
   return createPortal(children, document.body);
+}
+
+function getPageNumbers(
+  currentPage: number,
+  totalPages: number,
+): (number | "...")[] {
+  if (totalPages <= 7)
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pages: (number | "...")[] = [1];
+  if (currentPage > 3) pages.push("...");
+  for (
+    let i = Math.max(2, currentPage - 1);
+    i <= Math.min(totalPages - 1, currentPage + 1);
+    i++
+  ) {
+    pages.push(i);
+  }
+  if (currentPage < totalPages - 2) pages.push("...");
+  pages.push(totalPages);
+  return pages;
 }
 
 export default function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [activeImageId, setActiveImageId] = useState<number | null>(null);
-  const [page, setPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [heroIndex, setHeroIndex] = useState(0);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length),
+      5000,
+    );
+    return () => clearInterval(id);
+  }, []);
 
   const filtered =
     activeCategory === "All"
@@ -610,47 +661,41 @@ export default function GalleryGrid() {
       : IMAGES.filter((img) => img.category === activeCategory);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  const paginated = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const pageStart = (currentPage - 1) * PAGE_SIZE;
+  const paginated = filtered.slice(pageStart, pageStart + PAGE_SIZE);
 
   const currentIdx = filtered.findIndex((img) => img.id === activeImageId);
 
-  function closeLightbox() { setActiveImageId(null); }
+  const closeLightbox = () => setActiveImageId(null);
 
-  function prev() {
-    if (currentIdx === -1) return;
-    setActiveImageId(
-      filtered[(currentIdx - 1 + filtered.length) % filtered.length].id,
-    );
-  }
+  const prev = () => {
+    setActiveImageId((id) => {
+      if (id === null || filtered.length === 0) return id;
+      const idx = filtered.findIndex((img) => img.id === id);
+      if (idx === -1) return id;
+      return filtered[(idx - 1 + filtered.length) % filtered.length].id;
+    });
+  };
 
-  function next() {
-    if (currentIdx === -1) return;
-    setActiveImageId(filtered[(currentIdx + 1) % filtered.length].id);
-  }
+  const next = () => {
+    setActiveImageId((id) => {
+      if (id === null || filtered.length === 0) return id;
+      const idx = filtered.findIndex((img) => img.id === id);
+      if (idx === -1) return id;
+      return filtered[(idx + 1) % filtered.length].id;
+    });
+  };
 
   useEffect(() => {
     if (activeImageId === null) return;
     function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setActiveImageId(null);
-      if (e.key === "ArrowLeft") {
-        setActiveImageId((id) => {
-          const idx = filtered.findIndex((img) => img.id === id);
-          if (idx === -1) return id;
-          return filtered[(idx - 1 + filtered.length) % filtered.length].id;
-        });
-      }
-      if (e.key === "ArrowRight") {
-        setActiveImageId((id) => {
-          const idx = filtered.findIndex((img) => img.id === id);
-          if (idx === -1) return id;
-          return filtered[(idx + 1) % filtered.length].id;
-        });
-      }
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     }
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeImageId]);
+  }, [activeImageId, filtered]); // compiler will perfectly match optimization using data references
 
   useEffect(() => {
     document.body.style.overflow = activeImageId !== null ? "hidden" : "";
@@ -663,78 +708,160 @@ export default function GalleryGrid() {
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function handleCategoryChange(cat: string) {
+    setActiveCategory(cat);
+    setActiveImageId(null);
+    setCurrentPage(1);
+  }
+
   return (
-    <div ref={gridRef} className="w-full bg-white">
-      {/* Category filters */}
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-3 mb-12 pb-4 border-b border-zinc-100">
-        {CATEGORIES.map((cat) => (
-          <AnimatedTextFilter
-            key={cat}
-            label={cat}
-            isSelected={activeCategory === cat}
-            size="sm"
-            onClick={() => {
-              setActiveCategory(cat);
-              setActiveImageId(null);
-              setPage(0);
-            }}
+    <>
+      {/* Hero */}
+      <section
+        className="relative h-[55vh] min-h-[380px] flex items-end overflow-hidden"
+        aria-label="Gallery hero"
+      >
+        {HERO_IMAGES.map((src, i) => (
+          <Image
+            key={i}
+            src={src}
+            fill
+            alt={i === 0 ? "Integrity Fitness Education gallery" : ""}
+            aria-hidden={i !== 0}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{ opacity: i === heroIndex ? 1 : 0 }}
+            loading={i === 0 ? "eager" : "lazy"}
           />
         ))}
-      </div>
-
-      {/* Image grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paginated.map((img) => (
-          <GalleryImageTile key={img.id} img={img} onClick={setActiveImageId} />
-        ))}
-      </div>
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-12 pt-8 border-t border-zinc-100">
-          <button
-            type="button"
-            onClick={() => { setPage((p) => p - 1); scrollToGrid(); }}
-            disabled={page === 0}
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[2px] text-zinc-500 hover:text-zinc-950 disabled:opacity-25 disabled:pointer-events-none transition-colors"
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-14 w-full">
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-2 text-xs text-white/60 uppercase tracking-widest mb-4"
           >
-            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg>
-            Previous
-          </button>
-
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-0.5">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => { setPage(i); scrollToGrid(); }}
-                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
-                  aria-label={`Go to page ${i + 1}`}
-                >
-                  <span className={`rounded-full transition-all duration-200 block ${
-                    i === page ? "bg-zinc-950 w-6 h-2" : "bg-zinc-300 hover:bg-zinc-400 w-2 h-2"
-                  }`} />
-                </button>
-              ))}
-            </div>
-            <span className="text-zinc-600 text-xs font-bold tabular-nums">
-              {page + 1} / {totalPages}
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-white/90" aria-current="page">
+              Gallery
             </span>
+          </nav>
+          <div className="w-10 h-[2px] bg-[#CE1A19] mb-5" aria-hidden="true" />
+          <h1 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-4 uppercase tracking-tight">
+            Our Work
+          </h1>
+          <p className="text-lg text-white/80 max-w-xl leading-relaxed">
+            Real sessions, real people, real results — explore our training
+            sessions, practical classes, events, and facilities.
+          </p>
+        </div>
+      </section>
+
+      {/* Gallery section */}
+      <section className="bg-white py-16">
+        <div ref={gridRef} className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Category filters */}
+          <div className="flex flex-wrap justify-center gap-2 mb-4">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => handleCategoryChange(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-light uppercase tracking-wide transition-all duration-200 ${
+                  activeCategory === cat
+                    ? "bg-zinc-950 text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
-          <button
-            type="button"
-            onClick={() => { setPage((p) => p + 1); scrollToGrid(); }}
-            disabled={page === totalPages - 1}
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[2px] text-zinc-500 hover:text-zinc-950 disabled:opacity-25 disabled:pointer-events-none transition-colors"
-          >
-            Next
-            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
-          </button>
-        </div>
-      )}
+          {/* Count */}
+          <p className="text-center text-gray-400 text-sm mb-10">
+            Showing {filtered.length > 0 ? pageStart + 1 : 0}–
+            {Math.min(pageStart + PAGE_SIZE, filtered.length)} of{" "}
+            {filtered.length} images
+            {activeCategory !== "All" && ` · ${activeCategory}`}
+          </p>
 
+          {/* Image grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {paginated.map((img) => (
+              <GalleryImageTile
+                key={img.id}
+                img={img}
+                onClick={setActiveImageId}
+              />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
+              <button
+                type="button"
+                onClick={() => {
+                  setCurrentPage((p) => Math.max(1, p - 1));
+                  scrollToGrid();
+                }}
+                disabled={currentPage === 1}
+                className="px-4 py-2 rounded text-sm bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                ← Prev
+              </button>
+
+              {getPageNumbers(currentPage, totalPages).map((page, i) =>
+                page === "..." ? (
+                  <span
+                    key={`ellipsis-${i}`}
+                    className="px-2 text-gray-400 select-none"
+                  >
+                    …
+                  </span>
+                ) : (
+                  <button
+                    key={page}
+                    type="button"
+                    onClick={() => {
+                      setCurrentPage(page as number);
+                      scrollToGrid();
+                    }}
+                    className={`w-10 h-10 rounded text-sm font-light transition-colors ${
+                      currentPage === page
+                        ? "bg-[#CE1A19] text-white"
+                        : "bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ),
+              )}
+
+              <button
+                type="button"
+                onClick={() => {
+                  setCurrentPage((p) => Math.min(totalPages, p + 1));
+                  scrollToGrid();
+                }}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 rounded text-sm bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                Next →
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
 
       {activeImageId !== null && currentIdx !== -1 && (
         <ClientPortal>
@@ -748,6 +875,6 @@ export default function GalleryGrid() {
           />
         </ClientPortal>
       )}
-    </div>
+    </>
   );
 }
