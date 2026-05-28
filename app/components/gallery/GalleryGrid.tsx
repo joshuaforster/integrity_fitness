@@ -703,22 +703,22 @@ export default function GalleryGrid() {
           </button>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-0.5">
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => { setPage(i); scrollToGrid(); }}
-                  className={`rounded-full transition-all duration-200 ${
-                    i === page
-                      ? "bg-zinc-950 w-6 h-2"
-                      : "bg-zinc-300 hover:bg-zinc-400 w-2 h-2"
-                  }`}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label={`Go to page ${i + 1}`}
-                />
+                >
+                  <span className={`rounded-full transition-all duration-200 block ${
+                    i === page ? "bg-zinc-950 w-6 h-2" : "bg-zinc-300 hover:bg-zinc-400 w-2 h-2"
+                  }`} />
+                </button>
               ))}
             </div>
-            <span className="text-zinc-400 text-xs font-bold tabular-nums">
+            <span className="text-zinc-600 text-xs font-bold tabular-nums">
               {page + 1} / {totalPages}
             </span>
           </div>

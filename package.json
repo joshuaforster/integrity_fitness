@@ -19,6 +19,12 @@
     "react-dom": "19.2.4",
     "react-pageflip": "^2.0.3"
   },
+  "browserslist": [
+    "chrome >= 91",
+    "firefox >= 90",
+    "safari >= 15",
+    "edge >= 91"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

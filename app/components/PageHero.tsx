@@ -107,12 +107,12 @@ export default function PageHero({
             transition={{ duration: 0.55, delay: 0.55, ease: "easeOut" }}
           />
 
-          {/* Subtitle */}
+          {/* Subtitle — opacity stays 1 from SSR so the LCP candidate is painted immediately */}
           <motion.p
             className="text-white text-base md:text-lg max-w-xl leading-relaxed"
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 1, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
           >
             {subtitle}
           </motion.p>

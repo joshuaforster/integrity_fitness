@@ -35,7 +35,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}
     >
       <head>
-        <link rel="preconnect" href="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev" />
+        <link rel="dns-prefetch" href="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
       </head>
