@@ -7,7 +7,7 @@ const STATS = [
   { type: "text" as const, value: "1:1", label: "Personalised Tuition" },
   {
     type: "image" as const,
-    src: "/activeiq.png",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png",
     alt: "Active IQ",
     width: 130,
     height: 28,
@@ -15,7 +15,7 @@ const STATS = [
   },
   {
     type: "image" as const,
-    src: "/cimspa.webp",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp",
     alt: "CIMSPA",
     width: 130,
     height: 28,

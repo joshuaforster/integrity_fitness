@@ -45,7 +45,7 @@ export default function Header() {
         <a href="#" className="-m-1.5 p-1.5">
           <span className="sr-only">Integrity Fitness Education</span>
           <Image
-            src="/logo_red.png"
+            src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/logo_red.png"
             width={150}
             height={50}
             alt="Integrity Fitness Education"

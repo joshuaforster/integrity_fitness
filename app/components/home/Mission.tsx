@@ -49,7 +49,7 @@ export default function Mission() {
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
             <Image
-              src="/harry.png"
+              src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/harry.webp"
               alt="Instructor leading a personal training lesson"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"

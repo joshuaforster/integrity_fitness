@@ -108,7 +108,7 @@ export default function Header() {
           >
             <span className="sr-only">Integrity Fitness Education</span>
             <Image
-              src="/logo_white.png"
+              src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/logo_white.png"
               width={125}
               height={40}
               alt=""

@@ -84,7 +84,7 @@ export default function Qualifications() {
 
         {/* CPD strip */}
         <div className="mb-16">
-          <p className="text-white text-xs font-bold tracking-widest uppercase mb-6 px-1">
+          <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6 px-1">
             Continued Professional Development (CPD)
           </p>
           <motion.div
@@ -112,10 +112,10 @@ export default function Qualifications() {
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
             <div>
-              <p className="text-white text-xs font-bold tracking-[3px] uppercase mb-1">
+              <p className="text-zinc-500 text-xs font-bold tracking-[3px] uppercase mb-1">
                 Not sure where to start?
               </p>
-              <p className="text-white text-sm md:text-base leading-relaxed">
+              <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
                 Get in touch and we&apos;ll point you in the right direction.
               </p>
             </div>

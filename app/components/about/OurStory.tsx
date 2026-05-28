@@ -14,7 +14,7 @@ const TEAM: TeamMember[] = [
   {
     name: "Harry",
     role: "Founder & Lead Tutor",
-    image: "/harry.png",
+    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/harry.webp",
     meta: "Teaching Since 2021",
     bio: [
       "After completing the combined Level 2 & 3 Personal Training Diploma, Harry began his career as a self-employed PT at The Gym Group in Norwich. After building his client base and specialising in exercise referral, he established a reputation that led to a role as a tutor and assessor.",
@@ -24,7 +24,7 @@ const TEAM: TeamMember[] = [
   {
     name: "Paris",
     role: "Tutor & Assessor",
-    image: "/paris.webp",
+    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/paris.webp",
     meta: "Advanced Coach",
     bio: [
       "Paris qualified as a personal trainer and started working in the same gym as Harry. She made a strong impression by helping plenty of clients alongside her continued professional development, gaining certificates in spinning and supporting pre and post natal populations.",

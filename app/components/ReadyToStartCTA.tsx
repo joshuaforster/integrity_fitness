@@ -9,7 +9,7 @@ import CredentialCard, { type CredentialCard as CredentialCardType } from "@/app
 const CREDENTIALS: CredentialCardType[] = [
   {
     type: "brand",
-    src: "/cimspa.webp",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp",
     alt: "CIMSPA Chartered Institute logo",
     width: 140,
     height: 32,
@@ -17,7 +17,7 @@ const CREDENTIALS: CredentialCardType[] = [
   },
   {
     type: "brand",
-    src: "/activeiq.png",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png",
     alt: "Active IQ Awarding Body logo",
     width: 140,
     height: 32,

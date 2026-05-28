@@ -9,7 +9,7 @@ const PANELS: CTAPanelData[] = [
     title: "Who Are We?",
     cta: "About Us",
     href: "/about",
-    image: "/harry.png",
+    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/harry.webp",
     alt: "Harry Matthews — Lead Instructor at Integrity Fitness Education",
   },
   {
@@ -17,7 +17,7 @@ const PANELS: CTAPanelData[] = [
     title: "Get In Touch",
     cta: "Contact Us",
     href: "/contact",
-    image: "/paris.webp",
+    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/paris.webp",
     alt: "Paris Matthews — Co-Founder at Integrity Fitness Education",
   },
 ];

@@ -7,7 +7,7 @@ const STATS = [
   { type: "text", value: "1:1", label: "Learning" },
   {
     type: "image",
-    value: "/activeiq.png",
+    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png",
     label: "Qualified",
     width: 1024,
     height: 219,
@@ -15,7 +15,7 @@ const STATS = [
   },
   {
     type: "image",
-    value: "/cimspa.webp",
+    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp",
     label: "Accredited",
     width: 1580,
     height: 1720,

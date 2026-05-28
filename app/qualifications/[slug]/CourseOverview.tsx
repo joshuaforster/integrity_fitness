@@ -62,7 +62,7 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-zinc-950">Awarding Body:</span>
-                  <Image src="/activeiq.png" alt="Active IQ awarding body logo" width={80} height={17} className="h-4 w-auto" />
+                  <Image src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png" alt="Active IQ awarding body logo" width={80} height={17} className="h-4 w-auto" />
                 </div>
               </div>
             </div>

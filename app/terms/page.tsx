@@ -19,12 +19,12 @@ function Section({ number, title, children }: { number?: string; title: string; 
     <div className="mb-12">
       <div className="flex items-baseline gap-3 mb-1">
         {number && (
-          <span className="text-white text-sm font-bold tracking-widest">{number}</span>
+          <span className="text-gray-900 text-sm font-bold tracking-widest">{number}</span>
         )}
-        <h2 className="text-white text-xl font-bold uppercase tracking-wide">{title}</h2>
+        <h2 className="text-gray-900 text-xl font-bold uppercase tracking-wide">{title}</h2>
       </div>
       <div className="w-8 h-0.5 bg-[#CE1A19] mb-6" />
-      <div className="space-y-4 text-white text-base leading-relaxed">
+      <div className="space-y-4 text-gray-700 text-base leading-relaxed">
         {children}
       </div>
     </div>
@@ -34,8 +34,8 @@ function Section({ number, title, children }: { number?: string; title: string; 
 function Sub({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-4">
-      <span className="text-white text-sm font-semibold flex-shrink-0 mt-0.5">{id}</span>
-      <p className="text-white text-base leading-relaxed">{children}</p>
+      <span className="text-gray-900 text-sm font-semibold flex-shrink-0 mt-0.5">{id}</span>
+      <p className="text-gray-700 text-base leading-relaxed">{children}</p>
     </div>
   );
 }
@@ -44,35 +44,35 @@ export default function TermsAndConditions() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0D0D0D] pt-40 pb-20 border-b border-white/10">
+      <section className="bg-white pt-40 pb-20 border-b border-gray-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-gray-500 text-xs font-semibold tracking-[4px] uppercase mb-4">
             Legal
           </p>
-          <h1 className="text-5xl md:text-6xl font-bold text-white uppercase leading-none tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 uppercase leading-none tracking-tight">
             Terms &amp; Conditions
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white text-sm mt-6">
+          <p className="text-gray-500 text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd · Company No. 13487683
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <section className="bg-[#111111] py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
 
           {/* Preamble */}
-          <div className="mb-12 p-8 border border-white/10 bg-white/5">
-            <p className="text-white text-base leading-relaxed mb-4">
+          <div className="mb-12 p-8 border border-gray-200 bg-gray-50">
+            <p className="text-gray-700 text-base leading-relaxed mb-4">
               This agreement applies as between you, the User of this Website and Integrity Fitness
               Education LTD, the owner(s) of this Website. Your agreement to comply with and be
               bound by clauses 1, 2, 4–11 and 15–25 of these terms and conditions is deemed to
               occur upon your first use of the website. Clauses 3 and 12–14 apply only to the sale
               of services.
             </p>
-            <p className="text-white text-base leading-relaxed">
+            <p className="text-gray-700 text-base leading-relaxed">
               If you do not agree to be bound by these terms and conditions, you should stop using
               the Website immediately. No part of this Website is intended to constitute a
               contractual offer capable of acceptance. Your order constitutes a contractual offer
@@ -96,8 +96,8 @@ export default function TermsAndConditions() {
                 ["We/Us/Our", "means Integrity Fitness Education LTD, a company incorporated with the Registrar of Companies for England with company registration number 13487683."],
               ].map(([term, def]) => (
                 <div key={term} className="flex gap-3">
-                  <span className="text-white font-semibold flex-shrink-0 min-w-[140px]">{term}:</span>
-                  <span className="text-white">{def}</span>
+                  <span className="text-gray-900 font-semibold flex-shrink-0 min-w-[140px]">{term}:</span>
+                  <span className="text-gray-700">{def}</span>
                 </div>
               ))}
             </div>
@@ -176,11 +176,11 @@ export default function TermsAndConditions() {
               home page of the site www.integrityfitness.education without our prior permission.
               Deep linking (i.e. links to specific pages within the site) requires our express
               written permission. To find out more please contact us by email at{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>{" "}
               or call us on{" "}
-              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">
+              <a href="tel:+447795033958" className="text-gray-900 underline hover:text-gray-600">
                 +44 779 5033 958
               </a>
               .
@@ -345,9 +345,9 @@ export default function TermsAndConditions() {
           <Section number="14." title="Cancellation of Orders and Services">
             <p>
               To speak to us about your order, contact us on{" "}
-              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">+44 77 9503 3958</a>
+              <a href="tel:+447795033958" className="text-gray-900 underline hover:text-gray-600">+44 77 9503 3958</a>
               {" "}or by email at{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>
               .
@@ -356,7 +356,7 @@ export default function TermsAndConditions() {
               If you are a consumer based within the European Union, you have a statutory right to
               a "cooling off" period of 14 calendar days from the date your order is confirmed. To
               cancel within this period, please email{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>
               .
@@ -382,7 +382,7 @@ export default function TermsAndConditions() {
           <Section number="15." title="Privacy">
             <p>
               Use of the website is also governed by our{" "}
-              <Link href="/privacy-policy" className="text-white underline hover:text-white/80">
+              <Link href="/privacy-policy" className="text-gray-900 underline hover:text-gray-600">
                 Privacy Policy
               </Link>
               {" "}which is incorporated into these Terms and Conditions by this reference.
@@ -501,7 +501,7 @@ export default function TermsAndConditions() {
             <Sub id="24.1">
               All notices and communications shall be given to us either by post to our premises or
               by email to{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>
               . Such notice will be deemed received 3 days after posting if sent by first class
@@ -525,16 +525,16 @@ export default function TermsAndConditions() {
           </Section>
 
           {/* Company details */}
-          <div className="border-t border-white/10 pt-12 mt-4 space-y-1">
-            <p className="text-white font-semibold">Integrity Fitness Education Ltd</p>
-            <p className="text-white text-sm">Company No. 13487683</p>
-            <p className="text-white text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
-            <p className="text-white text-sm mt-4">
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+          <div className="border-t border-gray-200 pt-12 mt-4 space-y-1">
+            <p className="text-gray-900 font-semibold">Integrity Fitness Education Ltd</p>
+            <p className="text-gray-700 text-sm">Company No. 13487683</p>
+            <p className="text-gray-700 text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
+            <p className="text-gray-700 text-sm mt-4">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>
               {" "}·{" "}
-              <a href="tel:+447795033958" className="text-white underline hover:text-white/80">
+              <a href="tel:+447795033958" className="text-gray-900 underline hover:text-gray-600">
                 +44 779 5033 958
               </a>
             </p>

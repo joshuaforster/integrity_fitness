@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-12">
-      <h2 className="text-white text-xl font-bold uppercase tracking-wide mb-1">
+      <h2 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
         {title}
       </h2>
       <div className="w-8 h-0.5 bg-[#CE1A19] mb-6" />
-      <div className="space-y-4 text-white text-base leading-relaxed">
+      <div className="space-y-4 text-gray-700 text-base leading-relaxed">
         {children}
       </div>
     </div>
@@ -31,29 +31,29 @@ export default function PrivacyPolicy() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0D0D0D] pt-40 pb-20 border-b border-white/10">
+      <section className="bg-white pt-40 pb-20 border-b border-gray-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-white text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-gray-500 text-xs font-semibold tracking-[4px] uppercase mb-4">
             Legal
           </p>
-          <h1 className="text-5xl md:text-6xl font-bold text-white uppercase leading-none tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 uppercase leading-none tracking-tight">
             Privacy Policy
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white text-sm mt-6">
+          <p className="text-gray-500 text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <section className="bg-[#111111] py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
 
           <Section title="Who We Are">
             <p>
               Our website address is:{" "}
-              <a href="https://integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="https://integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 https://integrityfitness.education
               </a>
             </p>
@@ -69,7 +69,7 @@ export default function PrivacyPolicy() {
               An anonymized string created from your email address (also called a hash) may be
               provided to the Gravatar service to see if you are using it. The Gravatar service
               privacy policy is available at{" "}
-              <a href="https://automattic.com/privacy/" className="text-white underline hover:text-white/80">
+              <a href="https://automattic.com/privacy/" className="text-gray-900 underline hover:text-gray-600">
                 https://automattic.com/privacy/
               </a>
               . After approval of your comment, your profile picture is visible to the public in
@@ -161,10 +161,10 @@ export default function PrivacyPolicy() {
           </Section>
 
           {/* Contact */}
-          <div className="border-t border-white/10 pt-12 mt-4">
-            <p className="text-white text-sm">
+          <div className="border-t border-gray-200 pt-12 mt-4">
+            <p className="text-gray-700 text-sm">
               Questions about this policy?{" "}
-              <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
+              <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
               </a>
             </p>
