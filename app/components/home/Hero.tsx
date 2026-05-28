@@ -5,8 +5,6 @@ import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/Button";
 import HeroStats from "./HeroStats";
 
-const HERO_WORDS = "Raising The Standards Of Personal Training Qualifications".split(" ");
-
 const container: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
@@ -90,21 +88,7 @@ export default function Hero() {
               id="hero-heading"
               className="text-4xl md:text-5xl font-bold leading-tight max-w-2xl mb-4 text-white"
             >
-              {HERO_WORDS.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 22 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.35 + i * 0.08,
-                    duration: 0.55,
-                    ease: "easeOut",
-                  }}
-                  className="inline-block mr-[0.28em]"
-                >
-                  {word}
-                </motion.span>
-              ))}
+              Raising The Standards Of Personal Training Qualifications
             </h1>
 
             <motion.div

@@ -31,13 +31,13 @@ export default function GalleryLightbox({
     >
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-900 bg-zinc-950">
-        <span className="text-zinc-500 text-xs font-bold tracking-widest uppercase">
+        <span className="text-white text-xs font-bold tracking-widest uppercase">
           {currentIdx + 1} &middot; {filtered.length}
         </span>
         <button
           type="button"
           onClick={onClose}
-          className="text-zinc-400 hover:text-white transition-colors p-2 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+          className="text-white hover:text-zinc-300 transition-colors p-2 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
           aria-label="Close lightbox overlay view"
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export default function GalleryLightbox({
         <button
           type="button"
           onClick={onPrev}
-          className="p-4 text-zinc-400 hover:text-white transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] z-20"
+          className="p-4 text-white hover:text-zinc-300 transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] z-20"
           aria-label="Previous image"
         >
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@ export default function GalleryLightbox({
         <button
           type="button"
           onClick={onNext}
-          className="p-4 text-zinc-400 hover:text-white transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] z-20"
+          className="p-4 text-white hover:text-zinc-300 transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] z-20"
           aria-label="Next image"
         >
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@ export default function GalleryLightbox({
           <p className="text-[#CE1A19] text-xs font-black tracking-widest uppercase">
             {currentImage.category}
           </p>
-          <p className="text-zinc-300 text-sm mt-0.5 font-medium">{currentImage.alt}</p>
+          <p className="text-white text-sm mt-0.5 font-medium">{currentImage.alt}</p>
         </div>
 
         <div className="flex gap-2 overflow-x-auto px-6 justify-center max-w-md mx-auto scrollbar-none">
@@ -97,7 +97,7 @@ export default function GalleryLightbox({
               key={img.id}
               type="button"
               onClick={() => onJump(img.id)}
-              className={`relative flex-shrink-0 w-12 h-9 overflow-hidden transition-all duration-200 rounded-xs border outline-none ${
+              className={`relative flex-shrink-0 w-12 h-12 overflow-hidden transition-all duration-200 rounded-xs border outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
                 img.id === currentImage.id
                   ? "border-[#CE1A19] opacity-100 ring-1 ring-[#CE1A19]"
                   : "border-transparent opacity-30 hover:opacity-60"

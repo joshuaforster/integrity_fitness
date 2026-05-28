@@ -65,6 +65,8 @@ export default function HeroStats() {
                     width={stat.width}
                     height={stat.height}
                     priority
+                    quality={60}
+                    sizes={stat.alt === "CIMSPA" ? "48px" : "112px"}
                     className="h-full w-full object-contain brightness-0 invert"
                   />
                 </div>

@@ -91,7 +91,7 @@ export default function ContactForm() {
               <div className="pt-4">
                 <LottieSuccess />
                 <div className="border-l-2 border-[#CE1A19] pl-6 mt-4">
-                  <p className="text-zinc-400 text-xs font-bold tracking-[3px] uppercase mb-2">
+                  <p className="text-zinc-600 text-xs font-bold tracking-[3px] uppercase mb-2">
                     Transmission Complete
                   </p>
                   <h3 className="text-zinc-950 text-xl font-black uppercase tracking-wide mb-3">
@@ -113,9 +113,9 @@ export default function ContactForm() {
                 />
 
                 <div className="space-y-8">
-                  <label className="block text-zinc-950 text-xs font-black uppercase tracking-widest">
+                  <p className="block text-zinc-950 text-xs font-black uppercase tracking-widest">
                     02 / Your Identification &amp; Context
-                  </label>
+                  </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <ContactField
@@ -136,7 +136,7 @@ export default function ContactForm() {
                       placeholder="Phone number (optional)" value={form.phone}
                       onChange={handleChange}
                     />
-                    <div className="flex items-center text-zinc-400 text-xs italic pt-4 sm:pt-0">
+                    <div className="flex items-center text-zinc-600 text-xs italic pt-4 sm:pt-0">
                       * Indicates a required operational path entry
                     </div>
                   </div>
@@ -167,7 +167,7 @@ export default function ContactForm() {
 
           {/* Right: direct channels */}
           <div className="lg:col-span-5 w-full lg:pl-16 lg:border-l border-zinc-200/80 mt-16 lg:mt-0">
-            <p className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-4">
+            <p className="text-zinc-600 text-xs font-bold tracking-[4px] uppercase mb-4">
               Direct Channels
             </p>
             <h2 className="text-2xl md:text-3xl font-black text-zinc-950 tracking-tight uppercase leading-none mb-6">

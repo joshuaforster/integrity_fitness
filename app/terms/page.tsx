@@ -1,7 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Terms & Conditions | Integrity Fitness Education",
+  description: "Read the full Terms & Conditions for Integrity Fitness Education — enrolment, cancellation, intellectual property, and your rights as a learner.",
+  openGraph: {
+    title: "Terms & Conditions | Integrity Fitness Education",
+    description: "Full Terms & Conditions for Integrity Fitness Education personal trainer courses — enrolment, cancellation, and learner rights.",
+    url: "https://www.integrityfitnesseducation.co.uk/terms",
+    siteName: "Integrity Fitness Education",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 function Section({ number, title, children }: { number?: string; title: string; children: React.ReactNode }) {
@@ -14,7 +24,7 @@ function Section({ number, title, children }: { number?: string; title: string; 
         <h2 className="text-white text-xl font-bold uppercase tracking-wide">{title}</h2>
       </div>
       <div className="w-8 h-0.5 bg-[#CE1A19] mb-6" />
-      <div className="space-y-4 text-white/70 text-base leading-relaxed">
+      <div className="space-y-4 text-white text-base leading-relaxed">
         {children}
       </div>
     </div>
@@ -25,7 +35,7 @@ function Sub({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-4">
       <span className="text-white text-sm font-semibold flex-shrink-0 mt-0.5">{id}</span>
-      <p className="text-white/70 text-base leading-relaxed">{children}</p>
+      <p className="text-white text-base leading-relaxed">{children}</p>
     </div>
   );
 }
@@ -43,7 +53,7 @@ export default function TermsAndConditions() {
             Terms &amp; Conditions
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white/60 text-sm mt-6">
+          <p className="text-white text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd · Company No. 13487683
           </p>
         </div>
@@ -55,14 +65,14 @@ export default function TermsAndConditions() {
 
           {/* Preamble */}
           <div className="mb-12 p-8 border border-white/10 bg-white/5">
-            <p className="text-white/70 text-base leading-relaxed mb-4">
+            <p className="text-white text-base leading-relaxed mb-4">
               This agreement applies as between you, the User of this Website and Integrity Fitness
               Education LTD, the owner(s) of this Website. Your agreement to comply with and be
               bound by clauses 1, 2, 4–11 and 15–25 of these terms and conditions is deemed to
               occur upon your first use of the website. Clauses 3 and 12–14 apply only to the sale
               of services.
             </p>
-            <p className="text-white/70 text-base leading-relaxed">
+            <p className="text-white text-base leading-relaxed">
               If you do not agree to be bound by these terms and conditions, you should stop using
               the Website immediately. No part of this Website is intended to constitute a
               contractual offer capable of acceptance. Your order constitutes a contractual offer
@@ -87,7 +97,7 @@ export default function TermsAndConditions() {
               ].map(([term, def]) => (
                 <div key={term} className="flex gap-3">
                   <span className="text-white font-semibold flex-shrink-0 min-w-[140px]">{term}:</span>
-                  <span className="text-white/70">{def}</span>
+                  <span className="text-white">{def}</span>
                 </div>
               ))}
             </div>
@@ -517,9 +527,9 @@ export default function TermsAndConditions() {
           {/* Company details */}
           <div className="border-t border-white/10 pt-12 mt-4 space-y-1">
             <p className="text-white font-semibold">Integrity Fitness Education Ltd</p>
-            <p className="text-white/60 text-sm">Company No. 13487683</p>
-            <p className="text-white/60 text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
-            <p className="text-white/60 text-sm mt-4">
+            <p className="text-white text-sm">Company No. 13487683</p>
+            <p className="text-white text-sm">Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP</p>
+            <p className="text-white text-sm mt-4">
               <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
               </a>

@@ -20,7 +20,7 @@ export default function FaqCategoryNav({ groups }: { groups: readonly FAQGroup[]
 
   return (
     <div className="lg:col-span-4 hidden lg:block sticky top-28 space-y-4">
-      <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6">
+      <p className="text-zinc-700 text-xs font-bold tracking-widest uppercase mb-6">
         Syllabus Categories
       </p>
       <nav className="space-y-3" aria-label="FAQ categories navigation">
@@ -29,7 +29,7 @@ export default function FaqCategoryNav({ groups }: { groups: readonly FAQGroup[]
             key={group.category}
             type="button"
             onClick={() => scrollToSection(group.category)}
-            className="flex items-center gap-3 w-full text-left group/nav outline-none"
+            className="flex items-center gap-3 w-full text-left group/nav outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-1 rounded-sm"
           >
             <div className="w-1 h-3 bg-zinc-300 group-hover/nav:bg-[#CE1A19] transition-colors duration-200" />
             <span className="text-zinc-900 text-xs font-bold uppercase tracking-wider group-hover/nav:text-[#CE1A19] transition-colors duration-200">

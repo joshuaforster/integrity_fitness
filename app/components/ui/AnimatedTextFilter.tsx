@@ -28,13 +28,13 @@ export default function AnimatedTextFilter({
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-start text-left group outline-none ${className ?? ""}`}
+      className={`flex flex-col items-start text-left group outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 rounded-sm ${className ?? ""}`}
     >
       <span
         className={`font-bold transition-colors duration-200 ${labelSize} ${
           isSelected
             ? "text-zinc-950 font-black"
-            : "text-zinc-400 group-hover:text-zinc-600"
+            : "text-zinc-600 group-hover:text-zinc-800"
         }`}
       >
         {label}

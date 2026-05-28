@@ -1,5 +1,16 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Privacy Policy | Integrity Fitness Education",
+  description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",
+  openGraph: {
+    title: "Privacy Policy | Integrity Fitness Education",
+    description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",
+    url: "https://www.integrityfitnesseducation.co.uk/privacy-policy",
+    siteName: "Integrity Fitness Education",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -9,7 +20,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
         {title}
       </h2>
       <div className="w-8 h-0.5 bg-[#CE1A19] mb-6" />
-      <div className="space-y-4 text-white/60 text-base leading-relaxed">
+      <div className="space-y-4 text-white text-base leading-relaxed">
         {children}
       </div>
     </div>
@@ -29,7 +40,7 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <div className="w-14 h-1 bg-[#CE1A19] mt-6" />
-          <p className="text-white/60 text-sm mt-6">
+          <p className="text-white text-sm mt-6">
             Last updated: 2024 &nbsp;·&nbsp; Integrity Fitness Education Ltd
           </p>
         </div>
@@ -151,7 +162,7 @@ export default function PrivacyPolicy() {
 
           {/* Contact */}
           <div className="border-t border-white/10 pt-12 mt-4">
-            <p className="text-white/60 text-sm">
+            <p className="text-white text-sm">
               Questions about this policy?{" "}
               <a href="mailto:harry@integrityfitness.education" className="text-white underline hover:text-white/80">
                 harry@integrityfitness.education
