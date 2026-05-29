@@ -1,4 +1,4 @@
-import PageHero from "@/app/components/PageHero";
+import PageHero from "@/app/components/ui/PageHero";
 
 export default function FaqHero() {
   return (

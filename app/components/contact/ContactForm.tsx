@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import LottieSuccess from "@/app/components/ui/LottieSuccess";
 import CourseSelector, { type ProgramOption } from "./CourseSelector";

@@ -1,1 +1,1 @@
-export { default } from "@/app/components/ReadyToStartCTA";
+export { default } from "@/app/components/shared/ReadyToStartCTA";

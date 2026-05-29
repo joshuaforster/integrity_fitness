@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export default function FaqCTA() {

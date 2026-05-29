@@ -4,7 +4,7 @@ import Header from "./components/layout/HeaderBlack";
 import Footer from "./components/layout/Footer";
 import ScrollReveal from "./components/layout/ScrollReveal";
 import SiteProgressBar from "./components/ui/CourseProgressBar";
-import CookieBanner from "./components/CookieBanner";
+import CookieBanner from "./components/layout/CookieBanner";
 import "./globals.css";
 
 const geistSans = Geist({

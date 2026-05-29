@@ -705,7 +705,21 @@ export default function GalleryGrid() {
   }, [activeImageId]);
 
   function scrollToGrid() {
-    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = gridRef.current;
+    if (!el) return;
+    const targetY = el.getBoundingClientRect().top + window.scrollY - 16;
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    if (Math.abs(distance) < 2) return;
+    const duration = 900;
+    const startTime = performance.now();
+    function step(now: number) {
+      const p = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      window.scrollTo(0, startY + distance * ease);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   function handleCategoryChange(cat: string) {
@@ -769,12 +783,17 @@ export default function GalleryGrid() {
       <section className="bg-white py-16">
         <div ref={gridRef} className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Category filters */}
-          <div className="flex flex-wrap justify-center gap-2 mb-4">
+          <div
+            role="group"
+            aria-label="Filter gallery by category"
+            className="flex flex-wrap justify-center gap-2 mb-4"
+          >
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => handleCategoryChange(cat)}
+                aria-pressed={activeCategory === cat}
                 className={`px-5 py-2 rounded-full text-sm font-light uppercase tracking-wide transition-all duration-200 ${
                   activeCategory === cat
                     ? "bg-zinc-950 text-white"
@@ -807,7 +826,10 @@ export default function GalleryGrid() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
+            <nav
+              aria-label="Gallery pagination"
+              className="flex justify-center items-center gap-2 mt-12 flex-wrap"
+            >
               <button
                 type="button"
                 onClick={() => {
@@ -815,6 +837,7 @@ export default function GalleryGrid() {
                   scrollToGrid();
                 }}
                 disabled={currentPage === 1}
+                aria-label="Previous page"
                 className="px-4 py-2 rounded text-sm bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 ← Prev
@@ -825,6 +848,7 @@ export default function GalleryGrid() {
                   <span
                     key={`ellipsis-${i}`}
                     className="px-2 text-gray-400 select-none"
+                    aria-hidden="true"
                   >
                     …
                   </span>
@@ -836,6 +860,8 @@ export default function GalleryGrid() {
                       setCurrentPage(page as number);
                       scrollToGrid();
                     }}
+                    aria-label={`Page ${page}`}
+                    aria-current={currentPage === page ? "page" : undefined}
                     className={`w-10 h-10 rounded text-sm font-light transition-colors ${
                       currentPage === page
                         ? "bg-[#CE1A19] text-white"
@@ -854,11 +880,12 @@ export default function GalleryGrid() {
                   scrollToGrid();
                 }}
                 disabled={currentPage === totalPages}
+                aria-label="Next page"
                 className="px-4 py-2 rounded text-sm bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 Next →
               </button>
-            </div>
+            </nav>
           )}
         </div>
       </section>

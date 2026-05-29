@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import HeroStats from "./HeroStats";
 
 const container: Variants = {

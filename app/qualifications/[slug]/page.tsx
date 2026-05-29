@@ -4,7 +4,7 @@ import qualifications, {
   getQualificationBySlug,
   type Qualification,
 } from "@/app/data/qualifications";
-import TestimonialsSection from "@/app/components/TestimonialsSection";
+import TestimonialsSection from "@/app/components/shared/TestimonialsSection";
 import CourseHero from "./CourseHero";
 import CourseOverview from "./CourseOverview";
 import CourseModulesSection from "./CourseModulesSection";
@@ -16,6 +16,15 @@ import QualificationNav from "./QualificationNav";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+type SlantDir = "rise" | "fall";
+
+function slugSlants(slug: string): { modules: SlantDir; pricing?: SlantDir } {
+  const n = slug.split("").reduce((a, c, i) => a + c.charCodeAt(0) * (i + 1), 0);
+  const modules: SlantDir = n & 1 ? "rise" : "fall";
+  const pricing: SlantDir | undefined = n & 2 ? (n & 4 ? "rise" : "fall") : undefined;
+  return { modules, pricing };
 }
 
 export async function generateStaticParams() {
@@ -35,11 +44,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-function PricingSection({ qual }: { qual: Qualification }) {
+function PricingSection({ qual, slant }: { qual: Qualification; slant?: "rise" | "fall" }) {
   if (!qual.hasBillingToggle) {
-    return <CPDPricingSection qual={qual} theme="dark" />;
+    return <CPDPricingSection qual={qual} slant={slant} />;
   }
-  return <PricingToggleSection qual={qual} />;
+  return <PricingToggleSection qual={qual} slant={slant} />;
 }
 
 export default async function QualificationPage({ params }: PageProps) {
@@ -47,12 +56,14 @@ export default async function QualificationPage({ params }: PageProps) {
   const qual = getQualificationBySlug(slug);
   if (!qual) notFound();
 
+  const slants = slugSlants(slug);
+
   return (
     <main className="bg-white">
       <CourseHero qual={qual} />
       <CourseOverview qual={qual} />
-      <CourseModulesSection qual={qual} />
-      <PricingSection qual={qual} />
+      <CourseModulesSection qual={qual} slant={slants.modules} />
+      <PricingSection qual={qual} slant={slants.pricing} />
       <PricingFAQSection />
 
       {qual.testimonials && qual.testimonials.length > 0 && (

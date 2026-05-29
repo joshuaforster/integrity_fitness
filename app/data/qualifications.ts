@@ -32,7 +32,7 @@ export type Qualification = {
   overview: string[];
   whatYouWillLearn: string[];
   entryRequirements: string[];
-  modules: { title: string; topics: string[] }[];
+  modules: { title: string; topics: string[]; bookletPage?: number }[];
   pricing: PricingTier[];
   comparisonFeatures?: ComparisonFeature[];
   hasBillingToggle: boolean;

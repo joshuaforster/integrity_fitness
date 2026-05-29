@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import qualifications from "@/app/data/qualifications";
-import PageHero from "@/app/components/PageHero";
+import PageHero from "@/app/components/ui/PageHero";
 import PTCourseList from "./PTCourseList";
 import CPDCourseGrid from "./CPDCourseGrid";
-import ReadyToStartCTA from "@/app/components/ReadyToStartCTA";
+import ReadyToStartCTA from "@/app/components/shared/ReadyToStartCTA";
 
 export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",

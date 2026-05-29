@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import { type Qualification } from "@/app/data/qualifications";
 
 const container: Variants = {

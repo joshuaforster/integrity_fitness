@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 import PricingComparisonTable from "./PricingComparisonTable";
@@ -27,7 +27,13 @@ const cardVariants: Variants = {
   }),
 };
 
-export default function PricingToggleSection({ qual }: { qual: Qualification }) {
+export default function PricingToggleSection({
+  qual,
+  slant,
+}: {
+  qual: Qualification;
+  slant?: "rise" | "fall";
+}) {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
   const highlightedTier = qual.pricing.find((tier) => tier.highlighted);
   const annualSaving =
@@ -35,11 +41,22 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
       ? highlightedTier.price.monthly * 12 - highlightedTier.price.yearly
       : 0;
 
+  const clipPath = slant === "rise"
+    ? "polygon(0 48px, 100% 0, 100% 100%, 0 100%)"
+    : slant === "fall"
+    ? "polygon(0 0, 100% 48px, 100% 100%, 0 100%)"
+    : undefined;
+
   return (
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className="bg-zinc-50 border-t border-zinc-200/80 py-20 md:py-28"
+      className={`bg-zinc-50 py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
+      style={{
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px)",
+        backgroundSize: "22px 22px",
+        ...(clipPath ? { clipPath } : {}),
+      }}
     >
       <SectionWrapper reveal>
         {/* Header */}
@@ -144,16 +161,24 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                 viewport={{ once: false, amount: 0.1 }}
                 className={`relative flex flex-col rounded-2xl p-5 md:p-7 transition-all duration-300 ${
                   tier.highlighted
-                    ? "bg-white border border-[#CE1A19]/25 hover:border-[#CE1A19]/50 shadow-[0_8px_28px_rgba(206,26,25,0.08)] hover:shadow-[0_12px_36px_rgba(206,26,25,0.14)] lg:scale-[1.04] z-10"
+                    ? "bg-zinc-950 border border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.35)] lg:scale-[1.04] z-10"
                     : "bg-white border border-zinc-200 hover:border-zinc-400 shadow-sm hover:shadow-md"
                 }`}
               >
                 {tier.highlighted && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
-                      Recommended
-                    </span>
-                  </div>
+                  <>
+                    {/* top specular highlight */}
+                    <div
+                      aria-hidden
+                      className="absolute top-0 left-10 right-10 h-px"
+                      style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.18) 50%,transparent)" }}
+                    />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
+                        Recommended
+                      </span>
+                    </div>
+                  </>
                 )}
 
                 <p className={`text-[10px] font-black uppercase tracking-[2.5px] mb-2 ${tier.highlighted ? "text-[#CE1A19]/70 mt-4" : "text-zinc-400"}`}>
@@ -162,22 +187,22 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
 
                 <div className="mb-4">
                   <div className="flex items-end gap-1">
-                    <span className="text-xl font-black self-start mt-1.5 text-zinc-400">£</span>
+                    <span className={`text-xl font-black self-start mt-1.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-400"}`}>£</span>
                     <motion.span
                       key={`${tier.name}-${price}`}
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="text-5xl font-black leading-none tracking-tight text-zinc-950"
+                      className={`text-5xl font-black leading-none tracking-tight ${tier.highlighted ? "text-white" : "text-zinc-950"}`}
                     >
                       {price}
                     </motion.span>
                   </div>
-                  <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-1.5">
+                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-500"}`}>
                     {period}
                   </p>
                   {tier.deposit && billing === "monthly" && (
-                    <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-0.5">
+                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-500"}`}>
                       After a £{tier.deposit} deposit
                     </p>
                   )}
@@ -193,7 +218,7 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                   )}
                 </div>
 
-                <p className="text-zinc-500 text-sm leading-relaxed pb-4 mb-4 border-b border-zinc-100">
+                <p className={`text-sm leading-relaxed pb-4 mb-4 border-b ${tier.highlighted ? "text-zinc-400 border-white/10" : "text-zinc-500 border-zinc-100"}`}>
                   {tier.description}
                 </p>
 
@@ -208,7 +233,7 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                   {tier.includes.map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
                       <AnimatedCheck size={15} delay={0} color="#16a34a" />
-                      <span className="text-zinc-600 text-sm leading-snug">{item}</span>
+                      <span className={`text-sm leading-snug ${tier.highlighted ? "text-zinc-300" : "text-zinc-600"}`}>{item}</span>
                     </motion.li>
                   ))}
                 </motion.ul>

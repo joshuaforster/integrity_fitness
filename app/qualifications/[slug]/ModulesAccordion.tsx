@@ -7,46 +7,39 @@ import Image from "next/image";
 
 const topicContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
+  visible: { transition: { staggerChildren: 0.11 } },
 };
 
 const topicItem: Variants = {
   hidden: { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const checkCircle: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
-  visible: { pathLength: 1, opacity: 1, transition: { duration: 0.7, ease: "easeInOut" } },
+  visible: { pathLength: 1, opacity: 1, transition: { duration: 1.0, ease: "easeInOut" } },
 };
 
 const checkMark: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
-  visible: { pathLength: 1, opacity: 1, transition: { duration: 0.45, ease: "easeInOut", delay: 0.55 } },
+  visible: { pathLength: 1, opacity: 1, transition: { duration: 0.65, ease: "easeInOut", delay: 0.8 } },
 };
 
 function TopicCheck() {
   return (
-    <motion.svg
-      width="14"
-      height="14"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      className="flex-shrink-0 mt-0.5"
-    >
+    <motion.svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="flex-shrink-0 mt-0.5">
       <motion.circle cx="8" cy="8" r="7" stroke="#16a34a" strokeWidth="1.5" fill="none" variants={checkCircle} />
       <motion.path d="M5 8L7.2 10.2L11 6" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" variants={checkMark} />
     </motion.svg>
   );
 }
 
-type Module = { title: string; topics: string[] };
+type Module = { title: string; topics: string[]; bookletPage?: number };
 type Props = { modules: Module[]; bookletFolder?: string; bookletPageCount?: number };
 
 function fmt(n: number) { return String(n + 1).padStart(2, "0"); }
 
-function easeScroll(container: HTMLDivElement, target: number, duration = 750) {
+function easeScroll(container: HTMLDivElement, target: number, duration = 1400) {
   const start = container.scrollTop;
   const distance = target - start;
   if (Math.abs(distance) < 2) return () => {};
@@ -62,19 +55,21 @@ function easeScroll(container: HTMLDivElement, target: number, duration = 750) {
   return () => cancelAnimationFrame(raf);
 }
 
-function BookletPages({ active, modules, pages, pagesPerModule, scrollRef, sectionRefs, imgSizes }: {
-  active: number; modules: Module[]; pages: string[]; pagesPerModule: number;
-  scrollRef: React.RefObject<HTMLDivElement | null>; sectionRefs: React.RefObject<(HTMLDivElement | null)[]>; imgSizes: string;
+// Renders all booklet pages in sequence and scrolls to a target page index
+function BookletPages({ pageTarget, pages, scrollRef, imgSizes }: {
+  pageTarget: number;
+  pages: string[];
+  scrollRef: React.RefObject<HTMLDivElement | null>;
+  imgSizes: string;
 }) {
   useEffect(() => {
-    const section = sectionRefs.current?.[active];
     const container = scrollRef.current;
-    if (!section || !container) return;
-    const sectionTop = section.getBoundingClientRect().top;
-    const containerTop = container.getBoundingClientRect().top;
-    const target = container.scrollTop + (sectionTop - containerTop);
-    return easeScroll(container, target, 750);
-  }, [active, scrollRef, sectionRefs]);
+    if (!container || pages.length === 0) return;
+    // Each page is aspect-ratio 1:√2 (A4 portrait)
+    const pageH = container.offsetWidth * 1.414;
+    const clamped = Math.min(pageTarget, pages.length - 1);
+    return easeScroll(container, clamped * pageH, 1400);
+  }, [pageTarget, scrollRef, pages.length]);
 
   if (pages.length === 0) {
     return (
@@ -89,29 +84,19 @@ function BookletPages({ active, modules, pages, pagesPerModule, scrollRef, secti
 
   return (
     <>
-      {modules.map((mod, i) => {
-        const start = i * pagesPerModule;
-        const modulePages = pages.slice(start, Math.min(start + pagesPerModule, pages.length));
-        return (
-          <div key={i} ref={(el) => { if (sectionRefs.current) sectionRefs.current[i] = el; }}>
-            {modulePages.map((src, j) => (
-              <div key={j} className="relative w-full aspect-[1/1.414]">
-                <Image src={src} alt={`${mod.title} — page ${start + j + 1}`} fill sizes={imgSizes} className="object-cover object-top" />
-              </div>
-            ))}
-          </div>
-        );
-      })}
+      {pages.map((src, i) => (
+        <div key={i} className="relative w-full aspect-[1/1.414]">
+          <Image src={src} alt={`Page ${i + 1}`} fill sizes={imgSizes} className="object-cover object-top" />
+        </div>
+      ))}
     </>
   );
 }
 
-function CompactTablet({ active, modules, pages, pagesPerModule, onExpand }: {
-  active: number; modules: Module[]; pages: string[]; pagesPerModule: number; onExpand: () => void;
+function CompactTablet({ pageTarget, pages, onExpand }: {
+  pageTarget: number; pages: string[]; onExpand: () => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   return (
     <div className="flex flex-col items-center gap-5">
       <div className="relative w-[300px]">
@@ -123,7 +108,7 @@ function CompactTablet({ active, modules, pages, pagesPerModule, onExpand }: {
           <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-zinc-800 z-20" />
           <div className="absolute inset-[12px] rounded-[22px] overflow-hidden bg-white">
             <div ref={scrollRef} className="w-full h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <BookletPages active={active} modules={modules} pages={pages} pagesPerModule={pagesPerModule} scrollRef={scrollRef} sectionRefs={sectionRefs} imgSizes="276px" />
+              <BookletPages pageTarget={pageTarget} pages={pages} scrollRef={scrollRef} imgSizes="276px" />
             </div>
           </div>
         </div>
@@ -142,12 +127,8 @@ function CompactTablet({ active, modules, pages, pagesPerModule, onExpand }: {
   );
 }
 
-function LargeTablet({ active, modules, pages, pagesPerModule }: {
-  active: number; modules: Module[]; pages: string[]; pagesPerModule: number;
-}) {
+function LargeTablet({ pageTarget, pages }: { pageTarget: number; pages: string[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   return (
     <div className="relative w-[440px]">
       <div className="absolute right-[-6px] top-[112px] w-[6px] h-[53px] bg-zinc-800 rounded-r-sm z-20" />
@@ -158,7 +139,7 @@ function LargeTablet({ active, modules, pages, pagesPerModule }: {
         <div className="absolute top-[21px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-zinc-800 z-20" />
         <div className="absolute inset-[16px] rounded-[30px] overflow-hidden bg-white">
           <div ref={scrollRef} className="w-full h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <BookletPages active={active} modules={modules} pages={pages} pagesPerModule={pagesPerModule} scrollRef={scrollRef} sectionRefs={sectionRefs} imgSizes="408px" />
+            <BookletPages pageTarget={pageTarget} pages={pages} scrollRef={scrollRef} imgSizes="408px" />
           </div>
         </div>
       </div>
@@ -166,8 +147,8 @@ function LargeTablet({ active, modules, pages, pagesPerModule }: {
   );
 }
 
-function FullscreenOverlay({ active, modules, pages, pagesPerModule, onClose }: {
-  active: number; modules: Module[]; pages: string[]; pagesPerModule: number; onClose: () => void;
+function FullscreenOverlay({ pageTarget, pages, onClose }: {
+  pageTarget: number; pages: string[]; onClose: () => void;
 }) {
   const [visible, setVisible] = useState(false);
   const close = useCallback(() => { setVisible(false); setTimeout(onClose, 260); }, [onClose]);
@@ -199,7 +180,7 @@ function FullscreenOverlay({ active, modules, pages, pagesPerModule, onClose }: 
         Scroll to browse · Press Esc to close
       </p>
       <div className={`transition-all duration-[280ms] ease-out ${visible ? "scale-100 translate-y-0" : "scale-95 translate-y-3"}`}>
-        <LargeTablet active={active} modules={modules} pages={pages} pagesPerModule={pagesPerModule} />
+        <LargeTablet pageTarget={pageTarget} pages={pages} />
       </div>
     </div>
   );
@@ -214,7 +195,7 @@ function ScrollSquiggle() {
           stroke="#CE1A19" strokeWidth="1.8" strokeLinecap="round" fill="none"
           initial={{ pathLength: 0, opacity: 0.8 }}
           animate={{ pathLength: [0, 1, 1, 0], opacity: [0.8, 1, 0.9, 0] }}
-          transition={{ duration: 2.2, times: [0, 0.55, 0.78, 1], repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
+          transition={{ duration: 3.2, times: [0, 0.55, 0.78, 1], repeat: Infinity, repeatDelay: 2.5, ease: "easeInOut" }}
         />
         <motion.path
           d="M17 6 L22 2 L27 6" stroke="#CE1A19" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"
@@ -230,7 +211,10 @@ function ScrollSquiggle() {
 
 export default function ModulesAccordion({ modules, bookletFolder, bookletPageCount }: Props) {
   const [active, setActive] = useState(0);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // All modules start closed — they open as the user scrolls to them
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // iPad starts at the cover (page 0) and jumps to a module's booklet page on activation
+  const [pageTarget, setPageTarget] = useState(0);
   const [fsOpen, setFsOpen] = useState(false);
 
   const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
@@ -239,10 +223,34 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
   const pages = bookletFolder && total > 0
     ? Array.from({ length: total }, (_, i) => `/booklet-images/${bookletFolder}/page_${String(i + 1).padStart(2, "0")}.jpg`)
     : [];
-  const pagesPerModule = total > 0 ? Math.ceil(total / modules.length) : 0;
+
+  // Per-module booklet start pages — use bookletPage from data, or placeholder (5 + i*6)
+  const startPages = modules.map((mod, i) => mod.bookletPage ?? (5 + i * 6));
+
+  const moduleRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Only the first module auto-opens on scroll — the rest require a click
+  useEffect(() => {
+    const el = moduleRefs.current[0];
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(0);
+          setOpenIndex(0);
+          setPageTarget(startPages[0]);
+        }
+      },
+      { rootMargin: "-30% 0px -50% 0px", threshold: 0 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleClick(i: number) {
     setActive(i);
+    setPageTarget(startPages[i]);
     setOpenIndex((prev) => (prev === i ? null : i));
   }
 
@@ -255,10 +263,11 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
           {modules.map((mod, i) => (
             <motion.div
               key={i}
+              ref={(el) => { moduleRefs.current[i] = el; }}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
-              transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
+              transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
               className={`rounded-xl border overflow-hidden transition-all duration-300 ${
                 i === active
                   ? "[backdrop-filter:blur(32px)_saturate(160%)_brightness(0.95)] bg-white/[0.07] border-white/[0.18] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)]"
@@ -310,7 +319,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
                     <div className="px-5 pt-3 pb-5 border-t border-white/[0.08]">
@@ -343,10 +352,8 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
         <div className="hidden lg:flex justify-center">
           <div className="sticky top-28">
             <CompactTablet
-              active={active}
-              modules={modules}
+              pageTarget={pageTarget}
               pages={pages}
-              pagesPerModule={pagesPerModule}
               onExpand={() => setFsOpen(true)}
             />
             <ScrollSquiggle />
@@ -357,10 +364,8 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
 
       {fsOpen && mounted && createPortal(
         <FullscreenOverlay
-          active={active}
-          modules={modules}
+          pageTarget={pageTarget}
           pages={pages}
-          pagesPerModule={pagesPerModule}
           onClose={() => setFsOpen(false)}
         />,
         document.body,

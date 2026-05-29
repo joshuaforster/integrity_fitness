@@ -94,7 +94,7 @@ export default function CookieBanner() {
             rel="noopener noreferrer"
             className="text-white underline underline-offset-2 decoration-white/50 hover:decoration-white transition-all duration-200"
           >
-            Don&apos;t just take our word for it.
+            Don&apos;t just take our word orit.
           </a>
         </p>
 
