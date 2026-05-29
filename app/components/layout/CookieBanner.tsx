@@ -4,6 +4,21 @@ import { useState, useEffect } from "react";
 
 const KEY = "ife-cookies-v1";
 
+const COPY = (
+  <>
+    We use cookies 🍪 — and as any good PT will tell you, all foods can be part of a{" "}
+    <span className="font-bold text-white">healthy, balanced diet.</span>{" "}
+    <a
+      href="https://pubmed.ncbi.nlm.nih.gov/11883916/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white underline underline-offset-2 decoration-white/50 hover:decoration-white transition-all duration-200"
+    >
+      Don&apos;t just take our word for it.
+    </a>
+  </>
+);
+
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
@@ -53,10 +68,7 @@ export default function CookieBanner() {
             <span className="text-2xl select-none leading-none flex-shrink-0 mt-0.5" aria-hidden="true">🍪</span>
             <div className="min-w-0">
               <p className="text-white text-[11px] font-black uppercase tracking-[3px] mb-1">Cookie Policy</p>
-              <p className="text-white/65 text-xs leading-relaxed">
-                We use cookies to improve your experience. As any good PT will tell you —
-                {" "}<span className="text-white/85">all things in moderation.</span>
-              </p>
+              <p className="text-white/75 text-xs leading-relaxed">{COPY}</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -121,10 +133,7 @@ export default function CookieBanner() {
             <div className="mt-2 mx-auto w-8 h-[2px] rounded-full bg-[#CE1A19]/40" />
           </div>
 
-          <p className="text-white/80 text-sm leading-relaxed text-center mb-5">
-            We use cookies to improve your experience. As any good PT will tell you —
-            {" "}<span className="font-bold text-white">all things in moderation.</span>
-          </p>
+          <p className="text-white/80 text-sm leading-relaxed text-center mb-5">{COPY}</p>
 
           <div className="flex flex-col gap-2">
             <button
