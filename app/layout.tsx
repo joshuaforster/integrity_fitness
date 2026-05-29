@@ -5,6 +5,7 @@ import Footer from "./components/layout/Footer";
 import ScrollReveal from "./components/layout/ScrollReveal";
 import SiteProgressBar from "./components/ui/CourseProgressBar";
 import ScrollToTop from "./components/ui/ScrollToTop";
+import CookieBanner from "./components/CookieBanner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -46,6 +47,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <main className="flex-1">{children}</main>
         <Footer />
         <ScrollToTop />
+        <CookieBanner />
       </body>
     </html>
   );
