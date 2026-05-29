@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const NAV_LINKS = [
@@ -52,26 +53,51 @@ const QUAL_CATEGORIES = [
 ] as const;
 
 function HamburgerIcon({ open }: { open: boolean }) {
-  const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
-  const base: React.CSSProperties = {
-    transformBox: "fill-box" as React.CSSProperties["transformBox"],
-    transformOrigin: "50% 50%",
-    transition: `transform 0.32s ${ease}`,
-  };
+  const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+  const trans = { duration: 0.32, ease };
+
   return (
     <svg width="24" height="20" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true">
-      {/* Top dumbbell — plates at ends, thin bar in middle */}
-      <g style={{ ...base, transform: open ? "translateY(5px) rotate(45deg)" : "translateY(0) rotate(0)" }}>
-        <rect x="0" y="3" width="5" height="4" rx="0.5" />
-        <rect x="5" y="4.25" width="14" height="1.5" />
-        <rect x="19" y="3" width="5" height="4" rx="0.5" />
-      </g>
-      {/* Bottom dumbbell */}
-      <g style={{ ...base, transform: open ? "translateY(-5px) rotate(-45deg)" : "translateY(0) rotate(0)" }}>
-        <rect x="0" y="13" width="5" height="4" rx="0.5" />
-        <rect x="5" y="14.25" width="14" height="1.5" />
-        <rect x="19" y="13" width="5" height="4" rx="0.5" />
-      </g>
+      {/* Top line → rotates 45° and plates grow when open */}
+      <motion.g
+        animate={{ y: open ? 7 : 0, rotate: open ? 45 : 0 }}
+        style={{ transformOrigin: "12px 3px" }}
+        transition={trans}
+      >
+        <motion.rect x="0" width="5" rx="0.5"
+          animate={{ y: open ? 1 : 2.25, height: open ? 4 : 1.5 }}
+          transition={trans}
+        />
+        <rect x="5" y="2.25" width="14" height="1.5" />
+        <motion.rect x="19" width="5" rx="0.5"
+          animate={{ y: open ? 1 : 2.25, height: open ? 4 : 1.5 }}
+          transition={trans}
+        />
+      </motion.g>
+
+      {/* Middle line fades out */}
+      <motion.rect
+        x="0" y="9.25" width="24" height="1.5"
+        animate={{ opacity: open ? 0 : 1 }}
+        transition={{ duration: 0.18 }}
+      />
+
+      {/* Bottom line → rotates −45° and plates grow when open */}
+      <motion.g
+        animate={{ y: open ? -7 : 0, rotate: open ? -45 : 0 }}
+        style={{ transformOrigin: "12px 17px" }}
+        transition={trans}
+      >
+        <motion.rect x="0" width="5" rx="0.5"
+          animate={{ y: open ? 15 : 16.25, height: open ? 4 : 1.5 }}
+          transition={trans}
+        />
+        <rect x="5" y="16.25" width="14" height="1.5" />
+        <motion.rect x="19" width="5" rx="0.5"
+          animate={{ y: open ? 15 : 16.25, height: open ? 4 : 1.5 }}
+          transition={trans}
+        />
+      </motion.g>
     </svg>
   );
 }
