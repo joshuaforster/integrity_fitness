@@ -50,7 +50,7 @@ const Heading = ({ id }: { id: string }) => (
 );
 
 const SharedImage = () => (
-  <div className="relative w-full h-[420px] md:h-[520px] overflow-hidden rounded-sm shadow-sm border border-zinc-300/40 mb-16 md:mb-20">
+  <div className="relative w-full h-[420px] md:h-[520px] overflow-hidden rounded-xl shadow-sm border border-zinc-300/40 mb-16 md:mb-20">
     <Image
       src={SHARED_IMAGE}
       alt="Harry and Paris, brother and sister, founders of Integrity Fitness Education"

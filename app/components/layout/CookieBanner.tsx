@@ -75,14 +75,14 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() => dismiss("accepted")}
-              className="flex-1 bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3 rounded-sm transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+              className="flex-1 bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3 rounded-xl transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               Accept All
             </button>
             <button
               type="button"
               onClick={() => dismiss("declined")}
-              className="flex-1 border border-white/20 hover:border-white/40 text-white/60 hover:text-white/90 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-sm transition-all duration-150 outline-none focus-visible:ring-1 focus-visible:ring-white"
+              className="flex-1 border border-white/20 hover:border-white/40 text-white/60 hover:text-white/90 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-xl transition-all duration-150 outline-none focus-visible:ring-1 focus-visible:ring-white"
             >
               Essential Only
             </button>
@@ -100,7 +100,7 @@ export default function CookieBanner() {
           opacity: animateIn ? 1 : 0,
           transform: animateIn ? "translateY(0)" : "translateY(16px)",
         }}
-        className="hidden md:block fixed bottom-6 right-6 z-[9997] w-[340px] [backdrop-filter:blur(40px)_saturate(140%)] bg-zinc-950/80 border border-white/[0.12] rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.07)]"
+        className="hidden md:block fixed bottom-6 right-6 z-[9997] w-[340px] [backdrop-filter:blur(40px)_saturate(150%)] bg-zinc-900/80 border border-white/[0.12] rounded-xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.07)]"
       >
         <div className="px-6 pt-6 pb-5">
 
@@ -139,14 +139,14 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() => dismiss("accepted")}
-              className="w-full bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3.5 rounded-sm transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+              className="w-full bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               Accept All Cookies
             </button>
             <button
               type="button"
               onClick={() => dismiss("declined")}
-              className="w-full border border-white/[0.18] hover:border-white/40 text-white/50 hover:text-white/80 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-sm transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-white"
+              className="w-full border border-white/[0.18] hover:border-white/40 text-white/50 hover:text-white/80 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-xl transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-white"
             >
               Essential Only
             </button>

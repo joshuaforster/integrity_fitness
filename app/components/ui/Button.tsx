@@ -30,7 +30,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 const baseStyle =
-  "inline-flex items-center justify-center font-bold uppercase transition-colors duration-200 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-bold uppercase transition-colors duration-200 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const motionProps = {
   whileHover: { scale: 1.04 },

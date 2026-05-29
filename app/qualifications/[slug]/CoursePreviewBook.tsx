@@ -128,7 +128,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               <a
                 href={bookletPdfPath}
                 download
-                className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-black tracking-[2px] uppercase text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-black tracking-[2px] uppercase text-white hover:bg-zinc-900 transition-colors rounded-xl outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                 aria-label="Download PDF"
               >
                 <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -140,7 +140,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
             <button
               type="button"
               onClick={close}
-              className="w-9 h-9 flex items-center justify-center text-white hover:bg-zinc-900 transition-colors rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+              className="w-9 h-9 flex items-center justify-center text-white hover:bg-zinc-900 transition-colors rounded-xl outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
               aria-label="Close booklet"
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -366,7 +366,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
         <button
           type="button"
           onClick={open}
-          className="inline-flex items-center gap-2.5 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:bg-zinc-950 hover:text-white transition-all duration-200 rounded-sm shadow-xs group"
+          className="inline-flex items-center gap-2.5 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:bg-zinc-950 hover:text-white transition-all duration-200 rounded-xl shadow-xs group"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform group-hover:scale-105 transition-transform">
             <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
@@ -378,7 +378,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
           <a
             href={bookletPdfPath}
             download
-            className="inline-flex items-center gap-2.5 border border-zinc-300 text-zinc-600 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:border-zinc-950 hover:text-zinc-950 transition-all duration-200 rounded-sm shadow-xs group"
+            className="inline-flex items-center gap-2.5 border border-zinc-300 text-zinc-600 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:border-zinc-950 hover:text-zinc-950 transition-all duration-200 rounded-xl shadow-xs group"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform group-hover:translate-y-0.5 transition-transform">
               <path d="M12 3v13m0 0l-4-4m4 4l4-4M3 21h18" />

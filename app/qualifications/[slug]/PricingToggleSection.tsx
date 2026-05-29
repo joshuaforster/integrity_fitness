@@ -51,12 +51,8 @@ export default function PricingToggleSection({
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className={`bg-zinc-50 py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
-      style={{
-        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px)",
-        backgroundSize: "22px 22px",
-        ...(clipPath ? { clipPath } : {}),
-      }}
+      className={`bg-zinc-50 texture-dots-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
+      style={clipPath ? { clipPath } : undefined}
     >
       <SectionWrapper reveal>
         {/* Header */}
@@ -159,10 +155,10 @@ export default function PricingToggleSection({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
-                className={`relative flex flex-col rounded-2xl p-5 md:p-7 transition-all duration-300 ${
+                className={`relative flex flex-col rounded-xl p-5 md:p-7 transition-all duration-300 ${
                   tier.highlighted
-                    ? "bg-zinc-950 border border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.35)] lg:scale-[1.04] z-10"
-                    : "bg-white border border-zinc-200 hover:border-zinc-400 shadow-sm hover:shadow-md"
+                    ? "[backdrop-filter:blur(24px)_saturate(150%)] bg-zinc-900/90 border border-white/[0.12] shadow-[0_16px_48px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.07)] lg:scale-[1.04] z-10"
+                    : "bg-white texture-dots-light border border-zinc-200 hover:border-zinc-400 shadow-sm hover:shadow-md"
                 }`}
               >
                 {tier.highlighted && (

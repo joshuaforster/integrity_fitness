@@ -26,7 +26,7 @@ export default function TeamMemberCard({ person }: { person: TeamMember }) {
     <div className="flex flex-col items-start group">
       {person.image && (
         <motion.div
-          className="relative h-[480px] w-full overflow-hidden bg-zinc-200 rounded-sm shadow-sm border border-zinc-300/40"
+          className="relative h-[480px] w-full overflow-hidden bg-zinc-200 rounded-xl shadow-sm border border-zinc-300/40"
           whileHover={{ scale: 1.01 }}
         >
           <Image

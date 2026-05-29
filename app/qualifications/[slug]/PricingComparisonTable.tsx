@@ -20,8 +20,8 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
   const isLight = theme === "light";
 
   const containerBg = isLight
-    ? "bg-white/80 border-zinc-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.06),0_1px_4px_rgba(0,0,0,0.04)]"
-    : "bg-zinc-900/60 border-zinc-700/40 shadow-[0_4px_24px_rgba(0,0,0,0.4)]";
+    ? "bg-white/80 texture-dots-light border-zinc-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.06),0_1px_4px_rgba(0,0,0,0.04)]"
+    : "bg-zinc-900/60 texture-dots-dark border-zinc-700/40 shadow-[0_4px_24px_rgba(0,0,0,0.4)]";
   const rowBorder = isLight ? "border-zinc-100" : "border-zinc-800/50";
   const featureColor = isLight ? "text-zinc-700" : "text-white";
   const headerBg = isLight ? "bg-zinc-50/80" : "bg-zinc-800/40";
@@ -38,7 +38,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className={`mt-14 rounded-2xl border overflow-hidden ${containerBg}`}
+      className={`mt-14 rounded-xl border overflow-hidden ${containerBg}`}
     >
       <div className={`px-6 py-5 border-b ${rowBorder}`}>
         <p className={`text-[10px] font-bold tracking-[4px] uppercase ${labelColor}`}>
@@ -53,7 +53,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
           const period = billing === "monthly" ? "/mo" : "/yr";
           return (
             <div key={tier.name}>
-              <div className={`px-5 py-4 ${tier.highlighted ? "bg-zinc-950" : headerBg}`}>
+              <div className={`px-5 py-4 ${tier.highlighted ? "bg-zinc-800/90" : headerBg}`}>
                 <span className={`block text-[10px] font-bold uppercase tracking-widest mb-0.5 ${tier.highlighted ? "text-white/60" : headerText}`}>
                   {tier.name}
                 </span>
@@ -110,7 +110,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                   <th
                     key={tier.name}
                     className={`py-4 px-4 text-center border-b ${rowBorder} ${
-                      tier.highlighted ? "bg-zinc-950" : headerBg
+                      tier.highlighted ? "bg-zinc-800/90" : headerBg
                     }`}
                   >
                     <span className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${tier.highlighted ? "text-white/60" : headerText}`}>
