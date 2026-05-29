@@ -286,7 +286,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-              className={`rounded-xl border overflow-hidden transition-all duration-300 ${
+              className={`rounded-lg border overflow-hidden transition-all duration-300 ${
                 i === active
                   ? "[backdrop-filter:blur(32px)_saturate(160%)_brightness(0.95)] bg-white/[0.07] border-white/[0.18] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)]"
                   : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.10]"

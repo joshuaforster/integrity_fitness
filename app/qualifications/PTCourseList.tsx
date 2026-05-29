@@ -32,7 +32,7 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
         >
           <Link
             href={`/qualifications/${q.slug}`}
-            className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-200/60 hover:border-zinc-400 hover:shadow-md transition-all duration-300 group rounded-xl shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+            className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-200/60 hover:border-zinc-400 hover:shadow-md transition-all duration-300 group rounded-lg shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
           >
             <div className="flex-1 max-w-2xl pr-4">
               <div className="flex items-center gap-3 mb-2">
@@ -52,7 +52,7 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
             </div>
 
             <div className="flex items-center justify-between sm:justify-end gap-6 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-100">
-              <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-xl">
+              <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-lg">
                 {q.duration}
               </span>
               <span

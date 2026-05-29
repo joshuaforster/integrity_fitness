@@ -134,10 +134,10 @@ export default function StackedTestimonials({ testimonials }: { testimonials?: T
 
           {/* Nav buttons — desktop only, below heading */}
           <div className="hidden lg:flex items-center gap-3 mt-10">
-            <button type="button" onClick={handlePrev} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-xl shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Previous review">
+            <button type="button" onClick={handlePrev} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Previous review">
               <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
             </button>
-            <button type="button" onClick={handleNext} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-xl shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Next review">
+            <button type="button" onClick={handleNext} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Next review">
               <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
             </button>
           </div>
@@ -176,7 +176,7 @@ export default function StackedTestimonials({ testimonials }: { testimonials?: T
                         else if (info.offset.x > 80) handlePrev();
                       },
                     } : {})}
-                    className={`absolute w-full h-[300px] sm:h-[260px] bg-white border border-zinc-200/90 p-5 sm:p-6 md:p-8 rounded-xl flex flex-col justify-between overflow-hidden ${isTopCard ? "cursor-grab active:cursor-grabbing" : "select-none"}`}
+                    className={`absolute w-full h-[300px] sm:h-[260px] bg-white border border-zinc-200/90 p-5 sm:p-6 md:p-8 rounded-lg flex flex-col justify-between overflow-hidden ${isTopCard ? "cursor-grab active:cursor-grabbing" : "select-none"}`}
                   >
                     <div className="absolute top-5 right-5 md:top-7 md:right-7 opacity-20" aria-hidden="true">
                       <GoogleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -210,7 +210,7 @@ export default function StackedTestimonials({ testimonials }: { testimonials?: T
 
             <div className="flex items-center gap-2">
               {/* Mobile nav buttons */}
-              <button type="button" onClick={handlePrev} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-xl shadow-xs transition-all active:scale-95 outline-none" aria-label="Previous review">
+              <button type="button" onClick={handlePrev} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none" aria-label="Previous review">
                 <ChevronLeftIcon className="w-4 h-4 stroke-[2.5]" />
               </button>
 
@@ -222,7 +222,7 @@ export default function StackedTestimonials({ testimonials }: { testimonials?: T
                 ))}
               </div>
 
-              <button type="button" onClick={handleNext} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-xl shadow-xs transition-all active:scale-95 outline-none" aria-label="Next review">
+              <button type="button" onClick={handleNext} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none" aria-label="Next review">
                 <ChevronRightIcon className="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>

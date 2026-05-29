@@ -51,7 +51,7 @@ export default function PricingToggleSection({
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className={`bg-zinc-50 texture-dots-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
+      className={`bg-zinc-100 texture-grid-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
       style={clipPath ? { clipPath } : undefined}
     >
       <SectionWrapper reveal>
@@ -155,20 +155,17 @@ export default function PricingToggleSection({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
-                className={`relative flex flex-col rounded-xl p-5 md:p-7 transition-all duration-300 ${
+                className={`relative flex flex-col rounded-lg p-5 md:p-7 transition-all duration-300 ${
                   tier.highlighted
-                    ? "[backdrop-filter:blur(24px)_saturate(150%)] bg-zinc-900/90 border border-white/[0.12] shadow-[0_16px_48px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.07)] lg:scale-[1.04] z-10"
+                    ? "[backdrop-filter:blur(36px)_saturate(170%)] bg-gradient-to-b from-zinc-800/80 to-zinc-900/95 border border-white/[0.18] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-1px_0_rgba(0,0,0,0.25)] lg:scale-[1.04] z-10"
                     : "bg-white texture-dots-light border border-zinc-200 hover:border-zinc-400 shadow-sm hover:shadow-md"
                 }`}
               >
                 {tier.highlighted && (
                   <>
-                    {/* top specular highlight */}
-                    <div
-                      aria-hidden
-                      className="absolute top-0 left-10 right-10 h-px"
-                      style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.18) 50%,transparent)" }}
-                    />
+                    {/* top gloss sheen */}
+                    <div aria-hidden className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.35) 50%,transparent)" }} />
+                    <div aria-hidden className="absolute top-0 left-0 right-0 h-28 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, transparent 100%)" }} />
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
                         Recommended

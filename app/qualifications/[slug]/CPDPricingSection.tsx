@@ -147,7 +147,7 @@ export default function CPDPricingSection({
             <motion.div
               animate={{ x: [0, 5, 0, -5, 0] }}
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", repeatType: "loop" }}
-              className="[backdrop-filter:blur(20px)_saturate(150%)] bg-white/[0.05] border border-white/[0.1] rounded-xl p-8 md:p-10 flex flex-col shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)]"
+              className="[backdrop-filter:blur(20px)_saturate(150%)] bg-white/[0.05] border border-white/[0.1] rounded-lg p-8 md:p-10 flex flex-col shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)]"
             >
               {/* Top specular line inside glass */}
               <div

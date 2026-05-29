@@ -36,7 +36,7 @@ const item: Variants = {
 export default function HeroStats() {
   return (
     <motion.div
-      className="w-full mt-12 max-w-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-xl"
+      className="w-full mt-12 max-w-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-lg"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}

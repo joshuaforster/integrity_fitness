@@ -32,8 +32,12 @@ export default function CPDCourseGrid({ courses }: { courses: Qualification[] })
         >
           <Link
             href={`/qualifications/${q.slug}`}
-            className="flex flex-col justify-between p-6 md:p-8 [backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.80] border border-white/[0.10] hover:border-white/[0.24] hover:shadow-[0_12px_40px_rgba(0,0,0,0.55)] transition-all duration-300 group rounded-xl h-full outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+            className="relative flex flex-col justify-between p-6 md:p-8 [backdrop-filter:blur(40px)_saturate(160%)] bg-gradient-to-b from-zinc-800/70 to-zinc-900/90 border border-white/[0.13] hover:border-white/[0.28] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.10)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.14)] transition-all duration-300 group rounded-lg h-full outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] overflow-hidden"
           >
+            {/* Top gloss sheen */}
+            <div aria-hidden className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 50%, transparent)" }} />
+            <div aria-hidden className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.04) 0%, transparent 100%)" }} />
+
             <div>
               <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
                 {q.level}
