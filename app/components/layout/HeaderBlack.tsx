@@ -52,18 +52,27 @@ const QUAL_CATEGORIES = [
 ] as const;
 
 function HamburgerIcon({ open }: { open: boolean }) {
+  const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+  const base: React.CSSProperties = {
+    transformBox: "fill-box" as React.CSSProperties["transformBox"],
+    transformOrigin: "50% 50%",
+    transition: `transform 0.32s ${ease}`,
+  };
   return (
-    <div className="relative w-6 h-5" aria-hidden="true">
-      <span
-        className={`absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 ease-in-out ${open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"}`}
-      />
-      <span
-        className={`absolute left-0 top-1/2 -translate-y-1/2 h-0.5 w-6 bg-current transition-all duration-200 ease-in-out ${open ? "opacity-0 scale-x-0" : "opacity-100"}`}
-      />
-      <span
-        className={`absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 ease-in-out ${open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0"}`}
-      />
-    </div>
+    <svg width="24" height="20" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true">
+      {/* Top dumbbell — plates at ends, thin bar in middle */}
+      <g style={{ ...base, transform: open ? "translateY(5px) rotate(45deg)" : "translateY(0) rotate(0)" }}>
+        <rect x="0" y="3" width="5" height="4" rx="0.5" />
+        <rect x="5" y="4.25" width="14" height="1.5" />
+        <rect x="19" y="3" width="5" height="4" rx="0.5" />
+      </g>
+      {/* Bottom dumbbell */}
+      <g style={{ ...base, transform: open ? "translateY(-5px) rotate(-45deg)" : "translateY(0) rotate(0)" }}>
+        <rect x="0" y="13" width="5" height="4" rx="0.5" />
+        <rect x="5" y="14.25" width="14" height="1.5" />
+        <rect x="19" y="13" width="5" height="4" rx="0.5" />
+      </g>
+    </svg>
   );
 }
 
