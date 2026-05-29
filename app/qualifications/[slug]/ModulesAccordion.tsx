@@ -228,6 +228,21 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
   const startPages = modules.map((mod, i) => mod.bookletPage ?? (5 + i * 6));
 
   const moduleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Reset iPad to cover when the section leaves the viewport
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setPageTarget(0);
+      },
+      { threshold: 0 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // Auto-open first module when it scrolls into view — guard prevents firing on initial paint
   useEffect(() => {
@@ -259,7 +274,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-center">
+      <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-center">
 
         {/* Module list */}
         <div className="space-y-2">
