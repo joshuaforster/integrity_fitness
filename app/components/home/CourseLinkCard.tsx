@@ -13,7 +13,7 @@ export default function CourseLinkCard({ course }: { course: CourseLink }) {
       <h4 className="text-sm font-bold text-white tracking-wide transition-colors group-hover:text-[#CE1A19]">
         {course.title}
       </h4>
-      <p className="text-xs text-zinc-400 mt-2 leading-relaxed line-clamp-2">
+      <p className="text-xs text-white/60 mt-2 leading-relaxed line-clamp-2">
         {course.description}
       </p>
     </a>

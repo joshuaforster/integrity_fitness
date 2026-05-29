@@ -23,7 +23,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
     ? "bg-white/80 border-zinc-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.06),0_1px_4px_rgba(0,0,0,0.04)]"
     : "bg-zinc-900/60 border-zinc-700/40 shadow-[0_4px_24px_rgba(0,0,0,0.4)]";
   const rowBorder = isLight ? "border-zinc-100" : "border-zinc-800/50";
-  const featureColor = isLight ? "text-zinc-700" : "text-zinc-300";
+  const featureColor = isLight ? "text-zinc-700" : "text-white";
   const headerBg = isLight ? "bg-zinc-50/80" : "bg-zinc-800/40";
   const headerText = isLight ? "text-zinc-500" : "text-zinc-400";
   const priceColor = isLight ? "text-zinc-950" : "text-white";
@@ -81,7 +81,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                         ) : val === false ? (
                           <span className={`text-sm font-medium leading-none ${dashColor}`} aria-label="Not included">—</span>
                         ) : (
-                          <span className={`text-xs font-bold ${tier.highlighted ? "text-white" : isLight ? "text-zinc-600" : "text-zinc-300"}`}>
+                          <span className={`text-xs font-bold ${tier.highlighted ? "text-white" : isLight ? "text-zinc-600" : "text-white"}`}>
                             {val}
                           </span>
                         )}
@@ -148,7 +148,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                     ) : val === false ? (
                       <span className={`text-base font-medium leading-none ${dashColor}`} aria-label="Not included">—</span>
                     ) : (
-                      <span className={`text-xs font-bold ${tiers[j]?.highlighted ? "text-white" : isLight ? "text-zinc-600" : "text-zinc-300"}`}>
+                      <span className={`text-xs font-bold ${tiers[j]?.highlighted ? "text-white" : isLight ? "text-zinc-600" : "text-white"}`}>
                         {val}
                       </span>
                     )}

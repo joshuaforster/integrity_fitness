@@ -62,47 +62,49 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
           <div className="w-14 h-1 bg-[#CE1A19] mt-6 mb-10" aria-hidden="true" />
 
           {/* Glass pill toggle */}
-          <div
-            role="group"
-            aria-label="Billing period"
-            className="relative inline-flex items-center bg-zinc-200/70 border border-zinc-300/60 rounded-full p-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
-          >
-            <motion.div
-              className="absolute top-1 bottom-1 bg-zinc-950 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
-              animate={{
-                left: billing === "monthly" ? "4px" : "50%",
-                width: "calc(50% - 4px)",
-              }}
-              transition={{ type: "spring", stiffness: 380, damping: 32 }}
-            />
-            <button
-              type="button"
-              onClick={() => setBilling("monthly")}
-              aria-pressed={billing === "monthly"}
-              className={`relative z-10 px-7 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
-                billing === "monthly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
-              }`}
+          <div className="relative">
+            <div
+              role="group"
+              aria-label="Billing period"
+              className="relative inline-flex items-center bg-zinc-200/70 border border-zinc-300/60 rounded-full p-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
             >
-              Monthly
-            </button>
-            <button
-              type="button"
-              onClick={() => setBilling("yearly")}
-              aria-pressed={billing === "yearly"}
-              className={`relative z-10 inline-flex items-center gap-2 px-7 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
-                billing === "yearly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
-              }`}
-            >
-              Annual
-              {annualSaving > 0 && (
-                <motion.span
-                  animate={{ scale: billing === "yearly" ? 1 : 0.9, opacity: billing === "yearly" ? 1 : 0.7 }}
-                  className="text-[9px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none"
-                >
-                  SAVE £{annualSaving}
-                </motion.span>
-              )}
-            </button>
+              <motion.div
+                className="absolute top-1 bottom-1 bg-zinc-950 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
+                animate={{
+                  left: billing === "monthly" ? "4px" : "50%",
+                  width: "calc(50% - 4px)",
+                }}
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+              <button
+                type="button"
+                onClick={() => setBilling("monthly")}
+                aria-pressed={billing === "monthly"}
+                className={`relative z-10 w-32 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
+                  billing === "monthly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBilling("yearly")}
+                aria-pressed={billing === "yearly"}
+                className={`relative z-10 w-32 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
+                  billing === "yearly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
+                }`}
+              >
+                Annual
+              </button>
+            </div>
+            {annualSaving > 0 && (
+              <motion.span
+                animate={{ opacity: billing === "yearly" ? 1 : 0.6, scale: billing === "yearly" ? 1 : 0.92 }}
+                className="absolute -top-3 right-0 text-[9px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none pointer-events-none"
+              >
+                SAVE £{annualSaving}
+              </motion.span>
+            )}
           </div>
 
           {qual.durationMonths && (
@@ -149,13 +151,13 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                     </span>
                   </div>
 
-                  <p className="text-zinc-400 text-[10px] font-black uppercase tracking-[2.5px] mt-4 mb-3">
+                  <p className="text-white/50 text-[10px] font-black uppercase tracking-[2.5px] mt-4 mb-3">
                     {tier.name}
                   </p>
 
                   <div className="mb-5">
                     <div className="flex items-end gap-1 text-white">
-                      <span className="text-2xl font-black self-start mt-2 text-zinc-400">£</span>
+                      <span className="text-2xl font-black self-start mt-2 text-white/50">£</span>
                       <motion.span
                         key={`${tier.name}-${price}`}
                         initial={{ opacity: 0, y: -8 }}
@@ -166,11 +168,11 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                         {price}
                       </motion.span>
                     </div>
-                    <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-2">
+                    <p className="text-white/50 text-[10px] font-bold uppercase tracking-wider mt-2">
                       {period}
                     </p>
                     {tier.deposit && billing === "monthly" && (
-                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-1">
+                      <p className="text-white/50 text-[10px] font-bold uppercase tracking-wider mt-1">
                         After a £{tier.deposit} deposit
                       </p>
                     )}
@@ -186,7 +188,7 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                     )}
                   </div>
 
-                  <p className="text-zinc-400 text-sm leading-relaxed pb-6 mb-6 border-b border-white/[0.07]">
+                  <p className="text-white/75 text-sm leading-relaxed pb-6 mb-6 border-b border-white/[0.10]">
                     {tier.description}
                   </p>
 
@@ -201,7 +203,7 @@ export default function PricingToggleSection({ qual }: { qual: Qualification }) 
                     {tier.includes.map((item) => (
                       <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
                         <AnimatedCheck size={15} delay={0} />
-                        <span className="text-zinc-300 text-sm leading-snug">{item}</span>
+                        <span className="text-white text-sm leading-snug">{item}</span>
                       </motion.li>
                     ))}
                   </motion.ul>

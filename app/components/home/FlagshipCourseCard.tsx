@@ -17,7 +17,7 @@ export default function FlagshipCourseCard({ course }: { course: MainCourse }) {
       <h3 className="text-xl md:text-2xl font-extrabold text-white leading-tight mb-4 max-w-md">
         {course.title}
       </h3>
-      <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-8 max-w-xl">
+      <p className="text-white/80 text-sm md:text-base leading-relaxed mb-8 max-w-xl">
         {course.description}
       </p>
 
