@@ -157,30 +157,25 @@ export default function PricingToggleSection({
                 viewport={{ once: false, amount: 0.1 }}
                 className={`relative flex flex-col rounded-lg p-5 md:p-7 transition-all duration-300 ${
                   tier.highlighted
-                    ? "[backdrop-filter:blur(36px)_saturate(170%)] bg-gradient-to-b from-zinc-800/80 to-zinc-900/95 border border-white/[0.18] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-1px_0_rgba(0,0,0,0.25)] lg:scale-[1.04] z-10"
+                    ? "bg-zinc-950 texture-dots-dark border border-white/[0.10] shadow-[0_20px_60px_rgba(0,0,0,0.55)] lg:scale-[1.04] z-10"
                     : "bg-white texture-dots-light border border-zinc-200 hover:border-zinc-400 shadow-sm hover:shadow-md"
                 }`}
               >
                 {tier.highlighted && (
-                  <>
-                    {/* top gloss sheen */}
-                    <div aria-hidden className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.35) 50%,transparent)" }} />
-                    <div aria-hidden className="absolute top-0 left-0 right-0 h-28 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, transparent 100%)" }} />
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
-                        Recommended
-                      </span>
-                    </div>
-                  </>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
+                      Recommended
+                    </span>
+                  </div>
                 )}
 
-                <p className={`text-[10px] font-black uppercase tracking-[2.5px] mb-2 ${tier.highlighted ? "text-[#CE1A19]/70 mt-4" : "text-zinc-400"}`}>
+                <p className={`text-[10px] font-black uppercase tracking-[2.5px] mb-2 ${tier.highlighted ? "text-[#CE1A19] mt-4" : "text-zinc-400"}`}>
                   {tier.name}
                 </p>
 
                 <div className="mb-4">
                   <div className="flex items-end gap-1">
-                    <span className={`text-xl font-black self-start mt-1.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-400"}`}>£</span>
+                    <span className={`text-xl font-black self-start mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-400"}`}>£</span>
                     <motion.span
                       key={`${tier.name}-${price}`}
                       initial={{ opacity: 0, y: -8 }}
@@ -191,11 +186,11 @@ export default function PricingToggleSection({
                       {price}
                     </motion.span>
                   </div>
-                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-500"}`}>
+                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
                     {period}
                   </p>
                   {tier.deposit && billing === "monthly" && (
-                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-zinc-500" : "text-zinc-500"}`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
                       After a £{tier.deposit} deposit
                     </p>
                   )}
@@ -211,7 +206,7 @@ export default function PricingToggleSection({
                   )}
                 </div>
 
-                <p className={`text-sm leading-relaxed pb-4 mb-4 border-b ${tier.highlighted ? "text-zinc-400 border-white/10" : "text-zinc-500 border-zinc-100"}`}>
+                <p className={`text-sm leading-relaxed pb-4 mb-4 border-b ${tier.highlighted ? "text-white/70 border-white/[0.10]" : "text-zinc-500 border-zinc-100"}`}>
                   {tier.description}
                 </p>
 
@@ -226,7 +221,7 @@ export default function PricingToggleSection({
                   {tier.includes.map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
                       <AnimatedCheck size={15} delay={0} color="#16a34a" />
-                      <span className={`text-sm leading-snug ${tier.highlighted ? "text-zinc-300" : "text-zinc-600"}`}>{item}</span>
+                      <span className={`text-sm leading-snug ${tier.highlighted ? "text-white" : "text-zinc-600"}`}>{item}</span>
                     </motion.li>
                   ))}
                 </motion.ul>
