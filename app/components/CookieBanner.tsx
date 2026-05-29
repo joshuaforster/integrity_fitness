@@ -149,16 +149,16 @@ export default function CookieBanner() {
             </p>
 
             {/* Copy — full white */}
-            <p className="text-white/75 text-sm leading-relaxed text-center mb-6">
+            <p className="text-white text-sm leading-relaxed text-center mb-6">
               We use cookies 🍪 — and as any good PT will tell you, all foods
               can be part of a{" "}
-              <span className="text-white font-bold">healthy, balanced diet.</span>
+              <span className="font-bold">healthy, balanced diet.</span>
               {" "}
               <a
                 href="https://www.tandfonline.com/doi/full/10.1186/s12970-021-00452-2#d1e920"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white underline underline-offset-2 decoration-white/30 hover:decoration-white/60 transition-colors duration-200"
+                className="text-white underline underline-offset-2 decoration-white hover:opacity-80 transition-opacity duration-200"
               >
                 Don&apos;t just take our word for it.
               </a>
@@ -192,7 +192,7 @@ export default function CookieBanner() {
               type="button"
               onClick={accept}
               disabled={eating}
-              className="w-full mt-3 py-2.5 border border-white/[0.10] hover:border-white/[0.22] text-white/35 hover:text-white/60 text-[10px] font-bold uppercase tracking-widest rounded-sm transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none outline-none focus-visible:ring-1 focus-visible:ring-white/30"
+              className="w-full mt-3 py-2.5 border border-white text-white text-[10px] font-bold uppercase tracking-widest rounded-sm transition-all duration-200 hover:opacity-70 disabled:opacity-30 disabled:pointer-events-none outline-none focus-visible:ring-1 focus-visible:ring-white"
             >
               Decline
             </button>
