@@ -27,40 +27,39 @@ export default function CookieBanner() {
           role="dialog"
           aria-label="Cookie consent"
           aria-modal="false"
-          initial={{ opacity: 0, y: 40, scale: 0.92, x: 12 }}
-          animate={{ opacity: 1, y: 0, scale: 1, x: 0 }}
-          exit={{ opacity: 0, scale: 0.88, y: 20, x: 20 }}
-          transition={{ type: "spring", stiffness: 340, damping: 28 }}
-          className="fixed bottom-6 right-6 z-[9997] w-[360px] max-w-[calc(100vw-2rem)] [backdrop-filter:blur(56px)_saturate(180%)_brightness(0.82)] bg-zinc-950/[0.94] border border-white/[0.14] rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.75),0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.09),inset_0_-1px_0_rgba(255,255,255,0.03)]"
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 360, damping: 32 }}
+          className="fixed bottom-6 right-6 z-[9997] w-[340px] max-w-[calc(100vw-2rem)] [backdrop-filter:blur(40px)_saturate(130%)_brightness(0.88)] bg-zinc-950/[0.92] border border-white/[0.14] rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.08)]"
         >
-          {/* Top gradient accent */}
-          <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#CE1A19] to-transparent" aria-hidden="true" />
+          {/* Brand-red top line */}
+          <div className="h-[2px] bg-[#CE1A19]" aria-hidden="true" />
 
-          <div className="px-7 pt-7 pb-6 relative">
+          <div className="px-6 pt-6 pb-5 relative">
 
-            {/* Ambient red glow behind cookie */}
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 w-40 h-20 bg-[#CE1A19]/[0.12] rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+            {/* Faint red ambient — kept very subtle */}
+            <div
+              className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-16 bg-[#CE1A19]/[0.08] rounded-full blur-2xl pointer-events-none"
+              aria-hidden="true"
+            />
 
             {/* 3D spinning cookie */}
             <div
-              className="flex justify-center mb-5 relative z-10"
+              className="flex justify-center mb-4 relative z-10"
               style={{ perspective: "900px" }}
             >
               <motion.span
                 animate={{
                   rotateY: 360,
-                  rotateX: [0, 8, 0, -8, 0],
+                  rotateX: [0, 10, 0, -10, 0],
                 }}
                 transition={{
                   rotateY: { duration: 5, repeat: Infinity, ease: "linear" },
                   rotateX: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
                 }}
                 className="block select-none leading-none"
-                style={{
-                  fontSize: "72px",
-                  transformStyle: "preserve-3d",
-                  filter: "drop-shadow(0 8px 28px rgba(0,0,0,0.6)) drop-shadow(0 2px 8px rgba(206,26,25,0.15))",
-                }}
+                style={{ fontSize: "64px", transformStyle: "preserve-3d" }}
                 aria-hidden="true"
               >
                 🍪
@@ -73,27 +72,28 @@ export default function CookieBanner() {
             </p>
 
             {/* Copy */}
-            <p className="text-white text-[13px] leading-[1.65] font-medium text-center mb-6">
+            <p className="text-white/80 text-sm leading-relaxed text-center mb-6">
               We use cookies. And as any good PT will tell you, all foods&nbsp;—
               including cookies&nbsp;— can be part of a{" "}
               <span className="text-white font-bold">healthy, balanced diet.</span>
             </p>
 
-            {/* CTA */}
+            {/* CTA — matches site Button primary */}
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              type="button"
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
               onClick={accept}
-              className="w-full bg-[#CE1A19] hover:bg-red-700 text-white text-[11px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-colors duration-200 shadow-[0_6px_20px_rgba(206,26,25,0.45),0_2px_8px_rgba(206,26,25,0.3)] outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+              className="w-full bg-[#CE1A19] hover:bg-red-700 text-white text-[11px] font-bold uppercase tracking-widest py-3.5 rounded-sm transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               I&apos;ll allow it (just this once) 😄
             </motion.button>
 
-            {/* Dismiss */}
+            {/* Decline — matches site outline-dark tone */}
             <button
               type="button"
               onClick={accept}
-              className="w-full text-center text-white/30 hover:text-white/55 text-[9px] font-bold uppercase tracking-[3px] mt-3 transition-colors duration-200 outline-none focus-visible:text-white/60"
+              className="w-full text-center border border-white/[0.10] hover:border-white/[0.22] text-white/40 hover:text-white/70 text-[10px] font-bold uppercase tracking-widest mt-3 py-2.5 rounded-sm transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white/30"
             >
               Decline
             </button>
