@@ -20,7 +20,7 @@ export default function CourseSelector({
 }: CourseSelectorProps) {
   return (
     <div>
-      <label className="block text-zinc-950 text-xs font-black uppercase tracking-widest mb-6">
+      <label className="block text-zinc-400 text-xs font-black uppercase tracking-widest mb-6">
         01 / Select Target Program <span className="text-[#CE1A19]">*</span>
       </label>
       <div

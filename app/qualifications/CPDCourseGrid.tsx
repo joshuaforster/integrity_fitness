@@ -32,24 +32,24 @@ export default function CPDCourseGrid({ courses }: { courses: Qualification[] })
         >
           <Link
             href={`/qualifications/${q.slug}`}
-            className="flex flex-col justify-between p-6 md:p-8 bg-zinc-50 border border-zinc-200/80 hover:border-zinc-400 hover:shadow-lg transition-all duration-300 group rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] h-full"
+            className="flex flex-col justify-between p-6 md:p-8 [backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.80] border border-white/[0.10] hover:border-white/[0.24] hover:shadow-[0_12px_40px_rgba(0,0,0,0.55)] transition-all duration-300 group rounded-xl h-full outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
           >
             <div>
               <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
                 {q.level}
               </span>
-              <h3 className="text-zinc-950 font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
+              <h3 className="text-white font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
                 {q.title}
               </h3>
-              <p className="text-zinc-600 text-sm leading-relaxed mb-8">{q.tagline}</p>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-8">{q.tagline}</p>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-zinc-200 mt-auto">
+            <div className="flex items-center justify-between pt-4 border-t border-white/[0.08] mt-auto">
               <span className="text-zinc-500 text-xs font-bold tracking-wide uppercase">
                 {q.duration}
               </span>
               <span
-                className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-300 group-hover:translate-x-1.5 text-sm"
+                className="text-zinc-500 group-hover:text-white transform transition-all duration-300 group-hover:translate-x-1.5 text-sm"
                 aria-hidden="true"
               >
                 →

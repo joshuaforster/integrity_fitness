@@ -10,48 +10,25 @@ import { type Qualification } from "@/app/data/qualifications";
 
 const listVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, x: -16 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  hidden: { opacity: 0, x: -12 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-interface Props {
-  qual: Qualification;
-  theme?: "light" | "dark";
-}
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, delay: i * 0.14, ease: "easeOut" },
+  }),
+};
 
-const themes = {
-  light: {
-    section: "bg-zinc-50 border-t border-zinc-200/80",
-    heading: "text-zinc-950",
-    standardCard: "bg-white border-zinc-200/80",
-    standardPrice: "text-zinc-950",
-    standardPeriod: "text-zinc-500",
-    standardDesc: "text-zinc-600",
-    standardDescBorder: "border-zinc-100",
-    standardFeature: "text-zinc-600",
-    standardBullet: "bg-zinc-300",
-  },
-  dark: {
-    section: "bg-zinc-900 border-t border-zinc-800/60",
-    heading: "text-white",
-    standardCard: "bg-zinc-800 border-zinc-700",
-    standardPrice: "text-white",
-    standardPeriod: "text-white",
-    standardDesc: "text-white",
-    standardDescBorder: "border-zinc-700",
-    standardFeature: "text-white",
-    standardBullet: "bg-zinc-600",
-  },
-} as const;
-
-export default function PricingToggleSection({ qual, theme = "light" }: Props) {
+export default function PricingToggleSection({ qual }: { qual: Qualification }) {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
-  const t = themes[theme];
-
   const highlightedTier = qual.pricing.find((tier) => tier.highlighted);
   const annualSaving =
     highlightedTier && typeof highlightedTier.price !== "number"
@@ -59,30 +36,51 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
       : 0;
 
   return (
-    <section aria-labelledby="pricing-heading" className={`py-20 md:py-28 ${t.section}`}>
+    <section
+      id="pricing-section"
+      aria-labelledby="pricing-heading"
+      className="bg-zinc-50 border-t border-zinc-200/80 py-24 md:py-32"
+    >
       <SectionWrapper reveal>
-        {/* Header + toggle */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+        {/* Header */}
+        <motion.div
+          className="flex flex-col items-center text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
             Investment
           </p>
           <h2
             id="pricing-heading"
-            className={`text-3xl md:text-5xl font-black tracking-tight uppercase leading-none ${t.heading}`}
+            className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
           >
             Choose Your Plan
           </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-6 mb-8" aria-hidden="true" />
+          <div className="w-14 h-1 bg-[#CE1A19] mt-6 mb-10" aria-hidden="true" />
 
-          <div className="inline-flex bg-zinc-200/60 p-1 rounded-sm gap-1">
+          {/* Glass pill toggle */}
+          <div
+            role="group"
+            aria-label="Billing period"
+            className="relative inline-flex items-center bg-zinc-200/70 border border-zinc-300/60 rounded-full p-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+          >
+            <motion.div
+              className="absolute top-1 bottom-1 bg-zinc-950 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
+              animate={{
+                left: billing === "monthly" ? "4px" : "50%",
+                width: "calc(50% - 4px)",
+              }}
+              transition={{ type: "spring", stiffness: 380, damping: 32 }}
+            />
             <button
               type="button"
               onClick={() => setBilling("monthly")}
               aria-pressed={billing === "monthly"}
-              className={`px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 outline-none rounded-xs ${
-                billing === "monthly"
-                  ? "bg-zinc-950 text-white shadow-sm"
-                  : "text-zinc-600 hover:text-zinc-950"
+              className={`relative z-10 px-7 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
+                billing === "monthly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
               }`}
             >
               Monthly
@@ -91,37 +89,32 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
               type="button"
               onClick={() => setBilling("yearly")}
               aria-pressed={billing === "yearly"}
-              className={`inline-flex items-center gap-2 px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 outline-none rounded-xs ${
-                billing === "yearly"
-                  ? "bg-zinc-950 text-white shadow-sm"
-                  : "text-zinc-600 hover:text-zinc-950"
+              className={`relative z-10 inline-flex items-center gap-2 px-7 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
+                billing === "yearly" ? "text-white" : "text-zinc-500 hover:text-zinc-950"
               }`}
             >
-              <span>Annual</span>
+              Annual
               {annualSaving > 0 && (
-                <span
-                  className={`text-[9px] font-black px-1.5 py-0.5 rounded-xs tracking-normal leading-none ${
-                    billing === "yearly"
-                      ? "bg-white/20 text-white"
-                      : "bg-[#CE1A19] text-white"
-                  }`}
+                <motion.span
+                  animate={{ scale: billing === "yearly" ? 1 : 0.9, opacity: billing === "yearly" ? 1 : 0.7 }}
+                  className="text-[9px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none"
                 >
                   SAVE £{annualSaving}
-                </span>
+                </motion.span>
               )}
             </button>
           </div>
 
           {qual.durationMonths && (
-            <p className={`text-[10px] font-bold uppercase tracking-widest mt-5 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
-              Typical completion timeframe: {qual.durationMonths}
+            <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mt-5">
+              Typical completion: {qual.durationMonths}
             </p>
           )}
-        </div>
+        </motion.div>
 
         {/* Pricing cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-          {qual.pricing.map((tier) => {
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+          {qual.pricing.map((tier, i) => {
             const price =
               typeof tier.price === "number"
                 ? tier.price
@@ -141,42 +134,64 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
 
             if (tier.highlighted) {
               return (
-                <div
+                <motion.div
                   key={tier.name}
-                  className="relative flex flex-col bg-zinc-950 p-6 md:p-8 border border-zinc-900 rounded-sm shadow-xl"
+                  variants={cardVariants}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.1 }}
+                  className="relative flex flex-col [backdrop-filter:blur(40px)_saturate(130%)_brightness(0.88)] bg-zinc-950/[0.92] border border-white/[0.18] rounded-2xl p-7 md:p-9 shadow-[0_24px_64px_rgba(206,26,25,0.12),0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.10)] lg:scale-[1.04] z-10"
                 >
-                  <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2px] px-3 py-1.5 rounded-bl-xs">
-                    Recommended Option
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.5)] whitespace-nowrap">
+                      Recommended
+                    </span>
                   </div>
-                  <p className="text-white text-xs font-bold tracking-widest uppercase mt-4 mb-2">
+
+                  <p className="text-zinc-400 text-[10px] font-black uppercase tracking-[2.5px] mt-4 mb-3">
                     {tier.name}
                   </p>
-                  <div className="mb-4">
-                    <div className="flex items-baseline gap-0.5 text-white">
-                      <span className="text-xl font-bold self-start mt-1">£</span>
-                      <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
+
+                  <div className="mb-5">
+                    <div className="flex items-end gap-1 text-white">
+                      <span className="text-2xl font-black self-start mt-2 text-zinc-400">£</span>
+                      <motion.span
+                        key={`${tier.name}-${price}`}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="text-6xl md:text-7xl font-black leading-none tracking-tight"
+                      >
                         {price}
-                      </span>
+                      </motion.span>
                     </div>
-                    <p className="text-white text-[10px] font-bold uppercase tracking-wider mt-2.5">
+                    <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-2">
                       {period}
                     </p>
                     {tier.deposit && billing === "monthly" && (
-                      <p className="text-white text-[10px] font-bold uppercase tracking-wider mt-1">
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mt-1">
                         After a £{tier.deposit} deposit
                       </p>
                     )}
                     {saving > 0 && (
-                      <p className="text-[#CE1A19] text-xs font-bold mt-2">
-                        Saving £{saving} vs monthly plan
-                      </p>
+                      <motion.p
+                        key={saving}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-[#CE1A19] text-xs font-bold mt-2"
+                      >
+                        Saving £{saving} vs monthly
+                      </motion.p>
                     )}
                   </div>
-                  <p className="text-white text-sm leading-relaxed mt-2 pb-6 mb-6 border-b border-zinc-900">
+
+                  <p className="text-zinc-400 text-sm leading-relaxed pb-6 mb-6 border-b border-white/[0.07]">
                     {tier.description}
                   </p>
+
                   <motion.ul
-                    className="space-y-4 flex-1 mb-8"
+                    className="space-y-3.5 flex-1 mb-8"
                     role="list"
                     variants={listVariants}
                     initial="hidden"
@@ -185,52 +200,72 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                   >
                     {tier.includes.map((item) => (
                       <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
-                        <AnimatedCheck size={16} delay={0} />
-                        <span className="text-white text-sm leading-tight">{item}</span>
+                        <AnimatedCheck size={15} delay={0} />
+                        <span className="text-zinc-300 text-sm leading-snug">{item}</span>
                       </motion.li>
                     ))}
                   </motion.ul>
-                  <Button href="/contact" variant="primary" size="md" fullWidth className="shadow-md">
+
+                  <Button href="/contact" variant="primary" size="md" fullWidth className="shadow-[0_4px_16px_rgba(206,26,25,0.35)]">
                     Enquire Now
                   </Button>
-                </div>
+                </motion.div>
               );
             }
 
             return (
-              <div
+              <motion.div
                 key={tier.name}
-                className={`flex flex-col p-6 md:p-8 border rounded-sm shadow-sm ${t.standardCard}`}
+                variants={cardVariants}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                className="flex flex-col bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-md rounded-2xl p-7 md:p-9 shadow-sm transition-all duration-300"
               >
-                <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
+                <p className="text-zinc-400 text-[10px] font-black uppercase tracking-[2.5px] mb-3">
                   {tier.name}
                 </p>
-                <div className="mb-4">
-                  <div className={`flex items-baseline gap-0.5 ${t.standardPrice}`}>
-                    <span className="text-xl font-bold self-start mt-1">£</span>
-                    <span className="text-5xl md:text-6xl font-black leading-none tracking-tight">
+
+                <div className="mb-5">
+                  <div className="flex items-end gap-1">
+                    <span className="text-2xl font-black self-start mt-2 text-zinc-400">£</span>
+                    <motion.span
+                      key={`${tier.name}-${price}`}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="text-6xl md:text-7xl font-black leading-none tracking-tight text-zinc-950"
+                    >
                       {price}
-                    </span>
+                    </motion.span>
                   </div>
-                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-2.5 ${t.standardPeriod}`}>
+                  <p className="text-zinc-600 text-[10px] font-bold uppercase tracking-wider mt-2">
                     {period}
                   </p>
                   {tier.deposit && billing === "monthly" && (
-                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-1 ${theme === "dark" ? "text-white" : "text-zinc-400"}`}>
+                    <p className="text-zinc-600 text-[10px] font-bold uppercase tracking-wider mt-1">
                       After a £{tier.deposit} deposit
                     </p>
                   )}
                   {saving > 0 && (
-                    <p className="text-[#CE1A19] text-xs font-bold mt-2">
-                      Saving £{saving} vs monthly plan
-                    </p>
+                    <motion.p
+                      key={saving}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-[#CE1A19] text-xs font-bold mt-2"
+                    >
+                      Saving £{saving} vs monthly
+                    </motion.p>
                   )}
                 </div>
-                <p className={`text-sm leading-relaxed mt-2 pb-6 mb-6 border-b ${t.standardDescBorder} ${t.standardDesc}`}>
+
+                <p className="text-zinc-500 text-sm leading-relaxed pb-6 mb-6 border-b border-zinc-100">
                   {tier.description}
                 </p>
+
                 <motion.ul
-                  className="space-y-4 flex-1 mb-8"
+                  className="space-y-3.5 flex-1 mb-8"
                   role="list"
                   variants={listVariants}
                   initial="hidden"
@@ -239,15 +274,16 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
                 >
                   {tier.includes.map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
-                      <AnimatedCheck size={16} delay={0} color={theme === "dark" ? "#a1a1aa" : "#16a34a"} />
-                      <span className={`text-sm leading-tight ${t.standardFeature}`}>{item}</span>
+                      <AnimatedCheck size={15} delay={0} color="#16a34a" />
+                      <span className="text-zinc-600 text-sm leading-snug">{item}</span>
                     </motion.li>
                   ))}
                 </motion.ul>
+
                 <Button href="/contact" variant="outline-light" size="md" fullWidth>
                   Enquire Now
                 </Button>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -257,7 +293,7 @@ export default function PricingToggleSection({ qual, theme = "light" }: Props) {
             features={qual.comparisonFeatures}
             tiers={qual.pricing}
             billing={billing}
-            theme={theme}
+            theme="light"
           />
         )}
       </SectionWrapper>

@@ -5,6 +5,7 @@ import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import BlobBackground from "@/app/components/ui/BlobBackground";
 
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
@@ -44,7 +45,12 @@ export default function Location() {
     const el = mapRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setMapVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapVisible(true);
+          observer.disconnect();
+        }
+      },
       { rootMargin: "200px" }
     );
     observer.observe(el);
@@ -54,7 +60,7 @@ export default function Location() {
   return (
     <section
       aria-labelledby="location-heading"
-      className="bg-zinc-50 angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px]"
+      className="relative overflow-hidden bg-zinc-50 angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px]"
     >
       <Script
         id="location-structured-data"
@@ -62,8 +68,11 @@ export default function Location() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
       />
 
+      {/* Lava-lamp blobs — sit behind everything; glass panel picks up the colour */}
+      <BlobBackground />
+
       <SectionWrapper>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           <motion.div
             className="lg:col-span-5 flex flex-col items-start"
@@ -119,30 +128,17 @@ export default function Location() {
           </motion.div>
 
           <motion.div
+            ref={mapRef}
             className="lg:col-span-7 w-full"
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
-            {/* ── Paper map mockup ── */}
-            <div className="relative bg-stone-50 p-4 md:p-5 paper-map paper-map-tilt">
-
-              {/* Fold lines — pointer-events-none, sit above the iframe */}
-              <div className="absolute inset-0 pointer-events-none z-20">
-                <div className="absolute top-0 bottom-0 left-1/2 -translate-x-px w-px paper-fold-v" />
-                <div className="absolute left-0 right-0 top-[33.33%] h-px paper-fold-h" />
-                <div className="absolute left-0 right-0 top-[66.66%] h-px paper-fold-h" />
-              </div>
-
-              {/* Corner crease shadows */}
-              <div className="absolute top-0 left-0 w-24 h-24 pointer-events-none z-10 paper-crease-tl" />
-              <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none z-10 paper-crease-tr" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 pointer-events-none z-10 paper-crease-bl" />
-              <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none z-10 paper-crease-br" />
-
-              {/* The actual map */}
-              <div ref={mapRef} className="relative w-full aspect-[4/3] overflow-hidden border border-zinc-300/50 map-vintage">
+            {/* Dark glass map container */}
+            <div className="[backdrop-filter:blur(28px)_saturate(160%)] bg-[#18181B]/[0.12] border border-[#18181B]/[0.18] rounded-3xl p-2 shadow-[0_32px_80px_rgba(0,0,0,0.22),0_8px_24px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-[#18181B]/[0.07]">
+              {/* Map viewport */}
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
                 {mapVisible ? (
                   <iframe
                     title="Complete Fitness Gym Norwich — location map"
@@ -153,21 +149,20 @@ export default function Location() {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 ) : (
-                  <div className="absolute inset-0 bg-stone-100 animate-pulse" />
+                  <div className="absolute inset-0 bg-zinc-100 animate-pulse rounded-2xl" />
                 )}
               </div>
 
-              {/* Legend strip */}
-              <div className="flex items-center justify-between mt-3.5 px-0.5">
+              {/* Caption strip */}
+              <div className="flex items-center justify-between px-3 py-2.5">
                 <div>
-                  <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-[2.5px] leading-none">
+                  <p className="text-zinc-700 text-[10px] font-bold uppercase tracking-[2.5px] leading-none">
                     Complete Fitness Gym
                   </p>
-                  <p className="text-zinc-400 text-[9px] uppercase tracking-[1.5px] leading-none mt-1.5">
+                  <p className="text-zinc-500 text-[9px] uppercase tracking-[1.5px] leading-none mt-1.5">
                     Whiffler Road · Norwich · NR3 2AW
                   </p>
                 </div>
-
                 {/* Compass rose */}
                 <div className="flex flex-col items-center gap-0.5 select-none">
                   <svg width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">

@@ -12,6 +12,8 @@ import CourseFinalCTA from "./CourseFinalCTA";
 import CPDPricingSection from "./CPDPricingSection";
 import PricingToggleSection from "./PricingToggleSection";
 import PricingFAQSection from "./PricingFAQSection";
+import QualificationNav from "./QualificationNav";
+import SkipToPricingButton from "./SkipToPricingButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +40,7 @@ function PricingSection({ qual }: { qual: Qualification }) {
   if (!qual.hasBillingToggle) {
     return <CPDPricingSection qual={qual} theme="dark" />;
   }
-  return <PricingToggleSection qual={qual} theme="light" />;
+  return <PricingToggleSection qual={qual} />;
 }
 
 export default async function QualificationPage({ params }: PageProps) {
@@ -48,6 +50,7 @@ export default async function QualificationPage({ params }: PageProps) {
 
   return (
     <main className="bg-white">
+      <SkipToPricingButton />
       <CourseHero qual={qual} />
       <CourseOverview qual={qual} />
       <CourseModulesSection qual={qual} />
@@ -65,6 +68,7 @@ export default async function QualificationPage({ params }: PageProps) {
       )}
 
       <CourseFinalCTA />
+      <QualificationNav currentSlug={slug} />
     </main>
   );
 }

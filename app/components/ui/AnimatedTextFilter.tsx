@@ -34,7 +34,7 @@ export default function AnimatedTextFilter({
         className={`font-bold transition-colors duration-200 ${labelSize} ${
           isSelected
             ? "text-zinc-950 font-black"
-            : "text-zinc-600 group-hover:text-zinc-800"
+            : "text-zinc-500 group-hover:text-zinc-800"
         }`}
       >
         {label}

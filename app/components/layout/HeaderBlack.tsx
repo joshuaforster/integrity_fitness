@@ -89,17 +89,17 @@ export default function Header() {
     );
 
   const bgClass = mobileMenuOpen
-    ? "backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/80 border-b border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.55)]"
+    ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.70] border-b border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.10)]"
     : scrolled
-      ? "backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/40 border-b border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.07)]"
+      ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.62] border-b border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.10)]"
       : "bg-gradient-to-b from-zinc-950/80 to-transparent";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className={`w-full transition-all duration-300 ${bgClass}`}>
+      <div className={`relative w-full transition-all duration-500 ${bgClass}`}>
         <nav
           aria-label="Global"
-          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+          className="relative z-10 mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         >
           {/* Logo Identity Link */}
           <Link
@@ -113,7 +113,7 @@ export default function Header() {
               height={40}
               alt=""
               priority
-              className="h-auto w-auto object-contain"
+              className="h-auto w-auto object-contain [filter:drop-shadow(0_0_5px_rgba(0,0,0,0.5))_drop-shadow(0_1px_3px_rgba(0,0,0,0.95))]"
             />
           </Link>
 
@@ -140,7 +140,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-white hover:text-white"}`}
+                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 [text-shadow:0_1px_5px_rgba(0,0,0,0.7),0_0_8px_rgba(0,0,0,0.4)] ${active ? "text-white" : "text-white hover:text-white"}`}
                 >
                   <span>{item.name}</span>
                   <span
@@ -155,7 +155,7 @@ export default function Header() {
               <Link
                 href="/qualifications"
                 aria-current={qualActive ? "page" : undefined}
-                className={`relative flex items-center gap-1.5 text-sm font-bold tracking-wide transition-colors duration-200 pb-1 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${qualActive ? "text-white" : "text-white hover:text-white"}`}
+                className={`relative flex items-center gap-1.5 text-sm font-bold tracking-wide transition-colors duration-200 pb-1 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 [text-shadow:0_1px_5px_rgba(0,0,0,0.7),0_0_8px_rgba(0,0,0,0.4)] ${qualActive ? "text-white" : "text-white hover:text-white"}`}
               >
                 <span>Qualifications</span>
                 <ChevronDownIcon className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-200 group-hover:rotate-180" />
@@ -166,7 +166,7 @@ export default function Header() {
 
               {/* Panel Drop Frame */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                <div className="backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/85 border border-white/10 w-[580px] p-6 shadow-[0_24px_64px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.07)] rounded-sm">
+                <div className="[backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.92] border border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.55)] w-[580px] p-6 rounded-xl">
                   <p className="text-white text-[10px] font-black tracking-[4px] uppercase mb-5">
                     Course Directory
                   </p>
@@ -220,7 +220,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 ${active ? "text-white" : "text-white hover:text-white"}`}
+                  className={`relative text-sm font-bold tracking-wide transition-colors duration-200 pb-1 group outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 [text-shadow:0_1px_5px_rgba(0,0,0,0.7),0_0_8px_rgba(0,0,0,0.4)] ${active ? "text-white" : "text-white hover:text-white"}`}
                 >
                   <span>{item.name}</span>
                   <span
@@ -236,7 +236,7 @@ export default function Header() {
       {/* Mobile Accordion Menu System Overlay Drawer */}
       <div
         id="mobile-menu"
-        className={`lg:hidden absolute left-0 right-0 top-full backdrop-blur-[48px] backdrop-saturate-[1.8] bg-zinc-950/90 border-b border-white/10 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_24px_48px_rgba(0,0,0,0.6)]" : "max-h-0 opacity-0 pointer-events-none"}`}
+        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(52px)_saturate(200%)_brightness(1.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.13)_0%,rgba(255,255,255,0.06)_100%)] border-b border-white/[0.18] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_24px_48px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.28)]" : "max-h-0 opacity-0 pointer-events-none"}`}
       >
         <div className="px-6 py-4 space-y-1">
           {NAV_LINKS.slice(0, 2).map((item) => {
@@ -247,7 +247,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
+                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
               >
                 <span>{item.name}</span>
                 {active && (
@@ -261,7 +261,7 @@ export default function Header() {
           })}
 
           {/* Expandable Mobile Sub-Tree */}
-          <div className="border-b border-zinc-900/50">
+          <div className="border-b border-white/[0.08]">
             <button
               type="button"
               onClick={() => setMobileQualOpen(!mobileQualOpen)}
@@ -289,7 +289,7 @@ export default function Header() {
                         setMobileMenuOpen(false);
                         setMobileQualOpen(false);
                       }}
-                      className="block py-2.5 pl-3 text-xs text-white transition-colors border-l border-zinc-800 mb-1 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                      className="block py-2.5 pl-3 text-xs text-white transition-colors border-l border-white/[0.15] mb-1 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                     >
                       {course.name}
                     </Link>
@@ -307,7 +307,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-zinc-900/50 last:border-0 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
+                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] last:border-0 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
               >
                 <span>{item.name}</span>
                 {active && (

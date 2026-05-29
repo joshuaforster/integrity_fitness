@@ -15,7 +15,7 @@ const STATS = [
   },
   {
     type: "image" as const,
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png",
     alt: "CIMSPA",
     width: 130,
     height: 28,
@@ -44,7 +44,7 @@ export default function AboutStats() {
                     width={stat.width}
                     height={stat.height}
                     priority
-                    className={`${stat.alt === "CIMSPA" ? "h-10" : "h-7"} w-auto object-contain block`}
+                    className={`${stat.alt === "CIMSPA" ? "h-12" : "h-7"} w-auto object-contain block`}
                   />
                 </div>
               ) : (

@@ -17,6 +17,7 @@ type ImageStat = {
   theme?: "dark" | "light";
   invert?: boolean;
   containerClass?: string;
+  imageClass?: string;
 };
 
 type StatItemProps = TextStat | ImageStat;
@@ -47,7 +48,7 @@ export default function StatItem(props: StatItemProps) {
           {props.value}
         </p>
       ) : (
-        <div className={`relative flex items-center order-first ${props.containerClass ?? "h-12 w-auto"}`}>
+        <div className={`relative flex items-center order-first overflow-hidden ${props.containerClass ?? "h-12 w-auto"}`}>
           <Image
             src={props.src}
             alt={props.alt}
@@ -56,7 +57,7 @@ export default function StatItem(props: StatItemProps) {
             priority
             className={`h-full w-auto object-contain ${
               props.invert ?? isDark ? "brightness-0 invert" : ""
-            }`}
+            } ${props.imageClass ?? ""}`}
           />
         </div>
       )}

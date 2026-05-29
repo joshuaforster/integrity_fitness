@@ -55,10 +55,11 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
   const bookWrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
+  const R2_BASE = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev";
   const total = bookletPageCount ?? 0;
   const pages = Array.from({ length: total }, (_, i) => {
     const n = String(i + 1).padStart(2, "0");
-    return `/booklet-images/${bookletFolder}/page_${n}.jpg`;
+    return `${R2_BASE}/booklet-images/${bookletFolder}/page_${n}.jpg`;
   });
 
   // Scale the book to fill the actual measured canvas container

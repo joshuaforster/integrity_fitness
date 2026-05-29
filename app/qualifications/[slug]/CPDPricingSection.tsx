@@ -64,6 +64,7 @@ const featureText = {
 export default function CPDPricingSection({ qual, theme = "dark" }: CPDPricingSectionProps) {
   return (
     <section
+      id="pricing-section"
       aria-labelledby="pricing-heading"
       className={`py-20 md:py-24 ${sectionBg[theme]}`}
     >

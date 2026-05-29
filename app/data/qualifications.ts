@@ -190,7 +190,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: true,
     bookletFolder: "level-3-diploma",
     bookletPageCount: 44,
-    bookletPdfPath: "/booklet-images/level-3-diploma/Level3 Diploma .pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/level-3-diploma/Level3%20Diploma%20.pdf",
     testimonials: [
       {
         quote: "I qualified in under a year while working full time. The one-to-one sessions meant I could actually ask questions — not just sit in a room waiting for the tutor to get round to me.",
@@ -316,7 +316,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: true,
     bookletFolder: "level-2-diploma",
     bookletPageCount: 24,
-    bookletPdfPath: "/booklet-images/level-2-diploma/Level2 Diploma.pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/level-2-diploma/Level2%20Diploma.pdf",
     testimonials: [
       {
         quote: "Straightforward, practical, and no fluff. I passed first time and started on the gym floor within a few weeks of finishing.",
@@ -446,7 +446,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: true,
     bookletFolder: "level-3-only",
     bookletPageCount: 30,
-    bookletPdfPath: "/booklet-images/level-3-only/level3only.pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/level-3-only/level3only.pdf",
     testimonials: [
       {
         quote: "I already had my Level 2 and just needed the PT qualification. The programme design module changed how I approach every session with clients.",
@@ -533,7 +533,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: false,
     bookletFolder: "mental-health",
     bookletPageCount: 8,
-    bookletPdfPath: "/booklet-images/mental-health/mentalhealth.pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/mental-health/mentalhealth.pdf",
   },
   {
     slug: "pre-post-natal",
@@ -608,7 +608,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: false,
     bookletFolder: "pre-post-natal",
     bookletPageCount: 12,
-    bookletPdfPath: "/booklet-images/pre-post-natal/pre_post.pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/pre-post-natal/pre_post.pdf",
   },
   {
     slug: "emergency-first-aid",
@@ -683,7 +683,7 @@ const qualifications: Qualification[] = [
     hasBillingToggle: false,
     bookletFolder: "first-aid",
     bookletPageCount: 17,
-    bookletPdfPath: "/booklet-images/first-aid/firstaid.pdf",
+    bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/first-aid/firstaid.pdf",
   },
 ];
 

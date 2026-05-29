@@ -24,7 +24,7 @@ export default function Stats() {
     { type: "counter" as const, value: 2021, label: "Established" },
     { type: "counter" as const, value: combinedYears, label: "Years Combined Teaching" },
     { type: "image" as const, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png", alt: "Active IQ", width: 136, height: 29, label: "Approved Centre" },
-    { type: "image" as const, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp", alt: "CIMSPA", width: 136, height: 136, label: "Accredited Partner", containerClass: "h-16 w-16" },
+    { type: "image" as const, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png", alt: "CIMSPA", width: 136, height: 136, label: "Accredited Partner", containerClass: "h-16 w-16" },
   ];
 
   return (

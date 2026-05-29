@@ -600,10 +600,10 @@ const CATEGORIES = [
 const PAGE_SIZE = 12;
 
 const HERO_IMAGES = [
-  `${NORWICH_URL}/HARRY-GYM-FLOOR-720220124-IFE-TGGNCC019.jpg`,
+  `${NORWICH_URL}/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg`,
+  `${BUCKET_URL}/FITNESS-DISCUSSION-IFE-TGGNHR_006.jpg`,
+  `${CFG_URL}/20230329-IFE-CF_001.JPG`,
   `${BUCKET_URL}/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg`,
-  `${CFG_URL}/IFE%20PT%20COURSE%20ASSESSMENT%20TEAM.JPG`,
-  `${NORWICH_URL}/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg`,
 ];
 
 function emptySubscribe() {
@@ -734,7 +734,7 @@ export default function GalleryGrid() {
           />
         ))}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
+          className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30"
           aria-hidden="true"
         />
         <div

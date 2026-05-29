@@ -9,37 +9,24 @@ export default function DirectContactItem({ channel }: { channel: ContactChannel
   const isExternal = channel.href.startsWith("http");
 
   return (
-    <div className="flex flex-col items-start group">
-      <span className="text-zinc-700 text-[10px] font-black uppercase tracking-[2px] mb-1">
-        {channel.label}
+    <a
+      href={channel.href}
+      className="flex items-start gap-4 p-4 bg-zinc-50 border border-zinc-200 hover:border-zinc-400 hover:bg-white hover:shadow-sm rounded-xl transition-all duration-200 group outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+    >
+      <span className="w-8 h-8 rounded-full bg-[#CE1A19]/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#CE1A19]/20 transition-colors duration-200">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />
       </span>
-
-      <a
-        href={channel.href}
-        className="text-zinc-950 font-black text-lg tracking-wide hover:text-[#CE1A19] transition-colors duration-200 outline-none inline-flex items-center gap-1.5"
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-      >
-        <span>{channel.value}</span>
-        {isExternal && (
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            className="text-zinc-500"
-            aria-hidden="true"
-          >
-            <path d="M7 17L17 7M17 7H7M17 7v10" />
-          </svg>
-        )}
-      </a>
-
-      <p className="text-zinc-700 text-xs font-medium mt-2 leading-relaxed max-w-xs">
-        {channel.description}
-      </p>
-    </div>
+      <div className="min-w-0">
+        <span className="text-[10px] font-black uppercase tracking-[2px] text-zinc-400 block mb-0.5">
+          {channel.label}
+        </span>
+        <span className="text-zinc-950 font-bold text-sm leading-snug group-hover:text-[#CE1A19] transition-colors duration-200 block truncate">
+          {channel.value}
+        </span>
+        <p className="text-zinc-500 text-xs leading-relaxed mt-1">{channel.description}</p>
+      </div>
+    </a>
   );
 }

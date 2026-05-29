@@ -23,7 +23,12 @@ export default function QualificationsPage() {
   return (
     <main className="bg-zinc-50">
       <PageHero
-        image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/ANATOMY-AND-PHYSIOLOGY-EXAM-20220124-IFE-TGGNCC044.jpg"
+        images={[
+          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",
+          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/ANATOMY-AND-PHYSIOLOGY-EXAM-20220124-IFE-TGGNCC044.jpg",
+          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
+        ]}
+        interval={7000}
         label="CIMSPA Accredited"
         title="Qualifications"
         subtitle="One-to-one education built for real careers. Every course delivered personally by Harry."
@@ -79,20 +84,20 @@ export default function QualificationsPage() {
       {/* 2. Continued Professional Development (CPD) */}
       <section
         aria-labelledby="cpd-heading"
-        className="bg-white angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
+        className="bg-[#18181B] texture-dots-dark angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
       >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12 md:mb-16">
-            <p className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-4">
+            <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
               Specialist Upgrades
             </p>
             <h2
               id="cpd-heading"
-              className="text-2xl md:text-4xl font-black text-zinc-950 tracking-tight uppercase leading-none"
+              className="text-2xl md:text-4xl font-black text-white tracking-tight uppercase leading-none"
             >
               Continued Professional Development
             </h2>
-            <div className="w-14 h-1 bg-zinc-200 mt-5" aria-hidden="true" />
+            <div className="w-14 h-1 bg-[#CE1A19] mt-5" aria-hidden="true" />
           </div>
 
           <CPDCourseGrid courses={CPD_COURSES} />

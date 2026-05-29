@@ -15,7 +15,7 @@ const STATS = [
   },
   {
     type: "image",
-    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/cimspa.webp",
+    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png",
     label: "Accredited",
     width: 1580,
     height: 1720,

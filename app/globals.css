@@ -332,6 +332,65 @@ body {
   clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%);
 }
 
+/* ── Liquid Glass System ─────────────────────────────────────────────────── */
+
+/* Clear glass — calm frosted look, no garish reflections */
+.liquid-glass {
+  -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.06);
+  backdrop-filter: blur(40px) saturate(160%) brightness(1.06);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Dark glass — for panels needing legible white text */
+.liquid-glass-dark {
+  -webkit-backdrop-filter: blur(40px) saturate(150%) brightness(0.90);
+  backdrop-filter: blur(40px) saturate(150%) brightness(0.90);
+  background: rgba(10, 10, 18, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Pill / badge glass */
+.glass-pill {
+  -webkit-backdrop-filter: blur(24px) saturate(150%) brightness(1.06);
+  backdrop-filter: blur(24px) saturate(150%) brightness(1.06);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* ── Lava lamp blob animations ───────────────────────────────────────────── */
+@keyframes blob-drift-a {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  25%       { transform: translate(40px, -55px) scale(1.06); }
+  50%       { transform: translate(-25px, 30px) scale(0.96); }
+  75%       { transform: translate(30px, 45px) scale(1.03); }
+}
+@keyframes blob-drift-b {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-50px, 35px) scale(1.08); }
+  66%       { transform: translate(35px, -40px) scale(0.94); }
+}
+@keyframes blob-drift-c {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  40%       { transform: translate(45px, 50px) scale(1.04); }
+  80%       { transform: translate(-35px, -30px) scale(0.97); }
+}
+
+.blob-a { animation: blob-drift-a 28s ease-in-out infinite; will-change: transform; }
+.blob-b { animation: blob-drift-b 34s ease-in-out infinite; will-change: transform; }
+.blob-c { animation: blob-drift-c 22s ease-in-out infinite; will-change: transform; }
+
 /* ── Map vintage filter ─────────────────────────────────────────────────── */
 .map-vintage {
   filter: sepia(0.14) saturate(0.88) brightness(0.97);

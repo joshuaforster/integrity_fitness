@@ -85,6 +85,33 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
               All Qualifications
             </Button>
           </motion.div>
+
+          {/* Accreditation strip */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-8 inline-flex items-center gap-3.5 px-5 py-3 rounded-full [backdrop-filter:blur(16px)_saturate(120%)] bg-white/[0.07] border border-white/[0.12]"
+            aria-label="Approved by Active IQ and CIMSPA"
+          >
+            <span className="text-white/50 text-[9px] font-bold uppercase tracking-[2.5px] whitespace-nowrap">
+              Approved by
+            </span>
+            <div className="w-px h-4 bg-white/20" aria-hidden="true" />
+            <Image
+              src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png"
+              alt="Active IQ"
+              width={64}
+              height={20}
+              className="object-contain h-5 w-auto brightness-0 invert opacity-80"
+            />
+            <div className="w-px h-4 bg-white/20" aria-hidden="true" />
+            <Image
+              src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png"
+              alt="CIMSPA"
+              width={64}
+              height={20}
+              className="object-contain h-5 w-auto brightness-0 invert opacity-80"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

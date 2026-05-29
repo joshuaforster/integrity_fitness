@@ -22,7 +22,7 @@ export default function CredentialCard({ item }: { item: CredentialCard }) {
             width={item.width}
             height={item.height}
             priority
-            className="h-full w-auto max-h-14 object-contain block"
+            className="h-full w-auto max-h-16 object-contain block"
           />
         </div>
         <p className="text-zinc-500 text-xs font-bold uppercase tracking-wider mt-4">

@@ -28,10 +28,10 @@ export default function About() {
   return (
     <>
       <AboutHero />
+      <OurStory />
       <AboutMission />
       <AboutStats />
       <Values />
-      <OurStory />
       <Testimonial />
       <AboutCTA />
     </>
