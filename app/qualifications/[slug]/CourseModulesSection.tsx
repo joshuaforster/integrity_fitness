@@ -22,7 +22,7 @@ export default function CourseModulesSection({
       style={clipPath ? { clipPath } : undefined}
     >
       <SectionWrapper reveal>
-        <div className="mb-12 md:mb-16">
+        <div className="mb-6 md:mb-8">
           <p className="text-white text-xs font-bold tracking-[4px] uppercase mb-2">
             Syllabus
           </p>
@@ -32,7 +32,7 @@ export default function CourseModulesSection({
           >
             What&apos;s Covered
           </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
+          <div className="w-14 h-1 bg-[#CE1A19] mt-4" aria-hidden="true" />
         </div>
 
         <ModulesAccordion

@@ -31,7 +31,7 @@ export default function Home() {
     <>
       <Hero />
       <Marquee />
-      <Missioion />
+      <Mission />
       <Stats />
       <Location />
       <Qualifications />

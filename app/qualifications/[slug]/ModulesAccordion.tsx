@@ -229,22 +229,25 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
 
   const moduleRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Only the first module auto-opens on scroll — the rest require a click
+  // Auto-open first module when it scrolls into view — guard prevents firing on initial paint
   useEffect(() => {
     const el = moduleRefs.current[0];
     if (!el) return;
+    let ready = false;
+    const guard = setTimeout(() => { ready = true; }, 900);
     const obs = new IntersectionObserver(
       ([entry]) => {
+        if (!ready) return;
         if (entry.isIntersecting) {
           setActive(0);
           setOpenIndex(0);
           setPageTarget(startPages[0]);
         }
       },
-      { rootMargin: "-30% 0px -50% 0px", threshold: 0 },
+      { rootMargin: "-15% 0px -40% 0px", threshold: 0 },
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => { clearTimeout(guard); obs.disconnect(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
