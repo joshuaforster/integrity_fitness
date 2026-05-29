@@ -150,9 +150,18 @@ export default function CookieBanner() {
 
             {/* Copy — full white */}
             <p className="text-white/75 text-sm leading-relaxed text-center mb-6">
-              We use cookies. And as any good PT will tell you, all foods&nbsp;—
-              including cookies&nbsp;— can be part of a{" "}
+              We use cookies 🍪 — and as any good PT will tell you, all foods
+              can be part of a{" "}
               <span className="text-white font-bold">healthy, balanced diet.</span>
+              {" "}
+              <a
+                href="https://www.tandfonline.com/doi/full/10.1186/s12970-021-00452-2#d1e920"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/50 hover:text-white underline underline-offset-2 decoration-white/30 hover:decoration-white/60 transition-colors duration-200"
+              >
+                Don&apos;t just take our word for it.
+              </a>
             </p>
 
             {/* CTA */}
