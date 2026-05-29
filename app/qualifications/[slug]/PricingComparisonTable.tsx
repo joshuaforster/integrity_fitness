@@ -38,7 +38,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className={`mt-14 rounded-2xl border overflow-hidden backdrop-blur-sm ${containerBg}`}
+      className={`mt-14 rounded-2xl border overflow-hidden ${containerBg}`}
     >
       <div className={`px-6 py-5 border-b ${rowBorder}`}>
         <p className={`text-[10px] font-bold tracking-[4px] uppercase ${labelColor}`}>

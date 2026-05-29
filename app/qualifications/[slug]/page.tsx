@@ -13,7 +13,6 @@ import CPDPricingSection from "./CPDPricingSection";
 import PricingToggleSection from "./PricingToggleSection";
 import PricingFAQSection from "./PricingFAQSection";
 import QualificationNav from "./QualificationNav";
-import SkipToPricingButton from "./SkipToPricingButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -50,7 +49,6 @@ export default async function QualificationPage({ params }: PageProps) {
 
   return (
     <main className="bg-white">
-      <SkipToPricingButton />
       <CourseHero qual={qual} />
       <CourseOverview qual={qual} />
       <CourseModulesSection qual={qual} />

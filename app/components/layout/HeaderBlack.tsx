@@ -75,7 +75,7 @@ export default function Header() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 80);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -92,7 +92,7 @@ export default function Header() {
     ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.70] border-b border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.10)]"
     : scrolled
       ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.62] border-b border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.10)]"
-      : "bg-gradient-to-b from-zinc-950/80 to-transparent";
+      : "bg-transparent";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -236,7 +236,7 @@ export default function Header() {
       {/* Mobile Accordion Menu System Overlay Drawer */}
       <div
         id="mobile-menu"
-        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(52px)_saturate(200%)_brightness(1.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.13)_0%,rgba(255,255,255,0.06)_100%)] border-b border-white/[0.18] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_24px_48px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.28)]" : "max-h-0 opacity-0 pointer-events-none"}`}
+        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.70] border-b border-white/[0.10] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_16px_48px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.10)]" : "max-h-0 opacity-0 pointer-events-none"}`}
       >
         <div className="px-6 py-4 space-y-1">
           {NAV_LINKS.slice(0, 2).map((item) => {
