@@ -1,5 +1,6 @@
 import { type Qualification } from "@/app/data/qualifications";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import SectionHeader from "@/app/components/ui/SectionHeader";
 import ModulesAccordion from "./ModulesAccordion";
 
 export default function CourseModulesSection({
@@ -23,16 +24,12 @@ export default function CourseModulesSection({
     >
       <SectionWrapper reveal>
         <div className="mb-6 md:mb-8">
-          <p className="text-white text-xs font-bold tracking-[4px] uppercase mb-2">
-            Syllabus
-          </p>
-          <h2
+          <SectionHeader
+            label="Syllabus"
+            heading="What's Covered"
             id="modules-heading"
-            className="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase"
-          >
-            What&apos;s Covered
-          </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-4" aria-hidden="true" />
+            theme="dark"
+          />
         </div>
 
         <ModulesAccordion

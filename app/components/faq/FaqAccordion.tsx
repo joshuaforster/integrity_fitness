@@ -1,6 +1,7 @@
 "use client";
 
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import SectionHeader from "@/app/components/ui/SectionHeader";
 import FaqCategoryNav from "./FaqCategoryNav";
 import FaqGroup, { type FAQGroup } from "./FaqGroup";
 
@@ -62,16 +63,11 @@ export default function FaqAccordion() {
     >
       <SectionWrapper reveal>
         <div className="mb-16 md:mb-24">
-          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
-            Common Inquiries
-          </p>
-          <h2
+          <SectionHeader
+            label="Common Inquiries"
+            heading="Frequently Asked Questions"
             id="faq-main-heading"
-            className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tight uppercase leading-none"
-          >
-            Frequently Asked Questions
-          </h2>
-          <div className="w-14 h-1 bg-[#CE1A19] mt-6" aria-hidden="true" />
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
