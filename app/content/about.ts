@@ -15,7 +15,7 @@ export const aboutStats: AboutStat[] = [
 export const aboutHero = {
   label: "Integrity Fitness Education",
   title: "The ife team",
-  subtitle: "Based in Norwich, Norfolk — we don't just teach qualifications. We build careers that last.",
+  subtitle: "Based in Norwich, Norfolk. You won't just gain a qualification. You'll build a career that lasts.",
   image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-8.jpg",
 } as const;
 
@@ -31,19 +31,19 @@ export const aboutMissionSection = {
 export const valuesSection = {
   label: "What We Stand For",
   heading: "Proven Principles. Tried & Tested Results.",
-  body: "At Integrity, we operate with a clear set of values that shape every course, every session, and every interaction with our students. This isn't just a business — it's a mission.",
+  body: "Every course, every session, every interaction is shaped by the same clear values. This isn't just a business. It's a mission you're part of.",
 } as const;
 
 export const ourStorySection = {
   label: "The People Behind IFE",
   heading: "meet harry & paris",
-  body: "Built on passion, driven by integrity. Two coaches who love what they do.",
+  body: "Coached by people who are still on the gym floor every week. What they know, you'll know.",
   sharedImageAlt: "Harry and Paris, brother and sister, founders of Integrity Fitness Education",
 } as const;
 
 export const testimonialSection = {
   label: "From Our Graduates",
-  quote: "I went from knowing nothing about fitness to running my own PT business within a year. The one-to-one format made all the difference — I actually felt prepared on day one.",
+  quote: "I went from knowing nothing about fitness to running my own PT business within a year. The one-to-one format made all the difference. I actually felt prepared on day one.",
   name: "Jamie T.",
   role: "2024 Graduate",
 } as const;
@@ -59,26 +59,26 @@ export const differentiators: Differentiator[] = [
   {
     title: "1:1 Dedicated Mentorship",
     description:
-      "No crowded classrooms or generic online modules. Your learning architecture is calibrated entirely around you.",
+      "Every session is shaped around how you learn, at the pace that works for you. You're never just a name on a register.",
   },
   {
     title: "Norwich Fitness Infrastructure",
     description:
-      "Rooted in Norfolk, training in-person at a premier local facility. Built directly for our regional health community.",
+      "You'll train at a real, fully equipped gym in Norwich, building practical skills in the environment you'll actually work in.",
   },
   {
     title: "Sovereignty Over Your Time",
     description:
-      "Engineered completely around your current work commitments, personal schedule, and natural learning velocity.",
+      "Your study fits around your life. Work full time, study part time, and move at whatever pace suits you.",
   },
   {
     title: "Continuous Career Access",
     description:
-      "An active professional network that supports your commercial lead generation long after your diploma wraps.",
+      "You stay connected to an active network of coaches and clients, giving you a real head start when you go it alone.",
   },
 ];
 
 export const missionParagraphs = [
-  "Since 2021, Integrity Fitness Education has been rewriting the rules of personal training education in Norwich, Norfolk. Where others offer courses, we offer transformation — the kind that sticks.",
-  "Harry founded IFE after seeing firsthand how impersonal and inadequate the standard fitness education model was. Every decision since has been made with one question in mind: what gives our students the best possible chance of building a career they love?",
+  "Since 2021, people across Norwich and Norfolk have left IFE not just with a qualification, but ready to actually use it. You build the confidence, the skills, and the career foundation from day one.",
+  "Harry built IFE around one question: what gives you the best possible chance of building a career you love? Every decision since has been made with that answer in mind.",
 ];

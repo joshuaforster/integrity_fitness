@@ -1,9 +1,9 @@
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
 export const hero = {
-  eyebrow: "Integrity Fitness Education · Norwich, Norfolk · Est. 2021",
+  eyebrow: "Personal Training Course Provider | Norwich, Norfolk",
   heading: "Become The Personal Trainer You Wish You Had",
-  body: "The fitness industry needs people like you. We're here to make that happen.",
+  body: "The fitness industry needs people like you. Here's how you make it happen.",
   primaryButton: { label: "Become A Personal Trainer", href: "/qualifications/become-a-personal-trainer" },
   secondaryButton: { label: "Meet Harry & Paris", href: "/about#our-story" },
   videoSrc: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Integrity%2016-9.mp4",
@@ -42,7 +42,7 @@ export const statsAccreditations: StatsSectionImage[] = [
 ];
 
 export const statsCopy = [
-  "The best coaches are relatable. They've been where their clients are and that's exactly the kind of coach you're going to become",
+  "You don't need to be the strongest in the room. You need to have been where your clients are. That's the coach we'll build together.",
 ];
 // ── Course listings ───────────────────────────────────────────────────────────
 
@@ -61,19 +61,19 @@ export const mainCourses: MainCourse[] = [
   {
     title: "Combined Level 2 & 3 Personal Training Diploma",
     description:
-      "The fast-track ultimate industry standard. Everything you need to launch a fully accredited personal training career from zero experience.",
+      "You'll go from zero experience to fully qualified in one integrated programme, graduating with everything you need to work with real clients from day one.",
     href: "/qualifications/become-a-personal-trainer",
   },
   {
     title: "Level 2 Gym Instructor Certificate",
     description:
-      "The essential foundational step into fitness coaching. Qualify to manage gym floors and lead group fitness inductions safely.",
+      "Your first step into the fitness industry. You'll leave qualified to work safely on any gym floor and run client inductions with confidence.",
     href: "/qualifications/level-2-gym-instructor",
   },
   {
     title: "Level 3 Personal Training Qualification",
     description:
-      "Already hold a Level 2? Elevate your skill architecture, master advanced exercise programming, and open your client roster.",
+      "Already hold a Level 2? This is where you become a personal trainer. You'll graduate with the skills, knowledge, and qualification to start building your own client base.",
     href: "/qualifications/level-3-personal-training",
   },
 ];
@@ -87,13 +87,12 @@ export const cpdCourses: CPDCourse[] = [
 // ── Marquee ───────────────────────────────────────────────────────────────────
 
 export const marqueeItems = [
-  "CIMSPA Accredited",
-  "1:1 Learning",
-  "Active IQ",
-  "Norwich, Norfolk",
-  "Real Results",
-  "Industry Leading",
-  "Career Ready",
+  "Learn 1:1, Never In A Crowd",
+  "Taught By Coaches Who Still Coach",
+  "Get Clients, Not Just A Cert",
+  "Based In Norwich, Norfolk",
+  "Real Experience, Not Just Theory",
+  "Become The Coach You'd Want",
 ] as const;
 
 // ── Section copy ──────────────────────────────────────────────────────────────
@@ -114,9 +113,15 @@ export const statsSection = {
 export const qualificationsSection = {
   label: "Here's How",
   heading: "Find where you fit.",
-  body: "New to fitness, partway there, or already qualified? Wherever you're starting from, we've got you covered.",
+  bodyIntro: "You don't need to have it all figured out.",
+  bodyItems: [
+    { question: "Starting from scratch?", answer: "The Diploma builds you up from nothing." },
+    { question: "Already got your Level 2?", answer: "Level 3 is your next step." },
+    { question: "Just need to get qualified and working?", answer: "Level 2 is enough." },
+  ],
+  bodyOutro: "Not sure yet? Give us a shout. No daft questions, no pressure.",
   cpdLabel: "Continued Professional Development",
-  notSureBody: "Pick the course that fits where you are — we'll take it from there.",
+  notSureBody: "Pick the course that fits where you are. We'll take it from there.",
   button1: { label: "See All Qualifications", href: "/qualifications" },
   button2: { label: "Get In Touch", href: "/contact" },
   viewCourse: "View Course",
@@ -126,7 +131,7 @@ export const qualificationsSection = {
       badge: "Most Popular" as string | null,
       level: "Level 2 & 3",
       title: "Combined Personal Training Diploma",
-      body: "Zero to fully qualified PT in one integrated programme — the most direct route into a personal training career.",
+      body: "Walk in with nothing, walk out a fully qualified PT. It's the most direct route to coaching clients of your own.",
       href: "/qualifications/become-a-personal-trainer",
       cpd: false,
     },
@@ -134,7 +139,7 @@ export const qualificationsSection = {
       badge: null as string | null,
       level: "Level 2",
       title: "Gym Instructor Certificate",
-      body: "The industry-standard first step. Qualify to instruct on any gym floor safely and professionally.",
+      body: "Your first foot in the door. You'll be ready to coach confidently on any gym floor, knowing exactly how to keep people safe.",
       href: "/qualifications/level-2-gym-instructor",
       cpd: false,
     },
@@ -142,7 +147,7 @@ export const qualificationsSection = {
       badge: null as string | null,
       level: "Level 3",
       title: "Personal Training Qualification",
-      body: "Already have a Level 2? This is where you become a personal trainer and open your client roster.",
+      body: "Already got your Level 2? This is where you become a personal trainer and start building clients of your own.",
       href: "/qualifications/level-3-personal-training",
       cpd: false,
     },
@@ -150,7 +155,7 @@ export const qualificationsSection = {
       badge: null as string | null,
       level: "CPD",
       title: "Continued Professional Development",
-      body: "Specialist short courses to expand your skills and serve a wider range of clients.",
+      body: "Pick up specialist skills that let you say yes to more clients, and stand out from every other trainer in the room.",
       href: "/qualifications",
       cpd: true,
     },
@@ -160,7 +165,7 @@ export const qualificationsSection = {
 export const newsletterSection = {
   label: "Stay Updated",
   heading: "Join Our Newsletter",
-  body: "Be the first to hear about new courses, industry tips, and career advice straight from our qualified trainers.",
+  body: "Be the first to hear about new courses, industry tips, and career advice, delivered straight to your inbox.",
   nameLabel: "Your Name",
   namePlaceholder: "Your name",
   emailLabel: "Email Address",
@@ -171,19 +176,19 @@ export const newsletterSection = {
 
 export const locationSection = {
   label: "Find Us",
-  heading: "Based At Complete Fitness Gym, Norwich",
-  body: "Our courses are delivered in person at Complete Fitness Gym on Whiffler Road, a fully equipped facility with everything you need to train and qualify properly.",
+  heading: "Getting Here Is Simple.",
+  body: "You've got a full day of learning ahead. The last thing you need is a stressful journey in.",
   addressLine1: "Complete Fitness Gym, Whiffler Road",
   addressLine2: "Norwich, Norfolk, NR3 2AW",
   directionsButton: "Get Directions",
   directionsHref: "https://www.google.com/maps?...",
-  mapTitle: "Complete Fitness Gym Norwich — location map",
+  mapTitle: "Complete Fitness Gym Norwich, location map",
   mapCaption: "Complete Fitness Gym",
   mapAddress: "Whiffler Road · Norwich · NR3 2AW",
   practicalInfo: [
-    { label: "Parking", detail: "Free on-site parking available" },
-    { label: "Bus", detail: "Routes 26 & 27 stop on Whiffler Road" },
-    { label: "Train", detail: "15 mins from Norwich Station by bus or taxi" },
+    { label: "Driving", detail: "Free on-site parking. Pull up, walk straight in." },
+    { label: "Bus", detail: "Routes 26 & 27 stop on Whiffler Road — right outside the door." },
+    { label: "Train", detail: "Norwich Station is an 18-minute walk or a 5-minute taxi ride." },
   ],
 } as const;
 
@@ -217,8 +222,8 @@ export const missionImages = [
 ] as const;
 
 export const missionCopy = [
-  "Harry and Paris care about one thing, where you end up. Every session is built around real gym floor experience, the stuff that matters when you're standing in front of a paying client.",
-  "Both Harry and Paris have their own clients and are on the gym floor most days. The experience they bring goes further than any textbook."
+  "Harry and Paris care about one thing: where you end up. Both have their own clients. So every session is built around real experience, the stuff that matters when you're standing in front of a paying client.",
+  "We focus on what actually counts. Your client won't ask what the Sternocleidomastoid is, but they'll want to know they are doing a safe squat or deadlift. That's what you'll learn.",
 ];
 
 // ── CTA panels ────────────────────────────────────────────────────────────────
@@ -239,7 +244,7 @@ export const ctaPanels: CTAPanelData[] = [
     cta: "About Us",
     href: "/about",
     image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/harry.webp",
-    alt: "Harry Matthews — Lead Instructor at Integrity Fitness Education",
+    alt: "Harry Matthews, Lead Instructor at Integrity Fitness Education",
   },
   {
     label: "Norwich, Norfolk",
@@ -247,6 +252,6 @@ export const ctaPanels: CTAPanelData[] = [
     cta: "Contact Us",
     href: "/contact",
     image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/paris.webp",
-    alt: "Paris Matthews — Co-Founder at Integrity Fitness Education",
+    alt: "Paris Matthews, Co-Founder at Integrity Fitness Education",
   },
 ];

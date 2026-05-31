@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
@@ -7,6 +8,37 @@ import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import BlobBackground from "@/app/components/ui/BlobBackground";
 import { locationSection } from "@/app/content/home";
+
+const TRANSPORT_ICONS: Record<string, React.ReactNode> = {
+  Driving: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M5 11l1.5-4.5h11L19 11" />
+      <rect x="2" y="11" width="20" height="7" rx="2" />
+      <circle cx="7" cy="18" r="2" />
+      <circle cx="17" cy="18" r="2" />
+    </svg>
+  ),
+  Bus: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="3" y="4" width="18" height="14" rx="2" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <circle cx="8" cy="19" r="1.5" />
+      <circle cx="16" cy="19" r="1.5" />
+      <line x1="8" y1="4" x2="8" y2="2" />
+      <line x1="16" y1="4" x2="16" y2="2" />
+    </svg>
+  ),
+  Train: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="4" y="2" width="16" height="16" rx="3" />
+      <line x1="4" y1="10" x2="20" y2="10" />
+      <circle cx="9" cy="15" r="1.5" />
+      <circle cx="15" cy="15" r="1.5" />
+      <line x1="7" y1="22" x2="10" y2="18" />
+      <line x1="17" y1="22" x2="14" y2="18" />
+    </svg>
+  ),
+};
 
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
@@ -61,7 +93,7 @@ export default function Location() {
   return (
     <section
       aria-labelledby="location-heading"
-      className="relative overflow-hidden bg-zinc-50 angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px]"
+      className="relative overflow-hidden bg-white texture-diag-light angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[184px]"
     >
       <Script
         id="location-structured-data"
@@ -89,11 +121,25 @@ export default function Location() {
               headingSize="sm"
             />
 
-            <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8 mt-8">
+            <p className="text-zinc-600 text-base md:text-lg leading-relaxed mt-8 mb-6">
               {locationSection.body}
             </p>
 
-            <address className="not-italic mb-8 space-y-3">
+            <ul className="mb-8 space-y-3">
+              {locationSection.practicalInfo.map((item) => (
+                <li key={item.label} className="flex items-start gap-3">
+                  <span className="mt-0.5 shrink-0 text-[#CE1A19]">
+                    {TRANSPORT_ICONS[item.label]}
+                  </span>
+                  <span className="text-zinc-700 text-sm md:text-base leading-relaxed">
+                    <strong className="text-zinc-900 font-bold">{item.label}:</strong>{" "}
+                    {item.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <address className="not-italic mb-8">
               <div className="flex items-start gap-3">
                 <motion.span
                   aria-hidden="true"

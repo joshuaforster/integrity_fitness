@@ -16,7 +16,7 @@ export const faqCategoryNavLabel = "Syllabus Categories";
 export const faqCta = {
   label: "Still Have Questions?",
   heading: "We're Here To Help",
-  body: "Can't find the exact answer you need? Get in touch directly and our trainers will answer your queries.",
+  body: "Can't find the answer you need? Get in touch directly and Harry will get back to you personally.",
   button1: { label: "Get In Touch", href: "/contact" },
   button2: { label: "Email Us Directly", href: "mailto:harry@integrityfitness.education" },
 } as const;
@@ -73,11 +73,11 @@ export const faqs: FAQGroup[] = [
     items: [
       {
         q: "Can I complete the course while working or at University?",
-        a: "Yes. The vast majority of the theory architecture is delivered online. We couple this with targeted in-person practical weekend workshops tailored around your current commercial schedule.",
+        a: "Yes. Most of the theory is delivered online, so you can work through it in your own time. We then bring you in for practical sessions at weekends, arranged around your existing commitments.",
       },
       {
         q: "How will I be assessed on the course?",
-        a: "Practical engineering competencies are assessed in person at our dedicated Norwich facility. Your theoretical units feature multiple-choice examinations that you can complete securely online.",
+        a: "Your practical skills are assessed in person at our gym in Norwich. Theory is tested through multiple-choice exams that you complete online, whenever works for you.",
       },
     ],
   },
@@ -94,7 +94,7 @@ export const pricingFaqs: FAQItem[] = [
   },
   {
     q: "How does annual billing differ from monthly, and what do I save?",
-    a: "Annual billing pays the full course fee upfront in a single payment at a reduced rate — equivalent to approximately two months free compared to the monthly plan. Your access, support, and course materials are identical either way.",
+    a: "Annual billing pays the full course fee upfront in a single payment at a reduced rate, equivalent to approximately two months free compared to the monthly plan. Your access, support, and course materials are identical either way.",
   },
   {
     q: "What if I need to pause or extend my studies?",

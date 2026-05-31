@@ -21,8 +21,9 @@ import Mission from "./components/home/Mission";
 import Stats from "./components/home/Stats";
 import Location from "./components/home/Location";
 import Qualifications from "./components/home/Qualifications";
+import SectionBreak from "./components/ui/SectionBreak";
 import Testimonials from "./components/home/Testimonials";
-import CTAPanels from "./components/home/CTAPanels";
+
 import Newsletter from "./components/home/NewsLetter";
 
 
@@ -31,12 +32,13 @@ export default function Home() {
     <>
       <Hero />
       <Marquee />
+      <SectionBreak />
       <Qualifications />
-      <Testimonials />
       <Mission />
       <Stats />
+      <Testimonials />
       <Location />
-      <CTAPanels />
+      {/* <CTAPanels /> */}
       <Newsletter />
     </>
   );

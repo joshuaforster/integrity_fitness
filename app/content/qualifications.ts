@@ -51,14 +51,14 @@ const qualifications: Qualification[] = [
     level: "Level 2 & 3",
     category: "personal-training",
     awardingBody: "Active IQ",
-    duration: "Flexible — study at your own pace",
+    duration: "Flexible: study at your own pace",
     durationMonths: "6–12 months",
     tagline: "The fastest route from zero to fully qualified personal trainer.",
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg",
     badge: "Most Popular",
     overview: [
-      "Our Combined Level 2 & 3 Diploma is the most direct path to becoming a fully qualified personal trainer. Rather than taking the two qualifications separately, you complete both in a single integrated programme — saving you time and money without cutting corners on quality.",
-      "Delivered entirely one-to-one with Harry, every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students — it is personal education in the truest sense.",
+      "The Combined Level 2 & 3 Diploma is the most direct path to becoming a fully qualified personal trainer. Rather than taking the two qualifications separately, you complete both in a single integrated programme, saving you time and money without cutting corners on quality.",
+      "Delivered entirely one-to-one with Harry, every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students. It is personal education in the truest sense.",
       "On completion you will hold a CIMSPA-accredited, internationally recognised qualification that opens the door to employment in gyms, leisure centres, and independent personal training practice.",
     ],
     whatYouWillLearn: [
@@ -158,7 +158,7 @@ const qualifications: Qualification[] = [
         name: "Full Time",
         price: { monthly: 119.99, yearly: 1799 },
         deposit: 499,
-        description: "The best possible learning experience — the fastest route to qualified.",
+        description: "The best possible learning experience: the fastest route to qualified.",
         includes: [
           "Personalised Graduate T-Shirt Upon Completion",
           "Business Mentorship",
@@ -193,7 +193,7 @@ const qualifications: Qualification[] = [
     bookletPdfPath: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/booklet-images/level-3-diploma/Level3%20Diploma%20.pdf",
     testimonials: [
       {
-        quote: "I qualified in under a year while working full time. The one-to-one sessions meant I could actually ask questions — not just sit in a room waiting for the tutor to get round to me.",
+        quote: "I qualified in under a year while working full time. The one-to-one sessions meant I could actually ask questions, not just sit in a room waiting for the tutor to get round to me.",
         name: "Jamie R.",
         role: "Now a qualified PT",
       },
@@ -216,13 +216,13 @@ const qualifications: Qualification[] = [
     level: "Level 2",
     category: "personal-training",
     awardingBody: "Active IQ",
-    duration: "Flexible — study at your own pace",
+    duration: "Flexible: study at your own pace",
     durationMonths: "3–6 months",
-    tagline: "Your first step into the fitness industry — the right way.",
+    tagline: "Your first step into the fitness industry, done the right way.",
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-AND-PARIS-20220124-IFE-TGGNCC002.jpg",
     overview: [
       "The Level 2 Gym Instructor Certificate is the industry-standard entry qualification for anyone looking to begin a career in fitness. It equips you with everything you need to work safely and effectively on a gym floor.",
-      "Delivered one-to-one with Harry, you will build a genuine foundation of knowledge — anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
+      "Delivered one-to-one with Harry, you will build a genuine foundation of knowledge: anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
       "If you already know you want to go further, you can upgrade to the Combined Level 2 & 3 Diploma at any point and the cost of this course will be credited against it.",
     ],
     whatYouWillLearn: [
@@ -269,7 +269,7 @@ const qualifications: Qualification[] = [
       {
         name: "Independent",
         price: { monthly: 149, yearly: 1490 },
-        description: "Fully self-paced, online study. All course materials and written assessments — no one-to-one sessions. Best suited to highly self-directed learners.",
+        description: "Fully self-paced online study with all course materials and written assessments included. Best for self-directed learners who prefer to work independently.",
         includes: [
           "Full Level 2 course materials",
           "Online learning portal access",
@@ -292,7 +292,7 @@ const qualifications: Qualification[] = [
       {
         name: "Full Time",
         price: { monthly: 219, yearly: 2190 },
-        description: "Intensive study — the fastest route to qualified.",
+        description: "Intensive study: the fastest route to qualified.",
         includes: [
           "Everything in Part Time",
           "Multiple sessions per week",
@@ -337,12 +337,12 @@ const qualifications: Qualification[] = [
     level: "Level 3",
     category: "personal-training",
     awardingBody: "Active IQ",
-    duration: "Flexible — study at your own pace",
+    duration: "Flexible: study at your own pace",
     durationMonths: "6–9 months",
     tagline: "Already have your Level 2? This is where you become a personal trainer.",
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
     overview: [
-      "The Level 3 Personal Training Qualification is designed for those who already hold a Level 2 Gym Instructor certificate and are ready to take the next step. This is the qualification that allows you to work with clients independently — designing programmes, coaching sessions, and building a business.",
+      "The Level 3 Personal Training Qualification is designed for those who already hold a Level 2 Gym Instructor certificate and are ready to take the next step. This is the qualification that allows you to work with clients independently, designing programmes, coaching sessions, and building a business.",
       "Working one-to-one with Harry, you will develop advanced coaching skills, programme design knowledge, and the commercial understanding needed to thrive as a self-employed personal trainer.",
       "The qualification is CIMSPA accredited and internationally recognised, meaning your certification is respected wherever your career takes you.",
     ],
@@ -399,7 +399,7 @@ const qualifications: Qualification[] = [
       {
         name: "Independent",
         price: { monthly: 175, yearly: 1750 },
-        description: "Fully self-paced, online study. All course materials and written assessments — no one-to-one sessions. Best suited to highly self-directed learners.",
+        description: "Fully self-paced online study with all course materials and written assessments included. Best for self-directed learners who prefer to work independently.",
         includes: [
           "Full Level 3 course materials",
           "Online learning portal access",
@@ -422,7 +422,7 @@ const qualifications: Qualification[] = [
       {
         name: "Full Time",
         price: { monthly: 259, yearly: 2590 },
-        description: "Intensive study — the fastest route to qualified.",
+        description: "Intensive study: the fastest route to qualified.",
         includes: [
           "Everything in Part Time",
           "Multiple sessions per week",
@@ -454,7 +454,7 @@ const qualifications: Qualification[] = [
         role: "Now self-employed PT",
       },
       {
-        quote: "The business skills section was a genuine surprise — actually useful for understanding how to run a PT business, not just train people.",
+        quote: "The business skills section was a genuine surprise. Actually useful for understanding how to run a PT business, not just train people.",
         name: "Marcus T.",
         role: "PT business owner",
       },
@@ -575,7 +575,7 @@ const qualifications: Qualification[] = [
         title: "Postnatal Training",
         topics: [
           "Postnatal recovery timeline",
-          "Diastasis recti — identification and management",
+          "Diastasis recti: identification and management",
           "Returning to exercise safely",
           "Adapting sessions for sleep deprivation and fatigue",
         ],
@@ -621,7 +621,7 @@ const qualifications: Qualification[] = [
     tagline: "The first aid qualification every fitness professional needs.",
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/CFG%20Group%20induction%20final%20edits/20230329-IFE-CF_001.JPG",
     overview: [
-      "Emergency First Aid at Work (EFAW) is a one-day qualification that equips you to respond quickly and effectively in an emergency. For fitness professionals it is not just good practice — many employers require it, and many insurance providers expect it.",
+      "Emergency First Aid at Work (EFAW) is a one-day qualification that equips you to respond quickly and effectively in an emergency. For fitness professionals it is not just good practice, many employers require it and many insurance providers expect it.",
       "The course covers CPR, the use of an AED, management of common emergency situations, and the practical skills to keep someone safe until the emergency services arrive.",
       "The Level 3 Award in Emergency First Aid at Work is Ofqual regulated, HSE-compliant, and valid for three years.",
     ],

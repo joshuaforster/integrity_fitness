@@ -10,7 +10,7 @@ export default function Newsletter() {
   return (
     <section
       aria-labelledby="newsletter-heading"
-      className="bg-zinc-900 texture-diag-dark angle-tr-lg pb-20 md:pb-24 pt-[152px] md:pt-[168px]"
+      className="bg-zinc-900 texture-diag-dark angle-tl-lg pb-20 md:pb-24 pt-[152px] md:pt-[168px]"
     >
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

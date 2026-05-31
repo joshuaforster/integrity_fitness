@@ -129,6 +129,24 @@ export default function Hero() {
           <HeroStats />
         </div>
       </div>
+
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none select-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2, duration: 0.7 }}
+      >
+        <span className="text-white/30 text-[10px] font-mono uppercase tracking-[0.15em]">scroll</span>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+          className="w-5 h-5 border border-white/20 rounded-full flex items-center justify-center"
+        >
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none" className="text-white/40" aria-hidden>
+            <path d="M1 1.5L4 4.5L7 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

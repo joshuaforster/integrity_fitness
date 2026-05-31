@@ -61,17 +61,35 @@ function Avatar({
 }) {
   const sizeClass =
     size === "sm" ? "w-10 h-10" : size === "lg" ? "w-20 h-20" : "w-14 h-14";
-  const src =
-    photo ??
-    `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(name)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`;
+  const textSize =
+    size === "sm" ? "text-xs" : size === "lg" ? "text-xl" : "text-sm";
+  const initials = name
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+
+  if (photo) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={photo}
+        alt={name}
+        className={`${sizeClass} border border-zinc-200 bg-zinc-100 rounded-full shrink-0 object-cover`}
+      />
+    );
+  }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt={name}
-      className={`${sizeClass} border border-zinc-200 bg-zinc-100 rounded-full shrink-0 object-cover`}
-    />
+    <div
+      className={`${sizeClass} border border-zinc-200 bg-zinc-100 rounded-full shrink-0 flex items-center justify-center`}
+      aria-label={name}
+    >
+      <span className={`${textSize} font-black text-zinc-500 select-none`}>
+        {initials}
+      </span>
+    </div>
   );
 }
 
@@ -109,17 +127,7 @@ export default function StackedTestimonials({
   const current = items[currentIndex];
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-28 bg-zinc-50 texture-dots-light overflow-hidden w-full">
-      {/* Slanted top divider */}
-      <div className="absolute top-0 left-0 w-full pointer-events-none select-none" aria-hidden>
-        <svg
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          className="w-full block h-[50px] sm:h-[70px] lg:h-[90px]"
-        >
-          <polygon points="0,0 1440,0 0,80" fill="white" />
-        </svg>
-      </div>
+    <section className="relative pt-[152px] md:pt-[168px] pb-16 md:pb-24 bg-zinc-50 texture-grid-light angle-tl-lg overflow-hidden w-full">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative">
         {/* Left: heading */}
         <div className="lg:col-span-5 text-left flex flex-col items-start w-full">
@@ -238,7 +246,7 @@ export default function StackedTestimonials({
             </div>
 
             {/* Card stack: 2 static ghost cards + 1 animated front card */}
-            <div className="relative w-full h-[370px] sm:h-[330px]">
+            <div className="relative w-full h-[380px]">
               {/* Ghost card 2 (furthest back) */}
               <div
                 aria-hidden
@@ -283,7 +291,7 @@ export default function StackedTestimonials({
                     if (info.offset.x < -80) handleNext();
                     else if (info.offset.x > 80) handlePrev();
                   }}
-                  className="absolute inset-0 bg-white border border-zinc-200 p-5 sm:p-6 md:p-8 rounded-2xl flex flex-col justify-between overflow-hidden cursor-grab active:cursor-grabbing"
+                  className="absolute inset-0 bg-white border border-zinc-200 p-5 sm:p-6 md:p-8 rounded-2xl flex flex-col justify-start gap-4 overflow-hidden cursor-grab active:cursor-grabbing"
                 >
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CE1A19] rounded-t-2xl" />
 
@@ -296,12 +304,12 @@ export default function StackedTestimonials({
 
                   <div className="w-full">
                     <Stars />
-                    <p className="text-zinc-700 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium line-clamp-4 sm:line-clamp-4 pr-3">
+                    <p className="text-zinc-700 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium pr-3">
                       {current.body}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-100 mt-auto w-full">
+                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-100 w-full">
                     <Avatar name={current.name} photo={current.photo} size="lg" />
                     <div className="min-w-0">
                       <p className="text-sm font-black text-zinc-900 tracking-wide leading-none truncate">

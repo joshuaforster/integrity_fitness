@@ -83,7 +83,7 @@ export default function Qualifications() {
   return (
     <section
       aria-labelledby="qualifications-heading"
-      className="bg-white texture-grid-light py-16 md:py-24 border-t border-zinc-200/60"
+      className="bg-white texture-grid-light py-16 md:py-24"
     >
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -101,9 +101,18 @@ export default function Qualifications() {
               id="qualifications-heading"
               headingSize="lg"
             />
-            <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-md mt-8">
-              {qualificationsSection.body}
-            </p>
+            <div className="space-y-4 text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-md mt-8">
+              <p>{qualificationsSection.bodyIntro}</p>
+              <ul className="space-y-2">
+                {qualificationsSection.bodyItems.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#CE1A19]" />
+                    <span><strong className="text-zinc-900">{item.question}</strong> {item.answer}</span>
+                  </li>
+                ))}
+              </ul>
+              <p>{qualificationsSection.bodyOutro}</p>
+            </div>
             <div className="flex flex-row  gap-3">
               <Button href={qualificationsSection.button1.href} variant="primary" className="whitespace-nowrap">
                 {qualificationsSection.button1.label}

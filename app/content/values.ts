@@ -7,16 +7,16 @@ export const values: ValueContent[] = [
   {
     title: "Honesty",
     description:
-      "We are defined by honesty and strong moral principles. Everything we do is transparent, straightforward, and in the absolute best interest of our student roster.",
+      "You'll always know where you stand. Everything is transparent, straightforward, and in your absolute best interest.",
   },
   {
     title: "Excellence",
     description:
-      "We hold ourselves to the highest technical benchmarks in fitness education. Our material goes far beyond basic syllabus criteria to construct industry-ready coaches.",
+      "You'll be held to the highest technical benchmarks in fitness education, with material that goes far beyond the basic syllabus to make you industry-ready.",
   },
   {
     title: "Community",
     description:
-      "We believe elite skill development happens together. Our students gain lifelong access to an integrated professional network built to collaborate over career metrics.",
+      "Learning is better alongside others. You gain lifelong access to a community of coaches and clients that supports your career long after you qualify.",
   },
 ];
