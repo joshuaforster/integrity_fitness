@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import HeroStats from "./HeroStats";
+import { hero } from "@/app/content/home";
 
 const container: Variants = {
   hidden: {},
@@ -65,7 +66,7 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover [filter:contrast(1.08)_saturate(1.15)_brightness(1.02)]"
         >
           <source
-            src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Integrity%2016-9.mp4"
+            src={hero.videoSrc}
             type="video/mp4"
           />
         </video>
@@ -78,17 +79,17 @@ export default function Hero() {
           <motion.div variants={container} initial="hidden" animate="visible">
             <motion.p
               variants={fadeUp}
-              className="flex items-center gap-3 text-white text-xs font-semibold tracking-[4px] uppercase mb-4"
+              className="flex items-center gap-3 text-white text-xs font-semibold tracking-widest uppercase mb-4"
             >
               <span className="w-6 h-px bg-[#CE1A19] flex-shrink-0" />
-              Integrity Fitness Education · Norwich, Norfolk
+              {hero.eyebrow}
             </motion.p>
 
             <h1
               id="hero-heading"
               className="text-4xl md:text-5xl font-bold leading-tight max-w-2xl mb-4 text-white"
             >
-              Raising The Standards Of Personal Training Qualifications
+              {hero.heading}
             </h1>
 
             <motion.div
@@ -100,9 +101,7 @@ export default function Hero() {
             <p
               className="text-white max-w-lg leading-relaxed mb-8 text-base md:text-lg"
             >
-              One-to-one learning like no other. We prepare the next generation
-              of personal trainers to enter the fitness industry with
-              confidence.
+              {hero.body}
             </p>
 
             <motion.div
@@ -110,18 +109,19 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button
-                href="#courses"
+                href={hero.primaryButton.href}
                 variant="outline-hero"
-                className="w-full sm:w-auto bg-[#CE1A19]"
+                responsive
+                className="bg-[#CE1A19]"
               >
-                Become A Personal Trainer
+                {hero.primaryButton.label}
               </Button>
               <Button
-                href="#qualifications"
+                href={hero.secondaryButton.href}
                 variant="outline-hero"
-                className="w-full sm:w-auto"
+                responsive
               >
-                View Qualifications
+                {hero.secondaryButton.label}
               </Button>
             </motion.div>
           </motion.div>

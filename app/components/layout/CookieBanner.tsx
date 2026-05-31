@@ -1,27 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import PdfIpadModal from "@/app/components/ui/PdfIpadModal";
 
 const KEY = "ife-cookies-v1";
 
-const COPY = (
-  <>
-    We use cookies 🍪 — and as any good PT will tell you, all foods can be part of a{" "}
-    <span className="font-bold text-white">healthy, balanced diet.</span>{" "}
-    <a
-      href="https://pubmed.ncbi.nlm.nih.gov/11883916/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-white underline underline-offset-2 decoration-white/50 hover:decoration-white transition-all duration-200"
-    >
-      Don&apos;t just take our word for it.
-    </a>
-  </>
-);
+function CookieText({ onOpenPdf }: { onOpenPdf: () => void }) {
+  return (
+    <>
+      We use cookies 🍪 — and as any good PT will tell you, all foods can be part of a{" "}
+      <span className="font-bold text-white">healthy, balanced diet.</span>{" "}
+      <button
+        type="button"
+        onClick={onOpenPdf}
+        className="text-white underline underline-offset-2 decoration-white/50 hover:decoration-white transition-colors duration-200"
+      >
+        Don&apos;t just take our word for it.
+      </button>
+    </>
+  );
+}
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
+  const [pdfOpen, setPdfOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -67,22 +70,22 @@ export default function CookieBanner() {
           <div className="flex items-start gap-3">
             <span className="text-2xl select-none leading-none flex-shrink-0 mt-0.5" aria-hidden="true">🍪</span>
             <div className="min-w-0">
-              <p className="text-white text-[11px] font-black uppercase tracking-[3px] mb-1">Cookie Policy</p>
-              <p className="text-white/75 text-xs leading-relaxed">{COPY}</p>
+              <p className="text-white text-xs font-black uppercase tracking-widest mb-1">Cookie Policy</p>
+              <p className="text-white/75 text-xs leading-relaxed"><CookieText onOpenPdf={() => setPdfOpen(true)} /></p>
             </div>
           </div>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => dismiss("accepted")}
-              className="flex-1 bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+              className="flex-1 bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-xs font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               Accept All
             </button>
             <button
               type="button"
               onClick={() => dismiss("declined")}
-              className="flex-1 border border-white/20 hover:border-white/40 text-white/60 hover:text-white/90 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-150 outline-none focus-visible:ring-1 focus-visible:ring-white"
+              className="flex-1 border border-white/20 hover:border-white/40 text-white/60 hover:text-white/90 active:scale-[0.97] text-xs font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-150 outline-none focus-visible:ring-1 focus-visible:ring-white"
             >
               Essential Only
             </button>
@@ -129,34 +132,38 @@ export default function CookieBanner() {
           </div>
 
           <div className="text-center mb-3">
-            <p className="text-[#CE1A19] text-sm font-black uppercase tracking-[3px]">Cookie Policy</p>
-            <div className="mt-2 mx-auto w-8 h-[2px] rounded-full bg-[#CE1A19]/40" />
+            <p className="text-[#CE1A19] text-sm font-black uppercase tracking-widest">Cookie Policy</p>
+            <div className="mt-2 mx-auto w-8 h-0.5 rounded-full bg-[#CE1A19]/40" />
           </div>
 
-          <p className="text-white/80 text-sm leading-relaxed text-center mb-5">{COPY}</p>
+          <p className="text-white/80 text-sm leading-relaxed text-center mb-5"><CookieText onOpenPdf={() => setPdfOpen(true)} /></p>
 
           <div className="flex flex-col gap-2">
             <button
               type="button"
               onClick={() => dismiss("accepted")}
-              className="w-full bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-[10px] font-black uppercase tracking-widest py-3.5 rounded-lg transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+              className="w-full bg-[#CE1A19] hover:bg-red-700 active:scale-[0.97] text-white text-xs font-black uppercase tracking-widest py-3.5 rounded-lg transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               Accept All Cookies
             </button>
             <button
               type="button"
               onClick={() => dismiss("declined")}
-              className="w-full border border-white/[0.18] hover:border-white/40 text-white/50 hover:text-white/80 active:scale-[0.97] text-[10px] font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-white"
+              className="w-full border border-white/[0.18] hover:border-white/40 text-white/50 hover:text-white/80 active:scale-[0.97] text-xs font-black uppercase tracking-widest py-3 rounded-lg transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-white"
             >
               Essential Only
             </button>
           </div>
 
-          <p className="text-white/20 text-[9px] text-center mt-4 leading-relaxed">
+          <p className="text-white/20 text-xs text-center mt-4 leading-relaxed">
             Essential cookies are always active and required for the site to function.
           </p>
         </div>
       </aside>
+
+      {pdfOpen && (
+        <PdfIpadModal src="/pubmed.pdf" onClose={() => setPdfOpen(false)} />
+      )}
     </>
   );
 }

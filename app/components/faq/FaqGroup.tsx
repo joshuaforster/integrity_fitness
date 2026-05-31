@@ -3,10 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import AccordionRow, { type FAQItem } from "./AccordionRow";
 
-export type FAQGroup = {
-  category: string;
-  items: readonly FAQItem[];
-};
+import { type FAQGroup } from "@/app/content/faqs";
+export type { FAQGroup } from "@/app/content/faqs";
 
 const formatId = (text: string) =>
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");

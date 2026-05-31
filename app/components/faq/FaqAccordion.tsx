@@ -3,57 +3,8 @@
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import FaqCategoryNav from "./FaqCategoryNav";
-import FaqGroup, { type FAQGroup } from "./FaqGroup";
-
-const FAQS: FAQGroup[] = [
-  {
-    category: "Payments & Pricing",
-    items: [
-      {
-        q: "Do you offer flexible payment options?",
-        a: "Yes, we tailor your price to your learning needs so you can study at your own pace.",
-      },
-      {
-        q: "What is the non-refundable deposit?",
-        a: "£499 – this covers the baseline cost of your learning resources and course registration with the awarding body.",
-      },
-      {
-        q: "If I don't like the course, can I get a refund?",
-        a: "The deposit for level 2 and level 3 is non-refundable. Any subsequent fees paid are fully refundable during your 14-day statutory cooling-off period.",
-      },
-    ],
-  },
-  {
-    category: "Accreditation",
-    items: [
-      {
-        q: "Are your courses accredited?",
-        a: "Yes, we are fully accredited by Active IQ. Every single qualification we award is recognised internationally.",
-      },
-      {
-        q: "Will I be insured to give training & nutrition advice once I finish?",
-        a: "Yes, our combined diploma qualifies you to secure comprehensive public liability and professional indemnity insurance to cover both personal training and structural nutritional advice.",
-      },
-      {
-        q: "What is CIMSPA?",
-        a: "CIMSPA stands for the Chartered Institute for the Management of Sport and Physical Activity. It is the professional development body for the UK's physical activity sector. Active IQ qualifications are completely mapped and recognised by CIMSPA.",
-      },
-    ],
-  },
-  {
-    category: "Course Structure",
-    items: [
-      {
-        q: "Can I complete the course while working or at University?",
-        a: "Yes. The vast majority of the theory architecture is delivered online. We couple this with targeted in-person practical weekend workshops tailored around your current commercial schedule.",
-      },
-      {
-        q: "How will I be assessed on the course?",
-        a: "Practical engineering competencies are assessed in person at our dedicated Norwich facility. Your theoretical units feature multiple-choice examinations that you can complete securely online.",
-      },
-    ],
-  },
-];
+import FaqGroup from "./FaqGroup";
+import { faqs as FAQS } from "@/app/content/faqs";
 
 export default function FaqAccordion() {
   return (

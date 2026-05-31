@@ -26,7 +26,7 @@ export default function CourseProgressBar() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 z-[200] h-[3px] bg-zinc-900 origin-left"
+      className="fixed top-0 left-0 right-0 z-[200] h-1 bg-zinc-900 origin-left"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

@@ -11,7 +11,7 @@ export default function FooterNavColumn({
 }) {
   return (
     <div>
-      <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">
+      <h3 className="text-white text-xs font-bold tracking-widest uppercase mb-5">
         {heading}
       </h3>
       <ul className="space-y-3">

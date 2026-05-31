@@ -31,11 +31,11 @@ export default function Home() {
     <>
       <Hero />
       <Marquee />
+      <Qualifications />
+      <Testimonials />
       <Mission />
       <Stats />
       <Location />
-      <Qualifications />
-      <Testimonials />
       <CTAPanels />
       <Newsletter />
     </>

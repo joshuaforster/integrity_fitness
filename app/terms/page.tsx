@@ -49,7 +49,7 @@ export default function TermsAndConditions() {
       {/* Hero */}
       <section className="bg-white pt-40 pb-20 border-b border-gray-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-gray-500 text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-gray-500 text-xs font-semibold tracking-widest uppercase mb-4">
             Legal
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 uppercase leading-none tracking-tight">
@@ -357,7 +357,7 @@ export default function TermsAndConditions() {
             </p>
             <Sub id="14.1">
               If you are a consumer based within the European Union, you have a statutory right to
-              a "cooling off" period of 14 calendar days from the date your order is confirmed. To
+              a &ldquo;cooling off&rdquo; period of 14 calendar days from the date your order is confirmed. To
               cancel within this period, please email{" "}
               <a href="mailto:harry@integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
                 harry@integrityfitness.education
@@ -439,7 +439,7 @@ export default function TermsAndConditions() {
 
           <Section number="19." title="Availability of the Website">
             <Sub id="19.1">
-              The website is provided "as is" and on an "as available" basis. We give no warranty
+              The website is provided &ldquo;as is&rdquo; and on an &ldquo;as available&rdquo; basis. We give no warranty
               that the website or facilities will be free of defects and/or faults and we do not
               provide any kind of refund for outages.
             </Sub>
@@ -460,12 +460,12 @@ export default function TermsAndConditions() {
             </Sub>
             <Sub id="20.2">
               Nothing in these terms and conditions excludes or restricts Integrity Fitness
-              Education's liability for death or personal injury resulting from any negligence or
+              Education&apos;s liability for death or personal injury resulting from any negligence or
               fraud on the part of Integrity Fitness Education LTD.
             </Sub>
             <Sub id="20.3">
               Nothing in these Terms and Conditions excludes or restricts Integrity Fitness
-              Education LTD's liability for any direct or indirect loss or damage arising out of
+              Education LTD&apos;s liability for any direct or indirect loss or damage arising out of
               the incorrect provision of services or out of reliance on incorrect information
               included on the website.
             </Sub>
@@ -514,7 +514,7 @@ export default function TermsAndConditions() {
             <Sub id="24.2">
               We may from time to time, if you opt to receive it, send you information about our
               products and/or services. If you do not wish to receive such information, please click
-              on the 'Unsubscribe' link in any email which you receive from us.
+              on the &lsquo;Unsubscribe&rsquo; link in any email which you receive from us.
             </Sub>
           </Section>
 

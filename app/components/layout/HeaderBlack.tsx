@@ -7,50 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "FAQ", href: "/faq" },
-  { name: "Contact Us", href: "/contact" },
-] as const;
-
-const QUAL_CATEGORIES = [
-  {
-    title: "Become A Personal Trainer",
-    courses: [
-      {
-        name: "Combined Level 2 & 3 Personal Training Diploma",
-        href: "/qualifications/become-a-personal-trainer",
-      },
-      {
-        name: "Level 2 Gym Instructor Certificate",
-        href: "/qualifications/level-2-gym-instructor",
-      },
-      {
-        name: "Level 3 Personal Training Qualification",
-        href: "/qualifications/level-3-personal-training",
-      },
-    ],
-  },
-  {
-    title: "Continued Professional Development",
-    courses: [
-      {
-        name: "Level 2 Award in Mental Health Awareness",
-        href: "/qualifications/mental-health-awareness",
-      },
-      {
-        name: "Level 3 Award in Supporting Pre & Post Natal Clients",
-        href: "/qualifications/pre-post-natal",
-      },
-      {
-        name: "Level 3 Award in Emergency First Aid at Work",
-        href: "/qualifications/emergency-first-aid",
-      },
-    ],
-  },
-] as const;
+import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES } from "@/app/content/navigation";
 
 function HamburgerIcon({ open }: { open: boolean }) {
   const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -124,9 +81,9 @@ export default function Header() {
     );
 
   const bgClass = mobileMenuOpen
-    ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.70] border-b border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.10)]"
+    ? "[backdrop-filter:blur(12px)_saturate(160%)_brightness(0.75)] bg-[#18181B]/[0.45] border-b border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]"
     : scrolled
-      ? "[backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.62] border-b border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.10)]"
+      ? "[backdrop-filter:blur(12px)_saturate(160%)_brightness(0.75)] bg-[#18181B]/[0.38] border-b border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.20),inset_0_1px_0_rgba(255,255,255,0.08)]"
       : "bg-transparent";
 
   return (
@@ -202,7 +159,7 @@ export default function Header() {
               {/* Panel Drop Frame */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="[backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.92] border border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.55)] w-[580px] p-6 rounded-xl">
-                  <p className="text-white text-[10px] font-black tracking-[4px] uppercase mb-5">
+                  <p className="text-white text-xs font-black tracking-widest uppercase mb-5">
                     Course Directory
                   </p>
 
@@ -238,7 +195,7 @@ export default function Header() {
                   <div className="mt-6 pt-4 border-t border-white/10">
                     <Link
                       href="/qualifications"
-                      className="inline-flex items-center gap-1.5 text-white text-xs font-bold tracking-[3px] uppercase hover:text-[#CE1A19] transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                      className="inline-flex items-center gap-1.5 text-white text-xs font-bold tracking-widest uppercase hover:text-[#CE1A19] transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                     >
                       <span>View All Qualifications</span>
                       <span>→</span>
@@ -271,7 +228,7 @@ export default function Header() {
       {/* Mobile Accordion Menu System Overlay Drawer */}
       <div
         id="mobile-menu"
-        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(40px)_saturate(140%)_brightness(0.88)] bg-[#18181B]/[0.70] border-b border-white/[0.10] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_16px_48px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.10)]" : "max-h-0 opacity-0 pointer-events-none"}`}
+        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(12px)_saturate(160%)_brightness(0.75)] bg-[#18181B]/[0.45] border-b border-white/[0.10] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_16px_48px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]" : "max-h-0 opacity-0 pointer-events-none"}`}
       >
         <div className="px-6 py-4 space-y-1">
           {NAV_LINKS.slice(0, 2).map((item) => {
@@ -313,7 +270,7 @@ export default function Header() {
             >
               {QUAL_CATEGORIES.map((cat) => (
                 <div key={cat.title} className="px-4 pt-2 pb-3">
-                  <p className="text-white text-[10px] font-black tracking-[2px] uppercase mb-2">
+                  <p className="text-white text-xs font-black tracking-wider uppercase mb-2">
                     {cat.title}
                   </p>
                   {cat.courses.map((course) => (

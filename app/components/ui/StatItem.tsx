@@ -33,7 +33,7 @@ export default function StatItem(props: StatItemProps) {
       }`}
     >
       <p
-        className={`text-xs uppercase tracking-[2px] mt-3 font-bold order-last ${
+        className={`text-xs uppercase tracking-wider mt-3 font-bold order-last ${
           isDark ? "text-zinc-400" : "text-zinc-600"
         }`}
       >

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export type FAQItem = { q: string; a: string };
+import { type FAQItem } from "@/app/content/faqs";
+export type { FAQItem } from "@/app/content/faqs";
 
 export default function AccordionRow({ q, a }: FAQItem) {
   const [isOpen, setIsOpen] = useState(false);

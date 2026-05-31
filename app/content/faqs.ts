@@ -1,0 +1,107 @@
+// ── Page hero ─────────────────────────────────────────────────────────────────
+
+export const faqHero = {
+  label: "Got Questions?",
+  title: "Frequently Asked Questions",
+  subtitle: "Everything you need to know about course structures, international accreditations, and flexible financing choices.",
+  images: [
+    "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",
+    "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/ANATOMY-AND-PHYSIOLOGY-THEORY-EXAM4-IFE-TGGNHR_015.jpg",
+    "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
+  ],
+} as const;
+
+export const faqCategoryNavLabel = "Syllabus Categories";
+
+export const faqCta = {
+  label: "Still Have Questions?",
+  heading: "We're Here To Help",
+  body: "Can't find the exact answer you need? Get in touch directly and our trainers will answer your queries.",
+  button1: { label: "Get In Touch", href: "/contact" },
+  button2: { label: "Email Us Directly", href: "mailto:harry@integrityfitness.education" },
+} as const;
+
+// ── FAQ data ──────────────────────────────────────────────────────────────────
+
+export type FAQItem = {
+  q: string;
+  a: string;
+};
+
+export type FAQGroup = {
+  category: string;
+  items: readonly FAQItem[];
+};
+
+export const faqs: FAQGroup[] = [
+  {
+    category: "Payments & Pricing",
+    items: [
+      {
+        q: "Do you offer flexible payment options?",
+        a: "Yes, we tailor your price to your learning needs so you can study at your own pace.",
+      },
+      {
+        q: "What is the non-refundable deposit?",
+        a: "£499 – this covers the baseline cost of your learning resources and course registration with the awarding body.",
+      },
+      {
+        q: "If I don't like the course, can I get a refund?",
+        a: "The deposit for level 2 and level 3 is non-refundable. Any subsequent fees paid are fully refundable during your 14-day statutory cooling-off period.",
+      },
+    ],
+  },
+  {
+    category: "Accreditation",
+    items: [
+      {
+        q: "Are your courses accredited?",
+        a: "Yes, we are fully accredited by Active IQ. Every single qualification we award is recognised internationally.",
+      },
+      {
+        q: "Will I be insured to give training & nutrition advice once I finish?",
+        a: "Yes, our combined diploma qualifies you to secure comprehensive public liability and professional indemnity insurance to cover both personal training and structural nutritional advice.",
+      },
+      {
+        q: "What is CIMSPA?",
+        a: "CIMSPA stands for the Chartered Institute for the Management of Sport and Physical Activity. It is the professional development body for the UK's physical activity sector. Active IQ qualifications are completely mapped and recognised by CIMSPA.",
+      },
+    ],
+  },
+  {
+    category: "Course Structure",
+    items: [
+      {
+        q: "Can I complete the course while working or at University?",
+        a: "Yes. The vast majority of the theory architecture is delivered online. We couple this with targeted in-person practical weekend workshops tailored around your current commercial schedule.",
+      },
+      {
+        q: "How will I be assessed on the course?",
+        a: "Practical engineering competencies are assessed in person at our dedicated Norwich facility. Your theoretical units feature multiple-choice examinations that you can complete securely online.",
+      },
+    ],
+  },
+];
+
+export const pricingFaqs: FAQItem[] = [
+  {
+    q: "Can I switch from one plan to another after enrolling?",
+    a: "Yes. If you start on the Independent plan and decide you would benefit from one-to-one support, you can upgrade to Part Time or Full Time at any point. The difference in course fees is invoiced at the point of change. Downgrading is available on the same terms.",
+  },
+  {
+    q: "Is there a cooling-off period or money-back guarantee?",
+    a: "You have a 14-day cooling-off period from the date of enrolment in line with UK consumer regulations. If you withdraw within that window, you will receive a full refund minus the cost of any assessments already submitted and marked.",
+  },
+  {
+    q: "How does annual billing differ from monthly, and what do I save?",
+    a: "Annual billing pays the full course fee upfront in a single payment at a reduced rate — equivalent to approximately two months free compared to the monthly plan. Your access, support, and course materials are identical either way.",
+  },
+  {
+    q: "What if I need to pause or extend my studies?",
+    a: "Life happens. If you need to pause due to work, health, or personal circumstances, contact us and we will put your enrolment on hold at no extra charge. Extensions of up to six months are available on request with no penalty.",
+  },
+  {
+    q: "How long until I receive my qualification after completing?",
+    a: "Active IQ typically issues digital certificates within two to four weeks of your final assessment being submitted and marked. Physical certificates follow by post within six to eight weeks. You can use your completion letter immediately for employment purposes while you wait.",
+  },
+];

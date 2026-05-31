@@ -4,30 +4,8 @@ import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
-import DifferentiatorItem, { type Differentiator } from "./DifferentiatorItem";
-
-const DIFFERENTIATORS: Differentiator[] = [
-  {
-    title: "1:1 Dedicated Mentorship",
-    description:
-      "No crowded classrooms or generic online modules. Your learning architecture is calibrated entirely around you.",
-  },
-  {
-    title: "Norwich Fitness Infrastructure",
-    description:
-      "Rooted in Norfolk, training in-person at a premier local facility. Built directly for our regional health community.",
-  },
-  {
-    title: "Sovereignty Over Your Time",
-    description:
-      "Engineered completely around your current work commitments, personal schedule, and natural learning velocity.",
-  },
-  {
-    title: "Continuous Career Access",
-    description:
-      "An active professional network that supports your commercial lead generation long after your diploma wraps.",
-  },
-];
+import DifferentiatorItem from "./DifferentiatorItem";
+import { differentiators as DIFFERENTIATORS, missionParagraphs, aboutMissionSection } from "@/app/content/about";
 
 // Clean typographic animation configurations
 const containerVariants: Variants = {
@@ -61,25 +39,15 @@ export default function AboutMission() {
           >
             <motion.div variants={textFadeVariants}>
               <SectionHeader
-                label="Our Mission"
-                heading="Education That Actually Changes Your Life."
+                label={aboutMissionSection.label}
+                heading={aboutMissionSection.heading}
               />
             </motion.div>
 
             <div className="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed mt-8">
-              <motion.p variants={textFadeVariants}>
-                Since 2021, Integrity Fitness Education has been rewriting the
-                rules of personal training education in Norwich, Norfolk. Where
-                others offer courses, we offer transformation — the kind that
-                sticks.
-              </motion.p>
-              <motion.p variants={textFadeVariants}>
-                Harry founded IFE after seeing firsthand how impersonal and
-                inadequate the standard fitness education model was. Every
-                decision since has been made with one question in mind: what
-                gives our students the best possible chance of building a career
-                they love?
-              </motion.p>
+              {missionParagraphs.map((p, i) => (
+                <motion.p key={i} variants={textFadeVariants}>{p}</motion.p>
+              ))}
             </div>
           </motion.div>
 
@@ -90,9 +58,9 @@ export default function AboutMission() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="text-zinc-400 text-xs font-bold tracking-[4px] uppercase mb-8"
+              className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-8"
             >
-              What Sets Us Apart
+              {aboutMissionSection.differentiatorLabel}
             </motion.p>
 
             <motion.ul
@@ -118,11 +86,11 @@ export default function AboutMission() {
               className="mt-10 md:mt-12"
             >
               <Button
-                href="/qualifications"
+                href={aboutMissionSection.button.href}
                 variant="primary"
-                className="w-full sm:w-auto px-8"
+                responsive
               >
-                View Qualifications
+                {aboutMissionSection.button.label}
               </Button>
             </motion.div>
           </div>

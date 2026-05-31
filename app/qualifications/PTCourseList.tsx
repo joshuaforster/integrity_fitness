@@ -40,7 +40,7 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
                   {q.level}
                 </span>
                 {q.badge && (
-                  <span className="text-[9px] uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19]/20 bg-[#CE1A19]/5 px-2 py-0.5 font-black rounded-xs">
+                  <span className="text-xs uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19]/20 bg-[#CE1A19]/5 px-2 py-0.5 font-black rounded-xs">
                     {q.badge}
                   </span>
                 )}

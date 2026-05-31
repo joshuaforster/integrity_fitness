@@ -17,7 +17,7 @@ export default function AnimatedTextFilter({
 }: AnimatedTextFilterProps) {
   const labelSize =
     size === "sm"
-      ? "text-xs uppercase tracking-[2px]"
+      ? "text-xs uppercase tracking-wider"
       : "text-sm md:text-base";
 
   const barSelected = size === "sm" ? "w-8" : "w-16";
@@ -40,7 +40,7 @@ export default function AnimatedTextFilter({
         {label}
       </span>
       <span
-        className={`h-[2px] bg-[#CE1A19] transition-all duration-300 ease-out ${barTop} ${
+        className={`h-0.5 bg-[#CE1A19] transition-all duration-300 ease-out ${barTop} ${
           isSelected ? barSelected : `w-0 ${barHover}`
         }`}
       />

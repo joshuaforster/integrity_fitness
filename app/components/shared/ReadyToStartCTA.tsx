@@ -4,28 +4,9 @@ import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
-import CredentialCard, { type CredentialCard as CredentialCardType } from "@/app/components/about/CredentialCard";
-
-const CREDENTIALS: CredentialCardType[] = [
-  {
-    type: "brand",
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png",
-    alt: "CIMSPA Chartered Institute logo",
-    width: 140,
-    height: 32,
-    label: "Accredited Partner",
-  },
-  {
-    type: "brand",
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png",
-    alt: "Active IQ Awarding Body logo",
-    width: 140,
-    height: 32,
-    label: "Approved Centre",
-  },
-  { type: "metric", value: "1:1", label: "Format", description: "Tailored private mentorship." },
-  { type: "metric", value: "NR3", label: "Norwich", description: "Complete Fitness Gym base." },
-];
+import CredentialCard from "@/app/components/about/CredentialCard";
+import { ctaCredentials as CREDENTIALS } from "@/app/content/credentials";
+import { readyToStartSection } from "@/app/content/shared";
 
 const gridVariants: Variants = {
   hidden: {},
@@ -54,22 +35,20 @@ export default function ReadyToStartCTA() {
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
-              label="Ready To Start?"
-              heading={<>Take The<br />First Step.</>}
+              label={readyToStartSection.label}
+              heading={readyToStartSection.heading}
               id="cta-heading"
               headingSize="lg"
             />
             <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-md mt-8">
-              Whether you&apos;re looking to start your journey in personal
-              training or take your existing career to the next level, we have a
-              qualification built around your exact velocity.
+              {readyToStartSection.body}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <Button href="/qualifications" variant="primary" size="md" className="w-full sm:w-auto px-8">
-                View Qualifications
+              <Button href={readyToStartSection.button1.href} variant="primary" responsive>
+                {readyToStartSection.button1.label}
               </Button>
-              <Button href="/contact" variant="outline-light" size="md" className="w-full sm:w-auto px-8">
-                Get In Touch
+              <Button href={readyToStartSection.button2.href} variant="outline-light" responsive>
+                {readyToStartSection.button2.label}
               </Button>
             </div>
           </motion.div>

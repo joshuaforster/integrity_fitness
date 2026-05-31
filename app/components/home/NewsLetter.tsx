@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import { newsletterSection } from "@/app/content/home";
 
 export default function Newsletter() {
   return (
@@ -22,14 +23,13 @@ export default function Newsletter() {
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
-              label="Stay Updated"
-              heading="Join Our Newsletter"
+              label={newsletterSection.label}
+              heading={newsletterSection.heading}
               id="newsletter-heading"
               theme="dark"
             />
             <p className="text-white text-base md:text-lg leading-relaxed max-w-md mt-6">
-              Be the first to hear about new courses, industry tips, and career
-              advice straight from our qualified trainers.
+              {newsletterSection.body}
             </p>
           </motion.div>
 
@@ -43,34 +43,34 @@ export default function Newsletter() {
             <form onSubmit={(e) => e.preventDefault()} className="space-y-4" noValidate>
               <div className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-2">
                 <div className="flex-1 relative">
-                  <label htmlFor="newsletter-name" className="sr-only">Your Name</label>
+                  <label htmlFor="newsletter-name" className="sr-only">{newsletterSection.nameLabel}</label>
                   <input
                     id="newsletter-name"
                     name="name"
                     type="text"
                     required
-                    placeholder="Your name"
+                    placeholder={newsletterSection.namePlaceholder}
                     autoComplete="name"
                     className="w-full bg-zinc-950 border border-zinc-800 focus:border-[#CE1A19] px-4 py-3.5 text-white text-sm placeholder:text-zinc-500 outline-none rounded-sm transition-colors duration-200 focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                   />
                 </div>
                 <div className="flex-1 relative">
-                  <label htmlFor="newsletter-email" className="sr-only">Email Address</label>
+                  <label htmlFor="newsletter-email" className="sr-only">{newsletterSection.emailLabel}</label>
                   <input
                     id="newsletter-email"
                     name="email"
                     type="email"
                     required
-                    placeholder="Email address"
+                    placeholder={newsletterSection.emailPlaceholder}
                     autoComplete="email"
                     className="w-full bg-zinc-950 border border-zinc-800 focus:border-[#CE1A19] px-4 py-3.5 text-white text-sm placeholder:text-zinc-500 outline-none rounded-sm transition-colors duration-200 focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                   />
                 </div>
-                <Button type="submit" variant="primary" size="md" className="whitespace-nowrap px-8 shadow-md">
-                  Subscribe
+                <Button type="submit" variant="primary" size="md" className="whitespace-nowrap px-8 shadow-md border border-transparent">
+                  {newsletterSection.submitButton}
                 </Button>
               </div>
-              <p className="text-white text-xs tracking-wide">No spam. Unsubscribe at any time.</p>
+              <p className="text-white text-xs tracking-wide">{newsletterSection.disclaimer}</p>
             </form>
           </motion.div>
 

@@ -20,7 +20,7 @@ export default function ValueCard({ value }: { value: Value }) {
       >
         <value.icon />
       </motion.div>
-      <h3 className="text-zinc-950 text-sm font-extrabold uppercase tracking-[2px] mb-3">
+      <h3 className="text-zinc-950 text-sm font-extrabold uppercase tracking-wider mb-3">
         {value.title}
       </h3>
       <p className="text-zinc-600 text-sm md:text-base leading-relaxed">

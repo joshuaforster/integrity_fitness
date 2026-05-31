@@ -45,7 +45,7 @@ export default function QualificationsPage() {
             {/* Left Frame: Strategic Career Path Guidance (Spans 4 Columns) */}
             <div className="lg:col-span-4 sticky top-28 space-y-6">
               <div>
-                <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+                <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
                   Syllabus Tracks
                 </p>
                 <h2
@@ -88,7 +88,7 @@ export default function QualificationsPage() {
       >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12 md:mb-16">
-            <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+            <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
               Specialist Upgrades
             </p>
             <h2

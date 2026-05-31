@@ -1,11 +1,7 @@
 import Image from "next/image";
 
-export type GalleryItem = {
-  id: number;
-  src: string;
-  alt: string;
-  category: string;
-};
+import type { GalleryItem } from "@/app/content/gallery";
+export type { GalleryItem };
 
 interface GalleryImageTileProps {
   img: GalleryItem;
@@ -39,7 +35,7 @@ export default function GalleryImageTile({ img, onClick }: GalleryImageTileProps
       </div>
       {/* Bottom label */}
       <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-        <span className="text-[#CE1A19] text-[10px] font-black uppercase tracking-widest block mb-0.5">
+        <span className="text-[#CE1A19] text-xs font-black uppercase tracking-widest block mb-0.5">
           {img.category}
         </span>
         <p className="text-white text-sm font-semibold leading-tight line-clamp-1">

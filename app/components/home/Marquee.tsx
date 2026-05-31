@@ -1,14 +1,6 @@
 "use client";
 
-const ITEMS = [
-  "CIMSPA Accredited",
-  "1:1 Learning",
-  "Active IQ",
-  "Norwich, Norfolk",
-  "Real Results",
-  "Industry Leading",
-  "Career Ready",
-] as const;
+import { marqueeItems as ITEMS } from "@/app/content/home";
 
 export default function Marquee() {
   return (
@@ -26,10 +18,10 @@ export default function Marquee() {
           {[...ITEMS, ...ITEMS].map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center text-white text-xs font-black uppercase tracking-[3px]"
+              className="inline-flex items-center text-white text-xs font-black uppercase tracking-widest"
             >
               <span>{item}</span>
-              <span className="ml-8 text-white/40 text-[9px] antialiased">
+              <span className="ml-8 text-white/40 text-xs antialiased">
                 ◆
               </span>
             </span>

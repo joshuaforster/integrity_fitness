@@ -3,25 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 
-const STATS = [
-  { type: "text", value: "1:1", label: "Learning" },
-  {
-    type: "image",
-    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png",
-    label: "Qualified",
-    width: 1024,
-    height: 219,
-    alt: "Active IQ",
-  },
-  {
-    type: "image",
-    value: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png",
-    label: "Accredited",
-    width: 1580,
-    height: 1720,
-    alt: "CIMSPA",
-  },
-] as const;
+import { heroStats as STATS } from "@/app/content/home";
 
 const container: Variants = {
   hidden: {},
@@ -53,7 +35,7 @@ export default function HeroStats() {
             variants={item}
             className={`flex flex-col-reverse items-center ${index === 0 ? "" : "pl-3 md:pl-6"}`}
           >
-            <dt className="text-[9px] md:text-[10px] text-white uppercase tracking-[2px] mt-2 font-semibold">
+            <dt className="text-xs md:text-xs text-white uppercase tracking-wider mt-2 font-semibold">
               {stat.label}
             </dt>
             <dd className="m-0">

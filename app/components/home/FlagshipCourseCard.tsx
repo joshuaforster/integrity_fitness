@@ -1,13 +1,10 @@
-export type MainCourse = {
-  title: string;
-  description: string;
-  href: string;
-};
+import { type MainCourse } from "@/app/content/home";
+export type { MainCourse } from "@/app/content/home";
 
 export default function FlagshipCourseCard({ course }: { course: MainCourse }) {
   return (
     <div className="lg:col-span-7 [backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.88] border border-white/[0.12] p-8 md:p-10 clip-br-lg shadow-[0_16px_48px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] relative group">
-      <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-[10px] font-black uppercase tracking-[2px] px-4 py-1.5 rounded-bl-sm">
+      <div className="absolute top-0 right-0 bg-[#CE1A19] text-white text-xs font-black uppercase tracking-wider px-4 py-1.5 rounded-bl-sm">
         Flagship Diploma
       </div>
 

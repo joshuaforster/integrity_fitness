@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import BlobBackground from "@/app/components/ui/BlobBackground";
+import { locationSection } from "@/app/content/home";
 
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
@@ -82,16 +83,14 @@ export default function Location() {
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
-              label="Find Us"
-              heading="Based At Complete Fitness Gym, Norwich"
+              label={locationSection.label}
+              heading={locationSection.heading}
               id="location-heading"
               headingSize="sm"
             />
 
             <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8 mt-8">
-              Our courses are delivered in person at Complete Fitness Gym on
-              Whiffler Road, Norwich — a fully equipped professional facility
-              that gives you the perfect environment to train and qualify.
+              {locationSection.body}
             </p>
 
             <address className="not-italic mb-8 space-y-3">
@@ -107,20 +106,20 @@ export default function Location() {
                   </svg>
                 </motion.span>
                 <span className="text-zinc-900 font-medium leading-relaxed">
-                  Complete Fitness Gym, Whiffler Road
+                  {locationSection.addressLine1}
                   <br />
-                  <span className="text-zinc-600">Norwich, Norfolk, NR3 2AW</span>
+                  <span className="text-zinc-600">{locationSection.addressLine2}</span>
                 </span>
               </div>
             </address>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gym+Whiffler+Road+Norwich+NR3+2AW"
+              href={locationSection.directionsHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-sm font-bold tracking-wide uppercase hover:bg-zinc-950 hover:text-white transition-colors duration-200 rounded-lg"
             >
-              Get Directions
+              {locationSection.directionsButton}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
@@ -141,8 +140,8 @@ export default function Location() {
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                 {mapVisible ? (
                   <iframe
-                    title="Complete Fitness Gym Norwich — location map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
+                    title={locationSection.mapTitle}
+                    src="https://maps.google.com/maps?q=Complete+Fitness+Gym,+Whiffler+Road,+Norwich,+NR3+2AW&z=16&output=embed"
                     width="100%"
                     height="100%"
                     className="absolute inset-0 w-full h-full border-0"
@@ -156,11 +155,11 @@ export default function Location() {
               {/* Caption strip */}
               <div className="flex items-center justify-between px-3 py-2.5">
                 <div>
-                  <p className="text-zinc-700 text-[10px] font-bold uppercase tracking-[2.5px] leading-none">
-                    Complete Fitness Gym
+                  <p className="text-zinc-700 text-xs font-bold uppercase tracking-widest leading-none">
+                    {locationSection.mapCaption}
                   </p>
-                  <p className="text-zinc-500 text-[9px] uppercase tracking-[1.5px] leading-none mt-1.5">
-                    Whiffler Road · Norwich · NR3 2AW
+                  <p className="text-zinc-500 text-xs uppercase tracking-widest leading-none mt-1.5">
+                    {locationSection.mapAddress}
                   </p>
                 </div>
                 {/* Compass rose */}
@@ -172,7 +171,7 @@ export default function Location() {
                     <polygon points="0,12 12,9 10,12 12,15" fill="#a1a1aa" opacity="0.5" />
                     <circle cx="10" cy="12" r="2.5" fill="white" stroke="#d4d4d8" strokeWidth="1" />
                   </svg>
-                  <span className="text-[#CE1A19] text-[8px] font-black uppercase tracking-widest leading-none">N</span>
+                  <span className="text-[#CE1A19] text-xs font-black uppercase tracking-widest leading-none">N</span>
                 </div>
               </div>
             </div>

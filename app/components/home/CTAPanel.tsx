@@ -1,14 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export type CTAPanelData = {
-  label: string;
-  title: string;
-  cta: string;
-  href: string;
-  image: string;
-  alt: string;
-};
+import { type CTAPanelData } from "@/app/content/home";
+export type { CTAPanelData } from "@/app/content/home";
 
 export default function CTAPanel({ panel }: { panel: CTAPanelData }) {
   return (
@@ -30,13 +24,13 @@ export default function CTAPanel({ panel }: { panel: CTAPanelData }) {
       {/* Swapped justify-end for justify-center & text-left for text-center */}
       <div className="absolute inset-0 flex flex-col justify-center items-center p-8 md:p-16 text-center">
         <div className="max-w-md transform transition-transform duration-500 ease-out group-hover:translate-y-[-4px] flex flex-col items-center">
-          <p className="text-white text-xs font-bold tracking-[4px] uppercase mb-3">
+          <p className="text-white text-xs font-bold tracking-widest uppercase mb-3">
             {panel.label}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight leading-tight uppercase">
             {panel.title}
           </h2>
-          <div className="inline-flex items-center gap-3 bg-[#CE1A19] text-white px-6 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors duration-300 group-hover:bg-red-700 clip-br shadow-md">
+          <span className="inline-flex items-center gap-3 bg-[#CE1A19] text-white px-6 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors duration-300 group-hover:bg-red-700 rounded-lg shadow-md">
             <span>{panel.cta}</span>
             <span
               className="transform transition-transform duration-300 group-hover:translate-x-1"
@@ -44,7 +38,7 @@ export default function CTAPanel({ panel }: { panel: CTAPanelData }) {
             >
               →
             </span>
-          </div>
+          </span>
         </div>
       </div>
 

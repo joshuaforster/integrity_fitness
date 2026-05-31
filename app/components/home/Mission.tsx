@@ -7,12 +7,7 @@ import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
-const IMAGES = [
-  {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-4.jpg",
-    alt: "Students enjoying a personal training session together",
-  },
-] as const;
+import { missionImages as IMAGES, missionCopy, missionSection } from "@/app/content/home";
 
 export default function Mission() {
   const [imageIdx, setImageIdx] = useState(0);
@@ -26,7 +21,7 @@ export default function Mission() {
   }, []);
 
   return (
-    <section className="bg-white texture-grid-light py-20 md:py-28 border-t border-zinc-100">
+    <section className="bg-zinc-50 texture-grid-light angle-tl-lg pt-32 md:pt-40 pb-20 md:pb-28 [filter:drop-shadow(0_-6px_18px_rgba(0,0,0,0.09))]">
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
@@ -39,24 +34,15 @@ export default function Mission() {
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
-              label="Who We Are"
-              heading="One To One Learning Like No Other"
+              label={missionSection.label}
+              heading={missionSection.heading}
               headingSize="sm"
             />
             <div className="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed mb-10 mt-8">
-              <p>
-                At Integrity, we take pride in giving the best possible experience
-                by preparing our students to enter the fitness industry confidently
-                and ready to thrive.
-              </p>
-              <p>
-                Our team bring the course to life with plenty of professional
-                experience and real, applicable tips and tricks that they have
-                picked up over the years.
-              </p>
+              {missionCopy.map((p, i) => <p key={i}>{p}</p>)}
             </div>
-            <Button href="/about" variant="primary" className="w-full sm:w-auto px-8">
-              About Us
+            <Button href={missionSection.button.href} variant="primary" responsive>
+              {missionSection.button.label}
             </Button>
           </motion.div>
 

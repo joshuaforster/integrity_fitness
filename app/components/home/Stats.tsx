@@ -17,15 +17,22 @@ const statItem: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
 };
 
+import { ESTABLISHED_YEAR, TEACHING_SINCE_YEAR, statsAccreditations, statsCopy, statsSection } from "@/app/content/home";
+
 export default function Stats() {
-  const combinedYears = (new Date().getFullYear() - 2015) * 2;
+  const combinedYears = (new Date().getFullYear() - TEACHING_SINCE_YEAR) * 2;
 
   const STATS = [
-    { type: "counter" as const, value: 2021, label: "Established" },
+    { type: "counter" as const, value: ESTABLISHED_YEAR, label: "Established" },
     { type: "counter" as const, value: combinedYears, label: "Years Combined Teaching" },
-    { type: "image" as const, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png", alt: "Active IQ", width: 136, height: 29, label: "Approved Centre" },
-    { type: "image" as const, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png", alt: "CIMSPA", width: 136, height: 136, label: "Accredited Partner", containerClass: "h-16 w-16" },
+    ...statsAccreditations,
   ];
+
+  // const STATS = [
+  //   { type: "text" as const, value: "ONE", label: "Shared Mission" },
+  //   { type: "text" as const, value: "ACTIVE", label: "Coaching Network" },
+  //   ...statsAccreditations,
+  // ];
 
   return (
     <section className="bg-zinc-900 texture-dots-dark angle-tl-lg pb-24 md:pb-32 pt-[168px] md:pt-[200px]">
@@ -34,18 +41,16 @@ export default function Stats() {
 
           <div className="lg:col-span-5 flex flex-col items-start text-left">
             <SectionHeader
-              label="By The Numbers"
-              heading="Built On A Decade Of Experience"
+              label={statsSection.label}
+              heading={statsSection.heading}
               theme="dark"
               headingSize="sm"
             />
             <p className="text-white text-base md:text-lg leading-relaxed mb-8 max-w-md mt-8">
-              A track record built on transparency and regulatory excellence. We
-              deliver premium, recognised qualifications that carry weight in
-              the industry.
+              {statsCopy}
             </p>
-            <Button href="/contact" variant="primary" className="w-full sm:w-auto px-8 py-3.5">
-              Start Your Journey
+            <Button href={statsSection.button.href} variant="primary" responsive>
+              {statsSection.button.label}
             </Button>
           </div>
 

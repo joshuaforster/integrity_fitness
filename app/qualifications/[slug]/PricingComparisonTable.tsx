@@ -41,7 +41,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
       className={`mt-14 rounded-lg border overflow-hidden ${containerBg}`}
     >
       <div className={`px-6 py-5 border-b ${rowBorder}`}>
-        <p className={`text-[10px] font-bold tracking-[4px] uppercase ${labelColor}`}>
+        <p className={`text-xs font-bold tracking-widest uppercase ${labelColor}`}>
           Feature Comparison
         </p>
       </div>
@@ -54,12 +54,12 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
           return (
             <div key={tier.name}>
               <div className={`px-5 py-4 ${tier.highlighted ? "bg-zinc-800/90" : headerBg}`}>
-                <span className={`block text-[10px] font-bold uppercase tracking-widest mb-0.5 ${tier.highlighted ? "text-white/60" : headerText}`}>
+                <span className={`block text-xs font-bold uppercase tracking-widest mb-0.5 ${tier.highlighted ? "text-white/60" : headerText}`}>
                   {tier.name}
                 </span>
                 <span className={`block text-xl font-black ${tier.highlighted ? "text-white" : priceColor}`}>
                   £{price}
-                  <span className={`text-[10px] font-bold ml-0.5 ${tier.highlighted ? "text-white/50" : isLight ? "text-zinc-400" : "text-zinc-500"}`}>
+                  <span className={`text-xs font-bold ml-0.5 ${tier.highlighted ? "text-white/50" : isLight ? "text-zinc-400" : "text-zinc-500"}`}>
                     {period}
                   </span>
                 </span>
@@ -100,7 +100,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
         <table className={`w-full min-w-[520px] text-sm ${featureColor}`}>
           <thead>
             <tr>
-              <th className={`py-4 px-6 text-left font-bold text-[10px] uppercase tracking-wider w-[44%] border-b ${rowBorder} ${headerText} ${headerBg}`}>
+              <th className={`py-4 px-6 text-left font-bold text-xs uppercase tracking-wider w-[44%] border-b ${rowBorder} ${headerText} ${headerBg}`}>
                 What&apos;s included
               </th>
               {tiers.map((tier) => {
@@ -113,12 +113,12 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
                       tier.highlighted ? "bg-zinc-800/90" : headerBg
                     }`}
                   >
-                    <span className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${tier.highlighted ? "text-white/60" : headerText}`}>
+                    <span className={`block text-xs font-bold uppercase tracking-widest mb-1 ${tier.highlighted ? "text-white/60" : headerText}`}>
                       {tier.name}
                     </span>
                     <span className={`block text-lg font-black ${tier.highlighted ? "text-white" : priceColor}`}>
                       £{price}
-                      <span className={`text-[10px] font-bold ml-0.5 ${tier.highlighted ? "text-white/50" : isLight ? "text-zinc-400" : "text-zinc-500"}`}>
+                      <span className={`text-xs font-bold ml-0.5 ${tier.highlighted ? "text-white/50" : isLight ? "text-zinc-400" : "text-zinc-500"}`}>
                         {period}
                       </span>
                     </span>

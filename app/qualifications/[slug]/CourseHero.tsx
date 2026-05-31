@@ -39,17 +39,17 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pb-16 md:pb-20 pt-40 w-full mt-auto">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.div variants={fadeUp} className="flex items-center flex-wrap gap-2.5 mb-4">
-            <span className="text-[#CE1A19] text-xs font-bold tracking-[3px] uppercase">
+            <span className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase">
               {qual.awardingBody}
             </span>
             <span className="w-1 h-1 rounded-full bg-zinc-700" />
-            <span className="text-white text-xs font-bold tracking-[2px] uppercase">
+            <span className="text-white text-xs font-bold tracking-wider uppercase">
               {qual.level}
             </span>
             {qual.badge && (
               <>
                 <span className="w-1 h-1 rounded-full bg-zinc-700" />
-                <span className="text-[9px] uppercase tracking-widest text-white border border-white/20 bg-white/5 px-2 py-0.5 font-bold rounded-xs">
+                <span className="text-xs uppercase tracking-widest text-white border border-white/20 bg-white/5 px-2 py-0.5 font-bold rounded-xs">
                   {qual.badge}
                 </span>
               </>
@@ -92,7 +92,7 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
             className="mt-8 inline-flex items-center gap-3.5 px-5 py-3 rounded-full [backdrop-filter:blur(16px)_saturate(120%)] bg-white/[0.07] border border-white/[0.12]"
             aria-label="Approved by Active IQ and CIMSPA"
           >
-            <span className="text-white/50 text-[9px] font-bold uppercase tracking-[2.5px] whitespace-nowrap">
+            <span className="text-white/50 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
               Approved by
             </span>
             <div className="w-px h-4 bg-white/20" aria-hidden="true" />

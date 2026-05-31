@@ -53,7 +53,7 @@ export default function TeamMemberCard({ person }: { person: TeamMember }) {
             {person.role}
           </p>
         </div>
-        <span className="text-zinc-400 text-xs font-bold tracking-[2px] uppercase whitespace-nowrap">
+        <span className="text-zinc-400 text-xs font-bold tracking-wider uppercase whitespace-nowrap">
           {person.meta}
         </span>
       </div>

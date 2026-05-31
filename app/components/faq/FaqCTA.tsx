@@ -2,6 +2,7 @@
 
 import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import { faqCta } from "@/app/content/faqs";
 
 export default function FaqCTA() {
   return (
@@ -11,31 +12,30 @@ export default function FaqCTA() {
     >
       <SectionWrapper reveal>
         <div className="pt-12 border-t border-zinc-200/80 text-center max-w-3xl mx-auto">
-          <p className="text-[#CE1A19] text-xs font-bold tracking-[3px] uppercase mb-4">
-            Still Have Questions?
+          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
+            {faqCta.label}
           </p>
           <h2
             id="faq-cta-heading"
             className="text-2xl md:text-3xl font-extrabold text-zinc-950 tracking-tight uppercase mb-4"
           >
-            We&apos;re Here To Help
+            {faqCta.heading}
           </h2>
           <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-md mx-auto mb-8">
-            Can&apos;t find the exact answer you need? Get in touch directly and
-            our trainers will answer your queries.
+            {faqCta.body}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
-            <Button href="/contact" variant="primary" size="md" className="px-8 shadow-sm">
-              Get In Touch
+            <Button href={faqCta.button1.href} variant="primary" size="md" className="px-8 shadow-sm">
+              {faqCta.button1.label}
             </Button>
             <Button
-              href="mailto:harry@integrityfitness.education"
+              href={faqCta.button2.href}
               variant="outline-light"
               size="md"
               className="px-8 bg-white"
               external
             >
-              Email Us Directly
+              {faqCta.button2.label}
             </Button>
           </div>
         </div>

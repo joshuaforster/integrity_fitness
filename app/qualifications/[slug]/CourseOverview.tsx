@@ -14,7 +14,7 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: overview text */}
           <div className="lg:col-span-7">
-            <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+            <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
               Overview
             </p>
             <h2
@@ -42,14 +42,14 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
           {/* Right: outcomes + requirements */}
           <div className="lg:col-span-5 space-y-10 lg:pl-6 lg:border-l border-zinc-100">
             <div>
-              <p className="text-zinc-400 text-xs font-bold tracking-[3px] uppercase mb-5">
+              <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-5">
                 What You Will Learn
               </p>
               <BulletList items={qual.whatYouWillLearn} />
             </div>
 
             <div className="pt-8 border-t border-zinc-100">
-              <p className="text-zinc-400 text-xs font-bold tracking-[3px] uppercase mb-5">
+              <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-5">
                 Entry Requirements
               </p>
               <BulletList items={qual.entryRequirements} bulletColor="green" />

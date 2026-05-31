@@ -25,7 +25,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: "px-5 py-2.5 text-xs tracking-wider",
-  md: "px-6 py-3.5 text-sm tracking-widest",
+  md: "px-8 py-3.5 text-sm tracking-widest",
   lg: "px-8 py-4 text-base tracking-widest",
 };
 
@@ -44,6 +44,7 @@ interface SharedProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
+  responsive?: boolean;
   className?: string;
   children: React.ReactNode;
 }
@@ -70,6 +71,7 @@ export default function Button({
   variant = "primary",
   size = "md",
   fullWidth = false,
+  responsive = false,
   className = "",
   children,
   ...rest
@@ -79,6 +81,7 @@ export default function Button({
     variantStyles[variant],
     sizeStyles[size],
     fullWidth && "w-full",
+    responsive && "w-full sm:w-auto",
     className,
   );
 

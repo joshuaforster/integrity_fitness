@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
       {/* Hero */}
       <section className="bg-white pt-40 pb-20 border-b border-gray-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-gray-500 text-xs font-semibold tracking-[4px] uppercase mb-4">
+          <p className="text-gray-500 text-xs font-semibold tracking-widest uppercase mb-4">
             Legal
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 uppercase leading-none tracking-tight">
@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
           <Section title="Comments">
             <p>
               When visitors leave comments on the site we collect the data shown in the comments
-              form, and also the visitor's IP address and browser user agent string to help spam
+              form, and also the visitor&apos;s IP address and browser user agent string to help spam
               detection.
             </p>
             <p>
@@ -103,7 +103,7 @@ export default function PrivacyPolicy() {
             <p>
               When you log in, we will also set up several cookies to save your login information
               and your screen display choices. Login cookies last for two days, and screen options
-              cookies last for a year. If you select "Remember Me", your login will persist for two
+              cookies last for a year. If you select &ldquo;Remember Me&rdquo;, your login will persist for two
               weeks. If you log out of your account, the login cookies will be removed.
             </p>
             <p>

@@ -100,26 +100,11 @@ function CommunityIcon() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-const VALUES: Value[] = [
-  {
-    title: "Honesty",
-    description:
-      "We are defined by honesty and strong moral principles. Everything we do is transparent, straightforward, and in the absolute best interest of our student roster.",
-    icon: HonestyIcon,
-  },
-  {
-    title: "Excellence",
-    description:
-      "We hold ourselves to the highest technical benchmarks in fitness education. Our material goes far beyond basic syllabus criteria to construct industry-ready coaches.",
-    icon: ExcellenceIcon,
-  },
-  {
-    title: "Community",
-    description:
-      "We believe elite skill development happens together. Our students gain lifelong access to an integrated professional network built to collaborate over career metrics.",
-    icon: CommunityIcon,
-  },
-];
+import { values } from "@/app/content/values";
+import { valuesSection } from "@/app/content/about";
+
+const ICONS = [HonestyIcon, ExcellenceIcon, CommunityIcon];
+const VALUES: Value[] = values.map((v, i) => ({ ...v, icon: ICONS[i] }));
 
 export default function Values() {
   return (
@@ -130,15 +115,13 @@ export default function Values() {
       <SectionWrapper reveal>
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <SectionHeader
-            label="What We Stand For"
-            heading={<>Proven Principles.<br />Tried &amp; Tested Results.</>}
+            label={valuesSection.label}
+            heading={valuesSection.heading}
             id="values-heading"
             align="center"
           />
           <p className="text-zinc-600 text-base md:text-lg leading-relaxed mt-6">
-            At Integrity, we operate with a clear set of values that shape every
-            course, every session, and every interaction with our students. This
-            isn&apos;t just a business — it&apos;s a mission.
+            {valuesSection.body}
           </p>
         </div>
 

@@ -3,62 +3,23 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-
-export interface TestimonialItem {
-  name: string;
-  body: string;
-  date?: string;
-  subtitle?: string;
-}
-
-const DEFAULT_TESTIMONIALS: readonly TestimonialItem[] = [
-  {
-    name: "Grace Sandford",
-    body: "I am a fairly new client/student at Integrity Fitness Education but I already feel so well supported. The information I need is easily accessible and support sessions are also available when needed. It works well as I am able to study alongside work and I'm excited about the progress that I've made so far already and that's all thanks to Harry and Paris. If you are looking to get your level 2 & 3 qualifications, I couldn't recommend them enough!",
-    subtitle: "Recent Student",
-  },
-  {
-    name: "Charlie Wade",
-    body: "When it comes to tutoring you expect a top standard that not only delivers academic results but also people management for getting them through the course on what's bespoke for the student. Integrity fitness education does that amazingly and goes beyond that. Harry and Paris have only been an essential part of my education. I cannot thank the team enough. Without this company I wouldn't be doing so well in my PT business.",
-    subtitle: "PT Business Owner",
-  },
-  {
-    name: "Viktoria Fitt",
-    body: "I recently gained my Level 3 Personal Trainer qualification with Integrity Fitness Education, and couldn't recommend them more. Throughout the entire course I felt completely supported and was provided with a wealth of additional resources.",
-    subtitle: "Level 3 Graduate",
-  },
-  {
-    name: "Megan Brown",
-    body: "Highly recommend Integrity Fitness to gain your qualification of becoming a personal trainer, through to additional qualifications to better yourself and what you can offer as a PT. Harry and Paris offer fantastic knowledge and support throughout and provide a genuine service. Highly recommend them!",
-    subtitle: "Alumni Coach",
-  },
-  {
-    name: "Poppy Hawkins",
-    body: "Both Paris and Harry were amazing when it came to helping me to complete my Level 3 Personal Training qualification. They always made sure to answer any questions I had and made an effort to reach out and speak to me one on one about my progress.",
-    subtitle: "Level 3 Graduate",
-  },
-  {
-    name: "Aine Kuzeviciute",
-    body: "Integrity Fitness Education have been brilliant. The content they provide has an incredible amount of information, the videos which help fill out the coursework and get ready for practical exams are also incredibly helpful. All the content is exceptional.",
-    subtitle: "Course Student",
-  },
-  {
-    name: "Sandrine Modesti",
-    body: "Really enjoying the course! Paris and Harry are both friendly, very knowledgeable, obviously love what they do, and are great at sharing their passion for the benefits of exercise and Personal Training. The course material is well structured.",
-    subtitle: "Current Student",
-  },
-  {
-    name: "Hannah Lev",
-    body: "Amazing experience! Both Paris and Harry have been super helpful throughout the whole course! They allowed me to go at my pace as I had a time frame before moving country and they were excellent in making sure I was able to achieve that!",
-    subtitle: "Level 3 Graduate",
-  },
-] as const;
+import {
+  type TestimonialItem,
+  testimonials as DEFAULT_TESTIMONIALS,
+} from "@/app/content/testimonials";
+import { testimonialsSection as SECTION } from "@/app/content/shared";
 
 function Stars() {
   return (
-    <div className="flex gap-0.5 mb-4" role="img" aria-label="5 out of 5 stars">
+    <div className="flex gap-0.5 mb-3" role="img" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <svg
+          key={i}
+          className="w-4 h-4 text-amber-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden
+        >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -68,44 +29,104 @@ function Stars() {
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
-      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+    <svg className={className} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+        fill="#4285F4"
+      />
+      <path
+        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+        fill="#34A853"
+      />
+      <path
+        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+        fill="#FBBC05"
+      />
+      <path
+        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+        fill="#EA4335"
+      />
     </svg>
   );
 }
 
-const textBlockContainer: Variants = {
+function Avatar({
+  name,
+  photo,
+  size = "md",
+}: {
+  name: string;
+  photo?: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const sizeClass =
+    size === "sm" ? "w-10 h-10" : size === "lg" ? "w-20 h-20" : "w-14 h-14";
+  const src =
+    photo ??
+    `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(name)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`;
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={name}
+      className={`${sizeClass} border border-zinc-200 bg-zinc-100 rounded-full shrink-0 object-cover`}
+    />
+  );
+}
+
+const textBlock: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
-const textChildElement: Variants = {
+const textChild: Variants = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] },
+  },
 };
 
-export default function StackedTestimonials({ testimonials }: { testimonials?: TestimonialItem[] }) {
+export default function StackedTestimonials({
+  testimonials,
+}: {
+  testimonials?: TestimonialItem[];
+}) {
   const items = testimonials ?? DEFAULT_TESTIMONIALS;
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  function handleNext() { setCurrentIndex((prev) => (prev + 1) % items.length); }
-  function handlePrev() { setCurrentIndex((prev) => (prev - 1 + items.length) % items.length); }
+  function handleNext() {
+    setCurrentIndex((p) => (p + 1) % items.length);
+  }
+  function handlePrev() {
+    setCurrentIndex((p) => (p - 1 + items.length) % items.length);
+  }
 
   if (items.length === 0) return null;
 
-  return (
-    <section className="py-16 md:py-24 lg:py-28 bg-zinc-50 border-y border-zinc-200/80 overflow-hidden w-full">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+  const current = items[currentIndex];
 
-        {/* Left column: heading only */}
+  return (
+    <section className="relative py-16 md:py-24 lg:py-28 bg-zinc-50 texture-dots-light overflow-hidden w-full">
+      {/* Slanted top divider */}
+      <div className="absolute top-0 left-0 w-full pointer-events-none select-none" aria-hidden>
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="w-full block h-[50px] sm:h-[70px] lg:h-[90px]"
+        >
+          <polygon points="0,0 1440,0 0,80" fill="white" />
+        </svg>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative">
+        {/* Left: heading */}
         <div className="lg:col-span-5 text-left flex flex-col items-start w-full">
-          <div className="inline-flex items-center gap-2.5 bg-white border border-zinc-200/80 rounded-full py-1.5 px-3.5 mb-6 shadow-xs select-none">
+          <div className="inline-flex items-center gap-2.5 bg-zinc-100 border border-zinc-200 rounded-full py-1.5 px-3.5 mb-6 select-none">
             <GoogleIcon className="w-4 h-4 shrink-0" />
-            <span className="text-zinc-800 text-xs font-black uppercase tracking-wider font-mono">
-              5.0 Star Google Reviews
+            <span className="text-zinc-600 text-xs font-black uppercase tracking-wider font-mono">
+              {SECTION.googleBadge}
             </span>
           </div>
 
@@ -113,127 +134,243 @@ export default function StackedTestimonials({ testimonials }: { testimonials?: T
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={textBlockContainer}
+            variants={textBlock}
             className="w-full"
           >
-            <motion.p variants={textChildElement} className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
-              Student Validation
+            <motion.p
+              variants={textChild}
+              className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4"
+            >
+              {SECTION.label}
             </motion.p>
-            <motion.h2 variants={textChildElement} className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-950 uppercase leading-[1.1] max-w-sm">
-              Stories From <br /> Our Cohorts.
+            <motion.h2
+              variants={textChild}
+              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-900 uppercase leading-[1.1] max-w-sm"
+            >
+              {SECTION.heading}
             </motion.h2>
             <motion.div
-              variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 0.5 } } }}
+              variants={{
+                hidden: { scaleX: 0 },
+                visible: { scaleX: 1, transition: { duration: 0.5 } },
+              }}
               className="w-14 h-1 bg-[#CE1A19] mt-5 mb-6 origin-left"
-              aria-hidden="true"
+              aria-hidden
             />
-            <motion.p variants={textChildElement} className="text-zinc-600 text-sm md:text-base leading-relaxed font-medium max-w-md">
-              Review real training insights directly from students working across the local Norwich fitness network.
+            <motion.p
+              variants={textChild}
+              className="text-zinc-600 text-sm md:text-base leading-relaxed font-medium max-w-md"
+            >
+              {SECTION.body}
             </motion.p>
           </motion.div>
 
-          {/* Nav buttons — desktop only, below heading */}
-          <div className="hidden lg:flex items-center gap-3 mt-10">
-            <button type="button" onClick={handlePrev} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Previous review">
+          {/* Name attribution — transitions with the card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4 }}
+              className="mt-8 hidden lg:flex items-center gap-3"
+            >
+              <Avatar name={current.name} photo={current.photo} size="sm" />
+              <div>
+                <p className="text-zinc-900 text-sm font-black tracking-wide leading-none">
+                  {current.name}
+                </p>
+                <p className="text-[#CE1A19] text-xs font-bold uppercase tracking-wider mt-1">
+                  {current.subtitle}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Nav buttons — desktop */}
+          <div className="hidden lg:flex items-center gap-3 mt-6">
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-zinc-100 text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 rounded-lg transition-all active:scale-95 outline-none cursor-pointer"
+              aria-label="Previous review"
+            >
               <ChevronLeftIcon className="w-5 h-5 stroke-[2.5]" />
             </button>
-            <button type="button" onClick={handleNext} className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none cursor-pointer" aria-label="Next review">
+            <button
+              type="button"
+              onClick={handleNext}
+              className="w-12 h-12 flex items-center justify-center border border-zinc-200 bg-zinc-100 text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 rounded-lg transition-all active:scale-95 outline-none cursor-pointer"
+              aria-label="Next review"
+            >
               <ChevronRightIcon className="w-5 h-5 stroke-[2.5]" />
             </button>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-400 ml-1">
+              0{currentIndex + 1} / 0{items.length}
+            </span>
           </div>
         </div>
 
-        {/* Right column: card stack + nav below */}
-        <div className="lg:col-span-7 flex flex-col items-center w-full max-w-md mx-auto lg:max-w-none">
-          {/* Card stack */}
-          <div className="relative w-full h-[340px] sm:h-[300px] flex items-center justify-center">
-            <AnimatePresence mode="popLayout">
-              {Array.from({ length: Math.min(items.length, 3) }).map((_, stackIdx) => {
-                const itemIdx = (currentIndex + stackIdx) % items.length;
-                const t = items[itemIdx];
-                const isTopCard = stackIdx === 0;
-                const positionY = stackIdx * 14;
-                const positionScale = 1 - stackIdx * 0.04;
-                const positionZ = 30 - stackIdx;
-                const skewAngle = stackIdx * (itemIdx % 2 === 0 ? 2.5 : -2.5);
-                const shadowBlur = isTopCard ? "35px" : "15px";
-                const shadowOpacity = isTopCard ? "0.06" : "0.015";
-
-                return (
-                  <motion.div
-                    key={t.name}
-                    style={{ zIndex: positionZ, transformOrigin: "bottom center", boxShadow: `0 20px ${shadowBlur} rgba(24,24,27,${shadowOpacity})` }}
-                    initial={isTopCard ? { x: 80, opacity: 0 } : false}
-                    animate={{ y: positionY, scale: positionScale, rotate: isTopCard ? 0 : skewAngle, opacity: 1 - stackIdx * 0.32 }}
-                    exit={{ x: -340, opacity: 0, rotate: -8, transition: { duration: 0.38, ease: "easeInOut" } }}
-                    transition={{ type: "spring", stiffness: 280, damping: 25 }}
-                    {...(isTopCard ? {
-                      drag: "x" as const,
-                      dragConstraints: { left: 0, right: 0 },
-                      dragElastic: 0.18,
-                      onDragEnd: (_: unknown, info: { offset: { x: number } }) => {
-                        if (info.offset.x < -80) handleNext();
-                        else if (info.offset.x > 80) handlePrev();
-                      },
-                    } : {})}
-                    className={`absolute w-full h-[300px] sm:h-[260px] bg-white border border-zinc-200/90 p-5 sm:p-6 md:p-8 rounded-lg flex flex-col justify-between overflow-hidden ${isTopCard ? "cursor-grab active:cursor-grabbing" : "select-none"}`}
-                  >
-                    <div className="absolute top-5 right-5 md:top-7 md:right-7 opacity-20" aria-hidden="true">
-                      <GoogleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                    <div className="w-full">
-                      <Stars />
-                      <p className="text-zinc-900 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium line-clamp-5 sm:line-clamp-4 pr-3">
-                        &ldquo;{t.body}&rdquo;
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3 pt-3.5 border-t border-zinc-100 mt-auto w-full">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-xs font-black text-zinc-800 font-mono shrink-0">
-                        {t.name.split(" ").map((n) => n[0]).join("")}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-xs sm:text-sm font-black text-zinc-950 tracking-wide leading-none truncate">{t.name}</p>
-                        <p className="text-[#CE1A19] text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mt-1 sm:mt-1.5 truncate">{t.subtitle}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+        {/* Right: decorative background quote + card stack */}
+        <div className="lg:col-span-7 flex flex-col w-full">
+          {/* Desktop-only: large faded review text — sits above the cards, never overlapped */}
+          <div className="hidden lg:block w-full overflow-hidden mb-6 px-1" aria-hidden>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl xl:text-5xl font-black text-zinc-200 leading-tight line-clamp-2 tracking-tight italic select-none"
+              >
+                &ldquo;{current.body}&rdquo;
+              </motion.p>
             </AnimatePresence>
           </div>
 
-          {/* Counter + dots + mobile nav buttons — always below cards */}
-          <div className="w-full flex items-center justify-between px-1 sm:px-2 mt-4 select-none">
-            <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-zinc-400">
-              0{currentIndex + 1} <span className="mx-0.5 text-zinc-300">/</span> 0{items.length}
-            </span>
-
-            <div className="flex items-center gap-2">
-              {/* Mobile nav buttons */}
-              <button type="button" onClick={handlePrev} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none" aria-label="Previous review">
-                <ChevronLeftIcon className="w-4 h-4 stroke-[2.5]" />
-              </button>
-
-              <div className="flex gap-1.5 sm:gap-2" role="tablist" aria-label="Review indicators">
-                {items.map((_, i) => (
-                  <button key={i} type="button" role="tab" aria-selected={i === currentIndex} onClick={() => setCurrentIndex(i)} className="flex items-center justify-center w-6 h-6 outline-none cursor-pointer touch-manipulation" aria-label={`Go to review ${i + 1}`}>
-                    <span className={`block rounded-full transition-all duration-300 ${i === currentIndex ? "bg-[#CE1A19] w-4 sm:w-5 h-1" : "w-1.5 h-1.5 bg-zinc-200 hover:bg-zinc-300"}`} />
-                  </button>
-                ))}
-              </div>
-
-              <button type="button" onClick={handleNext} className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 rounded-lg shadow-xs transition-all active:scale-95 outline-none" aria-label="Next review">
-                <ChevronRightIcon className="w-4 h-4 stroke-[2.5]" />
-              </button>
+          <div className="flex flex-col items-center w-full max-w-md mx-auto lg:max-w-none">
+            {/* Decorative quote mark (mobile only) */}
+            <div className="flex justify-start w-full mb-1 pl-1 lg:hidden" aria-hidden>
+              <span className="text-5xl font-black text-[#CE1A19] leading-none select-none">
+                &ldquo;
+              </span>
             </div>
+
+            {/* Card stack: 2 static ghost cards + 1 animated front card */}
+            <div className="relative w-full h-[370px] sm:h-[330px]">
+              {/* Ghost card 2 (furthest back) */}
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-white border border-zinc-200 rounded-2xl pointer-events-none select-none"
+                style={{
+                  transform: "translateY(28px) scale(0.88) rotate(2deg)",
+                  opacity: 0.3,
+                  zIndex: 0,
+                }}
+              />
+              {/* Ghost card 1 */}
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-white border border-zinc-200 rounded-2xl pointer-events-none select-none"
+                style={{
+                  transform: "translateY(14px) scale(0.94) rotate(-1.5deg)",
+                  opacity: 0.55,
+                  zIndex: 1,
+                }}
+              />
+
+              {/* Active card — only this one animates */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  style={{
+                    zIndex: 10,
+                    boxShadow:
+                      "0 24px 48px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06)",
+                  }}
+                  initial={{ x: 60, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -80, opacity: 0, rotate: -4 }}
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.18}
+                  onDragEnd={(
+                    _: unknown,
+                    info: { offset: { x: number } },
+                  ) => {
+                    if (info.offset.x < -80) handleNext();
+                    else if (info.offset.x > 80) handlePrev();
+                  }}
+                  className="absolute inset-0 bg-white border border-zinc-200 p-5 sm:p-6 md:p-8 rounded-2xl flex flex-col justify-between overflow-hidden cursor-grab active:cursor-grabbing"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CE1A19] rounded-t-2xl" />
+
+                  <div
+                    className="absolute top-5 right-5 md:top-7 md:right-7 opacity-25"
+                    aria-hidden
+                  >
+                    <GoogleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+
+                  <div className="w-full">
+                    <Stars />
+                    <p className="text-zinc-700 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide font-medium line-clamp-4 sm:line-clamp-4 pr-3">
+                      {current.body}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-100 mt-auto w-full">
+                    <Avatar name={current.name} photo={current.photo} size="lg" />
+                    <div className="min-w-0">
+                      <p className="text-sm font-black text-zinc-900 tracking-wide leading-none truncate">
+                        {current.name}
+                      </p>
+                      <p className="text-[#CE1A19] text-xs font-bold uppercase tracking-wider mt-1.5 truncate">
+                        {current.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Counter + dots + mobile nav */}
+            <div className="w-full flex items-center justify-between px-1 sm:px-2 mt-4 select-none">
+              <span className="font-mono text-xs sm:text-xs font-bold uppercase tracking-wider text-zinc-400">
+                0{currentIndex + 1}{" "}
+                <span className="mx-0.5 text-zinc-300">/</span> 0{items.length}
+              </span>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-zinc-100 text-zinc-500 hover:text-zinc-900 rounded-lg transition-all active:scale-95 outline-none"
+                  aria-label="Previous review"
+                >
+                  <ChevronLeftIcon className="w-4 h-4 stroke-[2.5]" />
+                </button>
+
+                <div
+                  className="flex gap-1.5 sm:gap-2"
+                  role="tablist"
+                  aria-label="Review indicators"
+                >
+                  {items.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      role="tab"
+                      aria-selected={i === currentIndex}
+                      onClick={() => setCurrentIndex(i)}
+                      className="flex items-center justify-center w-6 h-6 outline-none cursor-pointer touch-manipulation"
+                      aria-label={`Go to review ${i + 1}`}
+                    >
+                      <span
+                        className={`block rounded-full transition-all duration-300 ${i === currentIndex ? "bg-[#CE1A19] w-4 sm:w-5 h-1" : "w-1.5 h-1.5 bg-zinc-300 hover:bg-zinc-400"}`}
+                      />
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="lg:hidden w-10 h-10 flex items-center justify-center border border-zinc-200 bg-zinc-100 text-zinc-500 hover:text-zinc-900 rounded-lg transition-all active:scale-95 outline-none"
+                  aria-label="Next review"
+                >
+                  <ChevronRightIcon className="w-4 h-4 stroke-[2.5]" />
+                </button>
+              </div>
+            </div>
+
+            <p className="lg:hidden text-zinc-400 text-xs font-medium tracking-wider mt-3 text-center select-none">
+              Drag or swipe to browse
+            </p>
           </div>
-
-          {/* Swipe hint — mobile only */}
-          <p className="lg:hidden text-zinc-400 text-[10px] font-medium tracking-wider mt-3 text-center select-none">
-            Drag or swipe to browse
-          </p>
         </div>
-
       </div>
     </section>
   );

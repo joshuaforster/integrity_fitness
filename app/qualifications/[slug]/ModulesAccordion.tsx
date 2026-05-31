@@ -77,7 +77,7 @@ function BookletPages({ pageTarget, pages, scrollRef, imgSizes }: {
         <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
           <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
         </svg>
-        <span className="text-[10px] font-bold uppercase tracking-widest">No preview available</span>
+        <span className="text-xs font-bold uppercase tracking-widest">No preview available</span>
       </div>
     );
   }
@@ -100,13 +100,13 @@ function CompactTablet({ pageTarget, pages, onExpand }: {
   return (
     <div className="flex flex-col items-center gap-5">
       <div className="relative w-[300px]">
-        <div className="absolute right-[-4px] top-[76px] w-[4px] h-9 bg-zinc-800 rounded-r-sm z-20" />
-        <div className="absolute left-[-4px] top-[64px] w-[4px] h-7 bg-zinc-800 rounded-l-sm z-20" />
-        <div className="absolute left-[-4px] top-[100px] w-[4px] h-7 bg-zinc-800 rounded-l-sm z-20" />
-        <div className="absolute left-[-4px] top-[46px] w-[4px] h-4 bg-zinc-800 rounded-l-sm z-20" />
+        <div className="absolute right-[-4px] top-[76px] w-1 h-9 bg-zinc-800 rounded-r-sm z-20" />
+        <div className="absolute left-[-4px] top-[64px] w-1 h-7 bg-zinc-800 rounded-l-sm z-20" />
+        <div className="absolute left-[-4px] top-[100px] w-1 h-7 bg-zinc-800 rounded-l-sm z-20" />
+        <div className="absolute left-[-4px] top-[46px] w-1 h-4 bg-zinc-800 rounded-l-sm z-20" />
         <div className="relative bg-zinc-950 rounded-[30px] h-[430px] shadow-[0_40px_80px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.07),inset_0_0_0_1px_rgba(255,255,255,0.03)]">
           <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-zinc-800 z-20" />
-          <div className="absolute inset-[12px] rounded-[22px] overflow-hidden bg-white">
+          <div className="absolute inset-3 rounded-[22px] overflow-hidden bg-white">
             <div ref={scrollRef} className="w-full h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <BookletPages pageTarget={pageTarget} pages={pages} scrollRef={scrollRef} imgSizes="276px" />
             </div>
@@ -116,7 +116,7 @@ function CompactTablet({ pageTarget, pages, onExpand }: {
       <button
         type="button"
         onClick={onExpand}
-        className="inline-flex items-center gap-2 [backdrop-filter:blur(12px)_saturate(130%)] bg-white/[0.06] border border-white/[0.14] hover:border-white/[0.30] hover:bg-white/[0.10] text-white px-5 py-2.5 text-[9px] font-black tracking-[3px] uppercase transition-all duration-200 rounded-full group shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+        className="inline-flex items-center gap-2 [backdrop-filter:blur(12px)_saturate(130%)] bg-white/[0.06] border border-white/[0.14] hover:border-white/[0.30] hover:bg-white/[0.10] text-white px-5 py-2.5 text-xs font-black tracking-widest uppercase transition-all duration-200 rounded-full group shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
       >
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:scale-110 transition-transform" aria-hidden="true">
           <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3" />
@@ -131,13 +131,13 @@ function LargeTablet({ pageTarget, pages }: { pageTarget: number; pages: string[
   const scrollRef = useRef<HTMLDivElement>(null);
   return (
     <div className="relative w-[440px]">
-      <div className="absolute right-[-6px] top-[112px] w-[6px] h-[53px] bg-zinc-800 rounded-r-sm z-20" />
-      <div className="absolute left-[-6px] top-[94px] w-[6px] h-[41px] bg-zinc-800 rounded-l-sm z-20" />
-      <div className="absolute left-[-6px] top-[147px] w-[6px] h-[41px] bg-zinc-800 rounded-l-sm z-20" />
-      <div className="absolute left-[-6px] top-[67px] w-[6px] h-[23px] bg-zinc-800 rounded-l-sm z-20" />
+      <div className="absolute right-[-6px] top-[112px] w-1.5 h-[53px] bg-zinc-800 rounded-r-sm z-20" />
+      <div className="absolute left-[-6px] top-[94px] w-1.5 h-[41px] bg-zinc-800 rounded-l-sm z-20" />
+      <div className="absolute left-[-6px] top-[147px] w-1.5 h-[41px] bg-zinc-800 rounded-l-sm z-20" />
+      <div className="absolute left-[-6px] top-[67px] w-1.5 h-[23px] bg-zinc-800 rounded-l-sm z-20" />
       <div className="relative bg-zinc-950 rounded-[42px] h-[620px] shadow-[0_48px_100px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.07),inset_0_0_0_1px_rgba(255,255,255,0.03)]">
         <div className="absolute top-[21px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-zinc-800 z-20" />
-        <div className="absolute inset-[16px] rounded-[30px] overflow-hidden bg-white">
+        <div className="absolute inset-4 rounded-[30px] overflow-hidden bg-white">
           <div ref={scrollRef} className="w-full h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <BookletPages pageTarget={pageTarget} pages={pages} scrollRef={scrollRef} imgSizes="408px" />
           </div>
@@ -169,14 +169,14 @@ function FullscreenOverlay({ pageTarget, pages, onClose }: {
     >
       <button
         type="button" onClick={close} aria-label="Close fullscreen"
-        className="absolute top-6 right-6 flex items-center gap-2 text-white/50 hover:text-white transition-colors text-[9px] font-bold tracking-[2px] uppercase outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+        className="absolute top-6 right-6 flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs font-bold tracking-wider uppercase outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
       >
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
           <path d="M6 18L18 6M6 6l12 12" />
         </svg>
         Close
       </button>
-      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/20 text-[9px] font-bold tracking-[3px] uppercase select-none pointer-events-none">
+      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/20 text-xs font-bold tracking-widest uppercase select-none pointer-events-none">
         Scroll to browse · Press Esc to close
       </p>
       <div className={`transition-all duration-[280ms] ease-out ${visible ? "scale-100 translate-y-0" : "scale-95 translate-y-3"}`}>
@@ -204,7 +204,7 @@ function ScrollSquiggle() {
           transition={{ duration: 2.2, times: [0, 0.52, 0.7, 1], repeat: Infinity, repeatDelay: 2 }}
         />
       </svg>
-      <span className="text-white/35 text-[9px] font-bold tracking-[2px] uppercase">Scroll to browse modules</span>
+      <span className="text-white/35 text-xs font-bold tracking-wider uppercase">Scroll to browse modules</span>
     </motion.div>
   );
 }
@@ -299,7 +299,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                 aria-expanded={openIndex === i}
               >
                 <motion.span
-                  className="text-[10px] font-black tabular-nums tracking-[2px] w-6 flex-shrink-0"
+                  className="text-xs font-black tabular-nums tracking-wider w-6 flex-shrink-0"
                   animate={{ color: i === active ? "#CE1A19" : "rgba(255,255,255,0.25)" }}
                   transition={{ duration: 0.3 }}
                 >
@@ -341,7 +341,7 @@ export default function ModulesAccordion({ modules, bookletFolder, bookletPageCo
                     className="overflow-hidden"
                   >
                     <div className="px-5 pt-3 pb-5 border-t border-white/[0.08]">
-                      <p className="text-[#CE1A19] text-[9px] font-black tracking-[3px] uppercase mb-4">
+                      <p className="text-[#CE1A19] text-xs font-black tracking-widest uppercase mb-4">
                         What you&apos;ll cover
                       </p>
                       <motion.ul

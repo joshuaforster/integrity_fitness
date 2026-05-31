@@ -63,7 +63,7 @@ export default function PricingToggleSection({
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
             Investment
           </p>
           <h2
@@ -113,7 +113,7 @@ export default function PricingToggleSection({
             {annualSaving > 0 && (
               <motion.span
                 animate={{ opacity: billing === "yearly" ? 1 : 0.6, scale: billing === "yearly" ? 1 : 0.92 }}
-                className="absolute -top-3 right-0 text-[9px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none pointer-events-none"
+                className="absolute -top-3 right-0 text-xs font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none pointer-events-none"
               >
                 SAVE £{annualSaving}
               </motion.span>
@@ -121,7 +121,7 @@ export default function PricingToggleSection({
           </div>
 
           {qual.durationMonths && (
-            <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mt-5">
+            <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mt-5">
               Typical completion: {qual.durationMonths}
             </p>
           )}
@@ -163,13 +163,13 @@ export default function PricingToggleSection({
               >
                 {tier.highlighted && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <span className="bg-[#CE1A19] text-white text-[9px] font-black uppercase tracking-[2.5px] px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
+                    <span className="bg-[#CE1A19] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(206,26,25,0.4)] whitespace-nowrap">
                       Recommended
                     </span>
                   </div>
                 )}
 
-                <p className={`text-[10px] font-black uppercase tracking-[2.5px] mb-2 ${tier.highlighted ? "text-[#CE1A19] mt-4" : "text-zinc-400"}`}>
+                <p className={`text-xs font-black uppercase tracking-widest mb-2 ${tier.highlighted ? "text-[#CE1A19] mt-4" : "text-zinc-400"}`}>
                   {tier.name}
                 </p>
 
@@ -186,11 +186,11 @@ export default function PricingToggleSection({
                       {price}
                     </motion.span>
                   </div>
-                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
+                  <p className={`text-xs font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
                     {period}
                   </p>
                   {tier.deposit && billing === "monthly" && (
-                    <p className={`text-[10px] font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
+                    <p className={`text-xs font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
                       After a £{tier.deposit} deposit
                     </p>
                   )}

@@ -120,7 +120,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
         {/* ── Header bar ── */}
         <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-zinc-900 bg-zinc-950">
           <div>
-            <p className="text-[#CE1A19] text-[10px] font-black tracking-[4px] uppercase mb-0.5">Course Booklet</p>
+            <p className="text-[#CE1A19] text-xs font-black tracking-widest uppercase mb-0.5">Course Booklet</p>
             <h2 className="text-white text-sm font-black uppercase tracking-wider max-w-md truncate">{qualTitle}</h2>
           </div>
           <div className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               <a
                 href={bookletPdfPath}
                 download
-                className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-black tracking-[2px] uppercase text-white hover:bg-zinc-900 transition-colors rounded-lg outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-black tracking-wider uppercase text-white hover:bg-zinc-900 transition-colors rounded-lg outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                 aria-label="Download PDF"
               >
                 <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -155,12 +155,12 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
           {/* Progress / page info strip */}
           <div className="flex-shrink-0 flex items-center justify-between px-8 py-3 bg-zinc-950 border-b border-zinc-900/60">
-            <span className="text-white text-[10px] font-bold tracking-[2px] uppercase">
+            <span className="text-white text-xs font-bold tracking-wider uppercase">
               Active IQ — Official Qualification Guide
             </span>
             <div className="flex items-center gap-4">
               {/* Mini progress bar */}
-              <div className="w-32 h-[3px] bg-zinc-800 rounded-full overflow-hidden">
+              <div className="w-32 h-1 bg-zinc-800 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-[#CE1A19] rounded-full transition-all duration-300"
                   style={{ width: `${progressPct}%` }}
@@ -184,7 +184,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               className="origin-center transition-transform duration-150 ease-out will-change-transform flex-shrink-0"
             >
               {/* Outer glow + shadow gives the book real depth */}
-              <div className="relative shadow-[0_40px_120px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)] rounded-[1px]">
+              <div className="relative shadow-[0_40px_120px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)] rounded-sm">
                 <FlipBook
                   width={PAGE_W}
                   height={PAGE_H}
@@ -210,7 +210,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
 
                 {/* Spine — faint centre line between left and right pages */}
                 <div
-                  className="absolute inset-y-0 left-[439px] w-[2px] pointer-events-none"
+                  className="absolute inset-y-0 left-[439px] w-0.5 pointer-events-none"
                   aria-hidden="true"
                 >
                   <div className="w-full h-full bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
@@ -237,7 +237,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                     animate={{ scale: [1, 0.65, 1, 1], y: [0, 3, 0, 0] }}
                     transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.5, times: [0, 0.25, 0.45, 1], ease: "easeInOut" }}
                   />
-                  <span className="text-zinc-600 text-[8px] font-bold tracking-[1px] uppercase">Click</span>
+                  <span className="text-zinc-600 text-xs font-bold tracking-wide uppercase">Click</span>
                 </div>
                 <span className="text-zinc-700 text-xs">·</span>
                 {/* Drag gesture */}
@@ -258,10 +258,10 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
                       <path d="M0 6 L24 6 M20 2 L26 6 L20 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
                     </motion.svg>
                   </div>
-                  <span className="text-zinc-600 text-[8px] font-bold tracking-[1px] uppercase">Drag</span>
+                  <span className="text-zinc-600 text-xs font-bold tracking-wide uppercase">Drag</span>
                 </div>
               </div>
-              <p className="text-center text-white text-[9px] font-bold tracking-[2px] uppercase">
+              <p className="text-center text-white text-xs font-bold tracking-wider uppercase">
                 Click pages to turn · Drag to flip
               </p>
             </div>
@@ -272,17 +272,17 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
         <div className="lg:hidden flex flex-col flex-1 min-h-0 bg-zinc-900">
           {/* Mobile progress strip */}
           <div className="flex-shrink-0 flex items-center justify-between px-5 py-3 border-b border-zinc-800">
-            <span className="text-white text-[10px] font-bold tracking-widest uppercase">
+            <span className="text-white text-xs font-bold tracking-widest uppercase">
               {mobilePage === 0 ? "Cover" : `Page ${mobilePage + 1}`}
             </span>
             <div className="flex items-center gap-3">
-              <div className="w-24 h-[3px] bg-zinc-800 rounded-full overflow-hidden">
+              <div className="w-24 h-1 bg-zinc-800 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-[#CE1A19] rounded-full transition-all duration-300"
                   style={{ width: `${Math.round(((mobilePage + 1) / total) * 100)}%` }}
                 />
               </div>
-              <span className="text-white font-mono text-[11px] tabular-nums">
+              <span className="text-white font-mono text-xs tabular-nums">
                 {mobilePage + 1} / {total}
               </span>
             </div>
@@ -300,7 +300,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
               else if (dx > 40) setMobilePage((p) => Math.max(0, p - 1));
             }}
           >
-            <div className="relative w-full max-w-xs shadow-[0_20px_60px_rgba(0,0,0,0.8)] rounded-[1px] overflow-hidden aspect-[440/580]"
+            <div className="relative w-full max-w-xs shadow-[0_20px_60px_rgba(0,0,0,0.8)] rounded-sm overflow-hidden aspect-[440/580]"
             >
               <Image
                 src={pages[mobilePage]}
@@ -366,7 +366,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
         <button
           type="button"
           onClick={open}
-          className="inline-flex items-center gap-2.5 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:bg-zinc-950 hover:text-white transition-all duration-200 rounded-lg shadow-xs group"
+          className="inline-flex items-center gap-2.5 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-xs font-bold tracking-widest uppercase hover:bg-zinc-950 hover:text-white transition-all duration-200 rounded-lg shadow-xs group"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform group-hover:scale-105 transition-transform">
             <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
@@ -378,7 +378,7 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
           <a
             href={bookletPdfPath}
             download
-            className="inline-flex items-center gap-2.5 border border-zinc-300 text-zinc-600 px-6 py-3.5 text-xs font-bold tracking-[3px] uppercase hover:border-zinc-950 hover:text-zinc-950 transition-all duration-200 rounded-lg shadow-xs group"
+            className="inline-flex items-center gap-2.5 border border-zinc-300 text-zinc-600 px-6 py-3.5 text-xs font-bold tracking-widest uppercase hover:border-zinc-950 hover:text-zinc-950 transition-all duration-200 rounded-lg shadow-xs group"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform group-hover:translate-y-0.5 transition-transform">
               <path d="M12 3v13m0 0l-4-4m4 4l4-4M3 21h18" />

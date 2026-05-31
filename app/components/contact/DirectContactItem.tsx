@@ -19,7 +19,7 @@ export default function DirectContactItem({ channel }: { channel: ContactChannel
         <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />
       </span>
       <div className="min-w-0">
-        <span className="text-[10px] font-black uppercase tracking-[2px] text-zinc-400 block mb-0.5">
+        <span className="text-xs font-black uppercase tracking-wider text-zinc-400 block mb-0.5">
           {channel.label}
         </span>
         <span className="text-zinc-950 font-bold text-sm leading-snug group-hover:text-[#CE1A19] transition-colors duration-200 block truncate">

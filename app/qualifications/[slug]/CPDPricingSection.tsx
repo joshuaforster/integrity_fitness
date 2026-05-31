@@ -72,7 +72,7 @@ export default function CPDPricingSection({
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
             Investment
           </p>
           <h2
@@ -96,7 +96,7 @@ export default function CPDPricingSection({
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <p className="text-zinc-500 text-[9px] font-black uppercase tracking-[4px] mb-8">
+            <p className="text-zinc-500 text-xs font-black uppercase tracking-widest mb-8">
               {tier.name}
             </p>
 
@@ -110,7 +110,7 @@ export default function CPDPricingSection({
               </span>
             </div>
 
-            <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-[3.5px] mb-10">
+            <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-10">
               One-time investment
             </p>
 
@@ -125,7 +125,7 @@ export default function CPDPricingSection({
                 Reserve Your Place
               </Button>
               <div className="flex items-center gap-2 mt-4">
-                <span className="text-zinc-600 text-[10px] uppercase tracking-wider">{qual.duration}</span>
+                <span className="text-zinc-600 text-xs uppercase tracking-wider">{qual.duration}</span>
                 {logoUrl && (
                   <>
                     <span className="text-zinc-700">·</span>
@@ -156,7 +156,7 @@ export default function CPDPricingSection({
                 style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.14) 50%, transparent)" }}
               />
 
-              <p className="text-zinc-400 text-[9px] font-black uppercase tracking-[4px] mb-7">
+              <p className="text-zinc-400 text-xs font-black uppercase tracking-widest mb-7">
                 What&apos;s included
               </p>
 
@@ -184,7 +184,7 @@ export default function CPDPricingSection({
                     Reserve Your Place
                   </Button>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-zinc-500 text-[10px] uppercase tracking-wider">{qual.duration}</span>
+                    <span className="text-zinc-500 text-xs uppercase tracking-wider">{qual.duration}</span>
                     {logoUrl && (
                       <>
                         <span className="text-zinc-700">·</span>

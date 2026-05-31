@@ -96,7 +96,7 @@ export default function PageHero({
           }`}
         >
           <motion.p
-            className="text-[#CE1A19] text-xs font-bold tracking-[4px] uppercase mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]"
+            className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
@@ -157,7 +157,7 @@ export default function PageHero({
           transition={{ delay: 1.0, duration: 0.6 }}
         >
           <div className="flex flex-col items-center gap-1.5 animate-bounce text-white">
-            <span className="text-[9px] tracking-[3px] uppercase font-bold">Scroll</span>
+            <span className="text-xs tracking-widest uppercase font-bold">Scroll</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>

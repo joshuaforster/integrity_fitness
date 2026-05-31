@@ -1,26 +1,8 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import CTAPanel, { type CTAPanelData } from "./CTAPanel";
-
-const PANELS: CTAPanelData[] = [
-  {
-    label: "Est. 2021",
-    title: "Who Are We?",
-    cta: "About Us",
-    href: "/about",
-    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/harry.webp",
-    alt: "Harry Matthews — Lead Instructor at Integrity Fitness Education",
-  },
-  {
-    label: "Norwich, Norfolk",
-    title: "Get In Touch",
-    cta: "Contact Us",
-    href: "/contact",
-    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/paris.webp",
-    alt: "Paris Matthews — Co-Founder at Integrity Fitness Education",
-  },
-];
+import CTAPanel from "./CTAPanel";
+import { ctaPanels as PANELS } from "@/app/content/home";
 
 const stagger: Variants = {
   hidden: {},

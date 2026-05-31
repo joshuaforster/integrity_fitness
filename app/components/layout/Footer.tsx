@@ -3,25 +3,9 @@
 import Image from "next/image";
 import Button from "@/app/components/ui/Button";
 import FooterNavColumn from "./FooterNavColumn";
+import { footerContent, footerNavQualifications, footerNavCompany, footerNavLegal } from "@/app/content/navigation";
 
 const NAVIGATION = {
-  qualifications: [
-    { name: "Combined Level 2 & 3 Diploma", href: "/qualifications/become-a-personal-trainer" },
-    { name: "Level 2 Gym Instructor", href: "/qualifications/level-2-gym-instructor" },
-    { name: "Level 3 Personal Training", href: "/qualifications/level-3-personal-training" },
-    { name: "Mental Health Awareness", href: "/qualifications/mental-health-awareness" },
-    { name: "Pre & Post Natal", href: "/qualifications/pre-post-natal" },
-    { name: "Emergency First Aid", href: "/qualifications/emergency-first-aid" },
-  ],
-  company: [
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "FAQ", href: "/faq" },
-  ],
-  legal: [
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms & Conditions", href: "/terms" },
-  ],
   social: [
     {
       name: "Facebook",
@@ -61,8 +45,7 @@ export default function Footer() {
               className="h-auto w-auto object-contain"
             />
             <p className="text-white text-sm leading-relaxed max-w-xs">
-              One-to-one fitness education in Norwich, Norfolk. CIMSPA
-              accredited, Level 3 qualified, and built around you.
+              {footerContent.brandCopy}
             </p>
             <div className="flex gap-4">
               {NAVIGATION.social.map((item) => (
@@ -82,19 +65,19 @@ export default function Footer() {
 
           {/* Nav columns */}
           <div className="mt-12 xl:mt-0 xl:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t xl:border-t-0 border-zinc-900 pt-12 xl:pt-0">
-            <FooterNavColumn heading="Qualifications" items={NAVIGATION.qualifications as unknown as { name: string; href: string }[]} />
+            <FooterNavColumn heading="Qualifications" items={[...footerNavQualifications]} />
 
             <div className="space-y-8">
-              <FooterNavColumn heading="Company" items={NAVIGATION.company as unknown as { name: string; href: string }[]} />
-              <FooterNavColumn heading="Legal" items={NAVIGATION.legal as unknown as { name: string; href: string }[]} />
+              <FooterNavColumn heading="Company" items={[...footerNavCompany]} />
+              <FooterNavColumn heading="Legal" items={[...footerNavLegal]} />
             </div>
 
             <div className="flex flex-col items-start border-t sm:border-t-0 border-zinc-900 pt-8 sm:pt-0">
-              <h3 className="text-white text-xs font-bold tracking-[3px] uppercase mb-5">Location</h3>
+              <h3 className="text-white text-xs font-bold tracking-widest uppercase mb-5">{footerContent.locationHeading}</h3>
               <address className="not-italic text-white text-sm leading-relaxed">
-                Complete Fitness Gym<br />
-                Whiffler Road, Norwich<br />
-                Norfolk, NR3 2AW
+                {footerContent.addressLine1}<br />
+                {footerContent.addressLine2}<br />
+                {footerContent.addressLine3}
               </address>
               <Button href="/contact" variant="primary" size="sm" className="mt-6 shadow-md">
                 Get In Touch
@@ -106,16 +89,11 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-white text-xs tracking-wide">
-              &copy; 2026 Integrity Fitness Education Ltd. All rights reserved.
-            </p>
-            <p className="text-white text-xs tracking-wide font-medium">
-              CIMSPA Accredited &middot; Norwich, Norfolk
-            </p>
+            <p className="text-white text-xs tracking-wide">{footerContent.copyright}</p>
+            <p className="text-white text-xs tracking-wide font-medium">{footerContent.badge}</p>
           </div>
-          <p className="text-white text-[11px] leading-relaxed max-w-4xl">
-            Integrity Fitness Education Ltd &middot; Company No. 13487683
-            &middot; Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP
+          <p className="text-white text-xs leading-relaxed max-w-4xl">
+            {footerContent.companyInfo}
           </p>
         </div>
       </div>

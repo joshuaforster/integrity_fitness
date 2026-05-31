@@ -42,7 +42,7 @@ export default function SectionHeader({
       viewport={{ once: false, amount: 0.4 }}
       transition={{ duration: 0.75, ease: "easeOut" }}
     >
-      <p className={`text-xs font-bold tracking-[4px] uppercase mb-4 ${labelColor}`}>
+      <p className={`text-xs font-bold tracking-widest uppercase mb-4 ${labelColor}`}>
         {label}
       </p>
       <h2

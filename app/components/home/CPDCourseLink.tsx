@@ -1,7 +1,5 @@
-export type CPDCourse = {
-  title: string;
-  href: string;
-};
+import { type CPDCourse } from "@/app/content/home";
+export type { CPDCourse } from "@/app/content/home";
 
 export default function CPDCourseLink({ course }: { course: CPDCourse }) {
   return (

@@ -3,10 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 
-export type Differentiator = {
-  title: string;
-  description: string;
-};
+import { type Differentiator } from "@/app/content/about";
+export type { Differentiator } from "@/app/content/about";
 
 const contentVariant: Variants = {
   hidden: { opacity: 0, x: -10 },
