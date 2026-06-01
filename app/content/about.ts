@@ -14,7 +14,7 @@ export const aboutHero = {
   label: "About",
   title: "The IFE Team",
   subtitle: "Fitness changed your life. Now you can help others find the same. We have a qualification built around where you are starting from.",
-  image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-8.jpg",
+  image: "/images/HARRY-AND-PARIS-MATTHEWS-20220124-IFE-TGGNCC003.jpg",
 } as const;
 
 // ── Section copy ──────────────────────────────────────────────────────────────
@@ -85,8 +85,7 @@ export const whereTheyDiffer = {
     "On the things that matter, good coaching, treating people with respect, they are completely aligned. After that, they are just two different people. And that is fine.",
   harry: {
     name: "Harry",
-    photo:
-      "/images/HARRY-GYM-FLOOR- 5-20220124-IFE-TGGNCC046.jpg",
+    photo: "/images/HARRY-PHONE-20220124-IFE-TGGNCC033.jpg",
     rows: {
       "Pre-workout": "Double espresso. Won't start without one.",
       "How they coach": "A plan, written down, followed.",

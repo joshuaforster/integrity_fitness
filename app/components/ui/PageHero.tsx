@@ -9,9 +9,11 @@ interface PageHeroProps {
   label: string;
   title: React.ReactNode;
   subtitle: string;
+  objectPosition?: string;
+  overlayStrength?: "normal" | "heavy";
 }
 
-export default function PageHero({ image, label, title, subtitle }: PageHeroProps) {
+export default function PageHero({ image, label, title, subtitle, objectPosition = "center", overlayStrength = "normal" }: PageHeroProps) {
   const words = typeof title === "string" ? title.split(" ") : null;
 
   return (
@@ -24,8 +26,12 @@ export default function PageHero({ image, label, title, subtitle }: PageHeroProp
           sizes="100vw"
           priority
           className="object-cover select-none pointer-events-none"
+          style={{ objectPosition }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30" />
+        <div className={`absolute inset-0 bg-gradient-to-t ${overlayStrength === "heavy" ? "from-black/95 via-black/75 to-black/50" : "from-black/95 via-black/70 to-black/30"}`} />
+        {overlayStrength === "heavy" && (
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
       </div>
 

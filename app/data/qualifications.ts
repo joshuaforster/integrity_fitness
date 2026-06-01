@@ -631,7 +631,7 @@ const qualifications: Qualification[] = [
     awardingBody: "Active IQ",
     duration: "1 day",
     tagline: "The first aid qualification every fitness professional needs.",
-    heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/CFG%20Group%20induction%20final%20edits/20230329-IFE-CF_001.JPG",
+    heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg",
     overview: [
       "Emergency First Aid at Work (EFAW) is a one-day qualification that equips you to respond quickly and effectively in an emergency. For fitness professionals it is not just good practice — many employers require it, and many insurance providers expect it.",
       "The course covers CPR, the use of an AED, management of common emergency situations, and the practical skills to keep someone safe until the emergency services arrive.",

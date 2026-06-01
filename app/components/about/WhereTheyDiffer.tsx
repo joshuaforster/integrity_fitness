@@ -44,7 +44,6 @@ export default function WhereTheyDiffer() {
       className="bg-zinc-50 texture-grid-light py-20 md:py-28 border-t border-zinc-200/80"
     >
       <SectionWrapper>
-
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-14">
           <SectionHeader
@@ -72,14 +71,14 @@ export default function WhereTheyDiffer() {
               transition={{ delay: i * 0.12 }}
             >
               {/* Photo — shorter, landscape crop */}
-              <div className="relative w-full h-48 md:h-56 overflow-hidden bg-zinc-200 rounded-lg border border-zinc-300/40">
+              <div className="relative w-full h-48 md:h-75 overflow-hidden bg-zinc-200 rounded-lg border border-zinc-300/40">
                 {person.photo ? (
                   <Image
                     src={person.photo}
                     alt={person.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-top"
+                    className="object-cover object-center"
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -131,7 +130,6 @@ export default function WhereTheyDiffer() {
             {C.closing}
           </p>
         </div>
-
       </SectionWrapper>
     </section>
   );
