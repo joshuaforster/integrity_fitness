@@ -39,8 +39,8 @@ export default function Footer() {
             <Image
               src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/logo_white.png"
               alt=""
-              width={160}
-              height={54}
+              width={110}
+              height={37}
               priority
               className="h-auto w-auto object-contain"
             />
@@ -90,7 +90,21 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="text-white text-xs tracking-wide">{footerContent.copyright}</p>
-            <p className="text-white text-xs tracking-wide font-medium">{footerContent.badge}</p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+              {/* Stripe trust badge */}
+              <div className="flex items-center gap-2 text-white/50">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect width="16" height="16" rx="3.5" fill="white" fillOpacity="0.12" />
+                  <path
+                    d="M8.35 6.32c0-.46.38-.64 1-.64.9 0 2.04.28 2.93.76V4.18A7.8 7.8 0 0 0 9.35 3.8c-2.02 0-3.38 1.05-3.38 2.8 0 2.73 3.76 2.29 3.76 3.47 0 .54-.47.71-1.13.71-.98 0-2.24-.4-3.24-.95v2.32c1.1.48 2.22.68 3.24.68 2.03 0 3.43-1 3.43-2.78 0-2.95-3.68-2.48-3.68-3.73z"
+                    fill="white"
+                  />
+                </svg>
+                <span className="text-xs">Payments secured by</span>
+                <span className="text-xs font-bold text-white/70 tracking-wide">Stripe</span>
+              </div>
+              <p className="text-white text-xs tracking-wide font-medium">{footerContent.badge}</p>
+            </div>
           </div>
           <p className="text-white text-xs leading-relaxed max-w-4xl">
             {footerContent.companyInfo}

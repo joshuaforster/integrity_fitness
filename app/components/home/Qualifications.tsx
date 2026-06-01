@@ -33,10 +33,10 @@ function CourseCard({ badge, level, title, body, href, cpd }: CourseCardProps) {
   return (
     <a
       href={href}
-      className="relative flex flex-col h-full bg-white border border-zinc-200 rounded-2xl p-6 group overflow-hidden
-        shadow-[0_2px_4px_rgba(0,0,0,0.04),0_6px_24px_rgba(0,0,0,0.06)]
-        hover:shadow-[0_4px_8px_rgba(0,0,0,0.06),0_12px_32px_rgba(0,0,0,0.10)]
-        hover:border-zinc-300
+      className="relative flex flex-col h-full bg-white border border-zinc-950 rounded-2xl p-6 group overflow-hidden
+        shadow-[0_2px_4px_rgba(0,0,0,0.06),0_6px_24px_rgba(0,0,0,0.08)]
+        hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.14)]
+        hover:border-zinc-700
         transition-all duration-300
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-2"
     >
@@ -56,22 +56,22 @@ function CourseCard({ badge, level, title, body, href, cpd }: CourseCardProps) {
       <h3 className="text-base font-black text-zinc-900 leading-tight mb-2">
         {title}
       </h3>
-      <p className="text-zinc-500 text-xs leading-relaxed flex-1 mb-4">
+      <p className="text-zinc-700 text-xs leading-relaxed flex-1 mb-4">
         {body}
       </p>
 
       {cpd && (
         <ul className="space-y-1.5 mb-4">
           {CPD_COURSES.map((c) => (
-            <li key={c.title} className="text-zinc-400 text-xs font-medium leading-snug flex items-center gap-1.5">
-              <span className="w-1 h-1 rounded-full bg-zinc-300 shrink-0" />
+            <li key={c.title} className="text-zinc-600 text-xs font-medium leading-snug flex items-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-zinc-400 shrink-0" />
               {c.title}
             </li>
           ))}
         </ul>
       )}
 
-      <div className="flex items-center gap-1.5 pt-3 border-t border-zinc-100 text-xs font-bold text-zinc-400 uppercase tracking-wider group-hover:text-[#CE1A19] transition-colors duration-200">
+      <div className="flex items-center gap-1.5 pt-3 border-t border-zinc-200 text-xs font-bold text-zinc-600 uppercase tracking-wider group-hover:text-[#CE1A19] transition-colors duration-200">
         {cpd ? qualificationsSection.viewAllCPD : qualificationsSection.viewCourse}
         <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
       </div>

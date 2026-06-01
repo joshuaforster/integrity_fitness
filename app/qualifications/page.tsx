@@ -98,6 +98,28 @@ export default function QualificationsPage() {
               Continued Professional Development
             </h2>
             <div className="w-14 h-1 bg-[#CE1A19] mt-5" aria-hidden="true" />
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+              <div className="border-l-2 border-zinc-700 pl-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
+                  When should I do these?
+                </h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  CPD courses sit alongside or after your core qualification. They expand what you can legally and professionally offer to specific client groups — and many employers and insurers expect at least some of them before you step on the gym floor.
+                </p>
+              </div>
+              <div className="border-l-2 border-zinc-700 pl-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
+                  Which should I do first?
+                </h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  If you are newly qualified, start with{" "}
+                  <strong className="text-zinc-200">Emergency First Aid</strong> — most gym roles and insurance policies require it. Add{" "}
+                  <strong className="text-zinc-200">Mental Health Awareness</strong> to better support any client. Once you are established,{" "}
+                  <strong className="text-zinc-200">Pre &amp; Post Natal</strong> opens a high-demand client group that most PTs cannot yet serve.
+                </p>
+              </div>
+            </div>
           </div>
 
           <CPDCourseGrid courses={CPD_COURSES} />

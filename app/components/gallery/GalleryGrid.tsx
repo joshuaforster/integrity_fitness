@@ -276,10 +276,10 @@ export default function GalleryGrid() {
                     }}
                     aria-label={`Page ${page}`}
                     aria-current={currentPage === page ? "page" : undefined}
-                    className={`w-10 h-10 rounded text-sm font-light transition-colors ${
+                    className={`w-10 h-10 rounded text-sm font-bold transition-colors border ${
                       currentPage === page
-                        ? "bg-[#CE1A19] text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-zinc-950 hover:text-white"
+                        ? "bg-[#CE1A19] border-[#CE1A19] text-white"
+                        : "bg-white border-zinc-300 text-zinc-700 hover:border-zinc-950 hover:bg-zinc-950 hover:text-white"
                     }`}
                   >
                     {page}

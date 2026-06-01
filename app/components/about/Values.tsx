@@ -19,7 +19,6 @@ const cardVariant: Variants = {
 
 function HonestyIcon() {
   return (
-    // Outer wrapper pulses gently while in view
     <motion.div
       animate={{ scale: [1, 1.07, 1] }}
       transition={{ duration: 3.2, repeat: Infinity, repeatDelay: 1.2, ease: "easeInOut" }}
@@ -29,7 +28,6 @@ function HonestyIcon() {
         fill="none" strokeWidth={1.75} stroke="#CE1A19"
         strokeLinecap="round" strokeLinejoin="round"
       >
-        {/* Badge outline — draws in first */}
         <motion.path
           d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -37,7 +35,6 @@ function HonestyIcon() {
           viewport={{ once: false }}
           transition={{ duration: 0.9, ease: "easeInOut" }}
         />
-        {/* Checkmark — draws in after the badge */}
         <motion.path
           d="M9 12.75 11.25 15 15 9.75"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -52,7 +49,6 @@ function HonestyIcon() {
 
 function ExcellenceIcon() {
   return (
-    // Wrapper rocks gently like a star twinkling
     <motion.div
       animate={{ rotate: [0, 10, 0, -10, 0] }}
       transition={{ duration: 4.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }}
@@ -62,7 +58,6 @@ function ExcellenceIcon() {
         fill="none" strokeWidth={1.75} stroke="#CE1A19"
         strokeLinecap="round" strokeLinejoin="round"
       >
-        {/* Star — single continuous path, draws around */}
         <motion.path
           d="M11.48 3.499c.172-.367.694-.367.866 0l2.254 4.816 5.008.643c.404.052.566.551.27.836l-3.601 3.498.88 4.974c.071.402-.353.71-.708.514L12 18.354l-4.43 2.422c-.354.197-.779-.111-.708-.514l.88-4.974-3.601-3.498c-.296-.285-.135-.784.27-.836l5.008-.643 2.254-4.816Z"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -77,12 +72,10 @@ function ExcellenceIcon() {
 
 function CommunityIcon() {
   return (
-    // Wrapper floats up and down gently
     <motion.div
       animate={{ y: [0, -4, 0] }}
       transition={{ duration: 3.0, repeat: Infinity, repeatDelay: 0.8, ease: "easeInOut" }}
     >
-      {/* Complex compound path — spring scale-in instead of pathLength */}
       <motion.svg
         width="28" height="28" viewBox="0 0 24 24"
         fill="none" strokeWidth={1.75} stroke="#CE1A19"
@@ -110,7 +103,7 @@ export default function Values() {
   return (
     <section
       aria-labelledby="values-heading"
-      className="bg-zinc-50 texture-dots-light py-20 md:py-28 border-t border-zinc-200/80"
+      className="bg-zinc-50 texture-dots-light angle-tl-lg pb-20 md:pb-28 pt-[152px] md:pt-[168px]"
     >
       <SectionWrapper reveal>
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">

@@ -46,7 +46,7 @@ OurStory() {
     <section
       id="our-story"
       aria-labelledby="team-heading"
-      className="bg-zinc-100 texture-diag-light py-10  border-t border-zinc-200/80"
+      className="bg-zinc-100 texture-diag-light py-10 border-t border-zinc-200/80"
     >
       <SectionWrapper>
         {/* ── Desktop: header + image + both bios animate as one ── */}

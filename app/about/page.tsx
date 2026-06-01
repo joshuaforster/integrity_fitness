@@ -1,6 +1,6 @@
 import AboutHero from "../components/about/AboutHero";
 import AboutMission from "../components/about/AboutMission";
-import AboutStats from "../components/about/AboutStats";
+import WhereTheyDiffer from "../components/about/WhereTheyDiffer";
 import Values from "../components/about/Values";
 import OurStory from "../components/about/OurStory";
 import Testimonial from "../components/about/Testimonial";
@@ -29,9 +29,9 @@ export default function About() {
     <>
       <AboutHero />
       <OurStory />
+      <WhereTheyDiffer />
       <AboutMission />
-      <AboutStats />
-      <Values />
+      {/* <Values /> */}
       <Testimonial />
       <AboutCTA />
     </>

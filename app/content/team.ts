@@ -12,19 +12,21 @@ export const team: TeamMember[] = [
   {
     name: "Harry",
     role: "Founder",
-    meta: "Teaching Since 2015",
+    meta: "22 Yrs Combined",
     bio: [
-      "Harry and Paris are brother and sister — and IFE is their shared mission. Harry completed the combined Level 2 & 3 Personal Training Diploma and spent years building his reputation as a self-employed PT at The Gym Group in Norwich, specialising in exercise referral before moving into education.",
-      "Since 2015 he has worked with hundreds of students, channelling the same drive that drew him to personal training into helping others build careers that last. That vision became Integrity Fitness Education.",
+      "Harry started out as a PT in Norwich. He grew up playing basketball. Outside the gym he reads around anatomy and how the body works. All of that feeds into how he teaches you.",
+      "Fitness is part of his life, not all of it. He wants the same for you. A normal life and a fit one should work side by side.",
+      "Every session is built around where you are and where you want to get.",
     ],
   },
   {
     name: "Paris",
     role: "Lead Tutor",
-    meta: "Teaching Since 2015",
+    meta: "Tutor & Assessor",
     bio: [
-      "Paris qualified as a personal trainer and joined Harry at The Gym Group, quickly making her mark through her dedication to clients and her own continued development — earning certificates in spinning and supporting pre and post natal populations.",
-      "Harry recognised her natural gift for teaching early on, and she has surpassed every expectation since stepping into the classroom. As Lead Tutor at IFE, she brings energy, empathy, and lived experience to every course she delivers.",
+      "Paris came to fitness through staying active outside the gym. [Interests TBC.] She qualified as a PT. Teaching is where she does her best work, and you get the full benefit.",
+      "She has extra certs in spinning and in pre and post natal support. That range is yours to draw from.",
+      "She wants you to leave feeling capable and clear. Not just informed. Ready.",
     ],
   },
 ];

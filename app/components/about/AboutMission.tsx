@@ -26,7 +26,7 @@ const textFadeVariants: Variants = {
 
 export default function AboutMission() {
   return (
-    <section className="bg-white py-20 md:py-28 border-t border-zinc-100">
+    <section className="bg-white angle-tr-lg pb-20 md:pb-28 pt-[152px] md:pt-[168px]">
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column — Original Position with Text Reveal */}

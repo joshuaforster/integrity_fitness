@@ -7,16 +7,16 @@ export const values: ValueContent[] = [
   {
     title: "Honesty",
     description:
-      "You'll always know where you stand. Everything is transparent, straightforward, and in your absolute best interest.",
+      "You always know where you stand. Open. Straight. In your corner.",
   },
   {
     title: "Excellence",
     description:
-      "You'll be held to the highest technical benchmarks in fitness education, with material that goes far beyond the basic syllabus to make you industry-ready.",
+      "Every session goes beyond the standard syllabus. You leave knowing more than most coaches with years in the gym.",
   },
   {
     title: "Community",
     description:
-      "Learning is better alongside others. You gain lifelong access to a community of coaches and clients that supports your career long after you qualify.",
+      "You join a group of coaches who look out for each other. That lasts long after you qualify.",
   },
 ];

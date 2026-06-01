@@ -32,11 +32,15 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
         >
           <Link
             href={`/qualifications/${q.slug}`}
-            className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-200/60 hover:border-zinc-400 hover:shadow-md transition-all duration-300 group rounded-lg shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+            className="relative flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-950 hover:border-zinc-700 rounded-2xl overflow-hidden
+              shadow-[0_2px_4px_rgba(0,0,0,0.06),0_6px_24px_rgba(0,0,0,0.08)]
+              hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.14)]
+              transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
           >
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CE1A19] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="flex-1 max-w-2xl pr-4">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase">
+                <span className="text-zinc-600 text-xs font-bold tracking-wider uppercase">
                   {q.level}
                 </span>
                 {q.badge && (
@@ -51,12 +55,12 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
               <p className="text-zinc-600 text-sm mt-1.5 leading-relaxed">{q.tagline}</p>
             </div>
 
-            <div className="flex items-center justify-between sm:justify-end gap-6 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-100">
-              <span className="text-zinc-500 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-lg">
+            <div className="flex items-center justify-between sm:justify-end gap-6 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-200">
+              <span className="text-zinc-600 text-xs font-bold tracking-wider uppercase bg-zinc-100 px-3 py-1.5 rounded-lg">
                 {q.duration}
               </span>
               <span
-                className="text-zinc-400 group-hover:text-zinc-950 transform transition-transform duration-300 group-hover:translate-x-2 text-xl"
+                className="text-zinc-500 group-hover:text-zinc-950 transform transition-transform duration-300 group-hover:translate-x-2 text-xl"
                 aria-hidden="true"
               >
                 →

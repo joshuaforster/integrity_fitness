@@ -22,7 +22,7 @@ const fadeIn: Variants = {
 
 export default function CourseHero({ qual }: { qual: Qualification }) {
   return (
-    <section className="relative min-h-[65vh] md:min-h-[70vh] flex items-end bg-zinc-950 overflow-hidden">
+    <section className="relative min-h-[50vh] md:min-h-[55vh] flex items-end bg-zinc-950 overflow-hidden">
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src={qual.heroImage}
@@ -36,7 +36,7 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent z-[2]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pb-16 md:pb-20 pt-40 w-full mt-auto">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pb-10 md:pb-14 pt-28 w-full mt-auto">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.div variants={fadeUp} className="flex items-center flex-wrap gap-2.5 mb-4">
             <span className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase">

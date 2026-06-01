@@ -9,11 +9,11 @@ export default function AboutStats() {
   return (
     <section className="bg-zinc-50 texture-dots-light angle-tl pb-16 md:pb-20 pt-[116px] md:pt-[132px]">
       <SectionWrapper reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-12 sm:gap-y-0">
+        <div className="flex flex-wrap gap-x-12 gap-y-8">
           {STATS.map((stat) => (
             <div
               key={stat.label}
-              className={`flex flex-col items-start pl-6 ${stat.label !== "Accredited Partner" ? "border-l-2 border-zinc-200" : ""}`}
+              className="flex flex-col items-start pl-6 border-l-2 border-zinc-200"
             >
               <p className="text-xs text-zinc-600 uppercase tracking-wider mt-4 font-bold order-last">
                 {stat.label}

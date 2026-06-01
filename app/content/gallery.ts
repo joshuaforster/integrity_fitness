@@ -2,7 +2,7 @@
 
 export const galleryHero = {
   heading: "Our Work",
-  body: "Real sessions, real people, real results — explore our training sessions, practical classes, events, and facilities.",
+  body: "This is what your training looks like. Real sessions. Real people. Real results.",
 } as const;
 
 // ── Gallery images ────────────────────────────────────────────────────────────
