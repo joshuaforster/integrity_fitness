@@ -35,9 +35,9 @@ export default function CPDPricingSection({
 
   const clipPath =
     slant === "rise"
-      ? "polygon(0 48px, 100% 0, 100% 100%, 0 100%)"
+      ? "polygon(0 80px, 100% 0, 100% 100%, 0 100%)"
       : slant === "fall"
-        ? "polygon(0 0, 100% 48px, 100% 100%, 0 100%)"
+        ? "polygon(0 0, 100% 80px, 100% 100%, 0 100%)"
         : undefined;
 
   const logoUrl = LOGO_URLS[qual.awardingBody];
@@ -46,7 +46,7 @@ export default function CPDPricingSection({
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className={`relative bg-zinc-900 texture-dots-dark overflow-hidden py-20 md:py-28${slant ? " -mt-12 z-10" : " border-t border-zinc-950"}`}
+      className={`relative bg-zinc-900 texture-dots-dark overflow-hidden py-20 md:py-28${slant ? " -mt-20 z-10" : " border-t border-zinc-950"}`}
       style={clipPath ? { clipPath } : undefined}
     >
       {/* Darker-at-top depth */}

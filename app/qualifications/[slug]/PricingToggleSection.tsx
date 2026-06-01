@@ -41,16 +41,16 @@ export default function PricingToggleSection({
       : 0;
 
   const clipPath = slant === "rise"
-    ? "polygon(0 48px, 100% 0, 100% 100%, 0 100%)"
+    ? "polygon(0 80px, 100% 0, 100% 100%, 0 100%)"
     : slant === "fall"
-    ? "polygon(0 0, 100% 48px, 100% 100%, 0 100%)"
+    ? "polygon(0 0, 100% 80px, 100% 100%, 0 100%)"
     : undefined;
 
   return (
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className={`bg-zinc-100 texture-dots-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
+      className={`bg-zinc-100 texture-dots-light py-20 md:py-28${slant ? " -mt-20 relative z-10" : " border-t border-zinc-200/80"}`}
       style={clipPath ? { clipPath } : undefined}
     >
       <SectionWrapper reveal>
