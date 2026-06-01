@@ -1,7 +1,7 @@
 import AboutHero from "../components/about/AboutHero";
 import AboutMission from "../components/about/AboutMission";
 import WhereTheyDiffer from "../components/about/WhereTheyDiffer";
-import Values from "../components/about/Values";
+
 import OurStory from "../components/about/OurStory";
 import Testimonial from "../components/about/Testimonial";
 import AboutCTA from "../components/about/AboutCta";

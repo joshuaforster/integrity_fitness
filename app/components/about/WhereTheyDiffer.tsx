@@ -6,6 +6,13 @@ import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import { whereTheyDiffer as C } from "@/app/content/about";
 
+type PersonCard = {
+  name: string;
+  photo: string | undefined;
+  role?: string;
+  rows: Record<string, string>;
+};
+
 const SHOW_ROWS: (keyof typeof C.harry.rows)[] = [
   "Cardio",
   "On the menu",
@@ -54,7 +61,7 @@ export default function WhereTheyDiffer() {
 
         {/* Two columns — exact same pattern as TeamMemberCard */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14 items-start">
-          {([C.harry, C.paris] as const).map((person, i) => (
+          {([C.harry, C.paris] as PersonCard[]).map((person, i) => (
             <motion.div
               key={person.name}
               className="flex flex-col items-start"
@@ -120,9 +127,6 @@ export default function WhereTheyDiffer() {
 
         {/* Closing */}
         <div className="mt-12 text-center max-w-lg mx-auto space-y-2">
-          <p className="text-zinc-500 text-sm italic leading-relaxed">
-            {C.teamLine}
-          </p>
           <p className="text-zinc-600 text-sm md:text-base font-medium leading-relaxed">
             {C.closing}
           </p>
