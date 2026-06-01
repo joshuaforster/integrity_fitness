@@ -11,7 +11,7 @@ export const aboutStats: AboutStat[] = [
 // ── Page hero ─────────────────────────────────────────────────────────────────
 
 export const aboutHero = {
-  label: "Integrity Fitness Education",
+  label: "About",
   title: "The IFE Team",
   subtitle: "Fitness changed your life. Now you can help others find the same. We have a qualification built around where you are starting from.",
   image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-8.jpg",

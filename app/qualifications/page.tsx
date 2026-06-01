@@ -23,16 +23,10 @@ export default function QualificationsPage() {
   return (
     <main className="bg-zinc-50">
       <PageHero
-        images={[
-          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",
-          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/ANATOMY-AND-PHYSIOLOGY-EXAM-20220124-IFE-TGGNCC044.jpg",
-          "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
-        ]}
-        interval={7000}
-        label="CIMSPA Accredited"
+        image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"
+        label="Qualifications"
         title="Qualifications"
         subtitle="One-to-one education built for real careers. Every course delivered personally by Harry."
-        minHeight="60vh"
       />
 
       {/* 1. Guided Career Tracks: Personal Training */}
