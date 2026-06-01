@@ -47,16 +47,6 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
               <ModulesAccordion modules={qual.modules} />
             </div>
 
-            <div className="pt-6 border-t border-zinc-100">
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold tracking-wide text-zinc-400 uppercase">
-                <div>
-                  <span className="text-zinc-950">Duration:</span> {qual.duration}
-                </div>
-                <div>
-                  <span className="text-zinc-950">Awarding Body:</span> {qual.awardingBody}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </SectionWrapper>

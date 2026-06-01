@@ -19,10 +19,15 @@ interface PageProps {
 
 type SlantDir = "rise" | "fall";
 
+const SLANT_OVERRIDES: Partial<Record<string, SlantDir>> = {
+  "become-a-personal-trainer": "fall",
+  "level-3-personal-training": "fall",
+};
+
 function slugSlants(slug: string): { pricing: SlantDir } {
+  if (slug in SLANT_OVERRIDES) return { pricing: SLANT_OVERRIDES[slug]! };
   const n = slug.split("").reduce((a, c, i) => a + c.charCodeAt(0) * (i + 1), 0);
-  const pricing: SlantDir = n & 1 ? "rise" : "fall";
-  return { pricing };
+  return { pricing: n & 1 ? "rise" : "fall" };
 }
 
 export async function generateStaticParams() {
