@@ -4,6 +4,7 @@ export type PricingTier = {
   deposit?: number;
   description: string;
   includes: string[];
+  highlights?: string[];
   highlighted?: boolean;
 };
 
@@ -128,10 +129,14 @@ const qualifications: Qualification[] = [
         description: "Our most cost effective option. Fully self-paced study with all course materials included.",
         includes: [
           "Graduate T-Shirt Upon Completion",
-          "Tote Bag",
           "Physical Textbooks & Manual",
           "E-Learning",
           "Facebook Support Group",
+          "1 free submission per module",
+          "Monthly Check In Call",
+        ],
+        highlights: [
+          "Physical Textbooks & Manual",
           "1 free submission per module",
           "Monthly Check In Call",
         ],
@@ -143,13 +148,16 @@ const qualifications: Qualification[] = [
         description: "Includes our bespoke 1-1 tuition alongside flexible study.",
         includes: [
           "Graduate T-Shirt Upon Completion",
-          "Pen, Notepad & Bookmark",
-          "Tote Bag",
           "Physical Textbooks & Manual",
           "E-Learning",
           "Facebook Support Group",
           "2 free submissions per module",
           "2 × 1-1 support sessions each month",
+          "Monthly Check In Call",
+        ],
+        highlights: [
+          "2 × 1-1 support sessions each month",
+          "2 free submissions per module",
           "Monthly Check In Call",
         ],
         highlighted: true,
@@ -162,14 +170,18 @@ const qualifications: Qualification[] = [
         includes: [
           "Personalised Graduate T-Shirt Upon Completion",
           "Business Mentorship",
-          "Water Bottle, Pen, Notepad & Bookmark",
-          "Tote Bag",
+          "Water Bottle",
           "Physical Textbooks & Manual",
           "E-Learning",
           "Facebook Support Group",
           "3 free submissions per module",
           "4 × 1-1 support sessions each month",
           "Monthly Check In Call",
+        ],
+        highlights: [
+          "4 × 1-1 support sessions each month",
+          "Business Mentorship",
+          "3 free submissions per module",
         ],
       },
     ],

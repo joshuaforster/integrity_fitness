@@ -5,7 +5,6 @@ import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
-import PricingComparisonTable from "./PricingComparisonTable";
 import { type Qualification } from "@/app/data/qualifications";
 
 const listVariants: Variants = {
@@ -34,7 +33,7 @@ export default function PricingToggleSection({
   qual: Qualification;
   slant?: "rise" | "fall";
 }) {
-  const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const [billing, setBilling] = useState<"monthly" | "yearly">("yearly");
   const highlightedTier = qual.pricing.find((tier) => tier.highlighted);
   const annualSaving =
     highlightedTier && typeof highlightedTier.price !== "number"
@@ -51,7 +50,7 @@ export default function PricingToggleSection({
     <section
       id="pricing-section"
       aria-labelledby="pricing-heading"
-      className={`bg-zinc-100 texture-grid-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
+      className={`bg-zinc-100 texture-dots-light py-20 md:py-28${slant ? " -mt-12 relative z-10" : " border-t border-zinc-200/80"}`}
       style={clipPath ? { clipPath } : undefined}
     >
       <SectionWrapper reveal>
@@ -218,7 +217,7 @@ export default function PricingToggleSection({
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.1 }}
                 >
-                  {tier.includes.map((item) => (
+                  {(tier.highlights ?? tier.includes).map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>
                       <AnimatedCheck size={15} delay={0} color="#16a34a" />
                       <span className={`text-sm leading-snug ${tier.highlighted ? "text-white" : "text-zinc-600"}`}>{item}</span>
@@ -239,14 +238,6 @@ export default function PricingToggleSection({
           })}
         </div>
 
-        {qual.comparisonFeatures && qual.comparisonFeatures.length > 0 && (
-          <PricingComparisonTable
-            features={qual.comparisonFeatures}
-            tiers={qual.pricing}
-            billing={billing}
-            theme="light"
-          />
-        )}
       </SectionWrapper>
     </section>
   );

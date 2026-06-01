@@ -7,7 +7,6 @@ import qualifications, {
 import TestimonialsSection from "@/app/components/shared/TestimonialsSection";
 import CourseHero from "./CourseHero";
 import CourseOverview from "./CourseOverview";
-import CourseModulesSection from "./CourseModulesSection";
 import CourseFinalCTA from "./CourseFinalCTA";
 import CPDPricingSection from "./CPDPricingSection";
 import PricingToggleSection from "./PricingToggleSection";
@@ -20,11 +19,10 @@ interface PageProps {
 
 type SlantDir = "rise" | "fall";
 
-function slugSlants(slug: string): { modules: SlantDir; pricing?: SlantDir } {
+function slugSlants(slug: string): { pricing: SlantDir } {
   const n = slug.split("").reduce((a, c, i) => a + c.charCodeAt(0) * (i + 1), 0);
-  const modules: SlantDir = n & 1 ? "rise" : "fall";
-  const pricing: SlantDir | undefined = n & 2 ? (n & 4 ? "rise" : "fall") : undefined;
-  return { modules, pricing };
+  const pricing: SlantDir = n & 1 ? "rise" : "fall";
+  return { pricing };
 }
 
 export async function generateStaticParams() {
@@ -62,7 +60,6 @@ export default async function QualificationPage({ params }: PageProps) {
     <main className="bg-white">
       <CourseHero qual={qual} />
       <CourseOverview qual={qual} />
-      <CourseModulesSection qual={qual} slant={slants.modules} />
       <PricingSection qual={qual} slant={slants.pricing} />
       <PricingFAQSection />
 

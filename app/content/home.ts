@@ -204,20 +204,8 @@ export const missionImages = [
     alt: "Harry and Paris personal training session",
   },
   {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-AND-PARIS-20220124-IFE-TGGNCC002.jpg",
-    alt: "Harry and Paris personal training Norwich",
-  },
-  {
     src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
     alt: "Harry, Paris and Cloe training together Norwich",
-  },
-  {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg",
-    alt: "Learners practising on the gym floor",
-  },
-  {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg",
-    alt: "Harry coaching on the gym floor Norwich",
   },
 ] as const;
 

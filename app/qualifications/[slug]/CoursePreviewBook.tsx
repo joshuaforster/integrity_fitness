@@ -56,7 +56,8 @@ export default function CoursePreviewBook({ qualTitle, bookletFolder, bookletPag
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const R2_BASE = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev";
-  const total = bookletPageCount ?? 0;
+  const TEASER_PAGES = 5;
+  const total = Math.min(bookletPageCount ?? 0, TEASER_PAGES);
   const pages = Array.from({ length: total }, (_, i) => {
     const n = String(i + 1).padStart(2, "0");
     return `${R2_BASE}/booklet-images/${bookletFolder}/page_${n}.jpg`;
