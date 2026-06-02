@@ -7,6 +7,7 @@ import { stripe } from '@/lib/stripe'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const RECIPIENTS = ['joshuaforster95@gmail.com']
+// TODO: replace with a verified sending domain before going to production
 const FROM_EMAIL = 'onboarding@resend.dev'
 
 function formatAmount(amount: number | null, currency: string | null) {
@@ -43,6 +44,41 @@ async function notifyEnrolment(session: Stripe.Checkout.Session) {
     `,
   })
   if (sendError) throw new Error(`Resend error: ${sendError.message}`)
+}
+
+async function sendReceiptToCustomer(session: Stripe.Checkout.Session) {
+  const customerEmail = session.customer_details?.email ?? session.customer_email
+  if (!customerEmail) return
+
+  const name = session.customer_details?.name ?? 'there'
+  const isMonthly = session.mode === 'subscription'
+  const amount = formatAmount(session.amount_total, session.currency)
+
+  const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ['line_items'] })
+  const courses = full.line_items?.data.map((i) => i.description ?? 'Course').join(', ') ?? 'Unknown course'
+
+  const { error: sendError } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: [customerEmail],
+    subject: 'Your enrolment confirmation — Integrity Training',
+    html: `
+      <p style="font-family:sans-serif;font-size:14px;color:#111;">Hi ${name},</p>
+      <p style="font-family:sans-serif;font-size:14px;color:#111;">
+        Thank you for enrolling. Here's a summary of your purchase:
+      </p>
+      <table style="font-family:sans-serif;font-size:14px;color:#333;border-collapse:collapse;">
+        <tr><td style="padding:4px 16px 4px 0;color:#888;">Course(s)</td><td>${courses}</td></tr>
+        <tr><td style="padding:4px 16px 4px 0;color:#888;">Payment</td><td>${isMonthly ? 'Monthly plan' : 'Paid in full'} — ${amount}</td></tr>
+      </table>
+      <p style="font-family:sans-serif;font-size:14px;color:#111;">
+        If you have any questions, just reply to this email.
+      </p>
+      <p style="font-family:sans-serif;font-size:14px;color:#111;">
+        — The Integrity Training Team
+      </p>
+    `,
+  })
+  if (sendError) throw new Error(`Resend error (receipt): ${sendError.message}`)
 }
 
 async function notifyRenewal(invoice: Stripe.Invoice) {
@@ -87,7 +123,8 @@ export async function POST(req: NextRequest) {
 
   try {
     if (event.type === 'checkout.session.completed') {
-      await notifyEnrolment(event.data.object as Stripe.Checkout.Session)
+      const session = event.data.object as Stripe.Checkout.Session
+      await Promise.all([notifyEnrolment(session), sendReceiptToCustomer(session)])
     } else if (event.type === 'invoice.payment_succeeded') {
       const invoice = event.data.object as Stripe.Invoice
       // Skip first-payment invoices — already covered by checkout.session.completed
