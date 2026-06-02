@@ -6,6 +6,7 @@ import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
 import { type Qualification } from "@/app/data/qualifications";
+import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, x: -10 },
@@ -204,6 +205,11 @@ export default function CPDPricingSection({
           </motion.div>
 
         </div>
+
+        <div className="mt-10">
+          <StripeTrustBar theme="dark" />
+        </div>
+
       </SectionWrapper>
     </section>
   );

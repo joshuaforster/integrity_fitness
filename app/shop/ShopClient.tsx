@@ -8,6 +8,7 @@ import { type Qualification } from "@/app/data/qualifications";
 import { useCart } from "@/app/context/CartContext";
 import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 
 /* ── helpers ─────────────────────────────────────────────────────── */
 
@@ -271,6 +272,9 @@ export default function ShopClient({
             </motion.div>
 
           </div>
+          <div className="mt-10">
+            <StripeTrustBar theme="light" />
+          </div>
         </SectionWrapper>
       </section>
 
@@ -326,6 +330,9 @@ export default function ShopClient({
               <CPDCourseCard key={q.slug} q={q} />
             ))}
           </motion.div>
+          <div className="mt-10">
+            <StripeTrustBar theme="dark" />
+          </div>
         </SectionWrapper>
       </section>
 

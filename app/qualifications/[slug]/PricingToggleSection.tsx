@@ -5,7 +5,8 @@ import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
-import { type Qualification } from "@/app/data/qualifications";
+import { type Qualification } from "@/app/data/qualifications"
+import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 
 const listVariants: Variants = {
   hidden: {},
@@ -236,6 +237,10 @@ export default function PricingToggleSection({
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-10">
+          <StripeTrustBar theme="dark" />
         </div>
 
       </SectionWrapper>

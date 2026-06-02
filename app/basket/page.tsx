@@ -10,6 +10,7 @@ import { useCart } from "@/app/context/CartContext";
 import Button from "@/app/components/ui/Button";
 import PageHero from "@/app/components/ui/PageHero";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -90,7 +91,7 @@ export default function BasketPage() {
                       </div>
                       <div className="flex items-center justify-between mt-4 flex-wrap gap-3">
                         <div className="flex items-center gap-1 bg-zinc-100 rounded-lg p-1">
-                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} aria-label="Decrease quantity" className="w-7 h-7 flex items-center justify-center rounded-md text-zinc-600 hover:bg-zinc-200 hover:text-zinc-950 transition-colors font-bold text-base">−</button>
+                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} disabled={item.quantity <= 1} aria-label="Decrease quantity" className="w-7 h-7 flex items-center justify-center rounded-md font-bold text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-zinc-600 hover:bg-zinc-200 hover:text-zinc-950 disabled:hover:bg-transparent disabled:hover:text-zinc-600">−</button>
                           <span className="w-8 text-center text-sm font-black text-zinc-950 tabular-nums">{item.quantity}</span>
                           <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label="Increase quantity" className="w-7 h-7 flex items-center justify-center rounded-md text-zinc-600 hover:bg-zinc-200 hover:text-zinc-950 transition-colors font-bold text-base">+</button>
                         </div>
@@ -150,11 +151,8 @@ export default function BasketPage() {
                     </div>
                   )}
 
-                  <div className="mt-5 flex items-center justify-center gap-2 text-zinc-600 text-[10px] uppercase tracking-wider font-bold">
-                    <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Secured by Stripe
+                  <div className="mt-5">
+                    <StripeTrustBar theme="dark" />
                   </div>
                 </div>
               </div>
