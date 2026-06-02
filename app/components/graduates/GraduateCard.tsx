@@ -11,7 +11,7 @@ export default function GraduateCard({ graduate, index }: { graduate: Graduate; 
       className="flex flex-col bg-white"
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.15 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.65, delay: index * 0.1, ease: "easeOut" }}
     >
       <Link href={`/graduates/${graduate.slug}`} className="block relative aspect-[4/3] overflow-hidden group">

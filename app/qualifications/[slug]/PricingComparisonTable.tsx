@@ -36,7 +36,7 @@ export default function PricingComparisonTable({ features, tiers, billing, theme
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
       className={`mt-14 rounded-lg border overflow-hidden ${containerBg}`}
     >

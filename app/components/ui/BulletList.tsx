@@ -32,7 +32,7 @@ export default function BulletList({
       variants={listVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       {items.map((item) => (
         <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>

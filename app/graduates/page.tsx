@@ -26,7 +26,6 @@ export default function GraduatesPage() {
   return (
     <>
       <GraduatesHero />
-      <GraduatesStats />
       <GraduateGrid />
       <GraduatesTestimonial />
       <ReadyToStartCTA />

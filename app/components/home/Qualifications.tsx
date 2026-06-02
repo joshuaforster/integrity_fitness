@@ -92,7 +92,7 @@ export default function Qualifications() {
             className="lg:col-span-5 flex flex-col items-start"
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
@@ -128,7 +128,7 @@ export default function Qualifications() {
             variants={gridVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             {qualificationsSection.courses.map((course, i) => (
               <motion.div

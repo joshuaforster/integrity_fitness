@@ -10,7 +10,7 @@ export default function BlogPostCard({ post, index }: { post: BlogPost; index: n
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
     >
       <Link href={`/blog/${post.slug}`} className="group block">

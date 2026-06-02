@@ -268,7 +268,7 @@ export default function ShopClient({
               variants={ptListVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
             >
               {ptCourses.map((q) => (
                 <PTCourseRow key={q.slug} q={q} />
@@ -325,7 +325,7 @@ export default function ShopClient({
             variants={cpdGridVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             {cpdCourses.map((q) => (
               <CPDCourseCard key={q.slug} q={q} />

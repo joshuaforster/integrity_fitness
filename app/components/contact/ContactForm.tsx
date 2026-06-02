@@ -76,7 +76,7 @@ export default function ContactForm() {
             className="lg:col-span-7 w-full"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             custom={0}
             variants={fadeUp}
           >
@@ -192,7 +192,7 @@ export default function ContactForm() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               custom={1}
               variants={fadeUp}
             >
@@ -201,7 +201,7 @@ export default function ContactForm() {
               </p>
               <div className="space-y-3">
                 {DIRECT_CHANNELS.map((channel, i) => (
-                  <motion.div key={channel.label} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} custom={i + 2} variants={fadeUp}>
+                  <motion.div key={channel.label} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} custom={i + 2} variants={fadeUp}>
                     <DirectContactItem channel={channel} />
                   </motion.div>
                 ))}
@@ -213,7 +213,7 @@ export default function ContactForm() {
               ref={mapRef}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               custom={4}
               variants={fadeUp}
             >

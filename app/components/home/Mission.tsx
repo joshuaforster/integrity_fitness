@@ -23,7 +23,7 @@ export default function Mission() {
             className="lg:col-span-6 xl:col-span-5"
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
@@ -72,7 +72,7 @@ export default function Mission() {
             className="lg:col-span-6 xl:col-span-7"
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
             <ImageCarousel

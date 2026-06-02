@@ -13,7 +13,7 @@ export default function AnimatedCounter({ target, duration = 1.4, startFrom }: P
   const from = startFrom ?? (target > 50 ? Math.max(0, target - Math.ceil(target * 0.08)) : 0);
   const [count, setCount] = useState(from);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: false });
+  const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!inView) {

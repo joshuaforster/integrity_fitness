@@ -37,7 +37,7 @@ function RelatedCourseCard({ q, index }: { q: Qualification; index: number }) {
       custom={index}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
       className="group relative flex flex-col rounded-xl overflow-hidden
         [backdrop-filter:blur(40px)_saturate(150%)]
         bg-gradient-to-b from-zinc-800/55 to-zinc-900/85
@@ -442,7 +442,7 @@ export default function ProductPageClient({
               className="mb-10 md:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-3">

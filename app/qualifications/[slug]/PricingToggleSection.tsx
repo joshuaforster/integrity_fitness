@@ -59,7 +59,7 @@ export default function PricingToggleSection({
           className="flex flex-col items-center text-center mb-14 md:mb-16"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
@@ -153,7 +153,7 @@ export default function PricingToggleSection({
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 className={`relative flex flex-col rounded-lg p-5 md:p-7 transition-all duration-300 ${
                   tier.highlighted
                     ? "bg-zinc-950 texture-dots-dark border border-white/[0.10] shadow-[0_20px_60px_rgba(0,0,0,0.55)] lg:scale-[1.04] z-10"
@@ -215,7 +215,7 @@ export default function PricingToggleSection({
                   variants={listVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: false, amount: 0.1 }}
+                  viewport={{ once: true, amount: 0.1 }}
                 >
                   {(tier.highlights ?? tier.includes).map((item) => (
                     <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>

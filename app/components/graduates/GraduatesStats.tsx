@@ -14,7 +14,7 @@ export default function GraduatesStats() {
             className="lg:col-span-6"
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
@@ -35,7 +35,7 @@ export default function GraduatesStats() {
                   className="flex flex-col items-center text-center p-6 bg-zinc-50"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
                 >
                   <span className="text-3xl md:text-4xl font-black text-[#CE1A19] tracking-tight leading-none mb-2">

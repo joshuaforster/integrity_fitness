@@ -111,7 +111,7 @@ export default function Location() {
             className="lg:col-span-5 flex flex-col items-start"
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
             <SectionHeader
@@ -177,7 +177,7 @@ export default function Location() {
             className="lg:col-span-7 w-full"
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
             {/* Dark glass map container */}

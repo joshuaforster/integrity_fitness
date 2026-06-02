@@ -63,7 +63,7 @@ export default function TeamMemberCard({ person }: { person: TeamMember }) {
         variants={bioContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {person.bio.map((para, i) => (
           <motion.p key={i} variants={paraVariant} className="text-zinc-600 text-sm md:text-base leading-relaxed">

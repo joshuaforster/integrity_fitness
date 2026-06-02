@@ -21,7 +21,7 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
       variants={listVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       {courses.map((q) => (
         <motion.div

@@ -27,7 +27,7 @@ export default function FaqGroup({ group }: { group: FAQGroup }) {
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       <motion.div variants={item} className="flex items-center gap-3 mb-4 lg:mb-6">
         <div className="w-1 h-4 bg-[#CE1A19]" aria-hidden="true" />

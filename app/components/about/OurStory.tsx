@@ -55,7 +55,7 @@ OurStory() {
           variants={groupVariant}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Heading id="team-heading" />
           <SharedImage />
@@ -71,7 +71,7 @@ OurStory() {
             variants={groupVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <Heading id="team-heading-mobile" />
             <SharedImage />
@@ -83,7 +83,7 @@ OurStory() {
             variants={groupVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <TeamMemberCard person={TEAM[1]} />
           </motion.div>

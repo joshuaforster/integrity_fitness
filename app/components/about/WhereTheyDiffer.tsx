@@ -67,7 +67,7 @@ export default function WhereTheyDiffer() {
               variants={groupVariant}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: i * 0.12 }}
             >
               {/* Photo — shorter, landscape crop */}
@@ -107,7 +107,7 @@ export default function WhereTheyDiffer() {
                 variants={bioContainer}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
                 {SHOW_ROWS.map((key) => (
                   <motion.div key={key} variants={paraVariant}>

@@ -17,7 +17,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
           className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
         >
           <Link

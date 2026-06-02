@@ -69,7 +69,7 @@ export default function CPDPricingSection({
           className="mb-14 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
@@ -93,7 +93,7 @@ export default function CPDPricingSection({
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <p className="text-zinc-500 text-xs font-black uppercase tracking-widest mb-8">
@@ -140,7 +140,7 @@ export default function CPDPricingSection({
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" }}
           >
             {/* The swaying glass container */}
@@ -166,7 +166,7 @@ export default function CPDPricingSection({
                 variants={listVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
                 {tier.includes.map((item) => (
                   <motion.li key={item} className="flex items-start gap-3" variants={itemVariants}>

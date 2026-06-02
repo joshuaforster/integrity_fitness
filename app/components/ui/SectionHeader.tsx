@@ -39,7 +39,7 @@ export default function SectionHeader({
       className={centered ? "text-center" : undefined}
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.4 }}
+      viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.75, ease: "easeOut" }}
     >
       <p className={`text-xs font-bold tracking-widest uppercase mb-4 ${labelColor}`}>
@@ -57,7 +57,7 @@ export default function SectionHeader({
           style={{ width: "3.5rem" }}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
           aria-hidden="true"
         />
