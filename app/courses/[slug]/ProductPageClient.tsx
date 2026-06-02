@@ -38,18 +38,8 @@ function RelatedCourseCard({ q, index }: { q: Qualification; index: number }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="group relative flex flex-col rounded-xl overflow-hidden
-        [backdrop-filter:blur(40px)_saturate(150%)]
-        bg-gradient-to-b from-zinc-800/55 to-zinc-900/85
-        border border-white/[0.09] hover:border-white/[0.2]
-        shadow-[0_6px_24px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.07)]
-        transition-all duration-300"
+      className="group relative flex flex-col rounded-xl overflow-hidden bg-white border border-zinc-200 hover:border-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300"
     >
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.14) 50%,transparent)" }}
-      />
       <div className="relative h-32 flex-shrink-0 overflow-hidden">
         <Image
           src={q.heroImage}
@@ -64,10 +54,10 @@ function RelatedCourseCard({ q, index }: { q: Qualification; index: number }) {
         </span>
       </div>
       <div className="flex flex-col flex-1 p-4">
-        <p className="text-white font-bold text-sm leading-snug mb-1">{q.title}</p>
+        <p className="text-zinc-950 font-bold text-sm leading-snug mb-1">{q.title}</p>
         <p className="text-zinc-500 text-xs leading-relaxed flex-1 mb-4 line-clamp-2">{q.tagline}</p>
         <div className="flex items-center justify-between">
-          <span className="text-white font-black">
+          <span className="text-zinc-950 font-black">
             £{startPrice}
             {q.hasBillingToggle && <span className="text-xs text-zinc-500 font-bold">+</span>}
           </span>
@@ -99,10 +89,10 @@ function BillingToggle({
       <div
         role="group"
         aria-label="Payment type"
-        className="relative inline-flex items-center bg-zinc-800/60 border border-white/[0.1] rounded-full p-1"
+        className="relative inline-flex items-center bg-zinc-100 border border-zinc-200 rounded-full p-1"
       >
         <motion.div
-          className="absolute top-1 bottom-1 bg-zinc-100 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+          className="absolute top-1 bottom-1 bg-white rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.12)]"
           animate={{
             left: billing === "monthly" ? "4px" : "50%",
             width: "calc(50% - 4px)",
@@ -116,7 +106,7 @@ function BillingToggle({
             onClick={() => setBilling(val)}
             aria-pressed={billing === val}
             className={`relative z-10 w-28 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
-              billing === val ? "text-zinc-950" : "text-zinc-400 hover:text-zinc-200"
+              billing === val ? "text-zinc-950" : "text-zinc-400 hover:text-zinc-950"
             }`}
           >
             {val === "monthly" ? "Monthly" : "Pay in Full"}
@@ -145,14 +135,16 @@ const slideIn: Variants = {
 export default function ProductPageClient({
   qual,
   initialTierIndex = 0,
+  initialBilling = "one-off",
   relatedCourses = [],
 }: {
   qual: Qualification;
   initialTierIndex?: number;
+  initialBilling?: "one-off" | "monthly";
   relatedCourses?: Qualification[];
 }) {
   const [selectedTierIndex, setSelectedTierIndex] = useState(initialTierIndex);
-  const [billing, setBilling] = useState<"one-off" | "monthly">("one-off");
+  const [billing, setBilling] = useState<"one-off" | "monthly">(initialBilling);
   const { addItem } = useCart();
   const router = useRouter();
 
@@ -186,7 +178,7 @@ export default function ProductPageClient({
   return (
     <>
       {/* ── Main purchase section ─────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-10 md:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
@@ -314,33 +306,17 @@ export default function ProductPageClient({
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.12 }}
-                  className="relative rounded-2xl overflow-hidden
-                    [backdrop-filter:blur(60px)_saturate(180%)]
-                    bg-gradient-to-b from-zinc-800/80 to-zinc-950
-                    border border-white/[0.12]
-                    shadow-[0_24px_64px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.1)]"
+                  className="relative rounded-2xl overflow-hidden bg-white border border-zinc-200 shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
                 >
-                  {/* Specular top line */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-px"
-                    style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.22) 50%,transparent)" }}
-                  />
-                  {/* Red glow */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute bottom-0 right-0 w-60 h-60"
-                    style={{ background: "radial-gradient(ellipse at 100% 100%,rgba(206,26,25,0.08) 0%,transparent 70%)" }}
-                  />
 
                   <div className="p-7 md:p-8">
 
                     {/* Header */}
-                    <div className="mb-6 pb-5 border-b border-white/[0.08]">
+                    <div className="mb-6 pb-5 border-b border-zinc-200">
                       <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1.5">
                         Your order
                       </p>
-                      <p className="text-white font-black text-base leading-snug">
+                      <p className="text-zinc-950 font-black text-base leading-snug">
                         {qual.shortTitle}
                       </p>
                       <p className="text-[#CE1A19] text-xs font-bold uppercase tracking-wider mt-1">
@@ -365,13 +341,13 @@ export default function ProductPageClient({
                     {/* Price */}
                     <div className="mb-7">
                       <div className="flex items-end gap-1 leading-none">
-                        <span className="text-xl font-black text-zinc-600 self-start mt-2">£</span>
+                        <span className="text-xl font-black text-zinc-400 self-start mt-2">£</span>
                         <motion.span
                           key={price}
                           initial={{ opacity: 0, y: -8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
-                          className="text-6xl font-black text-white tracking-tight"
+                          className="text-6xl font-black text-zinc-950 tracking-tight"
                         >
                           {price}
                         </motion.span>
@@ -397,7 +373,7 @@ export default function ProductPageClient({
                     </div>
 
                     {/* CTA */}
-                    <div className="mb-6 pb-6 border-b border-white/[0.08]">
+                    <div className="mb-6 pb-6 border-b border-zinc-200">
                       <Button onClick={handleAddToBasket} variant="primary" size="lg" fullWidth>
                         Add to Basket — £{price}
                         {billing === "monthly" && typeof tier.price !== "number" ? "/mo" : ""}
@@ -416,7 +392,7 @@ export default function ProductPageClient({
                           <svg className="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span className="text-zinc-400 text-xs">{text}</span>
+                          <span className="text-zinc-500 text-xs">{text}</span>
                         </li>
                       ))}
                     </ul>

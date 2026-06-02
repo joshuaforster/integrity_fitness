@@ -89,7 +89,7 @@ export default function BasketPage() {
                         <p className="text-[10px] font-bold uppercase tracking-wide text-zinc-400">
                           {item.paymentType === "monthly" && item.deposit
                             ? `£${item.deposit} deposit today · then £${item.price}/mo until complete`
-                            : item.paymentType === "monthly" ? "Monthly payment plan · 12 months"
+                            : item.paymentType === "monthly" ? "Monthly payment plan"
                             : "Pay in full"}
                         </p>
                       </div>

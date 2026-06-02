@@ -6,7 +6,7 @@ import ProductPageClient from "./ProductPageClient";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ tier?: string }>;
+  searchParams: Promise<{ tier?: string; billing?: string }>;
 }
 
 export async function generateStaticParams() {
@@ -37,7 +37,7 @@ function getRelatedCourses(qual: ReturnType<typeof getQualificationBySlug>) {
 
 export default async function CoursePage({ params, searchParams }: PageProps) {
   const { slug } = await params;
-  const { tier } = await searchParams;
+  const { tier, billing } = await searchParams;
   const qual = getQualificationBySlug(slug);
   if (!qual) notFound();
 
@@ -48,6 +48,9 @@ export default async function CoursePage({ params, searchParams }: PageProps) {
     }
     return Math.max(qual.pricing.findIndex((t) => t.highlighted), 0);
   })();
+
+  const initialBilling: "one-off" | "monthly" =
+    billing === "monthly" ? "monthly" : "one-off";
 
   const relatedCourses = getRelatedCourses(qual);
 
@@ -63,6 +66,7 @@ export default async function CoursePage({ params, searchParams }: PageProps) {
       <ProductPageClient
         qual={qual}
         initialTierIndex={initialTierIndex}
+        initialBilling={initialBilling}
         relatedCourses={relatedCourses}
       />
     </main>

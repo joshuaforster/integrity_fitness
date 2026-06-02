@@ -303,6 +303,10 @@ async function createDepositSubscriptions(session: Stripe.Checkout.Session) {
   const paymentMethodId = pi.payment_method as string | null
   if (!paymentMethodId) throw new Error('No payment method on deposit payment intent')
 
+  await stripe.customers.update(customerId, {
+    invoice_settings: { default_payment_method: paymentMethodId },
+  })
+
   // No cancel_at — subscription runs until Harry cancels it manually in the
   // Stripe Dashboard once the student's units are all marked complete.
   await Promise.all(

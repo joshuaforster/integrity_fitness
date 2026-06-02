@@ -227,7 +227,7 @@ export default function PricingToggleSection({
                 </motion.ul>
 
                 <Button
-                  href={`/courses/${qual.slug}?tier=${i}`}
+                  href={`/courses/${qual.slug}?tier=${i}&billing=${billing === "monthly" ? "monthly" : "one-off"}`}
                   variant={tier.highlighted ? "primary" : "outline-light"}
                   size="md"
                   fullWidth

@@ -52,7 +52,7 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative bg-black overflow-hidden flex items-center min-h-screen"
+      className="relative bg-black overflow-hidden flex items-center min-h-[90vh]"
     >
       {/* Decorative background */}
       <div className="absolute inset-0" aria-hidden="true">
@@ -136,7 +136,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.7 }}
       >
-        <span className="text-white/30 text-[10px] font-mono uppercase tracking-[0.15em]">scroll</span>
+       
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
