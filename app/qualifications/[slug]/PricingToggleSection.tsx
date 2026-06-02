@@ -125,6 +125,11 @@ export default function PricingToggleSection({
               Typical completion: {qual.durationMonths}
             </p>
           )}
+          {billing === "monthly" && qual.pricing.some((t) => t.deposit) && (
+            <p className="text-zinc-500 text-xs mt-3 max-w-md leading-relaxed">
+              Monthly payments are charged automatically to your card after the deposit — no manual action needed. Payments stop when your course is complete.
+            </p>
+          )}
         </motion.div>
 
         {/* Pricing cards */}

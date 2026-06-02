@@ -356,9 +356,14 @@ export default function ProductPageClient({
                         {period}
                       </p>
                       {tier.deposit && billing === "monthly" && (
-                        <p className="text-zinc-600 text-xs font-bold uppercase tracking-widest mt-1">
-                          After a £{tier.deposit} deposit
-                        </p>
+                        <div className="mt-2 space-y-1">
+                          <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest">
+                            After a £{tier.deposit} deposit
+                          </p>
+                          <p className="text-zinc-400 text-xs leading-relaxed">
+                            Monthly payments are charged automatically to your saved card — no manual action needed. Payments continue until your course is complete.
+                          </p>
+                        </div>
                       )}
                       {saving > 0 && (
                         <motion.p

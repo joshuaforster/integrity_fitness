@@ -272,19 +272,121 @@ async function sendReceiptToCustomer(session: Stripe.Checkout.Session) {
   if (!customerEmail) return
 
   const name = session.customer_details?.name ?? 'there'
-  const isMonthly = session.mode === 'subscription'
+  const depositSession = session.metadata?.type === 'deposit_with_subscription'
+  const isMonthly = session.mode === 'subscription' || depositSession
   const amount = formatAmount(session.amount_total, session.currency)
 
   const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ['line_items'] })
   const courses = full.line_items?.data.map((i) => i.description ?? 'Course').join(', ') ?? 'Unknown course'
 
+  // For deposit sessions, pull the monthly amount out of metadata so we can
+  // tell the customer exactly what will be charged automatically each month.
+  let monthlyNote = ''
+  if (depositSession) {
+    try {
+      const items: Array<{ amount: number }> = JSON.parse(session.metadata?.subscription_items ?? '[]')
+      if (items.length) {
+        const monthlyTotal = items.reduce((sum, i) => sum + i.amount, 0)
+        monthlyNote = formatAmount(monthlyTotal, session.currency)
+      }
+    } catch { /* ignore parse errors */ }
+  }
+
+  const html = depositSession
+    ? customerDepositReceiptHtml({ name, courses, depositAmount: amount, monthlyAmount: monthlyNote })
+    : customerReceiptHtml({ name, courses, amount, isMonthly })
+
   const { error: sendError } = await resend.emails.send({
     from: FROM_EMAIL,
     to: [customerEmail],
     subject: `Enrolment Confirmed — ${courses}`,
-    html: customerReceiptHtml({ name, courses, amount, isMonthly }),
+    html,
   })
   if (sendError) throw new Error(`Resend error (receipt): ${sendError.message}`)
+}
+
+function customerDepositReceiptHtml(opts: {
+  name: string
+  courses: string
+  depositAmount: string
+  monthlyAmount: string
+}) {
+  const { name, courses, depositAmount, monthlyAmount } = opts
+
+  return emailShell(`
+  <tr>
+    <td style="padding:40px 40px 0;">
+      <h1 style="margin:0 0 8px;font-size:22px;font-weight:700;color:#0a0a0a;letter-spacing:-0.3px;">
+        You're enrolled. Welcome.
+      </h1>
+      <p style="margin:0;font-size:15px;color:#52525b;line-height:1.6;">
+        Hi ${name}, your deposit has been received and your place is secured. Here's a summary of your enrolment.
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:28px 40px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #e4e4e7;border-radius:6px;overflow:hidden;">
+        <tr><td style="background:#fafafa;padding:12px 20px;border-bottom:1px solid #e4e4e7;">
+          <p style="margin:0;font-size:11px;font-weight:700;color:#71717a;text-transform:uppercase;letter-spacing:1px;">Order Summary</p>
+        </td></tr>
+        <tr><td style="padding:0;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr><td style="padding:16px 20px;border-bottom:1px solid #f4f4f5;">
+              <p style="margin:0 0 2px;font-size:11px;color:#71717a;text-transform:uppercase;letter-spacing:0.8px;">Course</p>
+              <p style="margin:0;font-size:14px;font-weight:600;color:#0a0a0a;">${courses}</p>
+            </td></tr>
+            <tr><td style="padding:16px 20px;border-bottom:1px solid #f4f4f5;">
+              <p style="margin:0 0 2px;font-size:11px;color:#71717a;text-transform:uppercase;letter-spacing:0.8px;">Deposit paid today</p>
+              <p style="margin:0;font-size:20px;font-weight:700;color:${BRAND_RED};">${depositAmount}</p>
+            </td></tr>
+            <tr><td style="padding:16px 20px;background:#fafafa;">
+              <p style="margin:0 0 2px;font-size:11px;color:#71717a;text-transform:uppercase;letter-spacing:0.8px;">Monthly payments</p>
+              <p style="margin:0;font-size:16px;font-weight:700;color:#0a0a0a;">${monthlyAmount}/month — charged automatically</p>
+            </td></tr>
+          </table>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:28px 40px 0;">
+      <h2 style="margin:0 0 12px;font-size:14px;font-weight:700;color:#0a0a0a;text-transform:uppercase;letter-spacing:1px;">
+        How your payments work
+      </h2>
+      <p style="margin:0 0 10px;font-size:14px;color:#3f3f46;line-height:1.7;">
+        Your monthly payments are charged <strong>automatically</strong> to the card you used today — there is nothing you need to do each month. You will receive a payment confirmation email each time a payment is taken.
+      </p>
+      <p style="margin:0 0 10px;font-size:14px;color:#3f3f46;line-height:1.7;">
+        Payments continue until your course is complete. Once all your units are marked off, we will cancel the subscription — you won't be charged beyond that point.
+      </p>
+      <p style="margin:0;font-size:14px;color:#3f3f46;line-height:1.7;">
+        If you ever want to settle the remaining balance in one go, just get in touch and we can arrange that.
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:28px 40px 0;">
+      <h2 style="margin:0 0 12px;font-size:14px;font-weight:700;color:#0a0a0a;text-transform:uppercase;letter-spacing:1px;">
+        What happens next
+      </h2>
+      <p style="margin:0;font-size:14px;color:#3f3f46;line-height:1.7;">
+        Our team will be in touch shortly to confirm your start date and provide everything you need. If you have any questions, just reply to this email.
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:28px 40px 40px;">
+      <a href="${SITE_URL}" style="display:inline-block;background:${BRAND_RED};color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:14px 28px;border-radius:4px;letter-spacing:0.3px;">
+        Visit Our Website
+      </a>
+    </td>
+  </tr>
+  `)
 }
 
 type SubscriptionItem = { slug: string; tier: string; name: string; amount: number }
