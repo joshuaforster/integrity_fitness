@@ -7,7 +7,7 @@ import { stripe } from '@/lib/stripe'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const RECIPIENTS = ['harry@integrityfitness.education', 'joshuaforster95@gmail.com']
-const FROM_EMAIL = 'noreply@integrityfitness.education'
+const FROM_EMAIL = 'onboarding@resend.dev'
 
 function formatAmount(amount: number | null, currency: string | null) {
   if (amount == null) return 'unknown'
