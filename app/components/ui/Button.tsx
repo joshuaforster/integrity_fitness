@@ -8,7 +8,8 @@ export type ButtonVariant =
   | "primary"
   | "outline-light"
   | "outline-dark"
-  | "outline-hero";
+  | "outline-hero"
+  | "glass";
 
 export type ButtonSize = "sm" | "md" | "lg";
 
@@ -21,6 +22,8 @@ const variantStyles: Record<ButtonVariant, string> = {
     "border border-white/20 text-white hover:border-white/60 hover:bg-white/[0.04] focus-visible:ring-white",
   "outline-hero":
     "border border-white/70 text-white hover:bg-white hover:text-zinc-950 focus-visible:ring-white",
+  "glass":
+    "[backdrop-filter:blur(16px)_saturate(150%)] bg-white/[0.08] border border-white/[0.18] text-white hover:bg-white/[0.16] hover:border-white/[0.3] focus-visible:ring-white",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

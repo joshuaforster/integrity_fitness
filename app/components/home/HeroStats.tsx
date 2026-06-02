@@ -1,66 +1,58 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-
 import { heroStats as STATS } from "@/app/content/home";
 
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.8 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
-};
+const imageStats = STATS.filter((s): s is Extract<typeof STATS[number], { type: "image" }> => s.type === "image");
+const activeIQ = imageStats.find((s) => s.alt === "Active IQ");
+const cimspa = imageStats.find((s) => s.alt === "CIMSPA");
 
 export default function HeroStats() {
+  if (!activeIQ || !cimspa) return null;
+
   return (
     <motion.div
-      className="w-full mt-12 max-w-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-lg"
+      className="mt-10"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+      transition={{ duration: 0.55, delay: 1.0, ease: "easeOut" }}
     >
-      <motion.dl
-        className="grid grid-cols-3 divide-x divide-white/20 text-center"
-        variants={container}
-        initial="hidden"
-        animate="visible"
+      <div
+        className="inline-flex items-center rounded-full border border-white/[0.14] px-7 py-4 shadow-[0_4px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]"
+        style={{ backdropFilter: "blur(20px) saturate(160%)", background: "rgba(255,255,255,0.06)" }}
       >
-        {STATS.map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            variants={item}
-            className={`flex flex-col-reverse items-center ${index === 0 ? "" : "pl-3 md:pl-6"}`}
-          >
-            <dt className="text-xs md:text-xs text-white uppercase tracking-wider mt-2 font-semibold">
-              {stat.label}
-            </dt>
-            <dd className="m-0">
-              {stat.type === "image" ? (
-                <div className={`relative ${stat.alt === "CIMSPA" ? "h-10 w-10 md:h-12 md:w-12" : "h-9 w-24 md:h-11 md:w-28"}`}>
-                  <Image
-                    src={stat.value}
-                    alt={stat.alt}
-                    width={stat.width}
-                    height={stat.height}
-                    priority
-                    quality={60}
-                    sizes={stat.alt === "CIMSPA" ? "48px" : "112px"}
-                    className="h-full w-full object-contain brightness-0 invert"
-                  />
-                </div>
-              ) : (
-                <span className="text-xl md:text-3xl font-extrabold text-white tracking-tight leading-none">
-                  {stat.value}
-                </span>
-              )}
-            </dd>
-          </motion.div>
-        ))}
-      </motion.dl>
+        {/* Label */}
+        <span className="text-white/40 text-xs font-black uppercase tracking-[0.2em] whitespace-nowrap">
+          Approved By
+        </span>
+
+        {/* Divider */}
+        <div className="w-px h-9 bg-white/[0.15] mx-6 flex-shrink-0" aria-hidden="true" />
+
+        {/* Active IQ */}
+        <Image
+          src={activeIQ.value}
+          alt="Active IQ"
+          width={activeIQ.width}
+          height={activeIQ.height}
+          priority
+          className="h-9 w-auto object-contain brightness-0 invert opacity-80"
+        />
+
+        {/* Divider */}
+        <div className="w-px h-9 bg-white/[0.15] mx-6 flex-shrink-0" aria-hidden="true" />
+
+        {/* CIMSPA */}
+        <Image
+          src={cimspa.value}
+          alt="CIMSPA"
+          width={cimspa.width}
+          height={cimspa.height}
+          priority
+          className="h-6 w-auto object-contain brightness-0 invert opacity-70"
+        />
+      </div>
     </motion.div>
   );
 }
