@@ -75,7 +75,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-24 pb-16 md:pt-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-16 md:pt-32">
           <motion.div variants={container} initial="hidden" animate="visible">
             <motion.p
               variants={fadeUp}

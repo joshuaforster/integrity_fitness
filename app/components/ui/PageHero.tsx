@@ -17,7 +17,7 @@ export default function PageHero({ image, label, title, subtitle, objectPosition
   const words = typeof title === "string" ? title.split(" ") : null;
 
   return (
-    <section className="relative h-[55vh] min-h-[380px] flex items-end bg-zinc-950 overflow-hidden">
+    <section className="relative h-[70vh] min-h-[520px] sm:h-[55vh] sm:min-h-[380px] flex items-end bg-zinc-950 overflow-hidden">
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src={image}
