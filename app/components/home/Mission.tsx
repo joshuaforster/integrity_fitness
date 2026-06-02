@@ -79,7 +79,6 @@ export default function Mission() {
               images={IMAGES}
               interval={5000}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-              theme="light"
             />
           </motion.div>
 

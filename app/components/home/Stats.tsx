@@ -45,7 +45,6 @@ export default function Stats() {
               images={missionImages}
               interval={3500}
               sizes="(max-width: 1024px) 100vw, 50vw"
-              theme="dark"
             />
           </motion.div>
 
