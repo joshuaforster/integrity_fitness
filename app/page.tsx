@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "./components/home/Hero";
+import GraduateGyms from "./components/home/GraduateGyms";
 import Marquee from "./components/home/Marquee";
 import Mission from "./components/home/Mission";
 import Stats from "./components/home/Stats";
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <GraduateGyms />
       <Marquee />
       <Qualifications />
       <Mission />
