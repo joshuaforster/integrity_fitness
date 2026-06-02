@@ -22,7 +22,7 @@ const fadeIn: Variants = {
 
 export default function CourseHero({ qual }: { qual: Qualification }) {
   return (
-    <section className="relative h-[55vh] min-h-[380px] flex items-end bg-zinc-950 overflow-hidden">
+    <section className="relative h-[75vh] min-h-[640px] sm:h-[60vh] sm:min-h-[440px] flex items-end bg-zinc-950 overflow-hidden">
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src={qual.heroImage}
