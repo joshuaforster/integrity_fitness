@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +8,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { useCart } from "@/app/context/CartContext";
 import Button from "@/app/components/ui/Button";
-import PageHero from "@/app/components/ui/PageHero";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 
@@ -44,20 +43,31 @@ export default function BasketPage() {
 
   function handleProceed() {
     setShowCheckout(true);
-    setTimeout(() => paymentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
   }
+
+  // Scroll to payment form once it's mounted — AnimatePresence needs a tick to render
+  useEffect(() => {
+    if (!showCheckout) return;
+    const t = setTimeout(() => {
+      const el = paymentRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top, behavior: "smooth" });
+    }, 320);
+    return () => clearTimeout(t);
+  }, [showCheckout]);
 
   return (
     <main className="bg-white">
-      <PageHero
-        image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-AND-PARIS-20220124-IFE-TGGNCC002.jpg"
-        label="Basket"
-        title="Your Basket"
-        subtitle="Review your selections before proceeding to checkout."
-      />
+
+      {/* Compact page header — no hero so items are immediately visible */}
+      <div className="pt-28 pb-6 px-6 lg:px-8 max-w-7xl mx-auto border-b border-zinc-100">
+        <p className="text-[#CE1A19] text-xs font-black uppercase tracking-widest mb-2">Your Basket</p>
+        <h1 className="text-2xl md:text-3xl font-black text-zinc-950 uppercase tracking-tight">Review Your Order</h1>
+      </div>
 
       {/* ── Step 1: Items ─────────────────────────────────────────── */}
-      <section className="bg-white texture-grid-light py-20 md:py-28 border-b border-zinc-100">
+      <section className="bg-white texture-grid-light py-10 md:py-16 border-b border-zinc-100">
         <SectionWrapper>
 
           {items.length === 0 ? (
