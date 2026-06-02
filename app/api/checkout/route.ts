@@ -15,10 +15,6 @@ export type CheckoutRequestBody = {
   }[];
 };
 
-// 12 months + 5 day buffer so all 12 charges go through before cancellation
-function twelveMonthsFromNow() {
-  return Math.floor(Date.now() / 1000) + 370 * 24 * 60 * 60;
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -51,7 +47,7 @@ export async function POST(req: NextRequest) {
             unit_amount: Math.round(item.deposit! * 100),
             product_data: {
               name: `${item.courseName} — ${item.tierName} (Enrolment Deposit)`,
-              description: `Secures your place. Then £${item.price}/month for 12 months, starting immediately.`,
+              description: `Secures your place. Monthly payments of £${item.price}/month continue until your course is complete.`,
             },
           },
         }));
@@ -123,14 +119,6 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: hasMonthly ? "subscription" : "payment",
-      ...(hasMonthly
-        ? {
-            // cancel_at is a valid Stripe API param but missing from this SDK version's types
-            subscription_data: {
-              cancel_at: twelveMonthsFromNow(),
-            } as Stripe.Checkout.SessionCreateParams.SubscriptionData,
-          }
-        : {}),
       ui_mode: "embedded_page" as Stripe.Checkout.SessionCreateParams.UiMode,
       return_url: `${origin}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
       billing_address_collection: "auto",

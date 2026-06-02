@@ -303,9 +303,8 @@ async function createDepositSubscriptions(session: Stripe.Checkout.Session) {
   const paymentMethodId = pi.payment_method as string | null
   if (!paymentMethodId) throw new Error('No payment method on deposit payment intent')
 
-  // 12 months + 5-day buffer so all 12 monthly charges clear before cancellation
-  const cancelAt = Math.floor(Date.now() / 1000) + 370 * 24 * 60 * 60
-
+  // No cancel_at — subscription runs until Harry cancels it manually in the
+  // Stripe Dashboard once the student's units are all marked complete.
   await Promise.all(
     subscriptionItems.map((item) =>
       stripe.subscriptions.create({
@@ -320,7 +319,6 @@ async function createDepositSubscriptions(session: Stripe.Checkout.Session) {
           } as unknown as Stripe.SubscriptionCreateParams.Item.PriceData,
         }],
         default_payment_method: paymentMethodId,
-        cancel_at: cancelAt,
         metadata: { slug: item.slug, tier_name: item.tier, type: 'course_monthly_plan' },
       })
     )

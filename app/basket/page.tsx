@@ -15,7 +15,7 @@ import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 export default function BasketPage() {
-  const { items, removeItem, updateQuantity, total } = useCart();
+  const { items, removeItem, updateQuantity } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
   const paymentRef = useRef<HTMLDivElement>(null);
 
@@ -88,7 +88,7 @@ export default function BasketPage() {
                         <h2 className="text-sm font-black text-zinc-950 leading-snug mb-1">{item.courseName}</h2>
                         <p className="text-[10px] font-bold uppercase tracking-wide text-zinc-400">
                           {item.paymentType === "monthly" && item.deposit
-                            ? `£${item.deposit} deposit today · then £${item.price}/mo × 12`
+                            ? `£${item.deposit} deposit today · then £${item.price}/mo until complete`
                             : item.paymentType === "monthly" ? "Monthly payment plan · 12 months"
                             : "Pay in full"}
                         </p>
@@ -103,7 +103,7 @@ export default function BasketPage() {
                           {item.paymentType === "monthly" && item.deposit ? (
                             <div className="text-right">
                               <p className="text-lg font-black text-zinc-950 tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
-                              <p className="text-[10px] font-bold text-zinc-400">then £{item.price}/mo × 12</p>
+                              <p className="text-[10px] font-bold text-zinc-400">then £{item.price}/mo until complete</p>
                             </div>
                           ) : (
                             <p className="text-lg font-black text-zinc-950 tabular-nums">
@@ -140,7 +140,7 @@ export default function BasketPage() {
                           {item.paymentType === "monthly" && item.deposit ? (
                             <>
                               <p className="text-white font-bold text-sm tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
-                              <p className="text-zinc-600 text-xs">then £{item.price}/mo × 12</p>
+                              <p className="text-zinc-600 text-xs">then £{item.price}/mo until complete</p>
                             </>
                           ) : (
                             <>
