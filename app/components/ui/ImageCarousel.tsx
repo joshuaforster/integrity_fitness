@@ -45,7 +45,7 @@ export default function ImageCarousel({
             fill
             sizes={sizes}
             priority={i === 0}
-            className="object-cover transition-opacity duration-[1200ms] ease-in-out"
+            className="object-cover"
             style={{ opacity: i === activeIdx ? 0.92 : 0 }}
           />
         ))}
