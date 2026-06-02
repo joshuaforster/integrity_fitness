@@ -113,11 +113,11 @@ export default function Qualifications() {
               </ul>
               <p>{qualificationsSection.bodyOutro}</p>
             </div>
-            <div className="flex flex-row  gap-3">
-              <Button href={qualificationsSection.button1.href} variant="primary" className="whitespace-nowrap">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button href={qualificationsSection.button1.href} variant="primary" responsive>
                 {qualificationsSection.button1.label}
               </Button>
-              <Button href={qualificationsSection.button2.href} variant="outline-light" className="whitespace-nowrap">
+              <Button href={qualificationsSection.button2.href} variant="outline-light" responsive>
                 {qualificationsSection.button2.label}
               </Button>
             </div>

@@ -121,8 +121,8 @@ export default function CPDPricingSection({
             {/* Mobile CTA */}
             <div className="mt-10 lg:hidden">
               <div className="h-px bg-zinc-800 mb-8" aria-hidden />
-              <Button href="/contact" variant="primary" size="md" fullWidth>
-                Reserve Your Place
+              <Button href={`/courses/${qual.slug}`} variant="primary" size="md" fullWidth>
+                Enrol Now
               </Button>
               <div className="flex items-center gap-2 mt-4">
                 <span className="text-zinc-600 text-xs uppercase tracking-wider">{qual.duration}</span>
@@ -180,8 +180,8 @@ export default function CPDPricingSection({
               <div className="hidden lg:block">
                 <div className="h-px bg-white/[0.08] mb-8" aria-hidden />
                 <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-                  <Button href="/contact" variant="primary" size="md">
-                    Reserve Your Place
+                  <Button href={`/courses/${qual.slug}`} variant="primary" size="md">
+                    Enrol Now
                   </Button>
                   <div className="flex items-center gap-2.5">
                     <span className="text-zinc-500 text-xs uppercase tracking-wider">{qual.duration}</span>

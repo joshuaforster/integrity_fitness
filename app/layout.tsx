@@ -5,6 +5,7 @@ import Footer from "./components/layout/Footer";
 import ScrollReveal from "./components/layout/ScrollReveal";
 import SiteProgressBar from "./components/ui/CourseProgressBar";
 import CookieBanner from "./components/layout/CookieBanner";
+import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,12 +41,14 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
       </head>
       <body className="min-h-full flex flex-col">
-        <SiteProgressBar />
-        <Header />
-        <ScrollReveal />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CookieBanner />
+        <CartProvider>
+          <SiteProgressBar />
+          <Header />
+          <ScrollReveal />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CookieBanner />
+        </CartProvider>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ const item: Variants = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-6 texture-grid-dark">
+    <div className="min-h-screen bg-white flex items-center justify-center px-6 texture-grid-light">
       <motion.div
         className="text-center max-w-lg"
         variants={container}
@@ -25,7 +25,7 @@ export default function NotFound() {
         {/* Big 404 */}
         <motion.div variants={item} className="relative mb-8 select-none">
           <span
-            className="text-[clamp(7rem,20vw,14rem)] font-black text-zinc-950 leading-none text-stroke-red"
+            className="text-[clamp(7rem,20vw,14rem)] font-black text-white leading-none text-stroke-red"
             aria-hidden="true"
           >
             404
@@ -51,13 +51,13 @@ export default function NotFound() {
         {/* Heading */}
         <motion.h1
           variants={item}
-          className="text-white text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight mb-6"
+          className="text-zinc-950 text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight mb-6"
         >
           This page didn&apos;t<br />pass its assessment.
         </motion.h1>
 
         {/* Subtext */}
-        <motion.p variants={item} className="text-white text-sm md:text-base leading-relaxed mb-10">
+        <motion.p variants={item} className="text-zinc-600 text-sm md:text-base leading-relaxed mb-10">
           Looks like this URL dropped out early. The page you&apos;re looking for doesn&apos;t exist — but your fitness career still can.
         </motion.p>
 
@@ -102,7 +102,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/qualifications"
-            className="inline-flex items-center justify-center gap-2 border border-zinc-700 text-white text-xs font-black uppercase tracking-wider px-7 py-4 rounded-sm hover:border-zinc-500 transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 border border-zinc-300 text-zinc-950 text-xs font-black uppercase tracking-wider px-7 py-4 rounded-sm hover:border-zinc-400 transition-colors duration-200"
           >
             View Qualifications
           </Link>

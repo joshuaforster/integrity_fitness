@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
 import Hero from "./components/home/Hero";
+import Marquee from "./components/home/Marquee";
+import Mission from "./components/home/Mission";
+import Stats from "./components/home/Stats";
+import Location from "./components/home/Location";
+import Qualifications from "./components/home/Qualifications";
+import SectionBreak from "./components/ui/SectionBreak";
+import Testimonials from "./components/home/Testimonials";
+import Newsletter from "./components/home/NewsLetter";
+
 
 export const metadata: Metadata = {
   title: "Integrity Fitness Education | Personal Training Courses Norwich",
@@ -16,18 +25,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-import Marquee from "./components/home/Marquee";
-import Mission from "./components/home/Mission";
-import Stats from "./components/home/Stats";
-import Location from "./components/home/Location";
-import Qualifications from "./components/home/Qualifications";
-import SectionBreak from "./components/ui/SectionBreak";
-import Testimonials from "./components/home/Testimonials";
-
-import Newsletter from "./components/home/NewsLetter";
 
 
 export default function Home() {
+
   return (
     <>
       <Hero />

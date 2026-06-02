@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { useCart } from "@/app/context/CartContext";
 
 import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES } from "@/app/content/navigation";
 
@@ -64,6 +65,7 @@ export default function Header() {
   const [mobileQualOpen, setMobileQualOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { count } = useCart();
 
   useEffect(() => {
     function onScroll() {
@@ -110,7 +112,19 @@ export default function Header() {
           </Link>
 
           {/* Mobile hamburger Action Control */}
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden items-center gap-3">
+            <Link
+              href="/basket"
+              aria-label={`Basket${count > 0 ? ` — ${count} item${count > 1 ? "s" : ""}` : ""}`}
+              className="relative p-1 text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+            >
+              <ShoppingBagIcon className="w-5 h-5" />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#CE1A19] text-white text-[10px] font-black rounded-full flex items-center justify-center leading-none">
+                  {count}
+                </span>
+              )}
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -221,6 +235,20 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            {/* Basket icon */}
+            <Link
+              href="/basket"
+              aria-label={`Basket${count > 0 ? ` — ${count} item${count > 1 ? "s" : ""}` : ""}`}
+              className="relative p-1 text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950"
+            >
+              <ShoppingBagIcon className="w-5 h-5" />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#CE1A19] text-white text-[10px] font-black rounded-full flex items-center justify-center leading-none">
+                  {count}
+                </span>
+              )}
+            </Link>
           </div>
         </nav>
       </div>

@@ -226,12 +226,12 @@ export default function PricingToggleSection({
                 </motion.ul>
 
                 <Button
-                  href="/contact"
+                  href={`/courses/${qual.slug}?tier=${i}`}
                   variant={tier.highlighted ? "primary" : "outline-light"}
                   size="md"
                   fullWidth
                 >
-                  Enquire Now
+                  Enrol Now
                 </Button>
               </motion.div>
             );

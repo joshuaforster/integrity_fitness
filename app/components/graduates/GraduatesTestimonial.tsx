@@ -1,0 +1,38 @@
+"use client";
+
+import { graduatesFeaturedTestimonial } from "@/app/content/graduates";
+
+export default function GraduatesTestimonial() {
+  return (
+    <section
+      aria-label="Featured graduate testimonial"
+      className="bg-zinc-900 texture-dots-dark py-20 md:py-28 relative overflow-hidden"
+    >
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 text-zinc-950 font-black text-[12rem] md:text-[16rem] select-none opacity-20 pointer-events-none leading-none z-0">
+        &ldquo;
+      </div>
+
+      <div className="reveal mx-auto max-w-4xl px-6 lg:px-8 text-center relative z-10">
+        <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-10">
+          {graduatesFeaturedTestimonial.label}
+        </p>
+
+        <blockquote className="m-0 p-0">
+          <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-relaxed max-w-3xl mx-auto mb-10">
+            &ldquo;{graduatesFeaturedTestimonial.quote}&rdquo;
+          </p>
+
+          <div className="w-14 h-1 bg-[#CE1A19] mx-auto mb-8" aria-hidden="true" />
+
+          <footer className="mt-6">
+            <cite className="not-italic text-white text-xs font-bold tracking-widest uppercase">
+              {graduatesFeaturedTestimonial.name}{" "}
+              <span className="text-white">&middot;</span>{" "}
+              {graduatesFeaturedTestimonial.role}
+            </cite>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+  );
+}

@@ -38,7 +38,7 @@ const motionProps = {
   transition: { duration: 0.18, ease: "easeOut" as const },
 };
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 interface SharedProps {
   variant?: ButtonVariant;

@@ -237,7 +237,7 @@ export default function StackedTestimonials({
             </AnimatePresence>
           </div>
 
-          <div className="flex flex-col items-center w-full max-w-md mx-auto lg:max-w-none">
+          <div className="flex flex-col items-center w-full">
             {/* Decorative quote mark (mobile only) */}
             <div className="flex justify-start w-full mb-1 pl-1 lg:hidden" aria-hidden>
               <span className="text-5xl font-black text-[#CE1A19] leading-none select-none">

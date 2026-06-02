@@ -24,14 +24,15 @@ export default function FaqCTA() {
           <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-md mx-auto mb-8">
             {faqCta.body}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
-            <Button href={faqCta.button1.href} variant="primary" size="md" className="px-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button href={faqCta.button1.href} variant="primary" size="md" responsive className="px-8 shadow-sm">
               {faqCta.button1.label}
             </Button>
             <Button
               href={faqCta.button2.href}
               variant="outline-light"
               size="md"
+              responsive
               className="px-8 bg-white"
               external
             >

@@ -22,6 +22,8 @@ export const footerNavQualifications = [
 
 export const footerNavCompany = [
   { name: "About Us", href: "/about" },
+  { name: "Our Graduates", href: "/graduates" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
   { name: "FAQ", href: "/faq" },
 ] as const;
@@ -51,7 +53,8 @@ export type QualCategory = {
 export const navLinks: readonly NavLink[] = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Gallery", href: "/gallery" },
+  { name: "Graduates", href: "/graduates" },
+  { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/faq" },
   { name: "Contact Us", href: "/contact" },
 ];

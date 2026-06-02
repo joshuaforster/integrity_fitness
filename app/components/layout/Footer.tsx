@@ -79,7 +79,7 @@ export default function Footer() {
                 {footerContent.addressLine2}<br />
                 {footerContent.addressLine3}
               </address>
-              <Button href="/contact" variant="primary" size="sm" className="mt-6 shadow-md">
+              <Button href="/contact" variant="primary" size="sm" responsive className="mt-6 shadow-md">
                 Get In Touch
               </Button>
             </div>
