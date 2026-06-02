@@ -287,6 +287,46 @@ async function sendReceiptToCustomer(session: Stripe.Checkout.Session) {
   if (sendError) throw new Error(`Resend error (receipt): ${sendError.message}`)
 }
 
+type SubscriptionItem = { slug: string; tier: string; name: string; amount: number }
+
+async function createDepositSubscriptions(session: Stripe.Checkout.Session) {
+  const raw = session.metadata?.subscription_items
+  if (!raw) return
+
+  const subscriptionItems: SubscriptionItem[] = JSON.parse(raw)
+  if (!subscriptionItems.length) return
+
+  const customerId = session.customer as string
+  const paymentIntentId = session.payment_intent as string
+
+  const pi = await stripe.paymentIntents.retrieve(paymentIntentId)
+  const paymentMethodId = pi.payment_method as string | null
+  if (!paymentMethodId) throw new Error('No payment method on deposit payment intent')
+
+  // 12 months + 5-day buffer so all 12 monthly charges clear before cancellation
+  const cancelAt = Math.floor(Date.now() / 1000) + 370 * 24 * 60 * 60
+
+  await Promise.all(
+    subscriptionItems.map((item) =>
+      stripe.subscriptions.create({
+        customer: customerId,
+        items: [{
+          // product_data is valid at runtime but missing from this SDK version's types
+          price_data: {
+            currency: 'gbp',
+            unit_amount: item.amount,
+            recurring: { interval: 'month' },
+            product_data: { name: `${item.name} — ${item.tier} (Monthly Plan)` },
+          } as unknown as Stripe.SubscriptionCreateParams.Item.PriceData,
+        }],
+        default_payment_method: paymentMethodId,
+        cancel_at: cancelAt,
+        metadata: { slug: item.slug, tier_name: item.tier, type: 'course_monthly_plan' },
+      })
+    )
+  )
+}
+
 async function notifyRenewal(invoice: Stripe.Invoice) {
   const email = invoice.customer_email ?? 'Unknown'
   const amount = formatAmount(invoice.amount_paid, invoice.currency)
@@ -327,7 +367,11 @@ export async function POST(req: NextRequest) {
   try {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session
-      await Promise.all([notifyEnrolment(session), sendReceiptToCustomer(session)])
+      const tasks: Promise<unknown>[] = [notifyEnrolment(session), sendReceiptToCustomer(session)]
+      if (session.metadata?.type === 'deposit_with_subscription') {
+        tasks.push(createDepositSubscriptions(session))
+      }
+      await Promise.all(tasks)
     } else if (event.type === 'invoice.payment_succeeded') {
       const invoice = event.data.object as Stripe.Invoice
       // Skip first-payment invoices — already covered by checkout.session.completed

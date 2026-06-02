@@ -25,11 +25,13 @@ export default function BasketPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items: items.map((item) => ({
+          slug: item.slug,
           courseName: item.courseName,
           tierName: item.tierName,
           paymentType: item.paymentType,
           price: item.price,
           quantity: item.quantity,
+          deposit: item.deposit,
         })),
       }),
     });
@@ -85,8 +87,10 @@ export default function BasketPage() {
                         <p className="text-[10px] font-black uppercase tracking-widest text-[#CE1A19] mb-1">{item.tierName}</p>
                         <h2 className="text-sm font-black text-zinc-950 leading-snug mb-1">{item.courseName}</h2>
                         <p className="text-[10px] font-bold uppercase tracking-wide text-zinc-400">
-                          {item.paymentType === "monthly" ? "Monthly payments" : "Pay in full"}
-                          {item.deposit && item.paymentType === "monthly" ? ` · £${item.deposit} deposit` : ""}
+                          {item.paymentType === "monthly" && item.deposit
+                            ? `£${item.deposit} deposit today · then £${item.price}/mo × 12`
+                            : item.paymentType === "monthly" ? "Monthly payment plan · 12 months"
+                            : "Pay in full"}
                         </p>
                       </div>
                       <div className="flex items-center justify-between mt-4 flex-wrap gap-3">
@@ -96,10 +100,17 @@ export default function BasketPage() {
                           <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label="Increase quantity" className="w-7 h-7 flex items-center justify-center rounded-md text-zinc-600 hover:bg-zinc-200 hover:text-zinc-950 transition-colors font-bold text-base">+</button>
                         </div>
                         <div className="flex items-center gap-4">
-                          <p className="text-lg font-black text-zinc-950 tabular-nums">
-                            £{(item.price * item.quantity).toFixed(2)}
-                            {item.paymentType === "monthly" && <span className="text-xs font-bold text-zinc-500">/mo</span>}
-                          </p>
+                          {item.paymentType === "monthly" && item.deposit ? (
+                            <div className="text-right">
+                              <p className="text-lg font-black text-zinc-950 tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
+                              <p className="text-[10px] font-bold text-zinc-400">then £{item.price}/mo × 12</p>
+                            </div>
+                          ) : (
+                            <p className="text-lg font-black text-zinc-950 tabular-nums">
+                              £{(item.price * item.quantity).toFixed(2)}
+                              {item.paymentType === "monthly" && <span className="text-xs font-bold text-zinc-500">/mo</span>}
+                            </p>
+                          )}
                           <button type="button" onClick={() => removeItem(item.id)} className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 hover:text-[#CE1A19] transition-colors">Remove</button>
                         </div>
                       </div>
@@ -126,17 +137,40 @@ export default function BasketPage() {
                           <span className="block text-zinc-600 text-xs">{item.tierName}</span>
                         </p>
                         <div className="text-right flex-shrink-0">
-                          <p className="text-white font-bold text-sm tabular-nums">£{(item.price * item.quantity).toFixed(2)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
-                          {item.quantity > 1 && <p className="text-zinc-600 text-xs">× {item.quantity}</p>}
+                          {item.paymentType === "monthly" && item.deposit ? (
+                            <>
+                              <p className="text-white font-bold text-sm tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
+                              <p className="text-zinc-600 text-xs">then £{item.price}/mo × 12</p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="text-white font-bold text-sm tabular-nums">£{(item.price * item.quantity).toFixed(2)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
+                              {item.quantity > 1 && <p className="text-zinc-600 text-xs">× {item.quantity}</p>}
+                            </>
+                          )}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="flex justify-between items-center mb-8">
-                    <p className="text-zinc-400 text-xs font-bold uppercase tracking-widest">Total</p>
-                    <p className="text-white font-black text-2xl tabular-nums">£{total.toFixed(2)}</p>
-                  </div>
+                  {(() => {
+                    const checkoutTotal = items.reduce((sum, item) => {
+                      const charge = item.paymentType === "monthly" && item.deposit ? item.deposit : item.price
+                      return sum + charge * item.quantity
+                    }, 0)
+                    const hasDeposit = items.some(i => i.paymentType === "monthly" && i.deposit)
+                    return (
+                      <div className="mb-8">
+                        <div className="flex justify-between items-center">
+                          <p className="text-zinc-400 text-xs font-bold uppercase tracking-widest">Due today</p>
+                          <p className="text-white font-black text-2xl tabular-nums">£{checkoutTotal.toFixed(2)}</p>
+                        </div>
+                        {hasDeposit && (
+                          <p className="text-zinc-600 text-xs mt-1 text-right">Monthly payments begin after deposit</p>
+                        )}
+                      </div>
+                    )
+                  })()}
 
                   {!showCheckout ? (
                     <Button onClick={handleProceed} variant="primary" size="md" fullWidth>

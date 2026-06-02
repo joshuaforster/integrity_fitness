@@ -1,5 +1,4 @@
 import GraduatesHero from "../components/graduates/GraduatesHero";
-import GraduatesStats from "../components/graduates/GraduatesStats";
 import GraduateGrid from "../components/graduates/GraduateGrid";
 import GraduatesTestimonial from "../components/graduates/GraduatesTestimonial";
 import ReadyToStartCTA from "../components/shared/ReadyToStartCTA";
