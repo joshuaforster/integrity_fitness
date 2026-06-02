@@ -6,7 +6,7 @@ import { stripe } from '@/lib/stripe'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const RECIPIENTS = ['harry@integrityfitness.education', 'joshuaforster95@gmail.com']
+const RECIPIENTS = ['joshuaforster95@gmail.com']
 const FROM_EMAIL = 'onboarding@resend.dev'
 
 function formatAmount(amount: number | null, currency: string | null) {
@@ -26,7 +26,7 @@ async function notifyEnrolment(session: Stripe.Checkout.Session) {
   const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ['line_items'] })
   const courses = full.line_items?.data.map((i) => i.description ?? 'Course').join(', ') ?? 'Unknown course'
 
-  await resend.emails.send({
+  const { error: sendError } = await resend.emails.send({
     from: FROM_EMAIL,
     to: RECIPIENTS,
     subject: `New Enrolment — ${name}`,
@@ -42,6 +42,7 @@ async function notifyEnrolment(session: Stripe.Checkout.Session) {
       </table>
     `,
   })
+  if (sendError) throw new Error(`Resend error: ${sendError.message}`)
 }
 
 async function notifyRenewal(invoice: Stripe.Invoice) {
@@ -49,7 +50,7 @@ async function notifyRenewal(invoice: Stripe.Invoice) {
   const amount = formatAmount(invoice.amount_paid, invoice.currency)
   const description = invoice.lines.data.map((l) => l.description ?? 'Renewal').join(', ')
 
-  await resend.emails.send({
+  const { error: sendError } = await resend.emails.send({
     from: FROM_EMAIL,
     to: RECIPIENTS,
     subject: `Monthly Renewal — ${email}`,
@@ -64,6 +65,7 @@ async function notifyRenewal(invoice: Stripe.Invoice) {
       </table>
     `,
   })
+  if (sendError) throw new Error(`Resend error: ${sendError.message}`)
 }
 
 export async function POST(req: NextRequest) {

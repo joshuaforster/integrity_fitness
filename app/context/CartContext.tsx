@@ -68,6 +68,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   function clearCart() {
     setItems([]);
+    try {
+      localStorage.removeItem("ife-cart");
+    } catch {}
   }
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
