@@ -87,7 +87,6 @@ export default function Qualifications() {
     >
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
           <motion.div
             className="lg:col-span-5 flex flex-col items-start"
             initial={{ opacity: 0, x: -32 }}
@@ -101,23 +100,34 @@ export default function Qualifications() {
               id="qualifications-heading"
               headingSize="lg"
             />
-            <div className="space-y-4 text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-md mt-8">
+            <div className="space-y-4 text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-md md:max-w-sm lg:max-w-md mt-8">
               <p>{qualificationsSection.bodyIntro}</p>
               <ul className="space-y-2">
                 {qualificationsSection.bodyItems.map((item, i) => (
                   <li key={i} className="flex gap-2">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#CE1A19]" />
-                    <span><strong className="text-zinc-900">{item.question}</strong> {item.answer}</span>
+                    <span>
+                      <strong className="text-zinc-900">{item.question}</strong>{" "}
+                      {item.answer}
+                    </span>
                   </li>
                 ))}
               </ul>
               <p>{qualificationsSection.bodyOutro}</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <Button href={qualificationsSection.button1.href} variant="primary" responsive>
+            <div className="flex flex-col xl:flex-row gap-3 w-full">
+              <Button
+                href={qualificationsSection.button1.href}
+                variant="primary"
+                responsive
+              >
                 {qualificationsSection.button1.label}
               </Button>
-              <Button href={qualificationsSection.button2.href} variant="outline-light" responsive>
+              <Button
+                href={qualificationsSection.button2.href}
+                variant="outline-light"
+                responsive
+              >
                 {qualificationsSection.button2.label}
               </Button>
             </div>
@@ -149,7 +159,6 @@ export default function Qualifications() {
               </motion.div>
             ))}
           </motion.div>
-
         </div>
       </SectionWrapper>
     </section>

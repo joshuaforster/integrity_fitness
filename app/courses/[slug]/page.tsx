@@ -63,12 +63,14 @@ export default async function CoursePage({ params, searchParams }: PageProps) {
         subtitle={qual.tagline}
         overlayStrength="heavy"
       />
-      <ProductPageClient
-        qual={qual}
-        initialTierIndex={initialTierIndex}
-        initialBilling={initialBilling}
-        relatedCourses={relatedCourses}
-      />
+      <section id="product-client" className="scroll-mt-20">
+        <ProductPageClient
+          qual={qual}
+          initialTierIndex={initialTierIndex}
+          initialBilling={initialBilling}
+          relatedCourses={relatedCourses}
+        />
+      </section>
     </main>
   );
 }
