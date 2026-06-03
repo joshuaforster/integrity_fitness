@@ -25,16 +25,6 @@ export default function HeroStats() {
           background: "rgba(255,255,255,0.06)",
         }}
       >
-        {/* Label */}
-        <span className="text-white text-xs font-black uppercase tracking-[0.2em] whitespace-nowrap">
-          Approved By
-        </span>
-
-        {/* Divider */}
-        <div
-          className="w-px h-9 bg-white mx-6 flex-shrink-0"
-          aria-hidden="true"
-        />
 
         {/* Active IQ */}
         <Image
