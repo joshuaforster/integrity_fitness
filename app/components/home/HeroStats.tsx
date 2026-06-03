@@ -2,54 +2,39 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { heroStats as STATS } from "@/app/content/home";
-
-const imageStats = STATS.filter((s): s is Extract<typeof STATS[number], { type: "image" }> => s.type === "image");
-const activeIQ = imageStats.find((s) => s.alt === "Active IQ");
-const cimspa = imageStats.find((s) => s.alt === "CIMSPA");
 
 export default function HeroStats() {
-  if (!activeIQ || !cimspa) return null;
-
   return (
     <motion.div
-      className="mt-10"
+      className="mt-10 lg:mt-0"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 1.0, ease: "easeOut" }}
     >
       <div
-        className="flex w-full md:inline-flex md:w-auto justify-center md:justify-start items-center rounded-full border border-white px-7 py-4 shadow-[0_4px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]"
-        style={{
-          backdropFilter: "blur(20px) saturate(160%)",
-          background: "rgba(255,255,255,0.06)",
-        }}
+        className="inline-flex items-center gap-3 px-4 py-2.5 rounded-full [backdrop-filter:blur(16px)_saturate(120%)] bg-white/[0.07] border border-white/[0.12]"
+        aria-label="Approved by Active IQ and CIMSPA"
       >
-
-        {/* Active IQ */}
+        <span className="text-white/50 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+          Approved by
+        </span>
+        <div className="w-px h-4 bg-white/20" aria-hidden="true" />
         <Image
-          src={activeIQ.value}
+          src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png"
           alt="Active IQ"
-          width={activeIQ.width}
-          height={activeIQ.height}
+          width={56}
+          height={18}
           priority
-          className="h-3 w-auto object-contain brightness-0 invert opacity-80"
+          className="object-contain h-4 w-auto brightness-0 invert opacity-80"
         />
-
-        {/* Divider */}
-        <div
-          className="w-px h-9 bg-white mx-6 flex-shrink-0"
-          aria-hidden="true"
-        />
-
-        {/* CIMSPA */}
+        <div className="w-px h-4 bg-white/20" aria-hidden="true" />
         <Image
-          src={cimspa.value}
+          src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/cimspa-logo-navy-box%20copy.png"
           alt="CIMSPA"
-          width={cimspa.width}
-          height={cimspa.height}
+          width={56}
+          height={18}
           priority
-          className="h-12 w-auto object-contain brightness-0 invert opacity-70"
+          className="object-contain h-4 w-auto brightness-0 invert opacity-80"
         />
       </div>
     </motion.div>

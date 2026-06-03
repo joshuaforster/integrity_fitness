@@ -70,7 +70,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-16 md:pt-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-16 md:pt-32 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <motion.div variants={container} initial="hidden" animate="visible">
             <motion.p
               variants={fadeUp}
