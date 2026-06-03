@@ -172,7 +172,7 @@ export default function ProductPageClient({
       image: qual.heroImage,
     };
     addItem(item);
-    router.push("/basket");
+    router.push("/basket#basket-content");
   }
 
   return (

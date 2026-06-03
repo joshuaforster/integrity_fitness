@@ -136,7 +136,7 @@ function CPDCourseCard({ q }: { q: Qualification }) {
       image: q.heroImage,
     });
     setAdded(true);
-    setTimeout(() => router.push("/basket"), 700);
+    setTimeout(() => router.push("/basket#basket-content"), 700);
   }
 
   return (
