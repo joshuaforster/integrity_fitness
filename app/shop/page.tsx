@@ -7,6 +7,31 @@ export const metadata: Metadata = {
   title: "Shop | Integrity Fitness Education",
   description:
     "Browse and enrol on CIMSPA-accredited personal training and CPD courses from Integrity Fitness Education in Norwich.",
+  alternates: {
+    canonical: "https://www.integrityfitnesseducation.co.uk/shop",
+  },
+  openGraph: {
+    title: "Shop | Integrity Fitness Education",
+    description: "Browse and enrol on CIMSPA-accredited personal training and CPD courses from Integrity Fitness Education in Norwich.",
+    url: "https://www.integrityfitnesseducation.co.uk/shop",
+    siteName: "Integrity Fitness Education",
+    locale: "en_GB",
+    type: "website",
+    images: [
+      {
+        url: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Integrity Fitness Education courses — Norwich personal training qualifications",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop | Integrity Fitness Education",
+    description: "Browse and enrol on CIMSPA-accredited personal training and CPD courses from Integrity Fitness Education in Norwich.",
+    images: ["https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"],
+  },
 };
 
 export default function ShopPage() {

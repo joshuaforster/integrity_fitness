@@ -12,6 +12,28 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.integrityfitnesseducation.co.uk/qualifications",
   },
+  openGraph: {
+    title: "Qualifications | Integrity Fitness Education",
+    description: "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
+    url: "https://www.integrityfitnesseducation.co.uk/qualifications",
+    siteName: "Integrity Fitness Education",
+    locale: "en_GB",
+    type: "website",
+    images: [
+      {
+        url: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Personal training qualifications at Integrity Fitness Education Norwich",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Qualifications | Integrity Fitness Education",
+    description: "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
+    images: ["https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"],
+  },
 };
 
 const PT_COURSES = qualifications.filter(

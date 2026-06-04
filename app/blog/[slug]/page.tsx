@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   if (!post) return {};
+  const ogImage = post.image ?? "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg";
   return {
     title: `${post.title} | Integrity Fitness Education`,
     description: post.excerpt,
@@ -32,6 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: "Integrity Fitness Education",
       locale: "en_GB",
       type: "article",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Integrity Fitness Education`,
+      description: post.excerpt,
+      images: [ogImage],
     },
   };
 }

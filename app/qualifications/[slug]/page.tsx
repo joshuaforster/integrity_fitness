@@ -38,11 +38,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const qual = getQualificationBySlug(slug);
   if (!qual) return {};
+  const ogImage = qual.heroImage ?? "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg";
   return {
     title: `${qual.title} | Integrity Fitness Education`,
     description: qual.tagline,
     alternates: {
       canonical: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+    },
+    openGraph: {
+      title: `${qual.title} | Integrity Fitness Education`,
+      description: qual.tagline,
+      url: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+      siteName: "Integrity Fitness Education",
+      locale: "en_GB",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: qual.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${qual.title} | Integrity Fitness Education`,
+      description: qual.tagline,
+      images: [ogImage],
     },
   };
 }
@@ -61,8 +77,39 @@ export default async function QualificationPage({ params }: PageProps) {
 
   const slants = slugSlants(slug);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.integrityfitnesseducation.co.uk" },
+      { "@type": "ListItem", position: 2, name: "Qualifications", item: "https://www.integrityfitnesseducation.co.uk/qualifications" },
+      { "@type": "ListItem", position: 3, name: qual.title, item: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}` },
+    ],
+  };
+
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: qual.title,
+    description: qual.tagline,
+    provider: {
+      "@type": "Organization",
+      name: "Integrity Fitness Education",
+      url: "https://www.integrityfitnesseducation.co.uk",
+    },
+    url: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+  };
+
   return (
     <main className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
       <CourseHero qual={qual} />
       <CourseOverview qual={qual} />
       <PricingSection qual={qual} slant={slants.pricing} />

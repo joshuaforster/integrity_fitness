@@ -77,6 +77,7 @@ export default function NotFound() {
             className="text-[#CE1A19] text-lg"
             animate={{ rotate: [0, 15, 0, -15, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: "easeInOut" }}
+            aria-hidden="true"
           >
             ★
           </motion.span>

@@ -8,6 +8,7 @@ import { stripe } from "@/lib/stripe";
 
 export const metadata: Metadata = {
   title: "Enrolment Confirmed | Integrity Fitness Education",
+  robots: { index: false, follow: false },
 };
 
 interface PageProps {
@@ -69,8 +70,8 @@ export default async function ConfirmationPage({ searchParams }: PageProps) {
 
             {/* Success mark */}
             <div className="flex justify-center mb-12">
-              <div className="w-14 h-14 rounded-full border border-green-200 bg-green-50 flex items-center justify-center">
-                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-14 h-14 rounded-full border border-green-200 bg-green-50 flex items-center justify-center" role="img" aria-label="Enrolment confirmed">
+                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                 </svg>
               </div>

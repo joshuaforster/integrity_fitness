@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `Enrol — ${qual.shortTitle} | Integrity Fitness Education`,
     description: qual.tagline,
+    robots: { index: false, follow: false },
   };
 }
 

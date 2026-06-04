@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const graduate = getGraduateBySlug(slug);
   if (!graduate) return {};
+  const ogImage = graduate.image ?? "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg";
   return {
     title: `${graduate.name}'s Story | Integrity Fitness Education`,
     description: graduate.quote,
@@ -31,6 +32,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: "Integrity Fitness Education",
       locale: "en_GB",
       type: "article",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${graduate.name} — Integrity Fitness Education graduate` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${graduate.name}'s Story | Integrity Fitness Education`,
+      description: graduate.quote,
+      images: [ogImage],
     },
   };
 }

@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     locale: "en_GB",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms & Conditions | Integrity Fitness Education",
+    description: "Full Terms & Conditions for Integrity Fitness Education personal trainer courses — enrolment, cancellation, and learner rights.",
+  },
 };
 
 function Section({ number, title, children }: { number?: string; title: string; children: React.ReactNode }) {
