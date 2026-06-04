@@ -19,41 +19,48 @@ export default function BasketPage() {
   const { items, removeItem, updateQuantity } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const paymentRef = useRef<HTMLDivElement>(null);
 
-  const fetchClientSecret = useCallback(async () => {
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        items: items.map((item) => ({
-          slug: item.slug,
-          courseName: item.courseName,
-          tierName: item.tierName,
-          paymentType: item.paymentType,
-          price: item.price,
-          quantity: item.quantity,
-          deposit: item.deposit,
-        })),
-      }),
-    });
-    const data = await res.json();
-    if (!res.ok || !data.client_secret) {
-      throw new Error(data.error ?? "Failed to create payment session.");
-    }
-    setCheckoutLoading(false);
-    return data.client_secret as string;
-  }, [items]);
-
-  const handleProceedToPayment = () => {
+  const handleProceedToPayment = useCallback(async () => {
     setShowCheckout(true);
     setCheckoutLoading(true);
+    setCheckoutError(null);
     setTimeout(() => {
       if (window.innerWidth < 1024 && paymentRef.current) {
         paymentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }, 50);
-  };
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            slug: item.slug,
+            courseName: item.courseName,
+            tierName: item.tierName,
+            paymentType: item.paymentType,
+            price: item.price,
+            quantity: item.quantity,
+            deposit: item.deposit,
+          })),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.client_secret) {
+        throw new Error(data.error ?? "Failed to create payment session.");
+      }
+      setClientSecret(data.client_secret as string);
+    } catch (err) {
+      setCheckoutError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setShowCheckout(false);
+    } finally {
+      setCheckoutLoading(false);
+    }
+  }, [items]);
 
   useEffect(() => {
     if (showCheckout && !checkoutLoading && paymentRef.current && window.innerWidth < 1024) {
@@ -203,7 +210,7 @@ export default function BasketPage() {
                           </button>
                         </div>
                         <div className="p-2">
-                          <EmbeddedCheckoutProvider stripe={stripePromise} options={{ fetchClientSecret }}>
+                          <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret: clientSecret! }}>
                             <EmbeddedCheckout />
                           </EmbeddedCheckoutProvider>
                         </div>
@@ -269,6 +276,10 @@ export default function BasketPage() {
                       </div>
                     )
                   })()}
+
+                  {checkoutError && (
+                    <p className="text-red-400 text-xs font-medium mb-3 text-center">{checkoutError}</p>
+                  )}
 
                   {!showCheckout && !checkoutLoading ? (
                     <Button onClick={handleProceedToPayment} variant="primary" size="md" fullWidth>
