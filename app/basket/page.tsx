@@ -13,7 +13,13 @@ import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 import PageHero from "@/app/components/ui/PageHero";
 import ScrollToTop from "@/app/components/ui/ScrollToTop";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+let stripePromise: ReturnType<typeof loadStripe> | null = null;
+function getStripe() {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }
+  return stripePromise;
+}
 
 export default function BasketPage() {
   const { items, removeItem, updateQuantity } = useCart();
@@ -210,7 +216,7 @@ export default function BasketPage() {
                           </button>
                         </div>
                         <div className="p-2">
-                          <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret: clientSecret! }}>
+                          <EmbeddedCheckoutProvider stripe={getStripe()} options={{ clientSecret: clientSecret! }}>
                             <EmbeddedCheckout />
                           </EmbeddedCheckoutProvider>
                         </div>

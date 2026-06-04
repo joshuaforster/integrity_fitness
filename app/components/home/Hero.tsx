@@ -29,24 +29,43 @@ export default function Hero() {
     if (!video) return;
     const el = video;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.pause();
-    }
+    let cleanupTimeUpdate: (() => void) | undefined;
 
-    function skipIntro() { el.currentTime = 8.5; }
-    function skipLastFive() {
-      if (el.duration && el.currentTime > el.duration - 9) {
-        el.currentTime = 8.5;
+    function startVideo() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      function skipIntro() { el.currentTime = 8.5; }
+      function skipLastFive() {
+        if (el.duration && el.currentTime > el.duration - 9) {
+          el.currentTime = 8.5;
+        }
       }
+
+      if (el.readyState >= 1) {
+        skipIntro();
+      } else {
+        el.addEventListener("loadedmetadata", skipIntro, { once: true });
+      }
+      el.addEventListener("timeupdate", skipLastFive);
+      el.play().catch(() => {});
+      cleanupTimeUpdate = () => el.removeEventListener("timeupdate", skipLastFive);
     }
 
-    if (el.readyState >= 1) {
-      skipIntro();
-    } else {
-      el.addEventListener("loadedmetadata", skipIntro, { once: true });
-    }
-    el.addEventListener("timeupdate", skipLastFive);
-    return () => el.removeEventListener("timeupdate", skipLastFive);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startVideo();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.01 },
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cleanupTimeUpdate?.();
+    };
   }, []);
 
   return (
@@ -57,10 +76,11 @@ export default function Hero() {
       <div className="absolute inset-0" aria-hidden="true">
         <video
           ref={videoRef}
-          autoPlay
           muted
           loop
           playsInline
+          preload="none"
+          poster="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"
           tabIndex={-1}
           className="absolute inset-0 w-full h-full object-cover [filter:contrast(1.08)_saturate(1.15)_brightness(1.02)]"
         >

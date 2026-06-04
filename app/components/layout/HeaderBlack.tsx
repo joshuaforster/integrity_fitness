@@ -115,6 +115,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-3">
             <Link
               href="/basket#basket-content"
+              prefetch={false}
               aria-label={`Basket${count > 0 ? ` — ${count} item${count > 1 ? "s" : ""}` : ""}`}
               className="relative p-1 text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
             >
@@ -239,6 +240,7 @@ export default function Header() {
             {/* Basket icon */}
             <Link
               href="/basket#basket-content"
+              prefetch={false}
               aria-label={`Basket${count > 0 ? ` — ${count} item${count > 1 ? "s" : ""}` : ""}`}
               className="relative p-1 text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950"
             >
