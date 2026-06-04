@@ -80,7 +80,6 @@ export default function Hero() {
           loop
           playsInline
           preload="none"
-          poster="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"
           tabIndex={-1}
           className="absolute inset-0 w-full h-full object-cover [filter:contrast(1.08)_saturate(1.15)_brightness(1.02)]"
         >
