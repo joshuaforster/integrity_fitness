@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +18,8 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 export default function BasketPage() {
   const { items, removeItem, updateQuantity } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const paymentRef = useRef<HTMLDivElement>(null);
 
   const fetchClientSecret = useCallback(async () => {
     const res = await fetch("/api/checkout", {
@@ -39,8 +41,27 @@ export default function BasketPage() {
     if (!res.ok || !data.client_secret) {
       throw new Error(data.error ?? "Failed to create payment session.");
     }
+    setCheckoutLoading(false);
     return data.client_secret as string;
   }, [items]);
+
+  const handleProceedToPayment = () => {
+    setShowCheckout(true);
+    setCheckoutLoading(true);
+    setTimeout(() => {
+      if (window.innerWidth < 1024 && paymentRef.current) {
+        paymentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 50);
+  };
+
+  useEffect(() => {
+    if (showCheckout && !checkoutLoading && paymentRef.current && window.innerWidth < 1024) {
+      setTimeout(() => {
+        paymentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 150);
+    }
+  }, [showCheckout, checkoutLoading]);
 
   return (
     <main className="bg-white">
@@ -66,7 +87,7 @@ export default function BasketPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
               {/* Left column: items or payment form */}
-              <div className="lg:col-span-2">
+              <div ref={paymentRef} className="lg:col-span-2 scroll-mt-24">
                 <AnimatePresence mode="wait">
                   {!showCheckout ? (
                     <motion.div
@@ -125,6 +146,41 @@ export default function BasketPage() {
                       ))}
                       <div className="pt-2">
                         <Link href="/shop" className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-950 transition-colors">← Continue Shopping</Link>
+                      </div>
+                    </motion.div>
+                  ) : checkoutLoading ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      <div className="bg-white rounded-2xl border border-zinc-200 shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+                        <div className="px-6 pt-6 pb-2 border-b border-zinc-100 flex items-center justify-between gap-4">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Payment Details</p>
+                          <button
+                            type="button"
+                            onClick={() => { setShowCheckout(false); setCheckoutLoading(false); }}
+                            className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-950 transition-colors"
+                          >
+                            ← Back to basket
+                          </button>
+                        </div>
+                        <div className="p-8 flex flex-col items-center gap-4 min-h-[240px] justify-center">
+                          <svg className="w-7 h-7 animate-spin text-[#CE1A19]" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          <p className="text-zinc-500 text-sm font-medium">Preparing your payment…</p>
+                          <div className="w-full mt-2 space-y-3">
+                            <div className="h-3 bg-zinc-100 rounded-full animate-pulse w-2/3" />
+                            <div className="h-3 bg-zinc-100 rounded-full animate-pulse w-1/2" />
+                            <div className="h-10 bg-zinc-100 rounded-xl animate-pulse mt-4" />
+                            <div className="h-10 bg-zinc-100 rounded-xl animate-pulse" />
+                            <div className="h-12 bg-zinc-100 rounded-xl animate-pulse mt-2" />
+                          </div>
+                        </div>
                       </div>
                     </motion.div>
                   ) : (
@@ -214,10 +270,18 @@ export default function BasketPage() {
                     )
                   })()}
 
-                  {!showCheckout ? (
-                    <Button onClick={() => setShowCheckout(true)} variant="primary" size="md" fullWidth>
+                  {!showCheckout && !checkoutLoading ? (
+                    <Button onClick={handleProceedToPayment} variant="primary" size="md" fullWidth>
                       Proceed to Payment
                     </Button>
+                  ) : checkoutLoading ? (
+                    <div className="flex items-center justify-center gap-2 text-zinc-400 text-xs font-bold uppercase tracking-widest">
+                      <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Preparing…
+                    </div>
                   ) : (
                     <div className="flex items-center justify-center gap-2 text-green-400 text-xs font-bold uppercase tracking-widest">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

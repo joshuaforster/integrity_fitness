@@ -2,130 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import { type Qualification, type PricingTier } from "@/app/data/qualifications";
+import { type Qualification } from "@/app/data/qualifications";
 import { useCart, type CartItem } from "@/app/context/CartContext";
-import { staggerContainer, slideInItem, cardVariants } from "@/lib/animations";
+import { staggerContainer, slideInItem } from "@/lib/animations";
 import Button from "@/app/components/ui/Button";
 import AnimatedCheck from "@/app/components/ui/AnimatedCheck";
-
-/* ── price helpers ──────────────────────────────────────────────── */
-
-function getPrice(tier: PricingTier, billing: "one-off" | "monthly"): number {
-  if (typeof tier.price === "number") return tier.price;
-  return billing === "monthly" ? tier.price.monthly : tier.price.yearly;
-}
-
-function getSaving(tier: PricingTier, billing: "one-off" | "monthly"): number {
-  if (typeof tier.price === "number") return 0;
-  return billing === "one-off" ? tier.price.monthly * 12 - tier.price.yearly : 0;
-}
-
-/* ── related course mini-card ───────────────────────────────────── */
-
-function RelatedCourseCard({ q, index }: { q: Qualification; index: number }) {
-  const startPrice =
-    typeof q.pricing[0].price === "number"
-      ? q.pricing[0].price
-      : (q.pricing[0].price as { yearly: number }).yearly;
-
-  return (
-    <motion.div
-      variants={cardVariants}
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="group relative flex flex-col rounded-xl overflow-hidden bg-white border border-zinc-200 hover:border-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300"
-    >
-      <div className="relative h-32 flex-shrink-0 overflow-hidden">
-        <Image
-          src={q.heroImage}
-          alt={q.title}
-          fill
-          sizes="(max-width:768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
-        <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest bg-zinc-950/70 text-zinc-400 border border-white/10 px-2 py-0.5 rounded-full">
-          {q.level}
-        </span>
-      </div>
-      <div className="flex flex-col flex-1 p-4">
-        <p className="text-zinc-950 font-bold text-sm leading-snug mb-1">{q.title}</p>
-        <p className="text-zinc-500 text-xs leading-relaxed flex-1 mb-4 line-clamp-2">{q.tagline}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-zinc-950 font-black">
-            £{startPrice}
-            {q.hasBillingToggle && <span className="text-xs text-zinc-500 font-bold">+</span>}
-          </span>
-          <Link
-            href={`/courses/${q.slug}`}
-            className="text-xs font-bold uppercase tracking-wider text-[#CE1A19] hover:text-red-400 transition-colors"
-          >
-            Enrol →
-          </Link>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ── billing toggle ─────────────────────────────────────────────── */
-
-function BillingToggle({
-  billing,
-  setBilling,
-  saving,
-}: {
-  billing: "one-off" | "monthly";
-  setBilling: (v: "one-off" | "monthly") => void;
-  saving: number;
-}) {
-  return (
-    <div className="relative inline-block">
-      <div
-        role="group"
-        aria-label="Payment type"
-        className="relative inline-flex items-center bg-zinc-100 border border-zinc-200 rounded-full p-1"
-      >
-        <motion.div
-          className="absolute top-1 bottom-1 bg-white rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.12)]"
-          animate={{
-            left: billing === "monthly" ? "4px" : "50%",
-            width: "calc(50% - 4px)",
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 32 }}
-        />
-        {(["monthly", "one-off"] as const).map((val) => (
-          <button
-            key={val}
-            type="button"
-            onClick={() => setBilling(val)}
-            aria-pressed={billing === val}
-            className={`relative z-10 w-28 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${
-              billing === val ? "text-zinc-950" : "text-zinc-400 hover:text-zinc-950"
-            }`}
-          >
-            {val === "monthly" ? "Monthly" : "Pay in Full"}
-          </button>
-        ))}
-      </div>
-      {saving > 0 && (
-        <motion.span
-          animate={{ opacity: billing === "one-off" ? 1 : 0.45, scale: billing === "one-off" ? 1 : 0.9 }}
-          className="absolute -top-3.5 right-0 text-[10px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full leading-none pointer-events-none whitespace-nowrap"
-        >
-          SAVE £{saving}
-        </motion.span>
-      )}
-    </div>
-  );
-}
-
-/* ── main component ─────────────────────────────────────────────── */
+import BillingToggle from "./BillingToggle";
+import RelatedCourseCard from "./RelatedCourseCard";
+import { getPrice, getSaving } from "./priceUtils";
 
 const slideIn: Variants = {
   hidden: { opacity: 0, y: 18 },

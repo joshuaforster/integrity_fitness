@@ -1,207 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { type Qualification } from "@/app/data/qualifications";
-import { useCart } from "@/app/context/CartContext";
-import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
-
-/* ── helpers ─────────────────────────────────────────────────────── */
-
-function lowestPrice(q: Qualification): { oneOff: number; monthly: number | null } {
-  if (!q.hasBillingToggle) {
-    return { oneOff: q.pricing[0].price as number, monthly: null };
-  }
-  const tiers = q.pricing.map((t) => t.price as { monthly: number; yearly: number });
-  return {
-    oneOff: Math.min(...tiers.map((p) => p.yearly)),
-    monthly: Math.min(...tiers.map((p) => p.monthly)),
-  };
-}
-
-/* ── PT course row card — mirrors PTCourseList exactly, adds price + CTAs ── */
-
-const ptListVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
-};
-
-const ptItemVariant: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
-};
-
-function PTCourseRow({ q }: { q: Qualification }) {
-  const { oneOff, monthly } = lowestPrice(q);
-
-  return (
-    <motion.div
-      variants={ptItemVariant}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-    >
-      {/* Card — same style as PTCourseList, no full-link wrapper so we can have separate CTAs */}
-      <div className="relative flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-950 rounded-2xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.06),0_6px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.14)] transition-all duration-300 group">
-        {/* Red top accent — same as PTCourseList */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CE1A19] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Left: course info */}
-        <div className="flex-1 max-w-xl pr-4">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-zinc-600 text-xs font-bold tracking-wider uppercase">
-              {q.level}
-            </span>
-            {q.badge && (
-              <span className="text-xs uppercase tracking-widest text-[#CE1A19] border border-[#CE1A19]/20 bg-[#CE1A19]/5 px-2 py-0.5 font-black rounded-sm">
-                {q.badge}
-              </span>
-            )}
-          </div>
-          <h3 className="text-zinc-950 font-black text-lg md:text-xl group-hover:text-[#CE1A19] transition-colors duration-200 mb-1.5">
-            {q.title}
-          </h3>
-          <p className="text-zinc-600 text-sm leading-relaxed">{q.tagline}</p>
-        </div>
-
-        {/* Right: price + CTAs */}
-        <div className="flex flex-col sm:items-end gap-4 flex-shrink-0 mt-6 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-zinc-100">
-          {/* Price */}
-          <div className="sm:text-right">
-            <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">From</p>
-            <div className="flex items-baseline gap-2 sm:justify-end flex-wrap">
-              {monthly !== null && (
-                <>
-                  <span className="text-xl font-black text-zinc-950 leading-none">
-                    £{monthly}
-                    <span className="text-sm font-bold text-zinc-500">/mo</span>
-                  </span>
-                  <span className="text-zinc-400 text-xs">or</span>
-                </>
-              )}
-              <span className={`font-black leading-none ${monthly ? "text-base text-zinc-500" : "text-xl text-zinc-950"}`}>
-                £{oneOff}{monthly ? " upfront" : ""}
-              </span>
-            </div>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex items-center gap-3">
-            <Button href={`/courses/${q.slug}`} variant="primary" size="sm">
-              Enrol Now
-            </Button>
-            <Link
-              href={`/qualifications/${q.slug}`}
-              className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-950 transition-colors"
-            >
-              Details →
-            </Link>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ── CPD glass card — mirrors CPDCourseGrid exactly, adds price + add-to-basket ── */
-
-const cpdGridVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
-};
-
-const cpdCardVariant: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
-};
-
-function CPDCourseCard({ q }: { q: Qualification }) {
-  const [added, setAdded] = useState(false);
-  const { addItem } = useCart();
-  const router = useRouter();
-
-  const tier = q.pricing[0];
-  const price = tier.price as number;
-
-  function handleAddToBasket() {
-    addItem({
-      id: `${q.slug}-${tier.name.toLowerCase().replace(/\s+/g, "-")}-one-off`,
-      slug: q.slug,
-      courseName: q.title,
-      tierName: tier.name,
-      paymentType: "one-off",
-      price,
-      image: q.heroImage,
-    });
-    setAdded(true);
-    setTimeout(() => router.push("/basket#basket-content"), 700);
-  }
-
-  return (
-    <motion.div
-      variants={cpdCardVariant}
-      whileHover={{ y: -6, transition: { duration: 0.22 } }}
-      whileTap={{ scale: 0.97 }}
-      className="h-full"
-    >
-      <div className="flex flex-col justify-between p-6 md:p-8 bg-white border border-zinc-200 hover:border-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group rounded-lg h-full">
-        {/* Course info */}
-        <div>
-          <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
-            {q.level}
-          </span>
-          <h3 className="text-zinc-900 font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
-            {q.title}
-          </h3>
-          <p className="text-zinc-600 text-sm leading-relaxed mb-6">{q.tagline}</p>
-        </div>
-
-        {/* Bottom: price + CTAs */}
-        <div className="pt-4 border-t border-zinc-200 mt-auto">
-          {/* Price */}
-          <div className="flex items-end justify-between mb-5">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">
-                Course fee
-              </p>
-              <div className="flex items-baseline gap-0.5">
-                <span className="text-base font-black text-zinc-400 self-start mt-0.5">£</span>
-                <span className="text-3xl font-black text-zinc-900 leading-none">{price}</span>
-              </div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-0.5">
-                One-time · {q.duration}
-              </p>
-            </div>
-            <Link
-              href={`/qualifications/${q.slug}`}
-              className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 transition-colors"
-            >
-              Details →
-            </Link>
-          </div>
-
-          {/* Add to basket button */}
-          <button
-            type="button"
-            onClick={handleAddToBasket}
-            disabled={added}
-            className={`w-full py-3 text-xs font-black uppercase tracking-widest rounded-lg transition-all duration-300 ${
-              added
-                ? "bg-green-600 text-white cursor-default"
-                : "bg-[#CE1A19] text-white hover:bg-red-700"
-            }`}
-          >
-            {added ? "Added to Basket ✓" : "Add to Basket"}
-          </button>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ── Main component ───────────────────────────────────────────────── */
+import PTCourseRow, { ptListVariants } from "./PTCourseRow";
+import CPDCourseCard, { cpdGridVariants } from "./CPDCourseCard";
 
 export default function ShopClient({
   ptCourses,
@@ -213,7 +17,6 @@ export default function ShopClient({
   return (
     <main className="bg-zinc-50">
 
-      {/* ── Personal Training — mirrors qualifications page PT section ── */}
       <section
         aria-labelledby="pt-heading"
         className="py-20 md:py-28 border-b border-zinc-200/60"
@@ -221,7 +24,6 @@ export default function ShopClient({
         <SectionWrapper reveal>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-            {/* Left sticky column — same as qualifications page */}
             <div className="lg:col-span-4 sticky top-28 space-y-6">
               <div>
                 <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
@@ -258,7 +60,6 @@ export default function ShopClient({
               </div>
             </div>
 
-            {/* Right: course rows — same lg:col-span-8 area as qualifications page */}
             <motion.div
               className="lg:col-span-8 space-y-4 w-full"
               variants={ptListVariants}
@@ -278,7 +79,6 @@ export default function ShopClient({
         </SectionWrapper>
       </section>
 
-      {/* ── CPD — mirrors qualifications page CPD section exactly ── */}
       <section
         aria-labelledby="cpd-heading"
         className="bg-[#18181B] texture-dots-dark angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
@@ -318,7 +118,6 @@ export default function ShopClient({
             </div>
           </div>
 
-          {/* CPD grid — same structure as CPDCourseGrid */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={cpdGridVariants}

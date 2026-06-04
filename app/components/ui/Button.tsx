@@ -17,7 +17,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   primary:
     "bg-[#CE1A19] text-white hover:bg-red-700 shadow-[0_1px_3px_rgba(206,26,25,0.25)] hover:shadow-[0_2px_10px_rgba(206,26,25,0.35)] focus-visible:ring-[#CE1A19]",
   "outline-light":
-    "border border-zinc-300 text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 focus-visible:ring-zinc-950",
+    "border border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white focus-visible:ring-zinc-950",
   "outline-dark":
     "border border-white/20 text-white hover:border-white/60 hover:bg-white/[0.04] focus-visible:ring-white",
   "outline-hero":
