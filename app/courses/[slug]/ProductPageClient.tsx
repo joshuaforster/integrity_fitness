@@ -234,7 +234,7 @@ export default function ProductPageClient({
                           transition={{ duration: 0.25, ease: "easeOut" }}
                           className="text-6xl font-black text-zinc-950 tracking-tight"
                         >
-                          {price}
+                          {price.toFixed(2)}
                         </motion.span>
                       </div>
                       <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mt-2">
@@ -243,7 +243,7 @@ export default function ProductPageClient({
                       {tier.deposit && billing === "monthly" && (
                         <div className="mt-2 space-y-1">
                           <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest">
-                            After a £{tier.deposit} deposit
+                            After a £{Number(tier.deposit).toFixed(2)} deposit
                           </p>
                           <p className="text-zinc-400 text-xs leading-relaxed">
                             Monthly payments are charged automatically to your saved card — no manual action needed. Payments continue until your course is complete.
@@ -257,7 +257,7 @@ export default function ProductPageClient({
                           animate={{ opacity: 1 }}
                           className="text-[#CE1A19] text-xs font-bold mt-2"
                         >
-                          Saving £{saving} vs monthly
+                          Saving £{Math.round(saving)} vs monthly
                         </motion.p>
                       )}
                     </div>
@@ -265,7 +265,7 @@ export default function ProductPageClient({
                     {/* CTA */}
                     <div className="mb-6 pb-6 border-b border-zinc-200">
                       <Button onClick={handleAddToBasket} variant="primary" size="lg" fullWidth>
-                        Add to Basket — £{price}
+                        Add to Basket — £{price.toFixed(2)}
                         {billing === "monthly" && typeof tier.price !== "number" ? "/mo" : ""}
                       </Button>
                     </div>

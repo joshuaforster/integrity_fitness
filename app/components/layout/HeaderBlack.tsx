@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/app/context/CartContext";
+import GlobalSearch from "./GlobalSearch";
 
 import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES } from "@/app/content/navigation";
 
@@ -236,6 +237,9 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            {/* Global search — desktop only */}
+            <GlobalSearch />
 
             {/* Basket icon */}
             <Link

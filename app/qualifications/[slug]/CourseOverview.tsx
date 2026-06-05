@@ -15,7 +15,7 @@ export default function CourseOverview({ qual }: { qual: Qualification }) {
         src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/activeiq.png"
         alt=""
         aria-hidden="true"
-        className="absolute top-10 right-6 lg:right-12 h-10 w-auto object-contain opacity-[0.07] grayscale pointer-events-none select-none"
+        className="absolute top-10 right-6 lg:right-12 h-10 w-auto object-contain opacity-[0.6] pointer-events-none select-none"
       />
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

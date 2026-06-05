@@ -5,6 +5,8 @@ import PageHero from "@/app/components/ui/PageHero";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import ReadyToStartCTA from "@/app/components/shared/ReadyToStartCTA";
 import BlogPostCard from "@/app/components/blog/BlogPostCard";
+import BlogShareButtons from "@/app/components/blog/BlogShareButtons";
+import BlogNewsletter from "@/app/components/blog/BlogNewsletter";
 import BlogPostBody from "./BlogPostBody";
 
 interface PageProps {
@@ -23,6 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} | Integrity Fitness Education`,
     description: post.excerpt,
+    authors: [{ name: post.author.name }],
     alternates: {
       canonical: `https://www.integrityfitnesseducation.co.uk/blog/${slug}`,
     },
@@ -49,10 +52,18 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getBlogPostBySlug(slug);
   if (!post) notFound();
 
-  const related = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  const related = blogPosts
+    .filter((p) => p.slug !== slug)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
+
+  const canonicalUrl = `https://www.integrityfitnesseducation.co.uk/blog/${slug}`;
 
   return (
     <>
+      {/* Fixed share buttons — client component, desktop only */}
+      <BlogShareButtons title={post.title} url={canonicalUrl} />
+
       <PageHero
         image={post.image}
         label={post.category}
@@ -61,12 +72,17 @@ export default async function BlogPostPage({ params }: PageProps) {
         overlayStrength="heavy"
       />
 
+      {/* Body */}
       <section className="bg-white pb-20 md:pb-28 pt-16 md:pt-20">
         <SectionWrapper>
-          <BlogPostBody body={post.body} date={post.date} />
+          <BlogPostBody body={post.body} date={post.date} author={post.author} />
         </SectionWrapper>
       </section>
 
+      {/* Newsletter opt-in */}
+      <BlogNewsletter />
+
+      {/* Related articles */}
       {related.length > 0 && (
         <section className="bg-zinc-50 texture-grid-light pb-20 md:pb-28 pt-16 md:pt-20">
           <SectionWrapper reveal>

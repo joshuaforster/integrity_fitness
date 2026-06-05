@@ -1,3 +1,9 @@
+export type BlogAuthor = {
+  name: string;
+  role: string;
+  avatar?: string;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -6,6 +12,7 @@ export type BlogPost = {
   excerpt: string;
   image: string;
   body: string[];
+  author: BlogAuthor;
 };
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
@@ -17,6 +24,12 @@ export const blogHero = {
   image: "/images/20221115-IFE-CF_001.JPG",
 } as const;
 
+const HARRY: BlogAuthor = {
+  name: "Harry",
+  role: "Founder & Head Coach",
+  avatar: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-GYM-FLOOR-20220124-IFE-TGGNCC004.jpg",
+};
+
 // ── Posts ─────────────────────────────────────────────────────────────────────
 
 export const blogPosts: BlogPost[] = [
@@ -27,6 +40,7 @@ export const blogPosts: BlogPost[] = [
     category: "Career",
     excerpt: "Starting out as a PT can feel overwhelming. Here is what actually helps.",
     image: "/images/20221115-IFE-CF_010.JPG",
+    author: HARRY,
     body: [
       "The first few weeks as a qualified personal trainer are unlike anything you prepared for. You have the knowledge. You have the certificate. But walking onto the gym floor and charging someone money for your time feels like a completely different challenge.",
       "The truth is, confidence does not come before you start — it comes because you start. Every session you complete, every client who comes back the following week, every moment a plan actually works adds something that no classroom can give you.",
@@ -42,6 +56,7 @@ export const blogPosts: BlogPost[] = [
     category: "Training",
     excerpt: "The industry has changed. Here is what to expect before you sign up.",
     image: "/images/20221115-IFE-CF_020.JPG",
+    author: HARRY,
     body: [
       "Getting a personal training qualification is one of the best decisions you can make. But the path between signing up and actually working as a PT has a few surprises that most people are not warned about.",
       "First: the theory is harder than you expect. Anatomy, physiology, nutrition principles — there is a real academic component to this, and the students who treat it like a proper qualification from day one tend to do better than those who assume it will be straightforward.",
@@ -58,6 +73,7 @@ export const blogPosts: BlogPost[] = [
     category: "Stories",
     excerpt: "What it really takes to go from being trained to training others.",
     image: "/images/20221115-IFE-CF_030.JPG",
+    author: HARRY,
     body: [
       "For a lot of people who become personal trainers, the path started not with a career plan but with a moment. A point where fitness changed something for them — their health, their confidence, the way they saw their own potential.",
       "That moment is powerful. But turning it into a career requires something more than enthusiasm. It requires the willingness to start over as a beginner in a completely different discipline.",
@@ -73,6 +89,7 @@ export const blogPosts: BlogPost[] = [
     category: "Coaching",
     excerpt: "Group classes have their place. But nothing matches what happens in a 1:1 session.",
     image: "/images/20221115-IFE-CF_040.JPG",
+    author: HARRY,
     body: [
       "Group fitness has had a remarkable decade. Spin classes, HIIT studios, bootcamps — they brought exercise to people who never thought they would enjoy it. That is genuinely valuable.",
       "But one-to-one coaching does something fundamentally different. It is not just the same thing with fewer people. It is a different category of service.",
@@ -88,6 +105,7 @@ export const blogPosts: BlogPost[] = [
     category: "Industry",
     excerpt: "Everyone throws around the word accredited. Here is what it means in practice.",
     image: "/images/20221115-IFE-CF_050.JPG",
+    author: HARRY,
     body: [
       "You will see the word 'accredited' used a lot when fitness education providers describe their courses. But accreditation from different bodies means very different things, and it is worth understanding exactly what you are getting before you sign up.",
       "CIMSPA — the Chartered Institute for the Management of Sport and Physical Activity — is the professional development body for the UK's sport and physical activity sector. When a course is CIMSPA-accredited, it means the programme has been reviewed against national standards and meets the criteria for professional recognition.",
@@ -103,6 +121,7 @@ export const blogPosts: BlogPost[] = [
     category: "Business",
     excerpt: "You have got the qualification. Now what? The honest guide to finding your first clients.",
     image: "/images/20221115-IFE-CF_060.JPG",
+    author: HARRY,
     body: [
       "Nobody tells you how quiet it is after you qualify. The course ends, you have the certificate, and then you sit waiting for clients to appear. They do not appear on their own.",
       "Building a client base takes deliberate effort, and the sooner you accept that it is a skill — not something that just happens — the sooner you will make progress.",

@@ -115,7 +115,7 @@ export default function PricingToggleSection({
                 animate={{ opacity: billing === "yearly" ? 1 : 0.6, scale: billing === "yearly" ? 1 : 0.92 }}
                 className="absolute -top-3 right-0 text-xs font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full tracking-normal leading-none pointer-events-none"
               >
-                SAVE £{annualSaving}
+                SAVE £{Math.round(annualSaving)}
               </motion.span>
             )}
           </div>
@@ -188,7 +188,7 @@ export default function PricingToggleSection({
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className={`text-5xl font-black leading-none tracking-tight ${tier.highlighted ? "text-white" : "text-zinc-950"}`}
                       >
-                        {price}
+                        {price.toFixed(2)}
                       </motion.span>
                     </div>
                     <p className={`text-xs font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
@@ -196,7 +196,7 @@ export default function PricingToggleSection({
                     </p>
                     {tier.deposit && billing === "monthly" && (
                       <p className={`text-xs font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
-                        After a £{tier.deposit} deposit
+                        After a £{Number(tier.deposit).toFixed(2)} deposit
                       </p>
                     )}
                     {saving > 0 && (
@@ -206,7 +206,7 @@ export default function PricingToggleSection({
                         animate={{ opacity: 1 }}
                         className="text-[#CE1A19] text-xs font-bold mt-1.5"
                       >
-                        Saving £{saving} vs monthly
+                        Saving £{Math.round(saving)} vs monthly
                       </motion.p>
                     )}
                   </div>
