@@ -400,3 +400,17 @@ body {
 .paper-map-tilt {
   transform: rotate(-0.4deg);
 }
+
+/* ── Glass button border-trace loop ────────────────────────────────────── */
+@keyframes border-trace {
+  from { stroke-dashoffset: 150; }
+  to   { stroke-dashoffset: -630; }
+}
+.glass-border-trace {
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: stroke-dashoffset 0.3s ease;
+}
+.group:hover .glass-border-trace {
+  animation: border-trace 1.4s ease-in-out infinite;
+}

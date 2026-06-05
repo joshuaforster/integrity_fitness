@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { useCart } from "@/app/context/CartContext";
 import Button from "@/app/components/ui/Button";
+import PaymentSubmitButton from "@/app/components/ui/PaymentSubmitButton";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import StripeTrustBar from "@/app/components/ui/StripeTrustBar";
 import PageHero from "@/app/components/ui/PageHero";
@@ -29,8 +30,8 @@ export default function BasketPage() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const paymentRef = useRef<HTMLDivElement>(null);
 
-  const handleProceedToPayment = useCallback(async () => {
-    setShowCheckout(true);
+  // Called immediately when button is clicked — Stripe API runs in parallel with animation
+  const startStripeSession = useCallback(async () => {
     setCheckoutLoading(true);
     setCheckoutError(null);
     setTimeout(() => {
@@ -38,7 +39,6 @@ export default function BasketPage() {
         paymentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }, 50);
-
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -56,25 +56,22 @@ export default function BasketPage() {
         }),
       });
       const data = await res.json();
-      if (!res.ok || !data.client_secret) {
-        throw new Error(data.error ?? "Failed to create payment session.");
-      }
+      if (!res.ok || !data.client_secret) throw new Error(data.error ?? "Failed to create payment session.");
       setClientSecret(data.client_secret as string);
     } catch (err) {
       setCheckoutError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-      setShowCheckout(false);
     } finally {
       setCheckoutLoading(false);
     }
   }, [items]);
 
   useEffect(() => {
-    if (showCheckout && !checkoutLoading && paymentRef.current && window.innerWidth < 1024) {
+    if (showCheckout && paymentRef.current && window.innerWidth < 1024) {
       setTimeout(() => {
         paymentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 150);
     }
-  }, [showCheckout, checkoutLoading]);
+  }, [showCheckout]);
 
   return (
     <main className="bg-white">
@@ -142,12 +139,12 @@ export default function BasketPage() {
                               <div className="flex items-center gap-4">
                                 {item.paymentType === "monthly" && item.deposit ? (
                                   <div className="text-right">
-                                    <p className="text-lg font-black text-zinc-950 tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
+                                    <p className="text-lg font-black text-zinc-950 tabular-nums">£{(item.deposit * item.quantity)}</p>
                                     <p className="text-[10px] font-bold text-zinc-400">then £{item.price}/mo until complete</p>
                                   </div>
                                 ) : (
                                   <p className="text-lg font-black text-zinc-950 tabular-nums">
-                                    £{(item.price * item.quantity).toFixed(2)}
+                                    £{(item.price * item.quantity)}
                                     {item.paymentType === "monthly" && <span className="text-xs font-bold text-zinc-500">/mo</span>}
                                   </p>
                                 )}
@@ -250,12 +247,12 @@ export default function BasketPage() {
                         <div className="text-right flex-shrink-0">
                           {item.paymentType === "monthly" && item.deposit ? (
                             <>
-                              <p className="text-white font-bold text-sm tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
+                              <p className="text-white font-bold text-sm tabular-nums">£{(item.deposit * item.quantity)}</p>
                               <p className="text-zinc-600 text-xs">then £{item.price}/mo until complete</p>
                             </>
                           ) : (
                             <>
-                              <p className="text-white font-bold text-sm tabular-nums">£{(item.price * item.quantity).toFixed(2)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
+                              <p className="text-white font-bold text-sm tabular-nums">£{(item.price * item.quantity)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
                               {item.quantity > 1 && <p className="text-zinc-600 text-xs">× {item.quantity}</p>}
                             </>
                           )}
@@ -274,7 +271,7 @@ export default function BasketPage() {
                       <div className="mb-8">
                         <div className="flex justify-between items-center">
                           <p className="text-zinc-400 text-xs font-bold uppercase tracking-widest">Due today</p>
-                          <p className="text-white font-black text-2xl tabular-nums">£{checkoutTotal.toFixed(2)}</p>
+                          <p className="text-white font-black text-2xl tabular-nums">£{checkoutTotal}</p>
                         </div>
                         {hasDeposit && (
                           <p className="text-zinc-600 text-xs mt-1 text-right">Monthly payments begin after deposit</p>
@@ -287,18 +284,13 @@ export default function BasketPage() {
                     <p className="text-red-400 text-xs font-medium mb-3 text-center">{checkoutError}</p>
                   )}
 
-                  {!showCheckout && !checkoutLoading ? (
-                    <Button onClick={handleProceedToPayment} variant="primary" size="md" fullWidth>
-                      Proceed to Payment
-                    </Button>
-                  ) : checkoutLoading ? (
-                    <div className="flex items-center justify-center gap-2 text-zinc-400 text-xs font-bold uppercase tracking-widest">
-                      <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle className="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                      Preparing…
-                    </div>
+                  {!showCheckout ? (
+                    <PaymentSubmitButton
+                      onStart={startStripeSession}
+                      onProceed={() => setShowCheckout(true)}
+                      ready={!!clientSecret && !checkoutLoading}
+                      error={!!checkoutError}
+                    />
                   ) : (
                     <div className="flex items-center justify-center gap-2 text-green-400 text-xs font-bold uppercase tracking-widest">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

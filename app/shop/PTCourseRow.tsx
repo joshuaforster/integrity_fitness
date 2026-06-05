@@ -24,8 +24,9 @@ export default function PTCourseRow({ q }: { q: Qualification }) {
       variants={ptItemVariant}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
     >
-      <div className="relative flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-white border border-zinc-950 rounded-2xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.06),0_6px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.14)] transition-all duration-300 group">
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CE1A19] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="relative flex flex-col sm:flex-row sm:items-center justify-between bg-white border border-zinc-200 hover:border-[#CE1A19] rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.05),0_8px_28px_rgba(0,0,0,0.07)] hover:shadow-[0_4px_16px_rgba(206,26,25,0.14),0_20px_52px_rgba(0,0,0,0.13)] transition-all duration-300 group">
+        <div className="h-[3px] w-full bg-[#CE1A19] absolute top-0 left-0 right-0" aria-hidden="true" />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full p-6 md:p-8 pt-7 md:pt-9">
 
         <div className="flex-1 max-w-xl pr-4">
           <div className="flex items-center gap-3 mb-2">
@@ -74,6 +75,7 @@ export default function PTCourseRow({ q }: { q: Qualification }) {
               Details →
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </motion.div>

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import type { BlogPost } from "@/app/content/blog";
+import Card from "@/app/components/ui/Card";
 
 export default function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
   return (
@@ -13,8 +13,8 @@ export default function BlogPostCard({ post, index }: { post: BlogPost; index: n
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
     >
-      <Link href={`/blog/${post.slug}`} className="group block">
-        <div className="relative aspect-[16/10] overflow-hidden mb-5">
+      <Card href={`/blog/${post.slug}`} className="h-full">
+        <div className="relative aspect-[16/10] overflow-hidden flex-shrink-0">
           <Image
             src={post.image}
             alt={post.title}
@@ -24,22 +24,24 @@ export default function BlogPostCard({ post, index }: { post: BlogPost; index: n
           />
         </div>
 
-        <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-2">
-          {post.category}
-        </p>
+        <div className="flex flex-col flex-1 p-6">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-2">
+            {post.category}
+          </p>
 
-        <h3 className="text-lg font-black text-zinc-950 uppercase tracking-tight leading-snug mb-3 group-hover:text-[#CE1A19] transition-colors duration-200">
-          {post.title}
-        </h3>
+          <h3 className="text-lg font-black text-zinc-950 uppercase tracking-tight leading-snug mb-3 group-hover:text-[#CE1A19] transition-colors duration-200">
+            {post.title}
+          </h3>
 
-        <p className="text-zinc-500 text-sm leading-relaxed mb-4 line-clamp-2">
-          {post.excerpt}
-        </p>
+          <p className="text-zinc-500 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
+            {post.excerpt}
+          </p>
 
-        <p className="text-zinc-400 text-xs font-semibold tracking-widest uppercase">
-          {post.date}
-        </p>
-      </Link>
+          <p className="text-zinc-400 text-xs font-semibold tracking-widest uppercase mt-auto pt-4 border-t border-zinc-100">
+            {post.date}
+          </p>
+        </div>
+      </Card>
     </motion.article>
   );
 }

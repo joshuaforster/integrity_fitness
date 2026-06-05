@@ -32,19 +32,21 @@ export default function CPDCourseGrid({ courses }: { courses: Qualification[] })
         >
           <Link
             href={`/qualifications/${q.slug}`}
-            className="relative flex flex-col justify-between p-6 md:p-8 bg-white border border-zinc-200 hover:border-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group rounded-lg h-full outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
+            className="relative flex flex-col bg-white border border-zinc-200 hover:border-[#CE1A19] shadow-[0_2px_8px_rgba(0,0,0,0.05),0_8px_28px_rgba(0,0,0,0.07)] hover:shadow-[0_4px_16px_rgba(206,26,25,0.14),0_20px_52px_rgba(0,0,0,0.13)] transition-all duration-300 group rounded-2xl h-full overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
           >
+            <div className="h-[3px] w-full bg-[#CE1A19] flex-shrink-0" aria-hidden="true" />
+            <div className="flex flex-col flex-1 justify-between p-6 md:p-8">
             <div>
               <span className="text-[#CE1A19] text-xs font-bold tracking-wider uppercase">
                 {q.level}
               </span>
-              <h3 className="text-zinc-900 font-black text-lg tracking-tight mt-3 mb-2 leading-tight">
+              <h3 className="text-zinc-900 font-black text-lg tracking-tight mt-3 mb-2 leading-tight group-hover:text-[#CE1A19] transition-colors duration-300">
                 {q.title}
               </h3>
               <p className="text-zinc-600 text-sm leading-relaxed mb-8">{q.tagline}</p>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-zinc-200 mt-auto">
+            <div className="flex items-center justify-between pt-4 border-t border-zinc-100 mt-auto">
               <span className="text-zinc-500 text-xs font-bold tracking-wide uppercase">
                 {q.duration}
               </span>
@@ -54,6 +56,7 @@ export default function CPDCourseGrid({ courses }: { courses: Qualification[] })
               >
                 →
               </span>
+            </div>
             </div>
           </Link>
         </motion.div>

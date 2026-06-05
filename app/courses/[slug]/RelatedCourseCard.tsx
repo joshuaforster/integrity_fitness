@@ -19,8 +19,9 @@ export default function RelatedCourseCard({ q, index }: { q: Qualification; inde
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="group relative flex flex-col rounded-xl overflow-hidden bg-white border border-zinc-200 hover:border-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300"
+      className="group relative flex flex-col rounded-2xl overflow-hidden bg-white border border-zinc-200 hover:border-[#CE1A19] shadow-[0_2px_8px_rgba(0,0,0,0.05),0_8px_28px_rgba(0,0,0,0.07)] hover:shadow-[0_4px_16px_rgba(206,26,25,0.14),0_20px_52px_rgba(0,0,0,0.13)] transition-all duration-300"
     >
+      <div className="h-[3px] w-full bg-[#CE1A19] flex-shrink-0" aria-hidden="true" />
       <div className="relative h-32 flex-shrink-0 overflow-hidden">
         <Image
           src={q.heroImage}
@@ -35,9 +36,9 @@ export default function RelatedCourseCard({ q, index }: { q: Qualification; inde
         </span>
       </div>
       <div className="flex flex-col flex-1 p-4">
-        <p className="text-zinc-950 font-bold text-sm leading-snug mb-1">{q.title}</p>
+        <p className="text-zinc-950 font-bold text-sm leading-snug mb-1 group-hover:text-[#CE1A19] transition-colors duration-300">{q.title}</p>
         <p className="text-zinc-500 text-xs leading-relaxed flex-1 mb-4 line-clamp-2">{q.tagline}</p>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pt-3 border-t border-zinc-100">
           <span className="text-zinc-950 font-black">
             £{startPrice}
             {q.hasBillingToggle && <span className="text-xs text-zinc-500 font-bold">+</span>}

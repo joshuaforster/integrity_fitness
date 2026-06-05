@@ -19,11 +19,11 @@ const variantStyles: Record<ButtonVariant, string> = {
   "outline-light":
     "border border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white focus-visible:ring-zinc-950",
   "outline-dark":
-    "border border-white/20 text-white hover:border-white/60 hover:bg-white/[0.04] focus-visible:ring-white",
+    "border border-white/60 text-white hover:border-white hover:bg-white/[0.06] focus-visible:ring-white",
   "outline-hero":
-    "border border-white/70 text-white hover:bg-white hover:text-zinc-950 focus-visible:ring-white",
+    "border border-white text-white hover:bg-white hover:text-zinc-950 focus-visible:ring-white",
   "glass":
-    "[backdrop-filter:blur(16px)_saturate(150%)] bg-white/[0.08] border border-white/[0.18] text-white hover:bg-white/[0.16] hover:border-white/[0.3] focus-visible:ring-white",
+    "group [backdrop-filter:blur(16px)_saturate(150%)] bg-white/[0.08] border border-white/60 text-white hover:bg-white/[0.16] focus-visible:ring-white overflow-hidden",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -33,7 +33,27 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 const baseStyle =
-  "inline-flex items-center justify-center font-semibold uppercase transition-all duration-200 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-semibold uppercase transition-all duration-200 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:pointer-events-none relative";
+
+function GlassBorderSVG() {
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    >
+      <rect
+        width="100%"
+        height="100%"
+        rx={8}
+        fill="none"
+        stroke="white"
+        strokeWidth="1.5"
+        pathLength={480}
+        className="glass-border-trace"
+      />
+    </svg>
+  );
+}
 
 const motionProps = {
   whileHover: { scale: 1.02 },
@@ -88,6 +108,15 @@ export default function Button({
     className,
   );
 
+  const content = (
+    <>
+      {variant === "glass" && <GlassBorderSVG />}
+      <span className={variant === "glass" ? "relative z-10" : undefined}>
+        {children}
+      </span>
+    </>
+  );
+
   if ("href" in rest && rest.href) {
     const { href, external } = rest as LinkProps;
 
@@ -100,14 +129,14 @@ export default function Button({
           rel="noopener noreferrer"
           {...motionProps}
         >
-          {children}
+          {content}
         </motion.a>
       );
     }
 
     return (
       <MotionLink href={href} className={combinedClasses} {...motionProps}>
-        {children}
+        {content}
       </MotionLink>
     );
   }
@@ -122,7 +151,7 @@ export default function Button({
       className={combinedClasses}
       {...motionProps}
     >
-      {children}
+      {content}
     </motion.button>
   );
 }
