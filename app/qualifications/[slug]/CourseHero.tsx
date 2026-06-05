@@ -36,7 +36,7 @@ export default function CourseHero({ qual }: { qual: Qualification }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pb-10 md:pb-14 pt-28 w-full">
-        <motion.div variants={container} initial="hidden" animate="visible">
+        <motion.div variants={container} animate="visible">
           <motion.div variants={fadeUp} className="flex items-center flex-wrap gap-2.5 mb-3">
             <span className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase">
               {qual.awardingBody}

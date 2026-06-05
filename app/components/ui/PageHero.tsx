@@ -52,7 +52,6 @@ export default function PageHero({ image, label, title, subtitle, objectPosition
             {words.map((word, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.07, duration: 0.52, ease: "easeOut" }}
                 className="inline-block mr-[0.25em]"
@@ -64,7 +63,6 @@ export default function PageHero({ image, label, title, subtitle, objectPosition
         ) : (
           <motion.h1
             className="text-5xl sm:text-6xl font-black text-white leading-tight mb-4 uppercase tracking-tight"
-            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.1, ease: "easeOut" }}
           >

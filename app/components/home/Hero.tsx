@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import Button from "@/app/components/ui/Button";
-import HeroStats from "./HeroStats";
 import { hero } from "@/app/content/home";
 
 const container: Variants = {
@@ -90,7 +89,7 @@ export default function Hero() {
 
       <div className="relative z-10 w-full">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-16 md:pt-32 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-          <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.div variants={container} animate="visible">
             <motion.p
               variants={fadeUp}
               className="flex items-center gap-3 text-white text-xs font-semibold tracking-widest uppercase mb-4"
@@ -125,8 +124,6 @@ export default function Hero() {
               </Button>
             </motion.div>
           </motion.div>
-
-          <HeroStats />
         </div>
       </div>
     </section>

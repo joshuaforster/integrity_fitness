@@ -107,7 +107,7 @@ export const missionSection = {
 export const statsSection = {
   label: "The Mission",
   heading: "Your body isn't your business card.",
-  button: { label: "Step Up", href: "/contact" },
+  button: { label: "your next step", href: "/contact" },
 } as const;
 
 export const qualificationsSection = {

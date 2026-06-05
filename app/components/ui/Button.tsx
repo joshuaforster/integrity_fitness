@@ -22,7 +22,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     "border border-white/60 text-white hover:border-white hover:bg-white/[0.06] focus-visible:ring-white",
   "outline-hero":
     "border border-white text-white hover:bg-white hover:text-zinc-950 focus-visible:ring-white",
-  "glass":
+  glass:
     "group [backdrop-filter:blur(16px)_saturate(150%)] bg-white/[0.08] border border-white/60 text-white hover:bg-white/[0.16] focus-visible:ring-white overflow-hidden",
 };
 
