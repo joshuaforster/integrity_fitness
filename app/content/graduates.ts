@@ -39,9 +39,9 @@ export const graduatesStats = [
 
 export const graduatesFeaturedTestimonial = {
   label: "From Our Graduates",
-  quote: "I went from knowing nothing about fitness to running my own PT business within a year. The one-to-one format made all the difference. I actually felt prepared on day one.",
-  name: "Jamie T.",
-  role: "2024 Graduate · Self-Employed Personal Trainer",
+  quote: "Amazing experience! Both Paris and Harry have been super helpful throughout the whole course! They allowed me to go at my pace as I had a time frame before moving country and they were excellent in making sure I was able to achieve that!",
+  name: "Hannah Lev",
+  role: "Level 3 Graduate",
 } as const;
 
 // ── Graduate stories ──────────────────────────────────────────────────────────

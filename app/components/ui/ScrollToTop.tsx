@@ -13,11 +13,29 @@ export default function ScrollToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function handleClick() {
+    const start = window.scrollY;
+    const duration = 1400;
+    const startTime = performance.now();
+
+    function easeOutQuint(t: number) {
+      return 1 - Math.pow(1 - t, 5);
+    }
+
+    function tick(now: number) {
+      const t = Math.min((now - startTime) / duration, 1);
+      window.scrollTo(0, start * (1 - easeOutQuint(t)));
+      if (t < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
   return (
     <button
       type="button"
       aria-label="Scroll to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={handleClick}
       style={{
         bottom: "max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem))",
         position: "fixed",

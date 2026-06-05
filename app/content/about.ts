@@ -41,9 +41,9 @@ export const ourStorySection = {
 
 export const testimonialSection = {
   label: "From Our Graduates",
-  quote: "I went from knowing nothing about fitness to running my own PT business within a year. The one-to-one format made all the difference. I actually felt prepared on day one.",
-  name: "Jamie T.",
-  role: "2024 Graduate",
+  quote: "Both Paris and Harry were amazing when it came to helping me to complete my Level 3 Personal Training qualification. They always made sure to answer any questions I had and made an effort to reach out and speak to me one on one about my progress.",
+  name: "Poppy Hawkins",
+  role: "Level 3 Graduate",
 } as const;
 
 // ── Differentiators ───────────────────────────────────────────────────────────

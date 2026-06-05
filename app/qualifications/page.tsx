@@ -4,6 +4,8 @@ import PageHero from "@/app/components/ui/PageHero";
 import PTCourseList from "./PTCourseList";
 import CPDCourseGrid from "./CPDCourseGrid";
 import ReadyToStartCTA from "@/app/components/shared/ReadyToStartCTA";
+import QuoteBlock from "@/app/components/ui/QuoteBlock";
+import { quoteTestimonials } from "@/app/content/testimonials";
 
 export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
@@ -97,7 +99,21 @@ export default function QualificationsPage() {
         </div>
       </section>
 
-      {/* 2. Continued Professional Development (CPD) */}
+      {/* 2. Graduate voices */}
+      <section aria-label="Graduate testimonials" className="py-16 md:py-20 border-b border-zinc-200/60">
+        <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-8">
+            From Our Graduates
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {quoteTestimonials.map((quote) => (
+              <QuoteBlock key={quote.name} quote={quote} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Continued Professional Development (CPD) */}
       <section
         aria-labelledby="cpd-heading"
         className="bg-[#18181B] texture-dots-dark angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
@@ -142,7 +158,7 @@ export default function QualificationsPage() {
         </div>
       </section>
 
-      {/* 3. Bottom CTA */}
+      {/* 4. Bottom CTA */}
       <ReadyToStartCTA />
     </main>
   );

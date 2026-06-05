@@ -4,65 +4,59 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/app/context/CartContext";
 
 import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES } from "@/app/content/navigation";
 
 function HamburgerIcon({ open }: { open: boolean }) {
-  const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
-  const trans = { duration: 0.32, ease };
+  const ease = "easeInOut" as const;
 
   return (
-    <svg width="24" height="20" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true">
-      {/* Top line → rotates 45° and plates grow when open */}
-      <motion.g
-        animate={{ y: open ? 7 : 0, rotate: open ? 45 : 0 }}
-        style={{ transformOrigin: "12px 3px" }}
-        transition={trans}
-      >
-        <motion.rect x="0" width="5" rx="0.5"
-          animate={{ y: open ? 1 : 2.25, height: open ? 4 : 1.5 }}
-          transition={trans}
-        />
-        <rect x="5" y="2.25" width="14" height="1.5" />
-        <motion.rect x="19" width="5" rx="0.5"
-          animate={{ y: open ? 1 : 2.25, height: open ? 4 : 1.5 }}
-          transition={trans}
-        />
-      </motion.g>
-
-      {/* Middle line fades out */}
-      <motion.rect
-        x="0" y="9.25" width="24" height="1.5"
-        animate={{ opacity: open ? 0 : 1 }}
-        transition={{ duration: 0.18 }}
+    <motion.div
+      className="flex flex-col justify-between"
+      style={{ width: 24, height: 18 }}
+      // Step 3: whole icon rotates 45° — delayed until lines have merged
+      animate={{ rotate: open ? 45 : 0 }}
+      transition={{ duration: 0.3, ease, delay: open ? 0.6 : 0 }}
+      aria-hidden="true"
+    >
+      {/* Top line — step 2: slides down to centre after middle collapses */}
+      <motion.span
+        className="block bg-current"
+        style={{ height: 2 }}
+        animate={{ y: open ? 8 : 0 }}
+        transition={{ duration: 0.3, ease, delay: open ? 0.3 : 0 }}
       />
-
-      {/* Bottom line → rotates −45° and plates grow when open */}
-      <motion.g
-        animate={{ y: open ? -7 : 0, rotate: open ? -45 : 0 }}
-        style={{ transformOrigin: "12px 17px" }}
-        transition={trans}
-      >
-        <motion.rect x="0" width="5" rx="0.5"
-          animate={{ y: open ? 15 : 16.25, height: open ? 4 : 1.5 }}
-          transition={trans}
-        />
-        <rect x="5" y="16.25" width="14" height="1.5" />
-        <motion.rect x="19" width="5" rx="0.5"
-          animate={{ y: open ? 15 : 16.25, height: open ? 4 : 1.5 }}
-          transition={trans}
-        />
-      </motion.g>
-    </svg>
+      {/* Middle line — step 1: collapses to zero width immediately */}
+      <motion.span
+        className="block bg-current"
+        style={{ height: 2, transformOrigin: "center" }}
+        animate={{ scaleX: open ? 0 : 1 }}
+        transition={{ duration: 0.3, ease }}
+      />
+      {/* Bottom line — step 2: slides up to centre and rotates 90° */}
+      <motion.span
+        className="block bg-current"
+        style={{ height: 2 }}
+        animate={{ y: open ? -8 : 0, rotate: open ? 90 : 0 }}
+        transition={{ duration: 0.3, ease, delay: open ? 0.3 : 0 }}
+      />
+    </motion.div>
   );
 }
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileQualOpen, setMobileQualOpen] = useState(false);
+  const [drawerExitDuration, setDrawerExitDuration] = useState(1.1);
+
+  function closeMenu(fast = false) {
+    setDrawerExitDuration(fast ? 0.22 : 1.1);
+    setMobileMenuOpen(false);
+    if (fast) setMobileQualOpen(false);
+  }
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { count } = useCart();
@@ -75,6 +69,11 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
 
   const qualActive =
     pathname === "/qualifications" ||
@@ -89,6 +88,7 @@ export default function Header() {
       : "bg-transparent";
 
   return (
+    <>
     <header className="fixed inset-x-0 top-0 z-50">
       <div className={`relative w-full transition-all duration-500 ${bgClass}`}>
         <nav
@@ -128,7 +128,7 @@ export default function Header() {
             </Link>
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => mobileMenuOpen ? closeMenu() : setMobileMenuOpen(true)}
               className="-m-2.5 inline-flex items-center justify-center rounded-sm p-2.5 text-white outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -255,94 +255,106 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Mobile Accordion Menu System Overlay Drawer */}
-      <div
-        id="mobile-menu"
-        className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out [backdrop-filter:blur(12px)_saturate(160%)_brightness(0.75)] bg-[#18181B]/[0.45] border-b border-white/[0.10] ${mobileMenuOpen ? "max-h-[600px] opacity-100 shadow-[0_16px_48px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]" : "max-h-0 opacity-0 pointer-events-none"}`}
-      >
-        <div className="px-6 py-4 space-y-1">
-          {NAV_LINKS.slice(0, 2).map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
-              >
-                <span>{item.name}</span>
-                {active && (
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]"
-                    aria-hidden="true"
+    </header>
+
+    {/* ── Right-side drawer ─────────────────────────────────────────────── */}
+    <AnimatePresence>
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop — tap to close, fades with the open phase (0.3s = first hamburger stage) */}
+          <motion.div
+            key="backdrop"
+            className="lg:hidden fixed inset-0 z-[45] bg-zinc-950/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.3 } }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            onClick={() => closeMenu(true)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer — open 0.9s (matches hamburger-6 open), close 0.3s (matches hamburger-6 close) */}
+          <motion.nav
+            key="drawer"
+            id="mobile-menu"
+            aria-label="Mobile navigation"
+            className="lg:hidden fixed inset-y-0 right-0 z-[46] w-[300px] flex flex-col [backdrop-filter:blur(20px)_saturate(180%)_brightness(0.45)] bg-[#18181B]/[0.80] border-l border-white/[0.10] shadow-[-16px_0_48px_rgba(0,0,0,0.35),inset_-1px_0_0_rgba(255,255,255,0.06)]"
+            initial={{ x: "100%" }}
+            animate={{ x: 0, transition: { duration: 1.1, ease: "easeInOut" } }}
+            exit={{ x: "100%", transition: { duration: drawerExitDuration, ease: "easeInOut" } }}
+          >
+            {/* Spacer to clear the fixed header */}
+            <div className="h-[72px] shrink-0 border-b border-white/[0.08]" />
+
+            <div className="flex-1 overflow-y-auto py-4">
+              {NAV_LINKS.slice(0, 2).map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => closeMenu(true)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center justify-between px-6 py-5 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] transition-colors ${active ? "text-white bg-white/[0.06]" : "text-white hover:bg-white/[0.04]"}`}
+                  >
+                    <span>{item.name}</span>
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
+                  </Link>
+                );
+              })}
+
+              {/* Qualifications accordion */}
+              <div className="border-b border-white/[0.08]">
+                <button
+                  type="button"
+                  onClick={() => setMobileQualOpen(!mobileQualOpen)}
+                  className="w-full flex items-center justify-between px-6 py-5 text-sm font-bold uppercase tracking-wider text-white hover:bg-white/[0.04] outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] transition-colors"
+                >
+                  <span>Qualifications</span>
+                  <ChevronDownIcon
+                    className={`w-4 h-4 stroke-[2.5] text-[#CE1A19] transition-transform duration-200 ${mobileQualOpen ? "rotate-180" : ""}`}
                   />
-                )}
-              </Link>
-            );
-          })}
-
-          {/* Expandable Mobile Sub-Tree */}
-          <div className="border-b border-white/[0.08]">
-            <button
-              type="button"
-              onClick={() => setMobileQualOpen(!mobileQualOpen)}
-              className="w-full flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider text-white outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19]"
-            >
-              <span>Qualifications</span>
-              <ChevronDownIcon
-                className={`w-4 h-4 stroke-[2.5] text-[#CE1A19] transition-transform duration-200 ${mobileQualOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileQualOpen ? "max-h-[500px] pb-4" : "max-h-0"}`}
-            >
-              {QUAL_CATEGORIES.map((cat) => (
-                <div key={cat.title} className="px-4 pt-2 pb-3">
-                  <p className="text-white text-xs font-black tracking-wider uppercase mb-2">
-                    {cat.title}
-                  </p>
-                  {cat.courses.map((course) => (
-                    <Link
-                      key={course.name}
-                      href={course.href}
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        setMobileQualOpen(false);
-                      }}
-                      className="block py-2.5 pl-3 text-xs text-white transition-colors border-l border-white/[0.15] mb-1 outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
-                    >
-                      {course.name}
-                    </Link>
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileQualOpen ? "max-h-[500px] pb-4" : "max-h-0"}`}>
+                  {QUAL_CATEGORIES.map((cat) => (
+                    <div key={cat.title} className="px-6 pt-2 pb-3">
+                      <p className="text-white/40 text-[10px] font-black tracking-wider uppercase mb-2">
+                        {cat.title}
+                      </p>
+                      {cat.courses.map((course) => (
+                        <Link
+                          key={course.name}
+                          href={course.href}
+                          onClick={() => closeMenu(true)}
+                          className="block py-3 pl-3 text-sm text-white transition-colors border-l border-white/[0.15] mb-1 outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                        >
+                          {course.name}
+                        </Link>
+                      ))}
+                    </div>
                   ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {NAV_LINKS.slice(2).map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between px-4 py-4 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] last:border-0 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] ${active ? "text-white bg-zinc-900/40" : "text-white"}`}
-              >
-                <span>{item.name}</span>
-                {active && (
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]"
-                    aria-hidden="true"
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </header>
+              {NAV_LINKS.slice(2).map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => closeMenu(true)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center justify-between px-6 py-5 text-sm font-bold uppercase tracking-wider border-b border-white/[0.08] last:border-0 outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] transition-colors ${active ? "text-white bg-white/[0.06]" : "text-white hover:bg-white/[0.04]"}`}
+                  >
+                    <span>{item.name}</span>
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19]" aria-hidden="true" />}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.nav>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
