@@ -4,7 +4,6 @@ import qualifications, {
   getQualificationBySlug,
   type Qualification,
 } from "@/app/data/qualifications";
-import TestimonialsSection from "@/app/components/shared/TestimonialsSection";
 import CourseHero from "./CourseHero";
 import CourseOverview from "./CourseOverview";
 import CourseFinalCTA from "./CourseFinalCTA";
@@ -114,16 +113,6 @@ export default async function QualificationPage({ params }: PageProps) {
       <CourseOverview qual={qual} />
       <PricingSection qual={qual} slant={slants.pricing} />
       <PricingFAQSection />
-
-      {qual.testimonials && qual.testimonials.length > 0 && (
-        <TestimonialsSection
-          testimonials={qual.testimonials.map((t) => ({
-            body: t.quote,
-            name: t.name,
-            subtitle: t.role,
-          }))}
-        />
-      )}
 
       <CourseFinalCTA />
       <QualificationNav currentSlug={slug} />

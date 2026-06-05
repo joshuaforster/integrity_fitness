@@ -24,9 +24,10 @@ export default function ContactField({
   label,
 }: ContactFieldProps) {
   return (
-    <div className="relative">
-      <label htmlFor={id} className="sr-only">
+    <div>
+      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
         {label}
+        {required && <span className="text-[#CE1A19] ml-0.5">*</span>}
       </label>
       <input
         id={id}
@@ -37,7 +38,7 @@ export default function ContactField({
         value={value}
         onChange={onChange}
         {...(autoComplete ? { autoComplete } : {})}
-        className="w-full bg-transparent border-b border-zinc-200 focus:border-zinc-950 py-3 text-zinc-950 text-sm placeholder:text-zinc-400 outline-none transition-colors duration-200"
+        className="w-full bg-white border border-zinc-200 focus:border-[#CE1A19] rounded-lg px-4 py-3 text-zinc-950 text-sm placeholder:text-zinc-400 outline-none transition-colors duration-200"
       />
     </div>
   );

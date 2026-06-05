@@ -5,19 +5,16 @@ import { motion } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import LottieSuccess from "@/app/components/ui/LottieSuccess";
-import CourseSelector, { type ProgramOption } from "./CourseSelector";
 import ContactField from "./ContactField";
 import DirectContactItem, { type ContactChannel } from "./DirectContactItem";
-import { contactFormSection, contactPrograms, contactChannels } from "@/app/content/contact";
+import { contactFormSection, contactChannels } from "@/app/content/contact";
 
-const PROGRAMS: ProgramOption[] = [...contactPrograms];
 const DIRECT_CHANNELS: ContactChannel[] = [...contactChannels];
 
 type FormState = {
   name: string;
   email: string;
   phone: string;
-  selectedCourse: string;
   message: string;
 };
 
@@ -35,7 +32,6 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
-    selectedCourse: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -59,14 +55,13 @@ export default function ContactForm() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (!form.selectedCourse) return;
     setSubmitted(true);
   }
 
   return (
     <section
       aria-labelledby="contact-heading"
-      className="bg-white texture-grid-light py-20 md:py-28 border-t border-zinc-100"
+      className="relative overflow-hidden bg-white texture-grid-light py-20 md:py-28 border-t border-zinc-100"
     >
       <SectionWrapper reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -96,16 +91,6 @@ export default function ContactForm() {
               </p>
             </div>
 
-            {/* Trust signals */}
-            <div className="flex flex-wrap gap-4 mb-10">
-              {[...contactFormSection.trustBadges].map((badge) => (
-                <span key={badge} className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-zinc-500 border border-zinc-200 rounded-full px-3 py-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#CE1A19] flex-shrink-0" aria-hidden="true" />
-                  {badge}
-                </span>
-              ))}
-            </div>
-
             {submitted ? (
               <div className="pt-4 border border-zinc-100 rounded-xl p-8">
                 <LottieSuccess />
@@ -123,48 +108,35 @@ export default function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-12">
-                <CourseSelector
-                  programs={PROGRAMS}
-                  selected={form.selectedCourse}
-                  onSelect={(id) => setForm((prev) => ({ ...prev, selectedCourse: id }))}
-                />
-
                 <div className="space-y-8">
-                  <p className="block text-zinc-400 text-xs font-black uppercase tracking-widest">
-                    02 / Your Details
-                  </p>
-
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <ContactField
                       id="name" name="name" label="Full Name"
-                      placeholder="Full name *" value={form.name}
+                      placeholder="Your full name" value={form.name}
                       onChange={handleChange} required autoComplete="name"
                     />
                     <ContactField
                       id="email" name="email" type="email" label="Email Address"
-                      placeholder="Email address *" value={form.email}
+                      placeholder="you@example.com" value={form.email}
                       onChange={handleChange} required autoComplete="email"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <ContactField
-                      id="phone" name="phone" type="tel" label="Phone Number"
-                      placeholder="Phone number (optional)" value={form.phone}
-                      onChange={handleChange}
-                    />
-                    <div className="flex items-center text-zinc-400 text-xs italic pt-4 sm:pt-0">
-                      * Required field
-                    </div>
-                  </div>
+                  <ContactField
+                    id="phone" name="phone" type="tel" label="Phone Number"
+                    placeholder="Optional" value={form.phone}
+                    onChange={handleChange}
+                  />
 
-                  <div className="relative pt-4">
-                    <label htmlFor="message" className="sr-only">Message</label>
+                  <div>
+                    <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
+                      Message<span className="text-[#CE1A19] ml-0.5">*</span>
+                    </label>
                     <textarea
-                      id="message" name="message" rows={4} required
-                      placeholder="Tell us about your background, goals, and availability... *"
+                      id="message" name="message" rows={5} required
+                      placeholder="Tell us about your background, goals, and availability…"
                       value={form.message} onChange={handleChange}
-                      className="w-full bg-transparent border-b border-zinc-200 focus:border-zinc-950 py-3 text-zinc-950 text-sm placeholder:text-zinc-400 outline-none resize-none transition-colors duration-200"
+                      className="w-full bg-white border border-zinc-200 focus:border-[#CE1A19] rounded-lg px-4 py-3 text-zinc-950 text-sm placeholder:text-zinc-400 outline-none resize-none transition-colors duration-200"
                     />
                   </div>
                 </div>
@@ -173,7 +145,7 @@ export default function ContactForm() {
                   <Button
                     type="submit" variant="primary" size="md"
                     className="w-full sm:w-auto px-10"
-                    disabled={!form.selectedCourse || !form.name || !form.email || !form.message}
+                    disabled={!form.name || !form.email || !form.message}
                   >
                     {contactFormSection.submitButton}
                   </Button>
@@ -186,75 +158,85 @@ export default function ContactForm() {
           </motion.div>
 
           {/* Right: channels + map */}
-          <div className="lg:col-span-5 w-full space-y-8 lg:pt-2">
+          <div className="lg:col-span-5 relative w-full">
 
-            {/* Contact channels */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              custom={1}
-              variants={fadeUp}
-            >
-              <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-6">
-                {contactFormSection.directChannelsLabel}
-              </p>
-              <div className="space-y-3">
-                {DIRECT_CHANNELS.map((channel, i) => (
-                  <motion.div key={channel.label} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} custom={i + 2} variants={fadeUp}>
-                    <DirectContactItem channel={channel} />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            {/* Full-bleed light background (desktop only) — clipped by section overflow-hidden */}
+            <div
+              className="absolute top-[-9999px] bottom-[-9999px] -right-[9999px] -left-10 bg-zinc-100 hidden lg:block"
+              aria-hidden="true"
+            />
 
-            {/* Norwich / location map — SEO anchor for Norwich Norfolk */}
-            <motion.div
-              ref={mapRef}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              custom={4}
-              variants={fadeUp}
-            >
-              <p className="text-zinc-400 text-xs font-bold tracking-widest uppercase mb-3">
-                {contactFormSection.mapLabel}
-              </p>
-              <div className="rounded-xl overflow-hidden border border-zinc-200 shadow-sm">
-                <div className="relative w-full aspect-[4/3]">
-                  {mapVisible ? (
-                    <iframe
-                      title="Integrity Fitness Education — Complete Fitness Gym, Norwich, Norfolk"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.432658822557!2d1.2727145772346927!3d52.65215712648756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d783db56382903%3A0x6b63ca52f1e2f8bb!2sComplete%20Fitness%20Gym!5e0!3m2!1sen!2suk!4v1716656000000!5m2!1sen!2suk"
-                      width="100%"
-                      height="100%"
-                      className="absolute inset-0 w-full h-full border-0"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-zinc-100 animate-pulse" />
-                  )}
+            {/* Content — mobile gets rounded light card, desktop is transparent over the bleed */}
+            <div className="relative z-10 space-y-8 lg:pt-2 bg-zinc-100 rounded-2xl p-6 lg:bg-transparent lg:rounded-none lg:p-0">
+
+              {/* Contact channels */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                custom={1}
+                variants={fadeUp}
+              >
+                <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mb-6">
+                  {contactFormSection.directChannelsLabel}
+                </p>
+                <div className="space-y-3">
+                  {DIRECT_CHANNELS.map((channel, i) => (
+                    <motion.div key={channel.label} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} custom={i + 2} variants={fadeUp}>
+                      <DirectContactItem channel={channel} />
+                    </motion.div>
+                  ))}
                 </div>
-                <div className="px-4 py-3 bg-zinc-50 border-t border-zinc-100 flex items-center justify-between">
-                  <div>
-                    <p className="text-zinc-700 text-xs font-bold uppercase tracking-wider leading-none">Complete Fitness Gym</p>
-                    <p className="text-zinc-400 text-xs uppercase tracking-widest leading-none mt-1">Whiffler Road · Norwich · Norfolk · NR3 2AW</p>
+              </motion.div>
+
+              {/* Norwich / location map — SEO anchor for Norwich Norfolk */}
+              <motion.div
+                ref={mapRef}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                custom={4}
+                variants={fadeUp}
+              >
+                <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase mb-3">
+                  {contactFormSection.mapLabel}
+                </p>
+                <div className="rounded-xl overflow-hidden border border-zinc-200 shadow-sm">
+                  <div className="relative w-full aspect-[4/3]">
+                    {mapVisible ? (
+                      <iframe
+                        title="Integrity Fitness Education — Complete Fitness Gym, Norwich, Norfolk"
+                        src="https://maps.google.com/maps?q=Complete+Fitness+Gym,+Whiffler+Road,+Norwich,+NR3+2AW&z=16&output=embed"
+                        width="100%"
+                        height="100%"
+                        className="absolute inset-0 w-full h-full border-0"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-zinc-200 animate-pulse" />
+                    )}
                   </div>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gym+Whiffler+Road+Norwich+NR3+2AW"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#CE1A19] uppercase tracking-wider hover:underline"
-                  >
-                    Directions →
-                  </a>
+                  <div className="px-4 py-3 bg-white border-t border-zinc-100 flex items-center justify-between">
+                    <div>
+                      <p className="text-zinc-700 text-xs font-bold uppercase tracking-wider leading-none">Complete Fitness Gym</p>
+                      <p className="text-zinc-400 text-xs uppercase tracking-widest leading-none mt-1">Whiffler Road · Norwich · Norfolk · NR3 2AW</p>
+                    </div>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gym+Whiffler+Road+Norwich+NR3+2AW"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-[#CE1A19] uppercase tracking-wider hover:underline"
+                    >
+                      Directions →
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <p className="text-zinc-400 text-xs leading-relaxed mt-3">
-                {contactFormSection.mapNote}
-              </p>
-            </motion.div>
+                <p className="text-zinc-500 text-xs leading-relaxed mt-3">
+                  {contactFormSection.mapNote}
+                </p>
+              </motion.div>
 
+            </div>
           </div>
 
         </div>
