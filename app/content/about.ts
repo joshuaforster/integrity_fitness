@@ -21,7 +21,7 @@ export const aboutHero = {
 
 export const aboutMissionSection = {
   label: "Our Mission",
-  heading: "Your Eagerness Is Enough.",
+  heading: "THE INDUSTRY NEEDS BETTER COACHES. BECOME ONE.",
   differentiatorLabel: "What You Get",
   button: { label: "View Qualifications", href: "/qualifications" },
 } as const;

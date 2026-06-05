@@ -42,7 +42,7 @@ export const statsAccreditations: StatsSectionImage[] = [
 ];
 
 export const statsCopy = [
-  "You don't need to be the strongest in the room. You need to have been where your clients are. That's the coach we'll build together.",
+  "You don't need to look like a fitness model. You need to have been where your clients are. That's the coach we'll build together.",
 ];
 // ── Course listings ───────────────────────────────────────────────────────────
 
@@ -106,7 +106,7 @@ export const missionSection = {
 
 export const statsSection = {
   label: "The Mission",
-  heading: "The Industry Needs Better Coaches. Become One.",
+  heading: "Your body isn't your business card.",
   button: { label: "Step Up", href: "/contact" },
 } as const;
 
