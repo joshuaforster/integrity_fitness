@@ -73,7 +73,7 @@ export const mainCourses: MainCourse[] = [
   {
     title: "Level 3 Personal Training Qualification",
     description:
-      "Already hold a Level 2? This is where you become a personal trainer. You'll graduate with the skills, knowledge, and qualification to start building your own client base.",
+      "Already hold a Level 2? This is where you become a personal trainer. You'll graduate with the skills, knowledge and qualification to start building your own client base.",
     href: "/qualifications/level-3-personal-training",
   },
 ];
