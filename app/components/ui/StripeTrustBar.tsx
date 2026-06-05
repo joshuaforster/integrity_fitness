@@ -26,7 +26,7 @@ export default function StripeTrustBar({ theme = "light" }: Props) {
             width={36}
             height={16}
             alt="Stripe"
-            className={d ? "brightness-0 invert opacity-70" : "brightness-0 opacity-55"}
+            className={d ? "brightness-0 invert opacity-70" : "opacity-90"}
           />
         </div>
         <p className={`text-[9px] font-bold uppercase tracking-widest ${d ? "text-zinc-600" : "text-zinc-400"}`}>
