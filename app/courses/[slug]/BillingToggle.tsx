@@ -43,7 +43,7 @@ export default function BillingToggle({ billing, setBilling, saving }: BillingTo
           animate={{ opacity: billing === "one-off" ? 1 : 0.45, scale: billing === "one-off" ? 1 : 0.9 }}
           className="absolute -top-3.5 right-0 text-[10px] font-black bg-[#CE1A19] text-white px-2 py-0.5 rounded-full leading-none pointer-events-none whitespace-nowrap"
         >
-          SAVE £{saving}
+          SAVE £{Math.round(saving)}
         </motion.span>
       )}
     </div>

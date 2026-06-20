@@ -18,7 +18,7 @@ export const testimonials: readonly TestimonialItem[] = [
     name: "Grace Sandford",
     photo: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/testimonials/grace.jpeg",
     body: "I am a fairly new client/student at Integrity Fitness Education but I already feel so well supported. The information I need is easily accessible and support sessions are also available when needed. It works well as I am able to study alongside work and I'm excited about the progress that I've made so far already and that's all thanks to Harry and Paris. If you are looking to get your level 2 & 3 qualifications, I couldn't recommend them enough!",
-    subtitle: "Recent Student",
+    subtitle: "Recent Graduate",
   },
   {
     name: "Charlie Wade",
@@ -42,13 +42,13 @@ export const testimonials: readonly TestimonialItem[] = [
     name: "Aine Kuzeviciute",
     photo: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/testimonials/aine.jpg",
     body: "Integrity Fitness Education have been brilliant. The content they provide has an incredible amount of information, the videos which help fill out the coursework and get ready for practical exams are also incredibly helpful. All the content is exceptional.",
-    subtitle: "Course Student",
+    subtitle: "IFE Graduate",
   },
   {
     name: "Sandrine Modesti",
     photo: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/testimonials/sandrine.jpg",
     body: "Really enjoying the course! Paris and Harry are both friendly, very knowledgeable, obviously love what they do, and are great at sharing their passion for the benefits of exercise and Personal Training. The course material is well structured.",
-    subtitle: "Current Student",
+    subtitle: "IFE Graduate",
   },
 ];
 
