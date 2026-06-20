@@ -21,7 +21,6 @@ const CFG_URL = "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/CFG%20Group
 
 export const galleryImages: GalleryItem[] = [
   // ── Classes ───────────────────────────────────────────────────────────────
-  { id: 6, src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Screenshot%202026-05-27%20at%2020.28.15.png", alt: "Fitness discussion group session", category: "Classes" },
   { id: 9, src: `${BUCKET_URL}/FITNESS-DISCUSSION-IFE-TGGNHR_006.jpg`, alt: "Fitness discussion group session", category: "Classes" },
   { id: 10, src: `${BUCKET_URL}/FITNESS-DISCUSSION-2-IFE-TGGNHR_007.jpg`, alt: "Fitness discussion review", category: "Classes" },
   { id: 11, src: `${BUCKET_URL}/FITNESS-DISCUSSION2-IFE-TGGNHR_039.jpg`, alt: "Fitness consultation and review", category: "Classes" },
@@ -128,4 +127,5 @@ export const heroImages: string[] = [
   `${BUCKET_URL}/FITNESS-DISCUSSION-IFE-TGGNHR_006.jpg`,
   `${CFG_URL}/20230329-IFE-CF_001.JPG`,
   `${BUCKET_URL}/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg`,
+  "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Screenshot%202026-05-27%20at%2020.28.15.png",
 ];

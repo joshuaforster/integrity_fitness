@@ -33,15 +33,6 @@ export default function GalleryImageTile({ img, onClick }: GalleryImageTileProps
           </svg>
         </div>
       </div>
-      {/* Bottom label */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-        <span className="text-[#CE1A19] text-xs font-black uppercase tracking-widest block mb-0.5">
-          {img.category}
-        </span>
-        <p className="text-white text-sm font-semibold leading-tight line-clamp-1">
-          {img.alt}
-        </p>
-      </div>
     </button>
   );
 }
