@@ -139,12 +139,12 @@ export default function BasketPage() {
                               <div className="flex items-center gap-4">
                                 {item.paymentType === "monthly" && item.deposit ? (
                                   <div className="text-right">
-                                    <p className="text-lg font-black text-zinc-950 tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
-                                    <p className="text-[10px] font-bold text-zinc-400">then £{item.price.toFixed(2)}/mo until complete</p>
+                                    <p className="text-lg font-black text-zinc-950 tabular-nums">£{Math.round(item.deposit * item.quantity)}</p>
+                                    <p className="text-[10px] font-bold text-zinc-400">then £{Math.round(item.price)}/mo until complete</p>
                                   </div>
                                 ) : (
                                   <p className="text-lg font-black text-zinc-950 tabular-nums">
-                                    £{(item.price * item.quantity).toFixed(2)}
+                                    £{Math.round(item.price * item.quantity)}
                                     {item.paymentType === "monthly" && <span className="text-xs font-bold text-zinc-500">/mo</span>}
                                   </p>
                                 )}
@@ -247,12 +247,12 @@ export default function BasketPage() {
                         <div className="text-right flex-shrink-0">
                           {item.paymentType === "monthly" && item.deposit ? (
                             <>
-                              <p className="text-white font-bold text-sm tabular-nums">£{(item.deposit * item.quantity).toFixed(2)}</p>
-                              <p className="text-zinc-600 text-xs">then £{item.price.toFixed(2)}/mo until complete</p>
+                              <p className="text-white font-bold text-sm tabular-nums">£{Math.round(item.deposit * item.quantity)}</p>
+                              <p className="text-zinc-600 text-xs">then £{Math.round(item.price)}/mo until complete</p>
                             </>
                           ) : (
                             <>
-                              <p className="text-white font-bold text-sm tabular-nums">£{(item.price * item.quantity).toFixed(2)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
+                              <p className="text-white font-bold text-sm tabular-nums">£{Math.round(item.price * item.quantity)}{item.paymentType === "monthly" ? "/mo" : ""}</p>
                               {item.quantity > 1 && <p className="text-zinc-600 text-xs">× {item.quantity}</p>}
                             </>
                           )}
@@ -271,7 +271,7 @@ export default function BasketPage() {
                       <div className="mb-8">
                         <div className="flex justify-between items-center">
                           <p className="text-zinc-400 text-xs font-bold uppercase tracking-widest">Due today</p>
-                          <p className="text-white font-black text-2xl tabular-nums">£{checkoutTotal.toFixed(2)}</p>
+                          <p className="text-white font-black text-2xl tabular-nums">£{Math.round(checkoutTotal)}</p>
                         </div>
                         {hasDeposit && (
                           <p className="text-zinc-600 text-xs mt-1 text-right">Monthly payments begin after deposit</p>
@@ -301,7 +301,7 @@ export default function BasketPage() {
                   )}
 
                   <div className="mt-5">
-                    <StripeTrustBar theme="dark" />
+                    <StripeTrustBar theme="light" />
                   </div>
                 </div>
               </div>

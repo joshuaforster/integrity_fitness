@@ -86,6 +86,7 @@ export async function POST(req: NextRequest) {
         metadata: {
           type: "deposit_with_subscription",
           subscription_items: JSON.stringify(subscriptionItems),
+          course_slugs: items.map((i) => i.slug).join(','),
         },
         ui_mode: "embedded_page" as Stripe.Checkout.SessionCreateParams.UiMode,
         return_url: `${origin}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
@@ -119,6 +120,9 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: hasMonthly ? "subscription" : "payment",
+      metadata: {
+        course_slugs: items.map((i) => i.slug).join(','),
+      },
       ui_mode: "embedded_page" as Stripe.Checkout.SessionCreateParams.UiMode,
       return_url: `${origin}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
       billing_address_collection: "auto",

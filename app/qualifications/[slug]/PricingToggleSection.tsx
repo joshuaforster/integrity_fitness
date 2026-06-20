@@ -188,7 +188,7 @@ export default function PricingToggleSection({
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className={`text-5xl font-black leading-none tracking-tight ${tier.highlighted ? "text-white" : "text-zinc-950"}`}
                       >
-                        {price.toFixed(2)}
+                        {Math.round(price)}
                       </motion.span>
                     </div>
                     <p className={`text-xs font-bold uppercase tracking-wider mt-1.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
@@ -196,7 +196,7 @@ export default function PricingToggleSection({
                     </p>
                     {tier.deposit && billing === "monthly" && (
                       <p className={`text-xs font-bold uppercase tracking-wider mt-0.5 ${tier.highlighted ? "text-white/50" : "text-zinc-500"}`}>
-                        After a £{Number(tier.deposit).toFixed(2)} deposit
+                        After a £{Math.round(Number(tier.deposit))} deposit
                       </p>
                     )}
                     {saving > 0 && (
@@ -243,7 +243,7 @@ export default function PricingToggleSection({
         </div>
 
         <div className="mt-10">
-          <StripeTrustBar theme="dark" />
+          <StripeTrustBar theme="light" />
         </div>
 
       </SectionWrapper>

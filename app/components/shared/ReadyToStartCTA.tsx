@@ -5,7 +5,7 @@ import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import ImageCarousel from "@/app/components/ui/ImageCarousel";
-import { missionImages as IMAGES } from "@/app/content/home";
+import { statsImages as IMAGES } from "@/app/content/home";
 import { readyToStartSection } from "@/app/content/shared";
 
 

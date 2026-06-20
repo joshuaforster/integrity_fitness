@@ -35,6 +35,8 @@ export default function ContactForm() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [mapVisible, setMapVisible] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -53,9 +55,23 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again or email us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -145,14 +161,17 @@ export default function ContactForm() {
                   <Button
                     type="submit" variant="primary" size="md"
                     className="w-full sm:w-auto px-10"
-                    disabled={!form.name || !form.email || !form.message}
+                    disabled={!form.name || !form.email || !form.message || submitting}
                   >
-                    {contactFormSection.submitButton}
+                    {submitting ? 'Sending…' : contactFormSection.submitButton}
                   </Button>
                   <p className="text-zinc-400 text-xs leading-relaxed self-center">
                     {contactFormSection.spamNote}
                   </p>
                 </div>
+                {error && (
+                  <p className="text-[#CE1A19] text-sm mt-2">{error}</p>
+                )}
               </form>
             )}
           </motion.div>

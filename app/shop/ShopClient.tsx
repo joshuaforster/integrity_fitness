@@ -130,7 +130,7 @@ export default function ShopClient({
             ))}
           </motion.div>
           <div className="mt-10">
-            <StripeTrustBar theme="dark" />
+            <StripeTrustBar theme="light" />
           </div>
         </SectionWrapper>
       </section>

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
-import ImageCarousel from "@/app/components/ui/ImageCarousel";
+import Image from "next/image";
 
-import { missionImages as IMAGES, missionCopy, missionSection } from "@/app/content/home";
+import { missionImage, missionCopy, missionSection } from "@/app/content/home";
 
 const SCM_TERM = "Sternocleidomastoid";
 const SCM_TOOLTIP = "A large neck muscle that runs from behind your ear to your collarbone. You'll learn it — your clients probably won't ask.";
@@ -67,18 +67,20 @@ export default function Mission() {
             </Button>
           </motion.div>
 
-          {/* Image carousel */}
+          {/* Image */}
           <motion.div
-            className="lg:col-span-6 xl:col-span-7"
+            className="lg:col-span-6 xl:col-span-7 relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100"
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
-            <ImageCarousel
-              images={IMAGES}
-              interval={5000}
+            <Image
+              src={missionImage.src}
+              alt={missionImage.alt}
+              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+              className="object-cover"
             />
           </motion.div>
 

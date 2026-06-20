@@ -111,7 +111,7 @@ export default function CPDPricingSection({
 
                   <div className="flex items-baseline gap-1 mb-1">
                     <span className="text-xl font-black text-zinc-400">£</span>
-                    <span className="text-5xl font-black text-zinc-900 leading-none">{(tier.price as number).toFixed(2)}</span>
+                    <span className="text-5xl font-black text-zinc-900 leading-none">{Math.round(tier.price as number)}</span>
                   </div>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6">One-time</p>
 
@@ -152,7 +152,7 @@ export default function CPDPricingSection({
                     <div className="flex items-start leading-none mb-5">
                       <span className="text-[1.75rem] font-black text-zinc-500 mt-4 mr-2 select-none">£</span>
                       <span className="font-black text-white tracking-tight leading-none" style={{ fontSize: "clamp(5rem, 12vw, 8rem)" }}>
-                        {(tier.price as number).toFixed(2)}
+                        {Math.round(tier.price as number)}
                       </span>
                     </div>
                     <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-10">One-time investment</p>
@@ -201,7 +201,7 @@ export default function CPDPricingSection({
         )}
 
         <div className="mt-10">
-          <StripeTrustBar theme="dark" />
+          <StripeTrustBar theme="light" />
         </div>
 
       </SectionWrapper>

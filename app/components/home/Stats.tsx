@@ -6,7 +6,7 @@ import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import ImageCarousel from "@/app/components/ui/ImageCarousel";
 
-import { statsCopy, statsSection, missionImages } from "@/app/content/home";
+import { statsCopy, statsSection, statsImages } from "@/app/content/home";
 
 export default function Stats() {
   return (
@@ -42,7 +42,7 @@ export default function Stats() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
           >
             <ImageCarousel
-              images={missionImages}
+              images={statsImages}
               interval={3500}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

@@ -49,8 +49,8 @@ export default async function ConfirmationPage({ searchParams }: PageProps) {
 
   const firstName = order?.customerName?.split(" ")[0] ?? null;
   const subtitle = firstName
-    ? `You're all set, ${firstName}. Harry will be in touch within 1 business day.`
-    : "You're all set. Harry will be in touch within 1 business day.";
+    ? `You're all set, ${firstName}. Harry or Paris will be in touch soon.`
+    : "You're all set. Harry or Paris will be in touch soon.";
 
   return (
     <main className="bg-white">
@@ -95,7 +95,7 @@ export default async function ConfirmationPage({ searchParams }: PageProps) {
                         )}
                       </div>
                       <p className="text-zinc-900 font-bold text-sm whitespace-nowrap">
-                        £{(item.amount / 100).toFixed(2)}
+                        £{Math.round(item.amount / 100)}
                       </p>
                     </div>
                   ))}
@@ -105,7 +105,7 @@ export default async function ConfirmationPage({ searchParams }: PageProps) {
                     Total paid
                   </p>
                   <p className="text-zinc-950 font-black text-xl">
-                    £{((order.amountTotal ?? 0) / 100).toFixed(2)}
+                    £{Math.round((order.amountTotal ?? 0) / 100)}
                   </p>
                 </div>
                 {order.customerEmail && (

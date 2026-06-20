@@ -194,18 +194,27 @@ export const locationSection = {
 
 // ── Mission section ───────────────────────────────────────────────────────────
 
-export const missionImages = [
+export const missionImage = {
+  src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-4.jpg",
+  alt: "Students enjoying a personal training session together",
+};
+
+export const statsImages = [
   {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Godigital%20grant%20-%20Revel/Revel%20Studios%20IFE-4.jpg",
-    alt: "Students enjoying a personal training session together",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/WhatsApp%20Image%202026-06-03%20at%2010.17.25%20(3).jpeg",
+    alt: "Integrity Fitness Education training session",
   },
   {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/HARRY-AND-PARIS-IFE-TGGNHR_026.jpg",
-    alt: "Harry and Paris personal training session",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/WhatsApp%20Image%202026-06-19%20at%2016.16.42.jpeg",
+    alt: "Integrity Fitness Education training session",
   },
   {
-    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
-    alt: "Harry, Paris and Cloe training together Norwich",
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/WhatsApp%20Image%202026-06-19%20at%2016.27.36.jpeg",
+    alt: "Integrity Fitness Education training session",
+  },
+  {
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/WhatsApp%20Image%202026-06-19%20at%2016.27.50.jpeg",
+    alt: "Integrity Fitness Education training session",
   },
 ] as const;
 

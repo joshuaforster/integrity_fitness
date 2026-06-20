@@ -75,7 +75,7 @@ export default function GalleryLightbox({
 
         <button
           type="button"
-          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-sm transition-all border border-white/10 hover:border-white/30"
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-sm transition-all border border-white/10 hover:border-white"
           onClick={(e) => { e.stopPropagation(); onPrev(); }}
           aria-label="Previous image"
         >
@@ -86,7 +86,7 @@ export default function GalleryLightbox({
 
         <button
           type="button"
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-sm transition-all border border-white/10 hover:border-white/30"
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full backdrop-blur-sm transition-all border border-white/10 hover:border-white"
           onClick={(e) => { e.stopPropagation(); onNext(); }}
           aria-label="Next image"
         >
