@@ -40,38 +40,12 @@ export default function Newsletter() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4" noValidate>
-              <div className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-2">
-                <div className="flex-1 relative">
-                  <label htmlFor="newsletter-name" className="sr-only">{newsletterSection.nameLabel}</label>
-                  <input
-                    id="newsletter-name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder={newsletterSection.namePlaceholder}
-                    autoComplete="name"
-                    className="w-full bg-zinc-950 border border-zinc-800 focus:border-[#CE1A19] px-4 py-3.5 text-white text-sm placeholder:text-zinc-500 outline-none rounded-sm transition-colors duration-200 focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
-                  />
-                </div>
-                <div className="flex-1 relative">
-                  <label htmlFor="newsletter-email" className="sr-only">{newsletterSection.emailLabel}</label>
-                  <input
-                    id="newsletter-email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder={newsletterSection.emailPlaceholder}
-                    autoComplete="email"
-                    className="w-full bg-zinc-950 border border-zinc-800 focus:border-[#CE1A19] px-4 py-3.5 text-white text-sm placeholder:text-zinc-500 outline-none rounded-sm transition-colors duration-200 focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
-                  />
-                </div>
-                <Button type="submit" variant="primary" size="md" className="whitespace-nowrap px-8 shadow-md border border-transparent">
-                  {newsletterSection.submitButton}
-                </Button>
-              </div>
-              <p className="text-white text-xs tracking-wide">{newsletterSection.disclaimer}</p>
-            </form>
+            <div className="flex flex-col items-start gap-4">
+              <Button href={newsletterSection.button.href} variant="primary" size="md">
+                {newsletterSection.button.label}
+              </Button>
+              <p className="text-zinc-500 text-xs tracking-wide">{newsletterSection.note}</p>
+            </div>
           </motion.div>
 
         </div>

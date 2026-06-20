@@ -163,15 +163,11 @@ export const qualificationsSection = {
 } as const;
 
 export const newsletterSection = {
-  label: "Stay Updated",
-  heading: "Join Our Newsletter",
-  body: "Be the first to hear about new courses, industry tips, and career advice, delivered straight to your inbox.",
-  nameLabel: "Your Name",
-  namePlaceholder: "Your name",
-  emailLabel: "Email Address",
-  emailPlaceholder: "Email address",
-  submitButton: "Subscribe",
-  disclaimer: "No spam. Unsubscribe at any time.",
+  label: "Get In Touch",
+  heading: "Ready To Take The Next Step?",
+  body: "Have a question or want to find out which course is right for you? Harry or Paris will get back to you personally.",
+  button: { label: "Contact Us", href: "/contact" },
+  note: "No pressure. Just a conversation.",
 } as const;
 
 export const locationSection = {
