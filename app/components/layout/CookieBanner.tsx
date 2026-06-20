@@ -55,7 +55,7 @@ export default function CookieBanner() {
   return (
     <>
       {/* Mobile: full-width bottom bar */}
-      <aside
+      <div
         role="dialog"
         aria-label="Cookie consent"
         aria-modal="false"
@@ -91,10 +91,10 @@ export default function CookieBanner() {
             </button>
           </div>
         </div>
-      </aside>
+      </div>
 
       {/* Desktop: floating card (bottom-right) */}
-      <aside
+      <div
         role="dialog"
         aria-label="Cookie consent"
         aria-modal="false"
@@ -159,7 +159,7 @@ export default function CookieBanner() {
             Essential cookies are always active and required for the site to function.
           </p>
         </div>
-      </aside>
+      </div>
 
       {pdfOpen && (
         <PdfIpadModal src="/pubmed.pdf" onClose={() => setPdfOpen(false)} />
