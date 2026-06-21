@@ -78,7 +78,8 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
+          poster={hero.posterSrc}
           tabIndex={-1}
           className="absolute inset-0 w-full h-full object-cover [filter:contrast(1.08)_saturate(1.15)_brightness(1.02)]"
         >

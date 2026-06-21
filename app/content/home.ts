@@ -7,6 +7,7 @@ export const hero = {
   primaryButton: { label: "Become A Personal Trainer", href: "/qualifications/become-a-personal-trainer" },
   secondaryButton: { label: "Meet Harry & Paris", href: "/about#our-story" },
   videoSrc: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Integrity%2016-9.mp4",
+  posterSrc: "/images/hero-poster.jpg",
 } as const;
 // Replace 30/05/26 heading: "Raising The Standards Of Personal Training Qualifications",
 // Hero ideas Become The Personal Trainer You Wish You'd Had
