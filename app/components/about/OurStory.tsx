@@ -5,8 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import TeamMemberCard from "./TeamMemberCard";
-import { team as TEAM, sharedImage as SHARED_IMAGE } from "@/app/content/team";
-import { ourStorySection } from "@/app/content/about";
+import { team as TEAM, sharedImage as SHARED_IMAGE, ourStorySection } from "@/app/content/about";
 
 const groupVariant: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -40,8 +39,7 @@ const SharedImage = () => (
   </div>
 );
 
-export default function 
-OurStory() {
+export default function OurStory() {
   return (
     <section
       id="our-story"
