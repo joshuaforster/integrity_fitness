@@ -35,24 +35,8 @@ function ClientPortal({ children }: { children: ReactNode }) {
   return createPortal(children, document.body);
 }
 
-function getPageNumbers(
-  currentPage: number,
-  totalPages: number,
-): (number | "...")[] {
-  if (totalPages <= 7)
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  const pages: (number | "...")[] = [1];
-  if (currentPage > 3) pages.push("...");
-  for (
-    let i = Math.max(2, currentPage - 1);
-    i <= Math.min(totalPages - 1, currentPage + 1);
-    i++
-  ) {
-    pages.push(i);
-  }
-  if (currentPage < totalPages - 2) pages.push("...");
-  pages.push(totalPages);
-  return pages;
+function getPageNumbers(totalPages: number): number[] {
+  return Array.from({ length: totalPages }, (_, i) => i + 1);
 }
 
 export default function GalleryGrid() {
@@ -173,13 +157,13 @@ export default function GalleryGrid() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-14 w-full">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs text-white/60 uppercase tracking-widest mb-4"
+            className="flex items-center gap-2 text-xs text-white uppercase tracking-widest mb-4"
           >
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white/90" aria-current="page">
+            <span className="text-white" aria-current="page">
               Gallery
             </span>
           </nav>
@@ -187,7 +171,7 @@ export default function GalleryGrid() {
           <h1 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-4 uppercase tracking-tight">
             {galleryHero.heading}
           </h1>
-          <p className="text-lg text-white/80 max-w-xl leading-relaxed">
+          <p className="text-lg text-white max-w-xl leading-relaxed">
             {galleryHero.body}
           </p>
         </div>
@@ -257,21 +241,12 @@ export default function GalleryGrid() {
                 ← Prev
               </button>
 
-              {getPageNumbers(currentPage, totalPages).map((page, i) =>
-                page === "..." ? (
-                  <span
-                    key={`ellipsis-${i}`}
-                    className="px-2 text-gray-400 select-none"
-                    aria-hidden="true"
-                  >
-                    …
-                  </span>
-                ) : (
+              {getPageNumbers(totalPages).map((page) => (
                   <button
                     key={page}
                     type="button"
                     onClick={() => {
-                      setCurrentPage(page as number);
+                      setCurrentPage(page);
                       scrollToGrid();
                     }}
                     aria-label={`Page ${page}`}
