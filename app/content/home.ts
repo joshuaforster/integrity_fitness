@@ -43,7 +43,7 @@ export const statsAccreditations: StatsSectionImage[] = [
 ];
 
 export const statsCopy = [
-  "You don't need to look like a fitness model. You need to have been where your clients are. That's the coach we'll build together.",
+  "You don't need to look like a fitness model, to be a successful PT. You need to have been where your clients are. That's the coach we'll build together.",
 ];
 // ── Course listings ───────────────────────────────────────────────────────────
 
@@ -174,7 +174,7 @@ export const newsletterSection = {
 export const locationSection = {
   label: "Find Us",
   heading: "Getting Here Is Simple.",
-  body: "You've got a full day of learning ahead. The last thing you need is a stressful journey in.",
+  body: "Free parking, no coins needed. One less thing thing to think about.",
   addressLine1: "Complete Fitness Gym, Whiffler Road",
   addressLine2: "Norwich, Norfolk, NR3 2AW",
   directionsButton: "Get Directions",
