@@ -17,7 +17,7 @@ const RECIPIENTS = ['joshuaforster95@gmail.com']
 const FROM_EMAIL = '"Integrity Fitness Education" <joshuaforster95@gmail.com>'
 
 const LOGO_URL = 'https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/logo_white.png'
-const SITE_URL = 'https://www.integrityfitnesseducation.co.uk'
+const SITE_URL = 'https://www.integrityfitness.education'
 const BRAND_RED = '#CE1A19'
 const BRAND_BLACK = '#0a0a0a'
 
@@ -114,9 +114,9 @@ function emailShell(bodyHtml: string) {
           <tr>
             <td style="background:#18181b;padding:28px 40px;" align="center">
               <p style="margin:0 0 6px;font-size:12px;color:#a1a1aa;text-align:center;">
-                <a href="${SITE_URL}" style="color:#a1a1aa;text-decoration:none;">integrityfitnesseducation.co.uk</a>
+                <a href="${SITE_URL}" style="color:#a1a1aa;text-decoration:none;">integrityfitness.education</a>
                 &nbsp;·&nbsp;
-                <a href="mailto:info@integrityfitnesseducation.co.uk" style="color:#a1a1aa;text-decoration:none;">info@integrityfitnesseducation.co.uk</a>
+                <a href="mailto:info@integrityfitness.education" style="color:#a1a1aa;text-decoration:none;">info@integrityfitness.education</a>
               </p>
               <p style="margin:0 0 6px;font-size:12px;color:#71717a;text-align:center;">
                 Complete Fitness Gym · Whiffler Road · Norwich · Norfolk · NR3 2AW

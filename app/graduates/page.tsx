@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "Our Graduates | Integrity Fitness Education",
   description: "Meet the coaches who qualified with Integrity Fitness Education. Real people, real results, and where they are now.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/graduates",
+    canonical: "https://www.integrityfitness.education/graduates",
   },
   openGraph: {
     title: "Our Graduates | Integrity Fitness Education",
     description: "Meet the coaches who qualified with Integrity Fitness Education. Real people, real results.",
-    url: "https://www.integrityfitnesseducation.co.uk/graduates",
+    url: "https://www.integrityfitness.education/graduates",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

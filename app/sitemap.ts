@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "./content/blog";
 import { graduates } from "./content/graduates";
 
-const BASE = "https://www.integrityfitnesseducation.co.uk";
+const BASE = "https://www.integrityfitness.education";
 
 const QUAL_SLUGS = [
   "become-a-personal-trainer",

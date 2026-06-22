@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
         </td></tr>
 
         <tr><td style="background:#18181b;padding:20px 40px;" align="center">
-          <p style="margin:0;font-size:12px;color:#71717a;text-align:center;">integrityfitnesseducation.co.uk</p>
+          <p style="margin:0;font-size:12px;color:#71717a;text-align:center;">integrityfitness.education</p>
         </td></tr>
       </table>
     </td></tr>

@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description:
     "Browse photos from Integrity Fitness Education — training sessions, facilities, and events in Norwich, Norfolk.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/gallery",
+    canonical: "https://www.integrityfitness.education/gallery",
   },
   openGraph: {
     title: "Gallery | Integrity Fitness Education",
     description: "Browse photos from Integrity Fitness Education — training sessions, facilities, and events in Norwich, Norfolk.",
-    url: "https://www.integrityfitnesseducation.co.uk/gallery",
+    url: "https://www.integrityfitness.education/gallery",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

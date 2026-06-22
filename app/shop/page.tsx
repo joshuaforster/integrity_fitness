@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description:
     "Browse and enrol on CIMSPA-accredited personal training and CPD courses from Integrity Fitness Education in Norwich.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/shop",
+    canonical: "https://www.integrityfitness.education/shop",
   },
   openGraph: {
     title: "Shop | Integrity Fitness Education",
     description: "Browse and enrol on CIMSPA-accredited personal training and CPD courses from Integrity Fitness Education in Norwich.",
-    url: "https://www.integrityfitnesseducation.co.uk/shop",
+    url: "https://www.integrityfitness.education/shop",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

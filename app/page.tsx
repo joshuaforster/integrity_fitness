@@ -13,12 +13,12 @@ export const metadata: Metadata = {
   title: "Integrity Fitness Education | Personal Training Courses Norwich",
   description: "CIMSPA-accredited personal trainer qualifications in Norwich, Norfolk. One-to-one learning with industry professionals. Level 2, Level 3 and CPD courses available.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk",
+    canonical: "https://www.integrityfitness.education",
   },
   openGraph: {
     title: "Integrity Fitness Education | Personal Training Courses Norwich",
     description: "CIMSPA-accredited personal trainer qualifications in Norwich, Norfolk. One-to-one learning with industry professionals.",
-    url: "https://www.integrityfitnesseducation.co.uk",
+    url: "https://www.integrityfitness.education",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",
@@ -44,7 +44,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Integrity Fitness Education",
-  url: "https://www.integrityfitnesseducation.co.uk",
+  url: "https://www.integrityfitness.education",
   telephone: "+447795033958",
   email: "harry@integrityfitness.education",
   image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg",

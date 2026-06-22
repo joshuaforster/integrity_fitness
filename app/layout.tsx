@@ -28,7 +28,7 @@ const OG_IMAGE = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.integrityfitnesseducation.co.uk"),
+  metadataBase: new URL("https://www.integrityfitness.education"),
   title: {
     default: "Integrity Fitness Education | Personal Training Courses Norwich",
     template: "%s | Integrity Fitness Education",

@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   description:
     "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/qualifications",
+    canonical: "https://www.integrityfitness.education/qualifications",
   },
   openGraph: {
     title: "Qualifications | Integrity Fitness Education",
     description: "Browse all CIMSPA-accredited personal training and CPD qualifications from Integrity Fitness Education in Norwich, Norfolk.",
-    url: "https://www.integrityfitnesseducation.co.uk/qualifications",
+    url: "https://www.integrityfitness.education/qualifications",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

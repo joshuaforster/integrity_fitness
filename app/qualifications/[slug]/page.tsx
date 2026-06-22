@@ -42,12 +42,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${qual.title} | Integrity Fitness Education`,
     description: qual.tagline,
     alternates: {
-      canonical: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+      canonical: `https://www.integrityfitness.education/qualifications/${slug}`,
     },
     openGraph: {
       title: `${qual.title} | Integrity Fitness Education`,
       description: qual.tagline,
-      url: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+      url: `https://www.integrityfitness.education/qualifications/${slug}`,
       siteName: "Integrity Fitness Education",
       locale: "en_GB",
       type: "website",
@@ -80,9 +80,9 @@ export default async function QualificationPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.integrityfitnesseducation.co.uk" },
-      { "@type": "ListItem", position: 2, name: "Qualifications", item: "https://www.integrityfitnesseducation.co.uk/qualifications" },
-      { "@type": "ListItem", position: 3, name: qual.title, item: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.integrityfitness.education" },
+      { "@type": "ListItem", position: 2, name: "Qualifications", item: "https://www.integrityfitness.education/qualifications" },
+      { "@type": "ListItem", position: 3, name: qual.title, item: `https://www.integrityfitness.education/qualifications/${slug}` },
     ],
   };
 
@@ -94,9 +94,9 @@ export default async function QualificationPage({ params }: PageProps) {
     provider: {
       "@type": "Organization",
       name: "Integrity Fitness Education",
-      url: "https://www.integrityfitnesseducation.co.uk",
+      url: "https://www.integrityfitness.education",
     },
-    url: `https://www.integrityfitnesseducation.co.uk/qualifications/${slug}`,
+    url: `https://www.integrityfitness.education/qualifications/${slug}`,
   };
 
   return (

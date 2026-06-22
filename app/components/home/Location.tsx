@@ -46,7 +46,7 @@ const STRUCTURED_DATA = {
   name: "Integrity Fitness Education",
   description:
     "One-to-one personal trainer qualification courses based at Complete Fitness Gym, Norwich.",
-  url: "https://www.integrityfitnesseducation.co.uk",
+  url: "https://www.integrityfitness.education",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Complete Fitness, 2 Marriott Close, Heigham Street",

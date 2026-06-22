@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: "Blog | Integrity Fitness Education",
   description: "Advice, perspectives, and real stories from the world of fitness education. Read insights from the IFE team.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/blog",
+    canonical: "https://www.integrityfitness.education/blog",
   },
   openGraph: {
     title: "Blog | Integrity Fitness Education",
     description: "Advice, perspectives, and real stories from the world of fitness education.",
-    url: "https://www.integrityfitnesseducation.co.uk/blog",
+    url: "https://www.integrityfitness.education/blog",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

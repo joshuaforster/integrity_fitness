@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${graduate.name}'s Story | Integrity Fitness Education`,
     description: graduate.quote,
     alternates: {
-      canonical: `https://www.integrityfitnesseducation.co.uk/graduates/${slug}`,
+      canonical: `https://www.integrityfitness.education/graduates/${slug}`,
     },
     openGraph: {
       title: `${graduate.name}'s Story | Integrity Fitness Education`,
       description: graduate.quote,
-      url: `https://www.integrityfitnesseducation.co.uk/graduates/${slug}`,
+      url: `https://www.integrityfitness.education/graduates/${slug}`,
       siteName: "Integrity Fitness Education",
       locale: "en_GB",
       type: "article",

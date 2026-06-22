@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: "About Us | Integrity Fitness Education",
   description: "Meet the team behind Integrity Fitness Education. Based in Norwich, Norfolk, we deliver one-to-one personal trainer qualifications built around you.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/about",
+    canonical: "https://www.integrityfitness.education/about",
   },
   openGraph: {
     title: "About Us | Integrity Fitness Education",
     description: "Meet the team behind Integrity Fitness Education — CIMSPA-accredited PT educators based in Norwich, Norfolk.",
-    url: "https://www.integrityfitnesseducation.co.uk/about",
+    url: "https://www.integrityfitness.education/about",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",

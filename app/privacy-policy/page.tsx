@@ -4,12 +4,12 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Integrity Fitness Education",
   description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",
   alternates: {
-    canonical: "https://www.integrityfitnesseducation.co.uk/privacy-policy",
+    canonical: "https://www.integrityfitness.education/privacy-policy",
   },
   openGraph: {
     title: "Privacy Policy | Integrity Fitness Education",
     description: "Read the Integrity Fitness Education privacy policy — how we collect, use, and protect your personal data in line with UK GDPR.",
-    url: "https://www.integrityfitnesseducation.co.uk/privacy-policy",
+    url: "https://www.integrityfitness.education/privacy-policy",
     siteName: "Integrity Fitness Education",
     locale: "en_GB",
     type: "website",
@@ -61,8 +61,8 @@ export default function PrivacyPolicy() {
           <Section title="Who We Are">
             <p>
               Our website address is:{" "}
-              <a href="https://www.integrityfitnesseducation.co.uk" className="text-gray-900 underline hover:text-gray-600">
-                https://www.integrityfitnesseducation.co.uk
+              <a href="https://www.integrityfitness.education" className="text-gray-900 underline hover:text-gray-600">
+                https://www.integrityfitness.education
               </a>
             </p>
           </Section>

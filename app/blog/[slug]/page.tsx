@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.excerpt,
     authors: [{ name: post.author.name }],
     alternates: {
-      canonical: `https://www.integrityfitnesseducation.co.uk/blog/${slug}`,
+      canonical: `https://www.integrityfitness.education/blog/${slug}`,
     },
     openGraph: {
       title: `${post.title} | Integrity Fitness Education`,
       description: post.excerpt,
-      url: `https://www.integrityfitnesseducation.co.uk/blog/${slug}`,
+      url: `https://www.integrityfitness.education/blog/${slug}`,
       siteName: "Integrity Fitness Education",
       locale: "en_GB",
       type: "article",
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
 
-  const canonicalUrl = `https://www.integrityfitnesseducation.co.uk/blog/${slug}`;
+  const canonicalUrl = `https://www.integrityfitness.education/blog/${slug}`;
 
   return (
     <>
