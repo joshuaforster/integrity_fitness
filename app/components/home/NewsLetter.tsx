@@ -1,21 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Button from "@/app/components/ui/Button";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 import { newsletterSection } from "@/app/content/home";
-
-const CHANNELS = [
-  { label: "Email", value: "harry@integrityfitness.education", href: "mailto:harry@integrityfitness.education" },
-  { label: "Phone", value: "+44 7795 033958", href: "tel:+447795033958" },
-]
-
-const POINTS = [
-  "No sales pressure — just honest advice",
-  "Harry or Paris responds personally",
-  "Find the right course for where you are now",
-]
 
 export default function Newsletter() {
   return (
@@ -42,10 +32,14 @@ export default function Newsletter() {
             <p className="text-white text-base md:text-lg leading-relaxed max-w-md mt-6 mb-8">
               {newsletterSection.body}
             </p>
-            <Button href={newsletterSection.button.href} variant="primary" size="md">
-              {newsletterSection.button.label}
-            </Button>
-            <p className="text-zinc-500 text-xs tracking-wide mt-4">{newsletterSection.note}</p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button href={newsletterSection.button1.href} variant="primary" size="md">
+                {newsletterSection.button1.label}
+              </Button>
+              <Button href={newsletterSection.button2.href} variant="outline-dark" size="md">
+                {newsletterSection.button2.label}
+              </Button>
+            </div>
           </motion.div>
 
           <motion.div
@@ -55,32 +49,14 @@ export default function Newsletter() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
           >
-            <div className="border border-white/10 rounded-2xl p-8 space-y-8 bg-white/[0.03]">
-
-              <ul className="space-y-4">
-                {POINTS.map((point) => (
-                  <li key={point} className="flex items-start gap-3">
-                    <span className="mt-1 w-4 h-4 flex-shrink-0 rounded-full bg-[#CE1A19] flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    <span className="text-white text-sm leading-relaxed">{point}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="border-t border-white/10 pt-6 space-y-4">
-                {CHANNELS.map((c) => (
-                  <div key={c.label} className="flex items-center justify-between">
-                    <span className="text-zinc-500 text-xs font-bold uppercase tracking-widest">{c.label}</span>
-                    <a href={c.href} className="text-white text-sm font-medium hover:text-[#CE1A19] transition-colors">
-                      {c.value}
-                    </a>
-                  </div>
-                ))}
-              </div>
-
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              <Image
+                src={newsletterSection.image.src}
+                alt={newsletterSection.image.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 58vw"
+              />
             </div>
           </motion.div>
 
