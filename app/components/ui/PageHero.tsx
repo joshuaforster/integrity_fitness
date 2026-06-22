@@ -38,11 +38,11 @@ export default function PageHero({ image, label, title, subtitle, objectPosition
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-14 pt-28 w-full">
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs text-white/60 uppercase tracking-widest mb-4"
+          className="flex items-center gap-2 text-xs text-white uppercase tracking-widest mb-4"
         >
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span aria-hidden="true">/</span>
-          <span className="text-white/90" aria-current="page">{label}</span>
+          <span className="text-white" aria-current="page">{label}</span>
         </nav>
 
         <div className="w-10 h-0.5 bg-[#CE1A19] mb-5" aria-hidden="true" />
@@ -70,7 +70,7 @@ export default function PageHero({ image, label, title, subtitle, objectPosition
           </motion.h1>
         )}
 
-        <p className="text-lg text-white/80 max-w-xl leading-relaxed">{subtitle}</p>
+        <p className="text-lg text-white max-w-xl leading-relaxed">{subtitle}</p>
       </div>
     </section>
   );
