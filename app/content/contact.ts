@@ -37,10 +37,12 @@ export const contactChannels = [
     label: "Email",
     value: "harry@integrityfitness.education",
     href: "mailto:harry@integrityfitness.education",
+    description: "Send us an email and we'll get back to you within 24 hours.",
   },
   {
     label: "Phone",
     value: "+44 7795 033958",
     href: "tel:+447795033958",
+    description: "Call or text Harry directly for a quick conversation.",
   },
 ] as const;
