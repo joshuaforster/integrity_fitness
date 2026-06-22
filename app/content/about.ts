@@ -97,8 +97,8 @@ export const whereTheyDiffer = {
       "Cardio": "Reckons cardio is a means to an end, not the point.",
       "Beyond the gym": "Shadows physiotherapists at Spire Norwich. Everything he picks up there feeds back into how he coaches you. You'll feel that difference.",
       "Better coach?": "Me, obviously. I'll never let you cut a corner.",
-      "Growing up": "Used to time Paris on the track at family barbecues. Gave her feedback. She was nine.",
-      "Biggest falling out": "She changed the channel during the playoffs. Still not over it.",
+      "Growing up": "Big brother. Always had to be right. Still working on that, apparently.",
+      "Biggest falling out": "She told mum something he'd asked her not to. Didn't speak to her for two weeks. Still thinks he was right.",
     },
   },
   paris: {
@@ -115,8 +115,8 @@ export const whereTheyDiffer = {
       "Cardio": "Thinks a session without some cardio is half a session.",
       "Off the clock": "Has a seven-year-old rescue greyhound called Pirate. Bring him up in a session. She will not stop. Learners always end up loving it.",
       "Better coach?": "Me. Clearly. I actually listen. He just talks louder.",
-      "Growing up": "Made him sit through her favourite shows. He complained the whole time. Never missed an episode.",
-      "Biggest falling out": "It was a rerun. He knew it was a rerun.",
+      "Growing up": "Grew up with Harry. That is the whole explanation.",
+      "Biggest falling out": "He asked her to keep something to herself. She thought he was being dramatic. She stands by what she did.",
     },
   },
   rivalry: {
