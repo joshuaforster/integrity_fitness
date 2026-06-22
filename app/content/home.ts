@@ -166,7 +166,7 @@ export const qualificationsSection = {
 export const newsletterSection = {
   label: "Get In Touch",
   heading: "Ready To Take The Next Step?",
-  body: "Have a question or want to find out which course is right for you? Harry or Paris will get back to you personally.",
+  body: "Tell us where you're at and what you're after, and Harry or Paris will help you find the right course.",
   button: { label: "Contact Us", href: "/contact" },
   note: "No pressure. Just a conversation.",
 } as const;
