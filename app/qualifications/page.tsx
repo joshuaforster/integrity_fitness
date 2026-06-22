@@ -50,7 +50,7 @@ export default function QualificationsPage() {
         image="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20HALL%20ROAD/GYM-FLOOR-EXPLANATION-IFE-TGGNHR_003.jpg"
         label="Qualifications"
         title="Qualifications"
-        subtitle="One-to-one education built for real careers. Every course delivered personally by Harry."
+        subtitle="One-to-one coaching education, built around you and the career you're working towards."
       />
 
       {/* 1. Guided Career Tracks: Personal Training */}
@@ -141,8 +141,8 @@ export default function QualificationsPage() {
                 <p className="text-zinc-400 text-sm leading-relaxed">
                   CPD courses sit alongside or after your core qualification.
                   They expand what you can legally and professionally offer to
-                  specific client groups and many employers and insurers
-                  expect at least some of them before you step on the gym floor.
+                  specific client groups and many employers and insurers expect
+                  at least some of them before you step on the gym floor.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-700 pl-5">
