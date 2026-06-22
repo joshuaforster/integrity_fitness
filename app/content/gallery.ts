@@ -125,7 +125,5 @@ export const galleryImages: GalleryItem[] = [
 export const heroImages: string[] = [
   `${NORWICH_URL}/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg`,
   `${BUCKET_URL}/FITNESS-DISCUSSION-IFE-TGGNHR_006.jpg`,
-  `${CFG_URL}/20230329-IFE-CF_001.JPG`,
   `${BUCKET_URL}/GYM-FLOOR%20EDUCATION-IFE-TGGNHR_008.jpg`,
-  "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Screenshot%202026-05-27%20at%2020.28.15.png",
 ];
