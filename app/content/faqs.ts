@@ -79,9 +79,21 @@ export const faqs: FAQGroup[] = [
   },
 ];
 
-export const pricingFaqs: string[] = [
-  "Yes. If you start on the Independent plan and decide you would benefit from one-to-one support, you can upgrade to Part Time or Full Time at any point. The difference in course fees is invoiced at the point of change. Downgrading is available on the same terms.",
-  "You have a 14-day cooling-off period from the date of enrolment in line with UK consumer regulations. If you withdraw within that window, you will receive a full refund minus the cost of any assessments already submitted and marked.",
-  "Life happens. If you need to pause due to work, health, or personal circumstances, contact us and we will put your enrolment on hold at no extra charge. Extensions of up to six months are available on request with no penalty.",
-  "Active IQ typically issues digital certificates within two to four weeks of your final assessment being submitted and marked. Physical certificates follow by post within six to eight weeks. You can use your completion letter immediately for employment purposes while you wait.",
+export const pricingFaqs: FAQItem[] = [
+  {
+    q: "Can I change my study plan after I enrol?",
+    a: "Yes. If you start on the Independent plan and decide you would benefit from one-to-one support, you can upgrade to Part Time or Full Time at any point. The difference in course fees is invoiced at the point of change. Downgrading is available on the same terms.",
+  },
+  {
+    q: "What is the refund policy?",
+    a: "You have a 14-day cooling-off period from the date of enrolment in line with UK consumer regulations. If you withdraw within that window, you will receive a full refund minus the cost of any assessments already submitted and marked.",
+  },
+  {
+    q: "What if I need to take a break from the course?",
+    a: "Life happens. If you need to pause due to work, health, or personal circumstances, contact us and we will put your enrolment on hold at no extra charge. Extensions of up to six months are available on request with no penalty.",
+  },
+  {
+    q: "How long does it take to receive my certificate?",
+    a: "Active IQ typically issues digital certificates within two to four weeks of your final assessment being submitted and marked. Physical certificates follow by post within six to eight weeks. You can use your completion letter immediately for employment purposes while you wait.",
+  },
 ];
