@@ -1,11 +1,10 @@
 import { Metadata } from "next";
-import qualifications from "@/app/data/qualifications";
 import PageHero from "@/app/components/ui/PageHero";
-import PTCourseList from "./PTCourseList";
-import CPDCourseGrid from "./CPDCourseGrid";
+import CPD from "./CPD";
 import ReadyToStartCTA from "@/app/components/shared/ReadyToStartCTA";
-import QuoteBlock from "@/app/components/ui/QuoteBlock";
-import { quoteTestimonials } from "@/app/content/testimonials";
+
+import GraduateVoice from "./graduateVoice";
+import CareerGuide from "./careerGuide";
 
 export const metadata: Metadata = {
   title: "Qualifications | Integrity Fitness Education",
@@ -38,10 +37,6 @@ export const metadata: Metadata = {
   },
 };
 
-const PT_COURSES = qualifications.filter(
-  (q) => q.category === "personal-training",
-);
-const CPD_COURSES = qualifications.filter((q) => q.category === "cpd");
 
 export default function QualificationsPage() {
   return (
@@ -53,124 +48,13 @@ export default function QualificationsPage() {
         subtitle="One-to-one coaching education, built around you and the career you're working towards."
       />
 
-      {/* 1. Guided Career Tracks: Personal Training */}
-      <section
-        aria-labelledby="pt-heading"
-        className="py-20 md:py-28 border-b border-zinc-200/60"
-      >
-        <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Frame: Strategic Career Path Guidance (Spans 4 Columns) */}
-            <div className="lg:col-span-4 sticky top-28 space-y-6">
-              <div>
-                <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
-                  Syllabus Tracks
-                </p>
-                <h2
-                  id="pt-heading"
-                  className="text-2xl md:text-4xl font-black text-zinc-950 tracking-tight uppercase leading-none"
-                >
-                  Personal Training
-                </h2>
-                <div
-                  className="w-14 h-1 bg-[#CE1A19] mt-5"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div className="border-l-2 border-zinc-200 pl-5 pt-1">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-950 mb-2">
-                  Where do you start?
-                </h3>
-                <p className="text-zinc-600 text-md leading-relaxed">
-                  If you&apos;re completely new to fitness coaching, the{" "}
-                  <strong>Combined Diploma</strong> is the right place to start.
-                  If you already hold an accredited Level 2 certificate, choose
-                  the standalone <strong>Level 3 Qualification</strong> to build
-                  on what you&apos;ve already got.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Frame: Unboxed Clean List Elements (Spans 8 Columns) */}
-            <PTCourseList courses={PT_COURSES} />
-          </div>
-        </div>
-      </section>
+      <CareerGuide />
 
       {/* 2. Graduate voices */}
-      <section
-        aria-label="Graduate testimonials"
-        className="py-16 md:py-20 border-b border-zinc-200/60"
-      >
-        <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-          <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-8">
-            From Our Graduates
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {quoteTestimonials.map((quote) => (
-              <QuoteBlock key={quote.name} quote={quote} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <GraduateVoice />
 
-      {/* 3. Continued Professional Development (CPD) */}
-      <section
-        aria-labelledby="cpd-heading"
-        className="bg-[#18181B] texture-dots-dark angle-tl pb-20 md:pb-28 pt-[132px] md:pt-[164px]"
-      >
-        <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-12 md:mb-16">
-            <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-4">
-              Specialist Upgrades
-            </p>
-            <h2
-              id="cpd-heading"
-              className="text-2xl md:text-4xl font-black text-white tracking-tight uppercase leading-none"
-            >
-              Continued Professional Development
-            </h2>
-            <div className="w-14 h-1 bg-[#CE1A19] mt-5" aria-hidden="true" />
 
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-              <div className="border-l-2 border-zinc-700 pl-5">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
-                  When should I do these?
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  CPD courses sit alongside or after your core qualification.
-                  They expand what you can legally and professionally offer to
-                  specific client groups and many employers and insurers expect
-                  at least some of them before you step on the gym floor.
-                </p>
-              </div>
-              <div className="border-l-2 border-zinc-700 pl-5">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
-                  Which should I do first?
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  If you are newly qualified, start with{" "}
-                  <strong className="text-zinc-200">Emergency First Aid</strong>{" "}
-                  — most gym roles and insurance policies require it. Add{" "}
-                  <strong className="text-zinc-200">
-                    Mental Health Awareness
-                  </strong>{" "}
-                  to better support any client. Once you are established,{" "}
-                  <strong className="text-zinc-200">
-                    Pre &amp; Post Natal
-                  </strong>{" "}
-                  opens a high-demand client group that most PTs cannot yet
-                  serve.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <CPDCourseGrid courses={CPD_COURSES} />
-        </div>
-      </section>
-
+      <CPD />
       {/* 4. Bottom CTA */}
       <ReadyToStartCTA />
     </main>

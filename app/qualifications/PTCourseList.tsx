@@ -18,10 +18,10 @@ function levelWatermark(level: string): string {
   return level.replace("Level ", "").replace(" & ", "+");
 }
 
-export default function PTCourseList({ courses }: { courses: Qualification[] }) {
+export default function PTCourseList({ courses, className }: { courses: Qualification[]; className?: string }) {
   return (
     <motion.div
-      className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+      className={`${className ?? "w-full"} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4`}
       variants={gridVariants}
       initial="hidden"
       whileInView="visible"
@@ -71,7 +71,7 @@ export default function PTCourseList({ courses }: { courses: Qualification[] }) 
                 </h3>
 
                 {/* Tagline */}
-                <p className="text-zinc-500 text-[13px] leading-relaxed flex-1 mb-5">
+                <p className="text-zinc-600 text-[14px] leading-relaxed flex-1 mb-5">
                   {q.tagline}
                 </p>
 
