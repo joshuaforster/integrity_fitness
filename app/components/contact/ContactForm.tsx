@@ -224,8 +224,8 @@ export default function ContactForm() {
                   <div className="relative w-full aspect-[4/3]">
                     {mapVisible ? (
                       <iframe
-                        title="Integrity Fitness Education — Complete Fitness Gym, Norwich, Norfolk"
-                        src="https://maps.google.com/maps?q=Complete+Fitness+Gym,+Whiffler+Road,+Norwich,+NR3+2AW&z=16&output=embed"
+                        title="Integrity Fitness Education — Complete Fitness Gyms Ltd, Norwich, Norfolk"
+                        src="https://maps.google.com/maps?q=Complete+Fitness+Gyms+Ltd,+2+Marriott+Close,+Norwich,+NR2+4UX&ll=52.637045,1.284156&z=16&output=embed"
                         width="100%"
                         height="100%"
                         className="absolute inset-0 w-full h-full border-0"
@@ -237,11 +237,11 @@ export default function ContactForm() {
                   </div>
                   <div className="px-4 py-3 bg-white border-t border-zinc-100 flex items-center justify-between">
                     <div>
-                      <p className="text-zinc-700 text-xs font-bold uppercase tracking-wider leading-none">Complete Fitness Gym</p>
-                      <p className="text-zinc-400 text-xs uppercase tracking-widest leading-none mt-1">Whiffler Road · Norwich · Norfolk · NR3 2AW</p>
+                      <p className="text-zinc-700 text-xs font-bold uppercase tracking-wider leading-none">Complete Fitness Gyms Ltd</p>
+                      <p className="text-zinc-400 text-xs uppercase tracking-widest leading-none mt-1">2 Marriott Close · Norwich · Norfolk · NR2 4UX</p>
                     </div>
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gym+Whiffler+Road+Norwich+NR3+2AW"
+                      href="https://www.google.com/maps/search/?api=1&query=Complete+Fitness+Gyms+Ltd+2+Marriott+Close+Norwich+NR2+4UX"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs font-bold text-[#CE1A19] uppercase tracking-wider hover:underline"
