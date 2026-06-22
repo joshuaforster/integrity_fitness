@@ -49,21 +49,21 @@ const STRUCTURED_DATA = {
   url: "https://www.integrityfitnesseducation.co.uk",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Complete Fitness Gym, Whiffler Road",
+    streetAddress: "Complete Fitness, 2 Marriott Close, Heigham Street",
     addressLocality: "Norwich",
     addressRegion: "Norfolk",
-    postalCode: "NR3 2AW",
+    postalCode: "NR2 4UX",
     addressCountry: "GB",
   },
   location: {
     "@type": "Place",
-    name: "Complete Fitness Gym",
+    name: "Complete Fitness",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Whiffler Road",
+      streetAddress: "2 Marriott Close, Heigham Street",
       addressLocality: "Norwich",
       addressRegion: "Norfolk",
-      postalCode: "NR3 2AW",
+      postalCode: "NR2 4UX",
       addressCountry: "GB",
     },
   },
@@ -106,7 +106,6 @@ export default function Location() {
 
       <SectionWrapper>
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
           <motion.div
             className="lg:col-span-5 flex flex-col items-start"
             initial={{ opacity: 0, x: -32 }}
@@ -132,8 +131,23 @@ export default function Location() {
                     {TRANSPORT_ICONS[item.label]}
                   </span>
                   <span className="text-zinc-700 text-sm md:text-base leading-relaxed">
-                    <strong className="text-zinc-900 font-bold">{item.label}:</strong>{" "}
+                    <strong className="text-zinc-900 font-bold">
+                      {item.label}:
+                    </strong>{" "}
                     {item.detail}
+                    {"link" in item && (
+                      <>
+                        {" "}
+                        <a
+                          href={item.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-zinc-900 transition-colors"
+                        >
+                          {item.link.label}
+                        </a>
+                      </>
+                    )}
                   </span>
                 </li>
               ))}
@@ -145,16 +159,28 @@ export default function Location() {
                   aria-hidden="true"
                   className="text-[#CE1A19] mt-1 flex-shrink-0"
                   animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.2 }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    repeatDelay: 1.2,
+                  }}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                   </svg>
                 </motion.span>
                 <span className="text-zinc-900 font-medium leading-relaxed">
                   {locationSection.addressLine1}
                   <br />
-                  <span className="text-zinc-600">{locationSection.addressLine2}</span>
+                  <span className="text-zinc-600">
+                    {locationSection.addressLine2}
+                  </span>
                 </span>
               </div>
             </address>
@@ -166,7 +192,14 @@ export default function Location() {
               className="inline-flex w-full sm:w-auto justify-center items-center gap-2 border border-zinc-950 text-zinc-950 px-6 py-3.5 text-sm font-bold tracking-wide uppercase hover:bg-zinc-950 hover:text-white transition-colors duration-200 rounded-lg"
             >
               {locationSection.directionsButton}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
             </a>
@@ -187,7 +220,7 @@ export default function Location() {
                 {mapVisible ? (
                   <iframe
                     title={locationSection.mapTitle}
-                    src="https://maps.google.com/maps?q=Complete+Fitness+Gym,+Whiffler+Road,+Norwich,+NR3+2AW&z=16&output=embed"
+                    src="https://maps.google.com/maps?q=Complete+Fitness+Gyms+Ltd,+2+Marriott+Close,+Norwich,+NR2+4UX&ll=52.637045,1.284156&z=16&output=embed"
                     width="100%"
                     height="100%"
                     className="absolute inset-0 w-full h-full border-0"
@@ -210,19 +243,49 @@ export default function Location() {
                 </div>
                 {/* Compass rose */}
                 <div className="flex flex-col items-center gap-0.5 select-none">
-                  <svg width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
-                    <polygon points="10,0 13,12 10,10 7,12" fill="#CE1A19" opacity="0.88" />
-                    <polygon points="10,24 13,12 10,14 7,12" fill="#a1a1aa" opacity="0.65" />
-                    <polygon points="20,12 8,9 10,12 8,15" fill="#a1a1aa" opacity="0.5" />
-                    <polygon points="0,12 12,9 10,12 12,15" fill="#a1a1aa" opacity="0.5" />
-                    <circle cx="10" cy="12" r="2.5" fill="white" stroke="#d4d4d8" strokeWidth="1" />
+                  <svg
+                    width="20"
+                    height="24"
+                    viewBox="0 0 20 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      points="10,0 13,12 10,10 7,12"
+                      fill="#CE1A19"
+                      opacity="0.88"
+                    />
+                    <polygon
+                      points="10,24 13,12 10,14 7,12"
+                      fill="#a1a1aa"
+                      opacity="0.65"
+                    />
+                    <polygon
+                      points="20,12 8,9 10,12 8,15"
+                      fill="#a1a1aa"
+                      opacity="0.5"
+                    />
+                    <polygon
+                      points="0,12 12,9 10,12 12,15"
+                      fill="#a1a1aa"
+                      opacity="0.5"
+                    />
+                    <circle
+                      cx="10"
+                      cy="12"
+                      r="2.5"
+                      fill="white"
+                      stroke="#d4d4d8"
+                      strokeWidth="1"
+                    />
                   </svg>
-                  <span className="text-[#CE1A19] text-xs font-black uppercase tracking-widest leading-none">N</span>
+                  <span className="text-[#CE1A19] text-xs font-black uppercase tracking-widest leading-none">
+                    N
+                  </span>
                 </div>
               </div>
             </div>
           </motion.div>
-
         </div>
       </SectionWrapper>
     </section>

@@ -174,18 +174,18 @@ export const newsletterSection = {
 export const locationSection = {
   label: "Find Us",
   heading: "Getting Here Is Simple.",
-  body: "Free parking, no coins needed. One less thing thing to think about.",
-  addressLine1: "Complete Fitness Gym, Whiffler Road",
-  addressLine2: "Norwich, Norfolk, NR3 2AW",
+  body: "Free parking, no coins needed. One less thing to think about.",
+  addressLine1: "Complete Fitness, 2 Marriott Close",
+  addressLine2: "Heigham Street, Norwich, NR2 4UX",
   directionsButton: "Get Directions",
-  directionsHref: "https://www.google.com/maps?...",
-  mapTitle: "Complete Fitness Gym Norwich, location map",
-  mapCaption: "Complete Fitness Gym",
-  mapAddress: "Whiffler Road · Norwich · NR3 2AW",
+  directionsHref: "https://www.google.com/maps/dir/?api=1&destination=2+Marriott+Close,+Heigham+Street,+Norwich,+NR2+4UX",
+  mapTitle: "Complete Fitness Norwich, location map",
+  mapCaption: "Complete Fitness",
+  mapAddress: "2 Marriott Close · Heigham St · NR2 4UX",
   practicalInfo: [
-    { label: "Driving", detail: "Free on-site parking. Pull up, walk straight in." },
-    { label: "Bus", detail: "Routes 26 & 27 stop on Whiffler Road — right outside the door." },
-    { label: "Train", detail: "Norwich Station is an 18-minute walk or a 5-minute taxi ride." },
+    { label: "Driving", detail: "Free on-site parking." },
+    { label: "Bus", detail: "Several routes stop on Heigham Street.", link: { label: "Plan your journey", href: "https://www.google.com/maps/dir/?api=1&destination=2+Marriott+Close,+Heigham+Street,+Norwich,+NR2+4UX&travelmode=transit" } },
+    { label: "Train", detail: "Norwich Station is a 20 minute walk or 5 minutes by taxi." },
   ],
 } as const;
 
