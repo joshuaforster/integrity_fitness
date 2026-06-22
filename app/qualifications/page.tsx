@@ -82,13 +82,12 @@ export default function QualificationsPage() {
                 <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-950 mb-2">
                   Where do you start?
                 </h3>
-                <p className="text-zinc-600 text-sm leading-relaxed">
-                  If you are entirely new to fitness coaching, the{" "}
-                  <strong>Combined Diploma</strong> is your required baseline
-                  launchpad. If you already hold an accredited Level 2
-                  certificate, select the standalone{" "}
-                  <strong>Level 3 Qualification</strong> to upgrade your roster
-                  capability.
+                <p className="text-zinc-600 text-md leading-relaxed">
+                  If you&apos;re completely new to fitness coaching, the{" "}
+                  <strong>Combined Diploma</strong> is the right place to start.
+                  If you already hold an accredited Level 2 certificate, choose
+                  the standalone <strong>Level 3 Qualification</strong> to build
+                  on what you&apos;ve already got.
                 </p>
               </div>
             </div>
@@ -100,7 +99,10 @@ export default function QualificationsPage() {
       </section>
 
       {/* 2. Graduate voices */}
-      <section aria-label="Graduate testimonials" className="py-16 md:py-20 border-b border-zinc-200/60">
+      <section
+        aria-label="Graduate testimonials"
+        className="py-16 md:py-20 border-b border-zinc-200/60"
+      >
         <div className="reveal mx-auto max-w-7xl px-6 lg:px-8">
           <p className="text-[#CE1A19] text-xs font-bold tracking-widest uppercase mb-8">
             From Our Graduates
@@ -137,7 +139,10 @@ export default function QualificationsPage() {
                   When should I do these?
                 </h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  CPD courses sit alongside or after your core qualification. They expand what you can legally and professionally offer to specific client groups — and many employers and insurers expect at least some of them before you step on the gym floor.
+                  CPD courses sit alongside or after your core qualification.
+                  They expand what you can legally and professionally offer to
+                  specific client groups and many employers and insurers
+                  expect at least some of them before you step on the gym floor.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-700 pl-5">
@@ -146,9 +151,17 @@ export default function QualificationsPage() {
                 </h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">
                   If you are newly qualified, start with{" "}
-                  <strong className="text-zinc-200">Emergency First Aid</strong> — most gym roles and insurance policies require it. Add{" "}
-                  <strong className="text-zinc-200">Mental Health Awareness</strong> to better support any client. Once you are established,{" "}
-                  <strong className="text-zinc-200">Pre &amp; Post Natal</strong> opens a high-demand client group that most PTs cannot yet serve.
+                  <strong className="text-zinc-200">Emergency First Aid</strong>{" "}
+                  — most gym roles and insurance policies require it. Add{" "}
+                  <strong className="text-zinc-200">
+                    Mental Health Awareness
+                  </strong>{" "}
+                  to better support any client. Once you are established,{" "}
+                  <strong className="text-zinc-200">
+                    Pre &amp; Post Natal
+                  </strong>{" "}
+                  opens a high-demand client group that most PTs cannot yet
+                  serve.
                 </p>
               </div>
             </div>
