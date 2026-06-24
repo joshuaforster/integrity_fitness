@@ -75,6 +75,10 @@ export const faqs: FAQGroup[] = [
         link: { href: "/study-time", label: "Get a personalised timeline estimate → Course Timeline Estimator" },
       },
       {
+        q: "How difficult is the course?",
+        a: "Level 2 sits at roughly GCSE biology and PE standard — if you paid attention in school science and enjoy sport, you will find it very manageable. Level 3 steps up to around AS Level difficulty — there is more depth to the anatomy, physiology, and programming content, but it is still well within reach for anyone who approaches it with focus. Neither level requires a degree or prior academic qualifications. Harry structures the content around you, so if anything feels unclear, you get proper support rather than being left to figure it out alone.",
+      },
+      {
         q: "How will I be assessed on the course?",
         a: "Your practical skills are assessed in person at our gym in Norwich. Theory is tested through multiple-choice exams that you complete online, whenever works for you.",
       },

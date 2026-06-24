@@ -201,6 +201,11 @@ export const missionImage = {
 };
 
 export const statsImages = [
+
+  {
+    src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/adrian.jpeg",
+    alt: "Integrity Fitness Education training session",
+  },
   {
     src: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/WhatsApp%20Image%202026-06-03%20at%2010.17.25%20(3).jpeg",
     alt: "Integrity Fitness Education training session",
