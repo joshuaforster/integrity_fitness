@@ -32,7 +32,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-06-20",
     category: "Business",
     excerpt: "Charging £10 a session isn't being modest. Once you work out the real hourly rate, it's closer to £5. Here's why your price matters more than you think.",
-    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Duncan/20221115-IFE-CF_054.JPG",
+    image: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/Aines%20L3%20summative/20230329-IFE-CF_007.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a race to the bottom happening in gyms all over the country, and it is new PTs who are losing it. I have heard of people charging £10 a session. Ten pounds. In a job where you are personally responsible for someone else's health, their movement, their safety - for an hour of your time, your preparation, and often your follow-up messages at midnight.</p>",
