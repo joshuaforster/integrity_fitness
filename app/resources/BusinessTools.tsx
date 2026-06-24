@@ -24,6 +24,15 @@ const TOOLS = [
     badge: null,
   },
   {
+    id: "niche",
+    label: "Career Strategy",
+    title: "Find Your Fitness Niche",
+    tagline:
+      "10 questions. 18 niches. Most PTs pick their niche by accident — this tool helps you pick it on purpose, surfacing opportunities most PTs never discover.",
+    href: "/niche",
+    badge: "New",
+  },
+  {
     id: "blog",
     label: "Knowledge",
     title: "Blog & Articles",
