@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "./content/blog";
+import { allBlogPosts } from "./content/blog";
 import { graduates } from "./content/graduates";
 
 const BASE = "https://www.integrityfitness.education";
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.85,
     })),
-    ...blogPosts.map((post) => ({
+    ...allBlogPosts.map((post) => ({
       url: `${BASE}/blog/${post.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.65,
