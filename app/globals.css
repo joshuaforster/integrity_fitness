@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -413,4 +414,20 @@ body {
 }
 .group:hover .glass-border-trace {
   animation: border-trace 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(113, 113, 122, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(113, 113, 122, 0);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s infinite;
 }

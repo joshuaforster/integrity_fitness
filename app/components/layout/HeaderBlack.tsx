@@ -9,7 +9,7 @@ import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/app/context/CartContext";
 import GlobalSearch from "./GlobalSearch";
 
-import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES } from "@/app/content/navigation";
+import { navLinks as NAV_LINKS, qualCategories as QUAL_CATEGORIES, resourceCategories as RESOURCE_CATEGORIES } from "@/app/content/navigation";
 
 function HamburgerIcon({ open }: { open: boolean }) {
   const ease = "easeInOut" as const;
@@ -51,12 +51,16 @@ function HamburgerIcon({ open }: { open: boolean }) {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileQualOpen, setMobileQualOpen] = useState(false);
+  const [mobileResourceOpen, setMobileResourceOpen] = useState(false);
   const [drawerExitDuration, setDrawerExitDuration] = useState(1.1);
 
   function closeMenu(fast = false) {
     setDrawerExitDuration(fast ? 0.22 : 1.1);
     setMobileMenuOpen(false);
-    if (fast) setMobileQualOpen(false);
+    if (fast) {
+      setMobileQualOpen(false);
+      setMobileResourceOpen(false);
+    }
   }
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -80,6 +84,12 @@ export default function Header() {
     pathname === "/qualifications" ||
     QUAL_CATEGORIES.some((c) =>
       c.courses.some((course) => pathname === course.href),
+    );
+
+  const resourceActive =
+    pathname === "/resources" ||
+    RESOURCE_CATEGORIES.some((c) =>
+      c.items.some((item) => pathname === item.href),
     );
 
   const bgClass = mobileMenuOpen
@@ -221,6 +231,69 @@ export default function Header() {
               </div>
             </div>
 
+            {/* Resources mega drop navigation item */}
+            <div className="relative group py-1">
+              <Link
+                href="/resources"
+                aria-current={resourceActive ? "page" : undefined}
+                className={`relative flex items-center gap-1.5 text-sm font-bold tracking-wide transition-colors duration-200 pb-1 outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-[#CE1A19] focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 [text-shadow:0_1px_5px_rgba(0,0,0,0.7),0_0_8px_rgba(0,0,0,0.4)] ${resourceActive ? "text-white" : "text-white hover:text-white"}`}
+              >
+                <span>Resources</span>
+                <ChevronDownIcon className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-200 group-hover:rotate-180" />
+                <span
+                  className={`absolute bottom-0 left-0 h-px bg-[#CE1A19] transition-all duration-200 ${resourceActive ? "w-[calc(100%-1.25rem)]" : "w-0 group-hover:w-[calc(100%-1.25rem)]"}`}
+                />
+              </Link>
+
+              {/* Panel Drop Frame */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                <div className="[backdrop-filter:blur(40px)_saturate(130%)_brightness(0.85)] bg-zinc-950/[0.92] border border-white/[0.10] shadow-[0_16px_48px_rgba(0,0,0,0.55)] w-[580px] p-6 rounded-xl">
+                  <p className="text-white text-xs font-black tracking-widest uppercase mb-5">
+                    Tools & Resources
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-8">
+                    {RESOURCE_CATEGORIES.map((cat) => (
+                      <div key={cat.title}>
+                        <p className="text-white text-xs font-black uppercase tracking-wider mb-3 pb-2 border-b border-white/10">
+                          {cat.title}
+                        </p>
+                        <ul className="space-y-2.5">
+                          {cat.items.map((item) => {
+                            const itemActive = pathname === item.href;
+                            return (
+                              <li key={item.name}>
+                                <Link
+                                  href={item.href}
+                                  aria-current={itemActive ? "page" : undefined}
+                                  className={`flex items-start gap-2 text-sm font-medium leading-snug transition-colors group/item outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19] ${itemActive ? "text-white" : "text-white hover:text-white"}`}
+                                >
+                                  <span className={`w-1 h-1 bg-[#CE1A19] mt-2 flex-shrink-0 transition-opacity rounded-full ${itemActive ? "opacity-100" : "opacity-0 group-hover/item:opacity-100"}`} />
+                                  <span className={`transition-transform duration-200 ${itemActive ? "translate-x-1 underline underline-offset-2 decoration-[#CE1A19]/60" : "group-hover/item:translate-x-1"}`}>
+                                    {item.name}
+                                  </span>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/10">
+                    <Link
+                      href="/resources"
+                      className="inline-flex items-center gap-1.5 text-white text-xs font-bold tracking-widest uppercase hover:text-[#CE1A19] transition-colors outline-none rounded-sm focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                    >
+                      <span>View All Resources</span>
+                      <span>→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {NAV_LINKS.slice(2).map((item) => {
               const active = pathname === item.href;
               return (
@@ -332,6 +405,39 @@ export default function Header() {
                           className="block py-3 pl-3 text-sm text-white transition-colors border-l border-white/[0.15] mb-1 outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
                         >
                           {course.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Resources accordion */}
+              <div className="border-b border-white/[0.08]">
+                <button
+                  type="button"
+                  onClick={() => setMobileResourceOpen(!mobileResourceOpen)}
+                  className="w-full flex items-center justify-between px-6 py-5 text-sm font-bold uppercase tracking-wider text-white hover:bg-white/[0.04] outline-none focus-visible:ring-2 focus-visible:ring-[#CE1A19] transition-colors"
+                >
+                  <span>Resources</span>
+                  <ChevronDownIcon
+                    className={`w-4 h-4 stroke-[2.5] text-[#CE1A19] transition-transform duration-200 ${mobileResourceOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileResourceOpen ? "max-h-[600px] pb-4" : "max-h-0"}`}>
+                  {RESOURCE_CATEGORIES.map((cat) => (
+                    <div key={cat.title} className="px-6 pt-2 pb-3">
+                      <p className="text-white/40 text-xs font-black tracking-wider uppercase mb-2">
+                        {cat.title}
+                      </p>
+                      {cat.items.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          onClick={() => closeMenu(true)}
+                          className="block py-3 pl-3 text-sm text-white transition-colors border-l border-white/[0.15] mb-1 outline-none focus-visible:ring-1 focus-visible:ring-[#CE1A19]"
+                        >
+                          {item.name}
                         </Link>
                       ))}
                     </div>

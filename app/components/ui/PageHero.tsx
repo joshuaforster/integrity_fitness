@@ -11,13 +11,18 @@ interface PageHeroProps {
   subtitle: string;
   objectPosition?: string;
   overlayStrength?: "normal" | "heavy";
+  size?: "default" | "sm";
 }
 
-export default function PageHero({ image, label, title, subtitle, objectPosition = "center", overlayStrength = "normal" }: PageHeroProps) {
+export default function PageHero({ image, label, title, subtitle, objectPosition = "center", overlayStrength = "normal", size = "default" }: PageHeroProps) {
   const words = typeof title === "string" ? title.split(" ") : null;
 
+  const heightCls = size === "sm"
+    ? "h-[35vh] min-h-[360px]"
+    : "h-[70vh] min-h-[520px] sm:min-h-[380px]";
+
   return (
-    <section className="relative h-[70vh] min-h-[520px]  sm:min-h-[380px] flex items-end bg-zinc-950 overflow-hidden">
+    <section className={`relative ${heightCls} flex items-end bg-zinc-950 overflow-hidden`}>
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src={image}

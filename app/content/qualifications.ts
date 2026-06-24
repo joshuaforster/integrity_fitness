@@ -58,8 +58,8 @@ const qualifications: Qualification[] = [
     badge: "Most Popular",
     overview: [
       "The Combined Level 2 & 3 Diploma is the most direct path to becoming a fully qualified personal trainer. Rather than taking the two qualifications separately, you complete both in a single integrated programme, saving you time and money without cutting corners on quality.",
-      "Delivered entirely one-to-one, every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students. It is personal education in the truest sense.",
-      "On completion you will hold a CIMSPA-accredited, internationally recognised qualification that opens the door to employment in gyms, leisure centres, and independent personal training practice.",
+      "Sessions are delivered one-to-one, every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students. It is personal education in the truest sense.",
+      "On completion you will hold a CIMSPA-accredited, internationally recognised qualification that opens the door to employment in gyms, leisure centres and independent personal training practice.",
     ],
     whatYouWillLearn: [
       "How the body moves, adapts, and responds to exercise",
@@ -125,7 +125,7 @@ const qualifications: Qualification[] = [
         name: "Independent",
         price: { monthly: 79.99, yearly: 1399 },
         deposit: 499,
-        description: "Our most cost effective option. Fully self-paced study with all course materials included.",
+        description: "Our most cost effective option. Fully self paced study with all course materials included.",
         includes: [
           "Graduate T-Shirt Upon Completion",
           "Tote Bag",
@@ -140,7 +140,7 @@ const qualifications: Qualification[] = [
         name: "Part Time",
         price: { monthly: 99.99, yearly: 1599 },
         deposit: 499,
-        description: "Includes our bespoke 1-1 tuition alongside flexible study.",
+        description: "Includes our personal 1-1 tuition alongside flexible study.",
         includes: [
           "Graduate T-Shirt Upon Completion",
           "Pen, Notepad & Bookmark",
@@ -221,8 +221,8 @@ const qualifications: Qualification[] = [
     tagline: "Your first step into the fitness industry, done the right way.",
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-AND-PARIS-20220124-IFE-TGGNCC002.jpg",
     overview: [
-      "The Level 2 Gym Instructor Certificate is the industry-standard entry qualification for anyone looking to begin a career in fitness. It equips you with everything you need to work safely and effectively on a gym floor.",
-      "Delivered one-to-one, you will build a genuine foundation of knowledge: anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
+      "The Level 2 Gym Instructor Certificate is the industry standard entry qualification for anyone looking to begin a career in fitness. It equips you with everything you need to work safely and effectively on a gym floor.",
+      "Delivered one to one, you will build a genuine foundation of knowledge: anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
       "If you already know you want to go further, you can upgrade to the Combined Level 2 & 3 Diploma at any point and the cost of this course will be credited against it.",
     ],
     whatYouWillLearn: [

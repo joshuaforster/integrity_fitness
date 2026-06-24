@@ -56,9 +56,37 @@ export const navLinks: readonly NavLink[] = [
   { name: "About Us", href: "/about" },
   { name: "Gallery", href: "/gallery" },
   // { name: "Graduates", href: "/graduates" },
-  // { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/faq" },
   { name: "Contact Us", href: "/contact" },
+];
+
+export type ResourceItem = {
+  name: string;
+  href: string;
+};
+
+export type ResourceCategory = {
+  title: string;
+  items: readonly ResourceItem[];
+};
+
+export const resourceCategories: readonly ResourceCategory[] = [
+  {
+    title: "Training & Nutrition",
+    items: [
+      { name: "BMI & Body Composition", href: "/bmi" },
+      { name: "TDEE & Macro Calculator", href: "/tdee" },
+      { name: "Protein Distribution Planner", href: "/protein" },
+      { name: "1RM Strength Estimator", href: "/rm" },
+    ],
+  },
+  {
+    title: "Business & Knowledge",
+    items: [
+      { name: "PT Income & Tax Calculator", href: "/income" },
+      { name: "Blog & Articles", href: "/blog" },
+    ],
+  },
 ];
 
 export const qualCategories: readonly QualCategory[] = [

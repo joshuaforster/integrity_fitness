@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import qualifications from "@/app/data/qualifications";
-import { blogPosts } from "@/app/content/blog";
+import { allBlogPosts } from "@/app/content/blog";
 import { faqs } from "@/app/content/faqs";
 
 type Result = { title: string; href: string; type: string };
@@ -26,8 +26,11 @@ function buildResults(query: string): Result[] {
     }
   });
 
-  blogPosts.forEach((post) => {
-    if (post.title.toLowerCase().includes(q) || post.excerpt.toLowerCase().includes(q)) {
+  allBlogPosts.forEach((post) => {
+    if (
+      post.title.toLowerCase().includes(q) ||
+      post.excerpt.toLowerCase().includes(q)
+    ) {
       out.push({ title: post.title, href: `/blog/${post.slug}`, type: "Blog" });
     }
   });

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import qualifications from "@/app/data/qualifications";
-import { blogPosts } from "@/app/content/blog";
+import { allBlogPosts } from "@/app/content/blog";
 import { faqs } from "@/app/content/faqs";
 
 type SearchResult = {
@@ -40,7 +40,7 @@ function buildResults(query: string): SearchResult[] {
   });
 
   let blogCount = 0;
-  blogPosts.forEach((post) => {
+  allBlogPosts.forEach((post) => {
     if (blogCount >= MAX_PER_TYPE) return;
     if (
       post.title.toLowerCase().includes(q) ||

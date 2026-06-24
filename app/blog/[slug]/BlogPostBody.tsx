@@ -22,7 +22,9 @@ export default function BlogPostBody({ body, date, author }: Props) {
         >
           ← Back to Blog
         </Link>
-        <span className="text-zinc-300" aria-hidden="true">|</span>
+        <span className="text-zinc-300" aria-hidden="true">
+          |
+        </span>
         <p className="text-zinc-400 text-xs font-semibold tracking-widest uppercase">
           {date}
         </p>
@@ -42,26 +44,31 @@ export default function BlogPostBody({ body, date, author }: Props) {
           </div>
         ) : (
           <div className="w-10 h-10 rounded-full bg-[#CE1A19] flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-sm font-black">{author.name[0]}</span>
+            <span className="text-white text-sm font-black">
+              {author.name[0]}
+            </span>
           </div>
         )}
         <div>
-          <p className="text-zinc-950 text-sm font-black leading-none mb-0.5">{author.name}</p>
+          <p className="text-zinc-950 text-sm font-black leading-none mb-0.5">
+            {author.name}
+          </p>
           <p className="text-zinc-500 text-xs font-medium">{author.role}</p>
         </div>
       </div>
 
-      {/* Body */}
+      {/* Body - Using prose and dangerouslySetInnerHTML */}
       <motion.div
-        className="space-y-6"
+        className="prose prose-zinc max-w-none 
+             prose-p:mb-6 prose-p:leading-relaxed 
+             prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl 
+             prose-headings:font-black prose-h2:text-zinc-950"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: "easeOut" }}
       >
-        {body.map((paragraph, i) => (
-          <p key={i} className="text-zinc-700 text-base md:text-lg leading-relaxed">
-            {paragraph}
-          </p>
+        {body.map((content, i) => (
+          <div key={i} dangerouslySetInnerHTML={{ __html: content }} />
         ))}
       </motion.div>
 
@@ -76,11 +83,18 @@ export default function BlogPostBody({ body, date, author }: Props) {
         <div className="flex items-center gap-3">
           <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-zinc-200">
             {author.avatar && (
-              <Image src={author.avatar} alt={author.name} fill sizes="32px" className="object-cover" />
+              <Image
+                src={author.avatar}
+                alt={author.name}
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
             )}
           </div>
           <span className="text-zinc-500 text-xs font-semibold">
-            Written by <span className="text-zinc-950 font-black">{author.name}</span>
+            Written by{" "}
+            <span className="text-zinc-950 font-black">{author.name}</span>
           </span>
         </div>
       </div>
