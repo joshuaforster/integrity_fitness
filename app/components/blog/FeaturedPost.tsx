@@ -11,7 +11,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
   return (
     <section className="bg-white py-20 md:py-28">
       <SectionWrapper reveal>
-        <SectionHeader label="Latest Post" heading="IReal world experience from those who are where you want to be " headingSize="md" />
+        <SectionHeader label="Latest Post" heading="Real world experience from those who are where you want to be " headingSize="md" />
 
         <motion.div
           className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
