@@ -15,6 +15,15 @@ const TOOLS = [
     badge: "Live UK Rates",
   },
   {
+    id: "study-time",
+    label: "Course Planning",
+    title: "Course Timeline Estimator",
+    tagline:
+      "Find out how long your qualification will realistically take. Dial in your work hours, family situation, and study time to get a personalised estimate.",
+    href: "/study-time",
+    badge: null,
+  },
+  {
     id: "blog",
     label: "Knowledge",
     title: "Blog & Articles",

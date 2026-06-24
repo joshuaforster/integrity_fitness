@@ -84,6 +84,7 @@ export const resourceCategories: readonly ResourceCategory[] = [
     title: "Business & Knowledge",
     items: [
       { name: "PT Income & Tax Calculator", href: "/income" },
+      { name: "Course Timeline Estimator", href: "/study-time" },
       { name: "Blog & Articles", href: "/blog" },
     ],
   },
