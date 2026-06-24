@@ -14,6 +14,12 @@ export type QuoteTestimonialItem = {
 
 // Full testimonials with verified photos — used in the main testimonials carousel
 export const testimonials: readonly TestimonialItem[] = [
+    {
+    name: "Adrian Brown",
+    photo: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/adrian.jpeg",
+    body: "Great provider of the courses, plenty of knowledge and always happy to help. The course was delivered very well, they made it easy to understand and most importantly the information stuck.",
+    subtitle: "Graduate",
+  },
   {
     name: "Grace Sandford",
     photo: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/testimonials/grace.jpeg",

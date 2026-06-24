@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { type FAQItem } from "@/app/content/faqs";
 export type { FAQItem } from "@/app/content/faqs";
 
-export default function AccordionRow({ q, a }: FAQItem) {
+export default function AccordionRow({ q, a, link }: FAQItem) {
   const [isOpen, setIsOpen] = useState(false);
   const panelId = `faq-panel-${q.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40)}`;
 
@@ -47,9 +48,19 @@ export default function AccordionRow({ q, a }: FAQItem) {
             transition={{ duration: 0.32, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-zinc-600 text-sm md:text-base leading-relaxed pl-4 border-l-2 border-[#CE1A19] pb-6">
-              {a}
-            </p>
+            <div className="pl-4 border-l-2 border-[#CE1A19] pb-6">
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
+                {a}
+              </p>
+              {link && (
+                <Link
+                  href={link.href}
+                  className="inline-flex items-center gap-1.5 mt-3 text-[#CE1A19] text-xs font-black uppercase tracking-wider hover:underline"
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -39,7 +39,7 @@ export default function FaqGroup({ group }: { group: FAQGroup }) {
       <div className="border-t border-zinc-200">
         {group.items.map((faqItem) => (
           <motion.div key={faqItem.q} variants={item}>
-            <AccordionRow q={faqItem.q} a={faqItem.a} />
+            <AccordionRow q={faqItem.q} a={faqItem.a} link={faqItem.link} />
           </motion.div>
         ))}
       </div>

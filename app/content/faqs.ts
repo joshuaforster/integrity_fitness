@@ -22,6 +22,7 @@ export const faqCta = {
 export type FAQItem = {
   q: string;
   a: string;
+  link?: { href: string; label: string };
 };
 
 export type FAQGroup = {
@@ -36,6 +37,7 @@ export const faqs: FAQGroup[] = [
       {
         q: "Do you offer flexible payment options?",
         a: "Yes, we tailor your price to your learning needs so you can study at your own pace.",
+        link: { href: "/income", label: "See what different rates put in your pocket → PT Income Calculator" },
       },
       {
         q: "What is the non-refundable deposit?",
@@ -70,6 +72,7 @@ export const faqs: FAQGroup[] = [
       {
         q: "Can I complete the course while working or at University?",
         a: "Yes. Most of the theory is delivered online, so you can work through it in your own time. We then bring you in for practical sessions at weekends, arranged around your existing commitments.",
+        link: { href: "/study-time", label: "Get a personalised timeline estimate → Course Timeline Estimator" },
       },
       {
         q: "How will I be assessed on the course?",
