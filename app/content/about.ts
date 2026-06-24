@@ -153,7 +153,7 @@ export const team: TeamMember[] = [
     role: "Founder",
     meta: "22 Yrs Combined",
     bio: [
-      "Harry started out as a PT in Norwich. Away from the gym he plays basketball, gets stuck into board games, and takes Magic: The Gathering seriously. He also shadows physiotherapists at Spire Norwich. What he picks up there comes straight back into how he coaches.",
+      "Harry started out as a PT in Norwich. Away from the gym he plays basketball, gets stuck into board games, and takes Magic: The Gathering seriously. He also works Physiotherapy assistant at Spire Norwich. What he picks up there comes straight back into how he coaches.",
       "Fitness is part of his life, not all of it. He wants the same for you. A normal life and a fit one should work side by side.",
       "Every session is built around where you are and where you want to get.",
     ],
