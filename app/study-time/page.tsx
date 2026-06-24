@@ -261,10 +261,10 @@ export default function CourseTimeEstimator() {
     setResult(months);
     setCurrentFact(LOADING_FACTS[Math.floor(Math.random() * LOADING_FACTS.length)]);
     setCalcState("loading");
+    setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
     setTimeout(() => {
       setCalcState("done");
       setShowConfetti(true);
-      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
     }, 2800);
   }
 
