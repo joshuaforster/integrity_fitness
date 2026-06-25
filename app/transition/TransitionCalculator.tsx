@@ -60,6 +60,9 @@ export interface Inputs {
   existingSessions: number;
   classesPerWeek: number;
   classRate: number;
+  incomeBufferPct: number;
+  partTimeMonthlyTakeHome: number;
+  partTimeMonths: number;
 }
 
 interface MonthData {
@@ -74,17 +77,18 @@ interface MonthData {
 function buildModel(inp: Inputs): MonthData[] {
   const { employedTakeHome, monthlyExpenses, bizCosts, savings,
           noticePeriod, targetSessions, sessionRate, rampMonths,
-          existingSessions, classesPerWeek, classRate } = inp;
+          existingSessions, classesPerWeek, classRate,
+          incomeBufferPct, partTimeMonthlyTakeHome, partTimeMonths } = inp;
   const totalExp = monthlyExpenses + bizCosts;
+  const bufferFactor = 1 - (incomeBufferPct ?? 0) / 100;
   const existingGross = existingSessions * (52 / 12) * sessionRate;
-  // Classes are booked separately and start at full rate from month 1
   const classGross = classesPerWeek * (52 / 12) * classRate;
 
   const rows: MonthData[] = [];
   let bal = savings;
 
   for (let m = -noticePeriod; m <= 0; m++) {
-    const ptTH = seTakeHome(existingGross);
+    const ptTH = seTakeHome(existingGross * bufferFactor);
     const income = employedTakeHome + ptTH;
     const net = income - totalExp;
     bal += net;
@@ -95,7 +99,9 @@ function buildModel(inp: Inputs): MonthData[] {
     const progress = rampMonths > 0 ? Math.min(1, m / rampMonths) : 1;
     const sessions = existingSessions + (targetSessions - existingSessions) * progress;
     const ptGross = sessions * (52 / 12) * sessionRate;
-    const income = seTakeHome(ptGross + classGross);
+    const ptIncome = seTakeHome((ptGross + classGross) * bufferFactor);
+    const ptSupplement = (partTimeMonthlyTakeHome ?? 0) > 0 && m <= (partTimeMonths ?? 0) ? (partTimeMonthlyTakeHome ?? 0) : 0;
+    const income = ptIncome + ptSupplement;
     const net = income - totalExp;
     bal += net;
     rows.push({ month: m, phase: m <= rampMonths ? "ramp" : "steady", totalIncome: income, expenses: totalExp, net, savingsBalance: bal });
@@ -119,7 +125,8 @@ interface Metrics {
 function calcMetrics(months: MonthData[], inp: Inputs): Metrics {
   const targetPTGross = inp.targetSessions * (52 / 12) * inp.sessionRate;
   const targetClassGross = inp.classesPerWeek * (52 / 12) * inp.classRate;
-  const targetTakeHome = seTakeHome(targetPTGross + targetClassGross);
+  const bufferFactor = 1 - (inp.incomeBufferPct ?? 0) / 100;
+  const targetTakeHome = seTakeHome((targetPTGross + targetClassGross) * bufferFactor);
   const totalExpenses = inp.monthlyExpenses + inp.bizCosts;
   const selfMonths = months.filter((m) => m.month > 0);
 
@@ -148,7 +155,7 @@ const LOADING_FACTS = [
   "Harry's graduates who transition to full-time PT say the first 6 months are the hardest thing they've ever done — and the most rewarding career decision they've ever made.",
 ];
 
-const STORAGE_KEY = "transition_calc_v2";
+const STORAGE_KEY = "transition_calc_v3";
 
 // ── Confetti ──────────────────────────────────────────────────────────────────
 
@@ -453,6 +460,9 @@ const DEFAULTS: Inputs = {
   existingSessions: 0,
   classesPerWeek: 0,
   classRate: 30,
+  incomeBufferPct: 10,
+  partTimeMonthlyTakeHome: 0,
+  partTimeMonths: 6,
 };
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -673,6 +683,45 @@ export default function TransitionCalculator() {
                   benchmark="Most employment contracts are 1–3 months — check yours carefully"
                 />
               </div>
+
+              <div className="h-px bg-zinc-200" />
+
+              <div>
+                <CalcSectionLabel
+                  title="Part-time income during transition"
+                  optional
+                  hint="If you plan to drop hours at your current job (or take a flexible part-time role) while building your PT business, enter your monthly take-home. This fills the gap during your ramp-up and frees hours for PT delivery and marketing."
+                />
+                <CalcInputField
+                  label="Monthly take-home from part-time work (£)"
+                  value={inp.partTimeMonthlyTakeHome}
+                  onChange={set("partTimeMonthlyTakeHome")}
+                  min={0}
+                  max={3_000}
+                  step={50}
+                  benchmark="Reduced hours at current job or flexible role: typically £600–£1,400/month"
+                />
+                {inp.partTimeMonthlyTakeHome > 0 && (
+                  <div className="mt-4">
+                    <CalcSectionLabel
+                      title="How many months will you keep this?"
+                      hint="Once your PT income is sustainable you can drop the part-time role. Set this to roughly coincide with when you expect to reach break-even."
+                    />
+                    <CalcInputField
+                      label="Part-time duration (months)"
+                      value={inp.partTimeMonths}
+                      onChange={set("partTimeMonths")}
+                      min={1}
+                      max={24}
+                      step={1}
+                      benchmark="Most PTs bridge with a part-time role for 3–12 months while building their client base"
+                    />
+                    <p className="text-xs text-zinc-500 mt-2 font-semibold">
+                      = {GBP(inp.partTimeMonthlyTakeHome)}/month supplementary income for months 1–{inp.partTimeMonths}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </CalcCard>
 
@@ -820,6 +869,50 @@ export default function TransitionCalculator() {
                   step={1}
                   benchmark="Even 2–3 sessions/week before you leave dramatically cuts your break-even timeline"
                 />
+              </div>
+
+              <div className="h-px bg-zinc-200" />
+
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-2">
+                  <CalcSectionLabel
+                    title="Income buffer"
+                    hint="Reduces projected PT income to account for no-shows, illness, holidays, and quiet periods. A 10% buffer produces more realistic projections for most self-employed PTs."
+                  />
+                  <div className="flex items-baseline gap-1 flex-shrink-0 mt-1">
+                    <input
+                      type="number"
+                      value={inp.incomeBufferPct}
+                      min={0}
+                      max={40}
+                      onFocus={(e) => e.target.select()}
+                      onChange={(e) => set("incomeBufferPct")(Math.min(40, Math.max(0, Number(e.target.value) || 0)))}
+                      className="w-14 text-2xl font-black text-zinc-950 tabular-nums bg-transparent border-0 border-b-2 border-zinc-200 focus:border-[#CE1A19] focus:outline-none text-left"
+                    />
+                    <span className="text-3xl font-black text-[#CE1A19] leading-none ml-2">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={40}
+                  step={1}
+                  value={inp.incomeBufferPct}
+                  onChange={(e) => set("incomeBufferPct")(Number(e.target.value))}
+                  className="w-full h-1.5 rounded-full cursor-pointer appearance-none
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
+                    [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#CE1A19]
+                    [&::-webkit-slider-thumb]:shadow-[0_1px_6px_rgba(206,26,25,0.5)] [&::-webkit-slider-thumb]:-mt-[6px]
+                    [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full
+                    [&::-moz-range-thumb]:bg-[#CE1A19] [&::-moz-range-thumb]:border-0"
+                  style={{
+                    background: `linear-gradient(to right, #CE1A19 ${(inp.incomeBufferPct / 40) * 100}%, #e4e4e7 ${(inp.incomeBufferPct / 40) * 100}%)`,
+                  }}
+                />
+                <div className="flex justify-between mt-1.5">
+                  <span className="text-xs text-zinc-500">0% (no buffer)</span>
+                  <span className="text-xs text-zinc-500">40% (very conservative)</span>
+                </div>
               </div>
             </div>
 
@@ -982,6 +1075,63 @@ export default function TransitionCalculator() {
                             sub={metrics.savingsSufficient ? `${GBP(inp.savings)} appears sufficient` : "Estimated extra savings needed"}
                             tone={metrics.savingsSufficient ? "success" : "danger"}
                           />
+                        </motion.div>
+
+                        {/* Projected Timeline */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.23 }}
+                        >
+                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-4">Estimated Transition Timeline</p>
+                          <div className="rounded-2xl border border-zinc-200 overflow-hidden">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-zinc-200">
+                              {([
+                                { icon: "M0", label: "Full-time PT", detail: "You go self-employed", tone: "neutral" },
+                                {
+                                  icon: metrics.breakEvenMonth !== null ? `~M${metrics.breakEvenMonth}` : "24mo+",
+                                  label: "Break-even",
+                                  detail: "Income ≥ expenses",
+                                  tone: metrics.breakEvenMonth !== null && metrics.breakEvenMonth <= 9 ? "success" : metrics.breakEvenMonth === null ? "danger" : "warning",
+                                },
+                                {
+                                  icon: metrics.salaryMatchMonth !== null ? `~M${metrics.salaryMatchMonth}` : "24mo+",
+                                  label: "Salary matched",
+                                  detail: `≥ ${GBP(inp.employedTakeHome)}/mo`,
+                                  tone: metrics.salaryMatchMonth !== null && metrics.salaryMatchMonth <= 14 ? "success" : "warning",
+                                },
+                                {
+                                  icon: metrics.recoveryMonth !== null ? `~M${metrics.recoveryMonth}` : "—",
+                                  label: "Savings recovered",
+                                  detail: metrics.recoveryMonth !== null ? "Back to starting balance" : "Not within 24 months",
+                                  tone: metrics.recoveryMonth !== null ? "success" : "neutral",
+                                },
+                              ] as { icon: string; label: string; detail: string; tone: string }[]).map(({ icon, label, detail, tone }, i) => {
+                                const bgMap: Record<string, string> = { neutral: "bg-zinc-50", success: "bg-emerald-50", danger: "bg-red-50", warning: "bg-amber-50" };
+                                const iconMap: Record<string, string> = { neutral: "text-zinc-400", success: "text-emerald-600", danger: "text-[#CE1A19]", warning: "text-amber-600" };
+                                const labelMap: Record<string, string> = { neutral: "text-zinc-700", success: "text-emerald-700", danger: "text-[#CE1A19]", warning: "text-amber-700" };
+                                return (
+                                  <div key={i} className={`px-5 py-5 ${bgMap[tone]}`}>
+                                    <p className={`text-2xl font-black tabular-nums leading-none mb-2 ${iconMap[tone]}`}>{icon}</p>
+                                    <p className={`text-xs font-black uppercase tracking-widest mb-1 ${labelMap[tone]}`}>{label}</p>
+                                    <p className="text-[11px] text-zinc-500 leading-snug">{detail}</p>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                            {(inp.incomeBufferPct > 0 || inp.partTimeMonthlyTakeHome > 0) && (
+                              <div className="px-5 py-3 border-t border-zinc-200 bg-zinc-50 flex flex-wrap gap-x-6 gap-y-1">
+                                {inp.incomeBufferPct > 0 && (
+                                  <p className="text-[10px] text-zinc-400">
+                                    <span className="font-bold text-zinc-600">{inp.incomeBufferPct}% income buffer</span> applied to all PT projections
+                                  </p>
+                                )}
+                                {inp.partTimeMonthlyTakeHome > 0 && (
+                                  <p className="text-[10px] text-zinc-400">
+                                    <span className="font-bold text-zinc-600">{GBP(inp.partTimeMonthlyTakeHome)}/mo part-time income</span> included for months 1–{inp.partTimeMonths}
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </motion.div>
 
                         {/* Safety panel */}
