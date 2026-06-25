@@ -6,6 +6,15 @@ import Link from "next/link";
 
 const TOOLS = [
   {
+    id: "transition",
+    label: "Career Planning",
+    title: "Can I Go Full-Time?",
+    tagline:
+      "Your month-by-month path from employed to self-employed. See the dip, the break-even, and the exact month you beat your old salary — before you hand in your notice.",
+    href: "/transition",
+    badge: "New",
+  },
+  {
     id: "income",
     label: "Business",
     title: "PT Income & Tax Calculator",

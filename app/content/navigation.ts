@@ -85,6 +85,7 @@ export const resourceCategories: readonly ResourceCategory[] = [
     items: [
       { name: "PT Income & Tax Calculator", href: "/income" },
       { name: "Course Timeline Estimator", href: "/study-time" },
+      { name: "Can I Go Full-Time?", href: "/transition" },
       { name: "Find Your Fitness Niche", href: "/niche" },
       { name: "Blog & Articles", href: "/blog" },
     ],
