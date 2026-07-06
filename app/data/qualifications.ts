@@ -276,7 +276,7 @@ const qualifications: Qualification[] = [
     pricing: [
       {
         name: "Independent",
-        price: { monthly: 79.99, yearly: 699 },
+        price: { monthly: 99, yearly: 699 },
         deposit: 299,
         description: "Our most cost effective option. Fully self-paced study with all course materials included.",
         includes: [
@@ -295,7 +295,7 @@ const qualifications: Qualification[] = [
       },
       {
         name: "Part Time",
-        price: { monthly: 99.99, yearly: 799 },
+        price: { monthly: 119, yearly: 799 },
         deposit: 299,
         description: "Includes our bespoke 1-1 tuition alongside flexible study.",
         includes: [
@@ -316,7 +316,7 @@ const qualifications: Qualification[] = [
       },
       {
         name: "Full Time",
-        price: { monthly: 119.99, yearly: 899 },
+        price: { monthly: 1149, yearly: 899 },
         deposit: 299,
         description: "The best possible learning experience — the fastest route to qualified.",
         includes: [
