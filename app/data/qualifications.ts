@@ -316,7 +316,7 @@ const qualifications: Qualification[] = [
       },
       {
         name: "Full Time",
-        price: { monthly: 1149, yearly: 899 },
+        price: { monthly: 149, yearly: 899 },
         deposit: 299,
         description: "The best possible learning experience — the fastest route to qualified.",
         includes: [
