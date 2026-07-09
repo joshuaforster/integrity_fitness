@@ -80,7 +80,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-07-03",
     category: "Coaching",
     excerpt: "Most new PTs picture working with young, motivated gym-goers. The reality is usually very different.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_005.JPG",
     author: HARRY,
     body: clean([
       "<p>Before you start working as a PT, you probably have a picture in your head of who your clients will be. Young people wanting to get in shape, perhaps. People who are already motivated, who show up ready to go and just need someone to point them in the right direction. The reality is usually something else entirely - and the sooner you make peace with that, the better the PT you will become.</p>",
@@ -96,7 +96,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-07-17",
     category: "Business",
     excerpt: "The fitness industry tells you that looking the part is the key to getting clients.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_012.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a persistent idea in fitness that if you look the part - lean, muscular, permanently tanned and smiling on a beach somewhere - the clients will follow. Post the right photos, project the right image, and your diary will fill itself. The PTs who have actually built sustainable businesses will tell you it is a lot more complicated than that.</p>",
@@ -112,7 +112,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-07-31",
     category: "Training",
     excerpt: "The grind culture that dominates fitness content is not just annoying — it actively puts people off exercise and leads to injury.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_020.JPG",
     author: HARRY,
     body: clean([
       "<p>Open any fitness app, scroll through any training account on social media, and you will find the same message repeated in different fonts: grind. Hustle. No days off. Suffer for results. It is a compelling narrative. It is also, for most people, genuinely counterproductive - and as a PT, one of your most important jobs is helping clients unlearn it.</p>",
@@ -128,7 +128,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-08-14",
     category: "Business",
     excerpt: "The PTs who fill their diaries fastest are not the ones with the best sales pitch. They are the ones who build genuine relationships on the gym floor.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_028.JPG",
     author: HARRY,
     body: clean([
       "<p>Nobody wants to feel sold to. Walk into a gym and be approached by a PT whose eyes light up at the sight of a potential client, and most people will do everything possible to avoid a repeat of that experience. Yet somehow, new PTs still think the way to build a client base is to get better at sales. It is not. It is to get better at being genuinely useful to people.</p>",
@@ -144,7 +144,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-08-28",
     category: "Coaching",
     excerpt: "The PT who hoards knowledge to keep clients dependent has it backwards. The best coaches make themselves replaceable — and that is exactly why clients stay.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_035.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a version of PT that works by keeping clients dependent. You give them just enough information to keep coming back, but never enough to be truly independent. The theory is that if they can do it without you, they will. It is a cynical approach, and it backfires more often than not - because clients eventually figure out that they are being managed rather than coached, and they leave anyway.</p>",
@@ -160,7 +160,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-09-11",
     category: "Coaching",
     excerpt: "New PTs fear admitting they do not have all the answers. In reality, saying 'I don't know but I'll find out' is one of the most powerful things you can say.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_042.JPG",
     author: HARRY,
     body: clean([
       "<p>Early in your career as a PT, there will be moments when a client asks you something and you do not know the answer. The temptation is to say something - to fill the silence with your best guess, to project confidence you do not quite feel. Resist it. The smartest, most trust-building response you can give is: I am not sure about that, but I will find out before your next session.</p>",
@@ -176,7 +176,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-09-25",
     category: "Education",
     excerpt: "Not all PT qualifications are the same. The course format, the tutor quality, and the awarding body all matter — here is what to look for before you sign up.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_050.JPG",
     author: HARRY,
     body: clean([
       "<p>If you are thinking about getting your personal training qualification, you will quickly discover that there are a lot of options out there. Online or in-person. Two weeks or six months. Different awarding bodies, different prices, different claims about pass rates and support. It can feel overwhelming. But not all PT courses are created equal, and the one you choose will affect not just whether you pass, but how prepared you actually are to do the job.</p>",
@@ -193,7 +193,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-10-09",
     category: "Industry",
     excerpt: "The coaches who make the best educators are the ones who never stop coaching. Here is why staying on the gym floor matters.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_058.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a version of career progression in fitness that looks like this: qualify, build a client base, start running courses, move into education, and gradually stop doing the hands-on work. It seems like a natural arc. But the best educators in this industry - the ones whose students actually come out the other side ready to work - are almost always the ones who never stopped coaching real clients.</p>",
@@ -209,7 +209,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-10-23",
     category: "Stories",
     excerpt: "Some of the best PTs in the industry did not come through the conventional route. Their stories are worth knowing.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_065.JPG",
     author: HARRY,
     body: clean([
       "<p>The conventional story of how someone becomes a personal trainer goes something like this: they played sport growing up, they got into training, they decided to turn their passion into a career, they qualified. It is a common path, and there is nothing wrong with it. But it is far from the only one - and some of the most effective coaches I know came from completely different places.</p>",
@@ -225,7 +225,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-11-06",
     category: "Business",
     excerpt: "Your hourly rate is not your income. Once you factor in tax, national insurance, holidays, sick pay, and pension, the maths looks very different — and nobody on your Level 3 course will do it with you.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_072.JPG",
     author: HARRY,
     body: clean([
       "<p>One of the most common conversations I have with newly qualified PTs goes something like this: they are charging £40 a session, doing fifteen sessions a week, and doing the sum on the back of an envelope. Forty times fifteen times four times twelve. Great number. Then January arrives and HMRC would like a word.</p>",
@@ -241,7 +241,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-11-20",
     category: "Business",
     excerpt: "PTs avoid setting cancellation policies because they seem harsh. In reality, a well-framed policy removes the psychological opt-out for the clients who most need accountability.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20230329-IFE-CF_050.JPG",
     author: HARRY,
     body: clean([
       "<p>Most new PTs are uncomfortable with the idea of charging for a missed session. It feels punitive. It feels like putting money before the client relationship. But there is another way to think about it — and once you have seen it clearly, the discomfort largely disappears.</p>",
@@ -257,7 +257,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-12-04",
     category: "Business",
     excerpt: "Clients who pay more show up differently. The investment effect is real — and understanding it will change how you think about setting your rates.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-AND-PARIS-MATTHEWS-20220124-IFE-TGGNCC003.jpg",
     author: HARRY,
     body: clean([
       "<p>There is a story from Adam Beard and Dom Hills that stuck with me. They describe a PT who was charging around £18 a session and spending most of each session on their phone. The clients who worked with this PT were, correspondingly, disengaged — not doing their homework, cancelling without notice, treating sessions as optional. The pricing and the client attitude were entirely consistent with each other.</p>",
@@ -273,7 +273,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2026-12-18",
     category: "Career",
     excerpt: "New PTs who refuse 6am and 8pm slots and then wonder why their diary is empty have created their own problem. The right to work comfortable hours is earned, not assumed.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/BURY-BASKETBALL-HARRY-IFE-TGGNHR_035.jpg",
     author: HARRY,
     body: clean([
       "<p>Dom Hills is not a morning person. He says so openly. He is also very clear about what got him through his first few years of building a PT business: he is a money person. Those two facts produced a simple rule — if a client wanted 6am, they got 6am. The discomfort of the early start was the cost of a session in the diary, and a session in the diary was worth more than an extra hour in bed.</p>",
@@ -289,7 +289,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-01-08",
     category: "Career",
     excerpt: "Several clients cancelling in the same week is a completely normal fluctuation. Most new PTs misread it as evidence they made a terrible mistake. Here is how to read it correctly.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-PHONE-2-20220124-IFE-TGGNCC032.jpg",
     author: HARRY,
     body: clean([
       "<p>Most PTs experience it in the first year or two. A couple of clients cancel in the same week, or three or four people go quiet in a row, and the immediate response is a spiral: I have made a terrible mistake, this is not working, I should never have done this. Adam Beard describes this as one of the most predictable and most avoidable crises in early PT careers — and the solution is largely about preparation rather than strategy.</p>",
@@ -305,7 +305,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-01-22",
     category: "Business",
     excerpt: "The answer is not better social media content. It is showing up, being genuinely useful, and having real conversations before any money ever changes hands.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-PHONE-20220124-IFE-TGGNCC033.jpg",
     author: HARRY,
     body: clean([
       "<p>When Dom Hills was starting out, he did not have a following. He did not have before and after photos. He had a gym membership, a new qualification, and a decision to make about how to spend his time. What he did with it was simple and unglamorous: he ran a free 12-week group session, approached people at gym machines, and offered demonstration sessions to anyone who asked. None of it was sophisticated. All of it worked.</p>",
@@ -321,7 +321,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-02-05",
     category: "Business",
     excerpt: "The most efficient business development tool available to a PT is not advertising. It is a genuine reciprocal relationship with professionals who see your potential clients before you do.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_005.JPG",
     author: HARRY,
     body: clean([
       "<p>Dom Hills describes his client acquisition at this point in his career as largely self-sustaining. The bulk of it — 80 to 90 per cent, by his own estimate — comes through his website and a referral network he has built over years. The advertising budget is essentially zero. The networking investment was significant, but it was a different kind of investment: time, goodwill, and a willingness to send business to other people before expecting any in return.</p>",
@@ -337,7 +337,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-02-19",
     category: "Business",
     excerpt: "Dom Hills gets 80 to 90 per cent of his new business from his website. His core clients are over 35 and they search, not scroll. If you do not have a website, you are invisible to the people most likely to pay a proper rate.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_012.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a version of PT marketing that is entirely Instagram-native — reels, transformation photos, motivational quotes, clips of lifts. It is not useless, and for a specific kind of client it may be exactly right. But Dom Hills describes his actual client base and his actual acquisition channels, and neither of them looks much like Instagram.</p>",
@@ -353,7 +353,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-03-05",
     category: "Career",
     excerpt: "A PT who works without days off is not dedicated. They are depleted. And the people paying them are getting the version of them that has nothing left in the tank.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_020.JPG",
     author: HARRY,
     body: clean([
       "<p>Charlie Wade has a line about the period in his early career when he was working every day with only every other Saturday off. He describes the version of himself showing up in those sessions — not the most flattering portrait. His exact words: they come in and I am like, you are a miserable bastard. He was, by his own account, the problem.</p>",
@@ -369,7 +369,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-03-19",
     category: "Career",
     excerpt: "The income figures in PT course marketing describe the ceiling, not the floor. Year one will probably feel closer to an apprenticeship wage than a professional salary. That is not failure — it is how this career works.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_028.JPG",
     author: HARRY,
     body: clean([
       "<p>PT course advertising tends to lead with the upper end of what PTs earn. The implication is that these figures represent what you can expect once you qualify. They do not. They represent what experienced, established PTs earn after years of building a client base and a reputation. A newly qualified PT earning that in year one would be a significant outlier.</p>",
@@ -385,7 +385,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-04-02",
     category: "Career",
     excerpt: "Adam Beard's advice to his younger self: stop mimicking the PT you admire and deliver from your own values. Quiet patches are usually identity crises, not strategy problems.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_035.JPG",
     author: HARRY,
     body: clean([
       "<p>When things get quiet — when the diary is not filling as fast as you need it to, when enquiries dry up, when the comparison to another PT's apparently packed schedule becomes hard to ignore — the temptation is to look at what they are doing and try to replicate it. Adam Beard has thought about this a lot, and his conclusion is that this instinct is usually the wrong one.</p>",
@@ -401,7 +401,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-04-16",
     category: "Stories",
     excerpt: "When Dom Hills competed in bodybuilding, he was in the best physical shape of his life. He also describes those 8 months as the worst stretch of his PT career. The two things are directly connected.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_042.JPG",
     author: HARRY,
     body: clean([
       "<p>Dom Hills is clear about what his bodybuilding competition prep did to his business. He describes the eight months of it as his worst professional period — and then adds the detail that makes it useful rather than just cautionary: as soon as he finished the competition and started eating normally again, his personality came back, and his clients actually started to like him again. That sequence is worth unpacking.</p>",
@@ -417,7 +417,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-04-30",
     category: "Coaching",
     excerpt: "The client who won't follow their nutrition plan is not failing. They are telling you something about what kind of help they actually need. The right response is a pivot, not a dismissal.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_050.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a reflex that some PTs develop when clients consistently fail to follow through on the plan — a frustration that eventually tips into the idea that the client is simply not motivated enough, and that continuing to work with them is a poor use of everyone's time. Dom Hills challenges this directly, and his counter-argument is worth taking seriously.</p>",
@@ -433,7 +433,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-05-14",
     category: "Coaching",
     excerpt: "Charlie Wade identifies two fundamentally different kinds of PT client. Treating one like the other is one of the most common and quietly costly coaching mistakes you can make.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_058.JPG",
     author: HARRY,
     body: clean([
       "<p>Not all PT clients come to you for the same thing. Charlie Wade has spent years identifying this distinction, and it has changed the way he approaches initial consultations. The core split is between what he calls the accountability client and the goal client. They look similar on the surface. They require very different things from you.</p>",
@@ -449,7 +449,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-05-28",
     category: "Coaching",
     excerpt: "If a client says they want to train four times a week, Dom's question is: what is the minimum they will actually do? The answer is usually different — and it matters more than the aspiration.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_065.JPG",
     author: HARRY,
     body: clean([
       "<p>Dom Hills has a question he asks clients who tell him they want to train four times a week. He does not dispute the aspiration. He asks what the minimum is that they can actually commit to. The distinction sounds subtle. Its practical consequences are significant.</p>",
@@ -465,7 +465,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-06-11",
     category: "Coaching",
     excerpt: '"Has anything been off-plan?" and "what have you done wrong?" ask the same question. Only one creates a coaching relationship that lasts. The small language choices compound over months.',
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_072.JPG",
     author: HARRY,
     body: clean([
       "<p>Dom Hills uses a specific contrast when he talks about check-in conversations: \"has anything been off-plan this week?\" versus \"what have you done wrong?\" Both questions are asking for the same information. Only one of them creates a space where the client can be honest without feeling ashamed. The difference seems small. Over months of weekly sessions, it is enormous.</p>",
@@ -481,7 +481,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-06-25",
     category: "Coaching",
     excerpt: "Marcin's rule: the first fortnight is talking, movement assessment, and low intensity. The PT who goes hard from day one is usually performing for their own confidence, not coaching for the client's benefit.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20230329-IFE-CF_050.JPG",
     author: HARRY,
     body: clean([
       "<p>Marcin from Perun Strength has a structure for the first phase of any new client relationship, and it is worth describing precisely because it runs counter to what a lot of new PTs feel they should be doing. The first two weeks are intentionally unhurried. A lot of talking. Movement assessment at low intensity. Building trust and gathering information before anything demanding is attempted.</p>",
@@ -497,7 +497,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-07-09",
     category: "Coaching",
     excerpt: "Marcin's question: are you motivated to brush your teeth? The goal of coaching is not to inspire clients before every session. It is to make training a default behaviour that does not require inspiration.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-AND-PARIS-MATTHEWS-20220124-IFE-TGGNCC003.jpg",
     author: HARRY,
     body: clean([
       "<p>Marcin has a simple question he asks when the motivation versus consistency conversation comes up: are you motivated to brush your teeth? The answer is almost always no. You just do it. It is not a choice you make fresh each morning — it is a behaviour so deeply embedded that motivation is irrelevant to its execution. That, he argues, is the actual goal of sustainable fitness coaching. Not inspiration. Not accountability speeches. Habit formation.</p>",
@@ -513,7 +513,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-07-23",
     category: "Coaching",
     excerpt: "Charlie Wade used the idea of starting with one small completed task to help clients rebuild momentum during difficult periods. The principle applies to every client who is struggling to get started.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/BURY-BASKETBALL-HARRY-IFE-TGGNHR_035.jpg",
     author: HARRY,
     body: clean([
       "<p>Charlie Wade describes using Jordan Peterson's make-your-bed idea during the COVID lockdown period when his clients were struggling with motivation, isolation, and the collapse of their normal routines. The principle is straightforward: completing one small task creates a psychological foothold from which the second task becomes more achievable. The first box ticked changes the texture of what follows.</p>",
@@ -529,7 +529,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-08-06",
     category: "Training",
     excerpt: "Marcin's question for anyone recommending HIIT to a beginner: can they run at a steady tempo for 15 minutes first? If not, there is no aerobic base for HIIT to work with — and you are setting them up for injury.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-PHONE-2-20220124-IFE-TGGNCC032.jpg",
     author: HARRY,
     body: clean([
       "<p>Marcin has a specific test he applies before considering any kind of high-intensity interval work with a new client: can they sustain a steady, comfortable tempo run for fifteen minutes? If the answer is no, HIIT is not the next step. It is the much later step, for which this is the prerequisite.</p>",
@@ -545,7 +545,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-08-20",
     category: "Training",
     excerpt: "Marcin calls the deload 'black magic' to most clients. They feel cheated by a lighter week. The reason it never gets explained properly is that it is not exciting content. Here is why it matters.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/HARRY-PHONE-20220124-IFE-TGGNCC033.jpg",
     author: HARRY,
     body: clean([
       "<p>Marcin uses the phrase black magic when describing how most clients react to seeing a deload week in their programme. Their response is some version of: this feels like nothing, I came here to train hard, this is a waste of a session. The explanation for why this week is not a step backwards but a structural requirement of the weeks that follow does not go viral — which is why almost nobody explains it, and almost every client has to be educated about it directly.</p>",
@@ -561,7 +561,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-09-03",
     category: "Training",
     excerpt: "Marcin's clients make the most dramatic progress from resistance bands, isometric holds, and controlled tempo work — the exercises that never trend because they are not visually impressive.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_005.JPG",
     author: HARRY,
     body: clean([
       "<p>Marcin makes an observation about social media fitness content that anyone who has spent time watching exercise videos will recognise: the most dramatic-looking exercises are the ones that trend, and the most effective exercises are almost never dramatic-looking. The correlation between virality and effectiveness is close to zero. It may even be negative.</p>",
@@ -577,7 +577,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-09-17",
     category: "Training",
     excerpt: "The client asking about cortisol-blocking supplements before addressing their sleep is asking the wrong question. Marcin's response: blackout blinds, last coffee time, phone off before bed — not a pill.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_012.JPG",
     author: HARRY,
     body: clean([
       "<p>Marcin describes a type of conversation he has regularly: a client presenting with elevated stress, poor recovery, and difficulty losing weight despite effort in the gym, asking about cortisol-blocking supplements. His first question is always the same: what is the sleep situation? The supplement question is usually premature.</p>",
@@ -593,7 +593,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-10-01",
     category: "Business",
     excerpt: "Marcin had a client who achieved outstanding results. He chose not to use those results as marketing. The reason is not modesty — it is honesty about what one person's results can promise to another.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_020.JPG",
     author: HARRY,
     body: clean([
       "<p>Marcin describes having a client who did everything right: consistent training, dialled nutrition, full commitment over a significant period. The results were outstanding — the kind that would look compelling in any before and after post. He declined to use them as marketing. His explanation for why is worth hearing.</p>",
@@ -609,7 +609,7 @@ export const allBlogPosts: BlogPost[] = [
     publishDate: "2027-10-15",
     category: "Industry",
     excerpt: "Marcin has a specific critique of the performative hustle culture that describes ordinary PT work as frontline warfare. The posturing harms the profession and flatters mediocrity.",
-    image: "/images/blog-placeholder.jpg",
+    image: "/images/20221115-IFE-CF_028.JPG",
     author: HARRY,
     body: clean([
       "<p>There is a vocabulary that has developed in fitness professional circles for describing the experience of working as a PT. The trenches. The front lines. Being in the thick of it. The language is borrowed from places where those metaphors have actual weight — and Marcin has a fairly unambiguous view of how it applies to someone spending most of their shift in the staffroom with a Tupperware lid.</p>",
@@ -622,7 +622,9 @@ export const allBlogPosts: BlogPost[] = [
 
 export function getPublishedPosts(): BlogPost[] {
   const today = new Date();
-  return allBlogPosts.filter((p) => new Date(p.publishDate) <= today);
+  return allBlogPosts
+    .filter((p) => new Date(p.publishDate) <= today)
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 }
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
