@@ -12,6 +12,7 @@ import {
   CalcInfoModal,
   CalcSectionLabel,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
 /* ── Storage ────────────────────────────────────────────────────────────── */
 const STORAGE_KEY = "pt-calc-v1";
@@ -93,6 +94,47 @@ const DEFAULT_RATES: TaxRates = {
   ni4UpperRate:      TAX.ni4UpperRate,
 };
 
+/* ── Server-side calculation result ───────────────────────────────────────
+   Shape returned by POST /api/income — all the tax/NI/take-home maths
+   happens server-side, not here. Both the main form and the "lever mix"
+   goal-planning sliders below post to this same endpoint. */
+interface IncomeResult {
+  annualPt: number;
+  annualOnline: number;
+  annualClass: number;
+  grossRevenue: number;
+  bufferAmount: number;
+  adjustedRevenue: number;
+  totalExpenses: number;
+  taxableProfit: number;
+  taxableAfterPA: number;
+  incomeTax: number;
+  niClass4: number;
+  netYearly: number;
+  netMonthly: number;
+  netWeekly: number;
+}
+
+// Matches the result the API would return for the default inputs below
+// (15 PT sessions/wk @ £45, standard default expenses, 10% buffer, fallback
+// tax rates) — so the first paint isn't blank while the first request is in flight.
+const DEFAULT_RESULT: IncomeResult = {
+  annualPt: 35100,
+  annualOnline: 0,
+  annualClass: 0,
+  grossRevenue: 35100,
+  bufferAmount: 3510,
+  adjustedRevenue: 31590,
+  totalExpenses: 6460,
+  taxableProfit: 25130,
+  taxableAfterPA: 12560,
+  incomeTax: 2512,
+  niClass4: 753.6,
+  netYearly: 21864.4,
+  netMonthly: 1822.0333333333333,
+  netWeekly: 420.46923076923076,
+};
+
 /* ── Page ───────────────────────────────────────────────────────────────── */
 export default function Calculator() {
   const s = loadStored();
@@ -117,6 +159,8 @@ export default function Calculator() {
   const [bufferPct, setBufferPct] = useState(s.bufferPct ?? 10);
 
   const [rates, setRates] = useState<TaxRates>(DEFAULT_RATES);
+  const [mainResult, setMainResult] = useState<IncomeResult>(DEFAULT_RESULT);
+  const [leverResult, setLeverResult] = useState<IncomeResult>(DEFAULT_RESULT);
   const [calcState, setCalcState] = useState<"idle" | "loading" | "done">("idle");
   const [currentFact, setCurrentFact] = useState("");
   const [goalNet, setGoalNet] = useState(40000);
@@ -154,64 +198,44 @@ export default function Calculator() {
     void loadRates();
   }, []);
 
-  /* ── Calculations ─────────────────────────────────────────────────────── */
-  const annualPt = ptSessions * ptPrice * 52;
-  const annualOnline = onlineClients * onlinePrice * 12;
-  const annualClass = classesPerWeek * classAttendees * classPricePerHead * 52;
-  const grossRevenue = annualPt + annualOnline + annualClass;
-  const bufferAmount = grossRevenue * (bufferPct / 100);
-  const adjustedRevenue = grossRevenue - bufferAmount;
+  /* ── Calculations (server-side) ───────────────────────────────────────
+     The tax/NI/take-home maths lives in POST /api/income, not here. We send
+     the raw form inputs, debounced so we don't fire a request on every
+     keystroke/slider tick — only the last value in a burst actually
+     triggers a call. */
+  const mainCalcInputs = {
+    ptSessions, ptPrice, onlineClients, onlinePrice,
+    classesPerWeek, classAttendees, classPricePerHead,
+    gymRent, software, phone, marketing, travel,
+    insurance, cpd, equipment, accountant, membership, bufferPct,
+  };
+  const debouncedMainInputs = useDebouncedValue(mainCalcInputs, 300);
 
-  const annualMonthlyExpenses = (gymRent + software + phone + marketing + travel) * 12;
-  const annualYearlyExpenses = insurance + cpd + equipment + accountant + membership;
-  const totalExpenses = annualMonthlyExpenses + annualYearlyExpenses;
-  const taxableProfit = Math.max(0, adjustedRevenue - totalExpenses);
-  const taxableAfterPA = Math.max(0, taxableProfit - rates.personalAllowance);
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one if the
+    // user changes the inputs again before this request comes back.
+    let cancelled = false;
 
-  let incomeTax = 0;
-  let niClass4 = 0;
-  if (taxableProfit > rates.personalAllowance) {
-    const basicTaxable = Math.min(taxableProfit, rates.basicRateLimit) - rates.personalAllowance;
-    incomeTax += basicTaxable * rates.basicRate;
-    niClass4 += basicTaxable * rates.ni4MainRate;
-    if (taxableProfit > rates.basicRateLimit) {
-      const higherTaxable = Math.min(taxableProfit, rates.higherRateLimit) - rates.basicRateLimit;
-      incomeTax += higherTaxable * rates.higherRate;
-      niClass4 += higherTaxable * rates.ni4UpperRate;
-      if (taxableProfit > rates.higherRateLimit) {
-        incomeTax += (taxableProfit - rates.higherRateLimit) * rates.additionalRate;
-        niClass4 += (taxableProfit - rates.higherRateLimit) * rates.ni4UpperRate;
-      }
-    }
-  }
+    fetch("/api/income", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedMainInputs),
+    })
+      .then((res) => res.json())
+      .then((data: IncomeResult) => {
+        if (!cancelled) setMainResult(data);
+      });
 
-  const netYearly = taxableProfit - incomeTax - niClass4;
-  const netMonthly = netYearly / 12;
-  const netWeekly = netYearly / 52;
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedMainInputs]);
 
-  /* ── Goal helpers ─────────────────────────────────────────────────────── */
-  function calcNetFromGross(gross: number): number {
-    const buf = gross * (bufferPct / 100);
-    const adj = gross - buf;
-    const taxable = Math.max(0, adj - totalExpenses);
-    let tax = 0, ni = 0;
-    if (taxable > rates.personalAllowance) {
-      const basic = Math.min(taxable, rates.basicRateLimit) - rates.personalAllowance;
-      tax += basic * rates.basicRate;
-      ni += basic * rates.ni4MainRate;
-      if (taxable > rates.basicRateLimit) {
-        const higher = Math.min(taxable, rates.higherRateLimit) - rates.basicRateLimit;
-        tax += higher * rates.higherRate;
-        ni += higher * rates.ni4UpperRate;
-        if (taxable > rates.higherRateLimit) {
-          tax += (taxable - rates.higherRateLimit) * rates.additionalRate;
-          ni += (taxable - rates.higherRateLimit) * rates.ni4UpperRate;
-        }
-      }
-    }
-    return taxable - tax - ni;
-  }
-
+  const {
+    annualPt, annualOnline, annualClass, grossRevenue, bufferAmount, adjustedRevenue,
+    totalExpenses, taxableProfit, taxableAfterPA, incomeTax, niClass4,
+    netYearly, netMonthly, netWeekly,
+  } = mainResult;
 
   useEffect(() => {
     if (calcState === "done" && !goalInitialised) {
@@ -238,12 +262,43 @@ export default function Calculator() {
   const fallbackClassPricePerHead = classPricePerHead >= 5 ? classPricePerHead : 10;
   const fallbackClassAttendees    = classAttendees > 0 ? classAttendees : 10;
 
-  /* ── Lever mix calculations ───────────────────────────────────────────── */
-  const leverPtGross     = levers.sessions * levers.rate * 52;
-  const leverOnlineGross = levers.clients * fallbackOnlinePrice * 12;
-  const leverClassGross  = levers.classes * fallbackClassAttendees * fallbackClassPricePerHead * 52;
-  const leverTotalGross  = leverPtGross + leverOnlineGross + leverClassGross;
-  const leverNet         = calcNetFromGross(leverTotalGross);
+  /* ── Lever mix calculations (server-side) ─────────────────────────────
+     Reuses the exact same /api/income calculation as the main form —
+     the lever sliders' hypothetical sessions/clients/classes are sent in
+     place of the real inputs, with the same expenses & buffer, so there's
+     no second copy of the tax/NI logic to keep in sync. */
+  const leverCalcInputs = {
+    ptSessions: levers.sessions, ptPrice: levers.rate,
+    onlineClients: levers.clients, onlinePrice: fallbackOnlinePrice,
+    classesPerWeek: levers.classes, classAttendees: fallbackClassAttendees, classPricePerHead: fallbackClassPricePerHead,
+    gymRent, software, phone, marketing, travel,
+    insurance, cpd, equipment, accountant, membership, bufferPct,
+  };
+  const debouncedLeverInputs = useDebouncedValue(leverCalcInputs, 300);
+
+  useEffect(() => {
+    // Same cancellation-guard pattern as the main calculation effect above.
+    let cancelled = false;
+
+    fetch("/api/income", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedLeverInputs),
+    })
+      .then((res) => res.json())
+      .then((data: IncomeResult) => {
+        if (!cancelled) setLeverResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedLeverInputs]);
+
+  const leverPtGross     = leverResult.annualPt;
+  const leverOnlineGross = leverResult.annualOnline;
+  const leverClassGross  = leverResult.annualClass;
+  const leverNet         = leverResult.netYearly;
   const leverAchieved    = leverNet >= goalNet;
   const leverProgress    = goalNet > 0 ? Math.min(100, (leverNet / goalNet) * 100) : 0;
   const leverGap         = Math.max(0, goalNet - leverNet);

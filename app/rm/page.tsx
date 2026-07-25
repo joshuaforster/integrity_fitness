@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import PageHero from "../components/ui/PageHero";
 import {
@@ -8,18 +8,15 @@ import {
   CalcInputField,
   CalcIntro,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
-const calculate1RM = (w: number, r: number) => w * (1 + r / 30);
-
-const PRESCRIBED_INTENSITY = [
-  { reps: 1, pct: 1.0 },
-  { reps: 2, pct: 0.95 },
-  { reps: 3, pct: 0.93 },
-  { reps: 5, pct: 0.87 },
-  { reps: 8, pct: 0.8 },
-  { reps: 10, pct: 0.75 },
-  { reps: 12, pct: 0.7 },
-];
+// Shape returned by POST /api/rm — all the maths (Epley formula,
+// relative strength, intensity table) happens server-side, not here.
+interface RmResult {
+  oneRM: number;
+  relativeStrength: number;
+  intensityTable: { reps: number; pct: number; targetWeight: number }[];
+}
 
 const STRENGTH_STANDARDS = [
   { label: "Beginner", multiplier: 1.0, color: "bg-zinc-200" },
@@ -40,8 +37,39 @@ export default function Advanced1RMCalculator() {
   const [reps, setReps] = useState(5);
   const [bodyWeight, setBodyWeight] = useState(80);
 
-  const oneRM = calculate1RM(weight, reps);
-  const relStrength = oneRM / bodyWeight;
+  // Start with a result matching the default inputs above so the page
+  // has something to render before the first API response arrives.
+  const [result, setResult] = useState<RmResult>({
+    oneRM: 116.7,
+    relativeStrength: 116.7 / 80,
+    intensityTable: [],
+  });
+
+  // Wait until the user has stopped typing/dragging for 300ms before
+  // hitting the API — stops us firing a request on every single keystroke.
+  const debouncedInputs = useDebouncedValue({ weight, reps, bodyWeight }, 300);
+
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one
+    // if the user changes the inputs again before it comes back.
+    let cancelled = false;
+
+    fetch("/api/rm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: RmResult) => {
+        if (!cancelled) setResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
+
+  const { oneRM, relativeStrength: relStrength, intensityTable } = result;
 
   return (
     <>
@@ -189,7 +217,7 @@ export default function Advanced1RMCalculator() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-100">
-                      {PRESCRIBED_INTENSITY.map((row) => (
+                      {intensityTable.map((row) => (
                         <tr key={row.reps} className="hover:bg-zinc-50 transition-colors">
                           <td className="px-6 py-3.5 font-semibold text-zinc-700">
                             {row.reps} rep{row.reps > 1 ? "s" : ""}
@@ -198,7 +226,7 @@ export default function Advanced1RMCalculator() {
                             {(row.pct * 100).toFixed(0)}%
                           </td>
                           <td className="px-6 py-3.5 text-right font-black text-zinc-950">
-                            {(oneRM * row.pct).toFixed(1)} kg
+                            {row.targetWeight.toFixed(1)} kg
                           </td>
                         </tr>
                       ))}

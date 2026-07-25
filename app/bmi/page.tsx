@@ -13,6 +13,16 @@ import {
   CalcIntro,
   CalcInfoModal,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
+
+// Shape returned by POST /api/bmi — the BMI/WHtR/WHR formulas happen
+// server-side, not here. Classification (category, color, labels) stays
+// client-side since it's display logic, not calculation.
+interface BmiResult {
+  bmi: number;
+  whtr: number;
+  whr: number;
+}
 
 /* ── Loading facts ──────────────────────────────────────────────────────── */
 const LOADING_FACTS = [
@@ -98,6 +108,10 @@ export default function NuancedBMICalculator() {
   const [waist, setWaist] = useState(0);
   const [hip, setHip] = useState(0);
 
+  // Matches the default inputs above (180cm / 80kg / no waist or hip)
+  // so the first paint has a real number instead of a blank/zero state.
+  const [result, setResult] = useState<BmiResult>({ bmi: 24.7, whtr: 0, whr: 0 });
+
   const [calcState, setCalcState] = useState<"idle" | "loading" | "done">("idle");
   const [currentFact, setCurrentFact] = useState("");
   const [openInfo, setOpenInfo] = useState<string | null>(null);
@@ -123,11 +137,32 @@ export default function NuancedBMICalculator() {
     } catch {}
   }, [gender, height, weight, waist, hip]);
 
-  /* ── Calculations ─────────────────────────────────────────────────────── */
-  const heightM = height / 100;
-  const bmi = weight / (heightM * heightM);
-  const whtr = waist > 0 ? waist / height : 0;
-  const whr  = waist > 0 && hip > 0 ? waist / hip : 0;
+  /* ── Calculations (server-side) ───────────────────────────────────────── */
+  // Wait until the user has stopped typing/dragging for 300ms before
+  // hitting the API — stops us firing a request on every single keystroke.
+  const debouncedInputs = useDebouncedValue({ height, weight, waist, hip }, 300);
+
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one
+    // if the user changes the inputs again before it comes back.
+    let cancelled = false;
+
+    fetch("/api/bmi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: BmiResult) => {
+        if (!cancelled) setResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
+
+  const { bmi, whtr, whr } = result;
 
   const bmiMeta  = getBmiMeta(bmi);
   const whtrMeta = whtr > 0 ? getWhtrMeta(whtr) : null;
@@ -320,7 +355,7 @@ export default function NuancedBMICalculator() {
                           <motion.div className="flex items-center gap-3 mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
                             <span className={`text-sm font-bold ${bmiMeta.color}`}>{bmiMeta.category}</span>
                             <span className="text-white/30">·</span>
-                            <span className="text-sm text-white/50">{weight} kg / {heightM.toFixed(2)} m</span>
+                            <span className="text-sm text-white/50">{weight} kg / {(height / 100).toFixed(2)} m</span>
                           </motion.div>
                         </motion.div>
                       </div>

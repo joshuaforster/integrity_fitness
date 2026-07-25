@@ -13,6 +13,26 @@ import {
   CalcIntro,
   CalcInfoModal,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
+
+// Shape returned by POST /api/tdee — BMR, activity multiplier, goal
+// adjustment and macro split are all computed server-side, not here.
+interface TdeeResult {
+  bmr: number;
+  tdee: number;
+  activityMult: number;
+  targetCals: number;
+  calDiff: number;
+  proteinGrams: number;
+  fatGrams: number;
+  proteinCals: number;
+  fatCals: number;
+  carbCals: number;
+  carbGrams: number;
+  proteinPct: number;
+  fatPct: number;
+  carbPct: number;
+}
 
 /* ── Loading facts ──────────────────────────────────────────────────────── */
 const LOADING_FACTS = [
@@ -142,6 +162,27 @@ export default function TDEECalculator() {
   const [calcState, setCalcState] = useState<"idle" | "loading" | "done">(
     "idle",
   );
+
+  // Start with a result matching the default inputs above (gender: male,
+  // age: 30, weight: 80kg, height: 180cm, activityIndex: 1, formula:
+  // mifflin, goalPct: 0, proteinKg: 2.0, fatKg: 1.0) so the page has
+  // something correct to render before the first API response arrives.
+  const [result, setResult] = useState<TdeeResult>({
+    bmr: 1780,
+    tdee: 2447.5,
+    activityMult: 1.375,
+    targetCals: 2448,
+    calDiff: 0,
+    proteinGrams: 160,
+    fatGrams: 80,
+    proteinCals: 640,
+    fatCals: 720,
+    carbCals: 1088,
+    carbGrams: 272,
+    proteinPct: 26,
+    fatPct: 29,
+    carbPct: 45,
+  });
   const [currentFact, setCurrentFact] = useState("");
   const [openInfo, setOpenInfo] = useState<string | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -198,39 +239,62 @@ export default function TDEECalculator() {
     goalPct,
   ]);
 
-  /* ── Core Calculations ────────────────────────────────────────────────── */
-  let bmr = 0;
-  if (formula === "mifflin") {
-    bmr =
-      10 * weight + 6.25 * height - 5 * age + (gender === "male" ? 5 : -161);
-  } else if (formula === "harris") {
-    bmr =
-      gender === "male"
-        ? 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
-        : 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
-  } else if (formula === "katch") {
-    const lbm = weight * (1 - bodyFat / 100);
-    bmr = 370 + 21.6 * lbm;
-  }
+  /* ── Core Calculations (server-side) ─────────────────────────────────── */
+  // Wait until the user has stopped adjusting inputs for 300ms before
+  // hitting the API — stops us firing a request on every single keystroke
+  // or slider tick.
+  const debouncedInputs = useDebouncedValue(
+    {
+      gender,
+      age,
+      weight,
+      height,
+      bodyFat,
+      activityIndex,
+      formula,
+      goalPct,
+      proteinKg,
+      fatKg,
+    },
+    300,
+  );
 
-  const activityMult = ACTIVITY_LEVELS[activityIndex].value;
-  const tdee = bmr * activityMult;
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one if the
+    // user changes the inputs again before it comes back.
+    let cancelled = false;
 
-  /* ── Goal Calculations ───────────────────────────────────────────────── */
-  const targetCals = Math.round(tdee * (1 + goalPct / 100));
-  const calDiff = targetCals - Math.round(tdee);
+    fetch("/api/tdee", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: TdeeResult) => {
+        if (!cancelled) setResult(data);
+      });
 
-  const proteinGrams = Math.round(weight * proteinKg);
-  const fatGrams = Math.round(weight * fatKg);
-  const proteinCals = proteinGrams * 4;
-  const fatCals = fatGrams * 9;
-  const carbCals = targetCals - proteinCals - fatCals;
-  const carbGrams = Math.max(0, Math.round(carbCals / 4));
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
 
-  const safeTargetCals = Math.max(1, targetCals); // Prevent /0
-  const proteinPct = Math.round((proteinCals / safeTargetCals) * 100);
-  const fatPct = Math.round((fatCals / safeTargetCals) * 100);
-  const carbPct = Math.max(0, 100 - proteinPct - fatPct);
+  const {
+    bmr,
+    tdee,
+    activityMult,
+    targetCals,
+    calDiff,
+    proteinGrams,
+    fatGrams,
+    proteinCals,
+    fatCals,
+    carbCals,
+    carbGrams,
+    proteinPct,
+    fatPct,
+    carbPct,
+  } = result;
 
   function handleCalculate() {
     setCurrentFact(

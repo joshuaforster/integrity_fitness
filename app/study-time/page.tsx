@@ -13,6 +13,7 @@ import {
   CalcIntro,
   CalcAnimatedAmount,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
 /* ── Course data ──────────────────────────────────────────────────────────── */
 type CourseEntry = {
@@ -73,19 +74,17 @@ const LOADING_FACTS = [
   "A working parent studying just 5 hours a week can still complete the course within 18 months.",
 ];
 
-/* ── Calculation ──────────────────────────────────────────────────────────── */
-function getEstimate(
-  courseHoursBase: number,
-  weeklyHours: number,
-  youngChildren: boolean,
-  priorKnowledge: boolean,
-  minMonths: number
-) {
-  const courseHours = courseHoursBase * (priorKnowledge ? 0.82 : 1.0);
-  const effective   = weeklyHours * (youngChildren ? 0.72 : 1.0);
-  if (effective <= 0) return 36;
-  const raw = courseHours / (effective * 4.33);
-  return Math.max(minMonths, Math.min(36, raw));
+/* ── Server result shape ──────────────────────────────────────────────────── */
+// Mirrors the object returned by POST /api/study-time. All of the actual
+// pacing/hours/date maths now happens server-side — this component only
+// formats and displays whatever the API returns.
+interface StudyTimeResult {
+  months: number;
+  lowMonths: number;
+  highMonths: number;
+  effectiveHours: number;
+  adjustedHours: number;
+  finishDate: string; // ISO date string, computed from the server's clock
 }
 
 function getCompletionMeta(months: number) {
@@ -110,12 +109,6 @@ function getContextText(months: number): string {
   if (months <= 18)
     return "Realistic for someone with a genuinely busy life. Progress may feel slow at times, but many of Harry's most successful graduates — working parents and full-time employees included — have qualified on a similar timeline.";
   return "A longer study period, but entirely achievable. The key at this pace is consistency over intensity — even 2 to 3 hours per week will carry you over the finish line.";
-}
-
-function addMonths(date: Date, months: number): Date {
-  const d = new Date(date);
-  d.setMonth(d.getMonth() + Math.round(months));
-  return d;
 }
 
 function formatDate(date: Date) {
@@ -226,9 +219,27 @@ export default function CourseTimeEstimator() {
   const [priorKnowledge, setPriorKnowledge] = useState(false);
   const [calcState, setCalcState]           = useState<"idle" | "loading" | "done">("idle");
   const [currentFact, setCurrentFact]       = useState("");
-  const [result, setResult]                 = useState<number | null>(null);
   const [courseError, setCourseError]       = useState(false);
   const [showConfetti, setShowConfetti]     = useState(false);
+
+  // Holds the server-computed pacing/hours/date numbers for the current
+  // inputs. Initialized to match this component's default inputs (combined
+  // course, 10h/week, no young children, no prior knowledge) so there's a
+  // sane value in place before the first API response lands — not that it
+  // matters for the first paint, since results only render once calcState
+  // leaves "idle" (i.e. after the user clicks "Estimate my timeline").
+  const [apiResult, setApiResult] = useState<StudyTimeResult>({
+    months: 5.542725173,
+    lowMonths: 4.434180139,
+    highMonths: 7.205542725,
+    effectiveHours: 10,
+    adjustedHours: 240,
+    finishDate: (() => {
+      const d = new Date();
+      d.setMonth(d.getMonth() + 6);
+      return d.toISOString();
+    })(),
+  });
 
   const resultsRef   = useRef<HTMLDivElement>(null);
   const courseCardRef = useRef<HTMLDivElement>(null);
@@ -244,6 +255,44 @@ export default function CourseTimeEstimator() {
     if (found) { setSituation(id); setWeeklyHours(found.presetHours); resetResult(); }
   }
 
+  // Wait until the user has stopped changing inputs for 300ms before hitting
+  // the API — stops us firing a request on every single slider tick/click.
+  const debouncedInputs = useDebouncedValue(
+    {
+      courseHours: selectedCourse?.hours ?? MAIN_COURSES[0].hours,
+      minMonths: selectedCourse?.minMonths ?? MAIN_COURSES[0].minMonths,
+      // Separate fallback from minMonths above — matches the original
+      // client-side code, which floored the "realistic range" at 0.25
+      // months rather than a full course's minimum when no course was
+      // selected yet.
+      minMonthsFloor: selectedCourse?.minMonths ?? 0.25,
+      weeklyHours,
+      youngChildren,
+      priorKnowledge,
+    },
+    300
+  );
+
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one if the
+    // user changes the inputs again before it comes back.
+    let cancelled = false;
+
+    fetch("/api/study-time", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: StudyTimeResult) => {
+        if (!cancelled) setApiResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
+
   function handleCalculate() {
     if (!selectedCourse) {
       setCourseError(true);
@@ -251,14 +300,9 @@ export default function CourseTimeEstimator() {
       courseCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    const months = getEstimate(
-      selectedCourse.hours,
-      weeklyHours,
-      youngChildren,
-      priorKnowledge,
-      selectedCourse.minMonths
-    );
-    setResult(months);
+    // The debounced effect above keeps apiResult in sync with the current
+    // inputs already — this just drives the reveal animation/loading theatre
+    // using whatever the latest server response is by the time it resolves.
     setCurrentFact(LOADING_FACTS[Math.floor(Math.random() * LOADING_FACTS.length)]);
     setCalcState("loading");
     setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
@@ -268,23 +312,12 @@ export default function CourseTimeEstimator() {
     }, 2800);
   }
 
-  const now          = new Date();
-  const todayDate = formatDate(now);
+  const todayDate = formatDate(new Date());
 
-  const safeMonths   = result ?? getEstimate(
-    selectedCourse?.hours ?? MAIN_COURSES[0].hours,
-    weeklyHours,
-    youngChildren,
-    priorKnowledge,
-    selectedCourse?.minMonths ?? MAIN_COURSES[0].minMonths
-  );
+  const { months: safeMonths, lowMonths, highMonths, effectiveHours, adjustedHours, finishDate: finishDateIso } = apiResult;
 
   const meta           = getCompletionMeta(safeMonths);
-  const finishDate     = formatDate(addMonths(now, safeMonths));
-  const lowMonths      = Math.max(selectedCourse?.minMonths ?? 0.25, safeMonths * 0.8);
-  const highMonths     = safeMonths * 1.3;
-  const effectiveHours = Math.round(weeklyHours * (youngChildren ? 0.72 : 1.0));
-  const adjustedHours  = Math.round((selectedCourse?.hours ?? MAIN_COURSES[0].hours) * (priorKnowledge ? 0.82 : 1.0));
+  const finishDate     = formatDate(new Date(finishDateIso));
   const dur            = displayDuration(safeMonths);
   const lowDur         = displayDuration(lowMonths);
   const highDur        = displayDuration(highMonths);
@@ -490,7 +523,7 @@ export default function CourseTimeEstimator() {
                     </motion.div>
                   )}
 
-                  {calcState === "done" && result !== null && (
+                  {calcState === "done" && (
                     <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
 
                       {/* Dark hero strip */}
@@ -643,7 +676,7 @@ export default function CourseTimeEstimator() {
                                   {Math.round(lowDur.value)} to {Math.round(highDur.value)} {highDur.unit} — {meta.label}
                                 </p>
                                 <p className="text-sm text-zinc-700 leading-relaxed">
-                                  {getContextText(result)}
+                                  {getContextText(safeMonths)}
                                 </p>
                               </div>
                             </div>

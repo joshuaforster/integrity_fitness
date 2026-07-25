@@ -9,6 +9,7 @@ import {
   CalcIntro,
   CalcCTAButton,
 } from "../components/calc";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
 const STORAGE_KEY = "protein-dist-v1";
 
@@ -19,11 +20,23 @@ const INTRO_TAGS = [
   "Hypertrophy optimisation",
 ];
 
+// Shape returned by POST /api/protein — the maths (even split of daily
+// protein across meals) happens server-side, not here.
+interface ProteinResult {
+  proteinPerMeal: number;
+}
+
 export default function ProteinDistCalculator() {
   const [dailyProtein, setDailyProtein] = useState(160);
   const [meals, setMeals] = useState(4);
   const [calcState, setCalcState] = useState<"idle" | "loading" | "done">("idle");
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Start with a result matching the default inputs above so the page
+  // has something to render before the first API response arrives.
+  const [result, setResult] = useState<ProteinResult>({
+    proteinPerMeal: 160 / 4,
+  });
 
   useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -38,7 +51,31 @@ export default function ProteinDistCalculator() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ dailyProtein, meals }));
   }, [dailyProtein, meals]);
 
-  const proteinPerMeal = dailyProtein / meals;
+  // Wait until the user has stopped typing/dragging for 300ms before
+  // hitting the API — stops us firing a request on every single keystroke.
+  const debouncedInputs = useDebouncedValue({ dailyProtein, meals }, 300);
+
+  useEffect(() => {
+    // Guards against a slow, stale response overwriting a newer one
+    // if the user changes the inputs again before it comes back.
+    let cancelled = false;
+
+    fetch("/api/protein", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: ProteinResult) => {
+        if (!cancelled) setResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
+
+  const { proteinPerMeal } = result;
   const MPS_THRESHOLD_MIN = 25;
   const MPS_THRESHOLD_MAX = 40;
 

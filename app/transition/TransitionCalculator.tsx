@@ -4,7 +4,6 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { TAX } from "@/app/content/tax-config";
 import {
   CalcIntro,
   CalcCard,
@@ -15,6 +14,7 @@ import {
   CalcLoadingState,
   CalcAnimatedAmount,
 } from "@/app/components/calc";
+import { useDebouncedValue } from "@/app/hooks/useDebouncedValue";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -25,26 +25,9 @@ const GBP = (n: number, decimals = 0) =>
     maximumFractionDigits: decimals,
   }).format(n);
 
-// ── Tax model ─────────────────────────────────────────────────────────────────
-
-function seTakeHome(monthlyGross: number): number {
-  if (monthlyGross <= 0) return 0;
-  const annual = monthlyGross * 12;
-  const { personalAllowance: PA, basicRateLimit: BRL, basicRate, higherRate,
-          ni4LowerLimit, ni4UpperLimit, ni4MainRate, ni4UpperRate } = TAX;
-  let tax = 0;
-  if (annual > PA) {
-    tax = Math.min(annual - PA, BRL - PA) * basicRate;
-    if (annual > BRL) tax += (annual - BRL) * higherRate;
-  }
-  let ni4 = 0;
-  if (annual > ni4LowerLimit) {
-    ni4 = Math.min(annual - ni4LowerLimit, ni4UpperLimit - ni4LowerLimit) * ni4MainRate;
-    if (annual > ni4UpperLimit) ni4 += (annual - ni4UpperLimit) * ni4UpperRate;
-  }
-  const class2 = annual > ni4LowerLimit ? 3.45 * 52 : 0;
-  return Math.max(0, (annual - tax - ni4 - class2) / 12);
-}
+// Tax model, month-by-month projection, and break-even/salary-match metrics all
+// run server-side now (see app/api/transition/route.ts). Only the type shapes
+// stay here, so the fetched JSON has something to type against.
 
 // ── Data model ────────────────────────────────────────────────────────────────
 
@@ -74,42 +57,6 @@ interface MonthData {
   savingsBalance: number;
 }
 
-function buildModel(inp: Inputs): MonthData[] {
-  const { employedTakeHome, monthlyExpenses, bizCosts, savings,
-          noticePeriod, targetSessions, sessionRate, rampMonths,
-          existingSessions, classesPerWeek, classRate,
-          incomeBufferPct, partTimeMonthlyTakeHome, partTimeMonths } = inp;
-  const totalExp = monthlyExpenses + bizCosts;
-  const bufferFactor = 1 - (incomeBufferPct ?? 0) / 100;
-  const existingGross = existingSessions * (52 / 12) * sessionRate;
-  const classGross = classesPerWeek * (52 / 12) * classRate;
-
-  const rows: MonthData[] = [];
-  let bal = savings;
-
-  for (let m = -noticePeriod; m <= 0; m++) {
-    const ptTH = seTakeHome(existingGross * bufferFactor);
-    const income = employedTakeHome + ptTH;
-    const net = income - totalExp;
-    bal += net;
-    rows.push({ month: m, phase: "notice", totalIncome: income, expenses: totalExp, net, savingsBalance: bal });
-  }
-
-  for (let m = 1; m <= 24; m++) {
-    const progress = rampMonths > 0 ? Math.min(1, m / rampMonths) : 1;
-    const sessions = existingSessions + (targetSessions - existingSessions) * progress;
-    const ptGross = sessions * (52 / 12) * sessionRate;
-    const ptIncome = seTakeHome((ptGross + classGross) * bufferFactor);
-    const ptSupplement = (partTimeMonthlyTakeHome ?? 0) > 0 && m <= (partTimeMonths ?? 0) ? (partTimeMonthlyTakeHome ?? 0) : 0;
-    const income = ptIncome + ptSupplement;
-    const net = income - totalExp;
-    bal += net;
-    rows.push({ month: m, phase: m <= rampMonths ? "ramp" : "steady", totalIncome: income, expenses: totalExp, net, savingsBalance: bal });
-  }
-
-  return rows;
-}
-
 interface Metrics {
   targetTakeHome: number;
   totalExpenses: number;
@@ -120,28 +67,10 @@ interface Metrics {
   requiredBuffer: number;
   savingsSufficient: boolean;
   recoveryMonth: number | null;
-}
-
-function calcMetrics(months: MonthData[], inp: Inputs): Metrics {
-  const targetPTGross = inp.targetSessions * (52 / 12) * inp.sessionRate;
-  const targetClassGross = inp.classesPerWeek * (52 / 12) * inp.classRate;
-  const bufferFactor = 1 - (inp.incomeBufferPct ?? 0) / 100;
-  const targetTakeHome = seTakeHome((targetPTGross + targetClassGross) * bufferFactor);
-  const totalExpenses = inp.monthlyExpenses + inp.bizCosts;
-  const selfMonths = months.filter((m) => m.month > 0);
-
-  const breakEvenMonth = selfMonths.find((m) => m.totalIncome >= totalExpenses)?.month ?? null;
-  const salaryMatchMonth = selfMonths.find((m) => m.totalIncome >= inp.employedTakeHome)?.month ?? null;
-  const lowestRow = months.reduce((a, b) => (b.savingsBalance < a.savingsBalance ? b : a));
-  const requiredBuffer = Math.max(0, -lowestRow.savingsBalance);
-  const recoveryRow = selfMonths.find((m) => m.savingsBalance >= inp.savings);
-
-  return {
-    targetTakeHome, totalExpenses, breakEvenMonth, salaryMatchMonth,
-    lowestSavingsBalance: lowestRow.savingsBalance, lowestSavingsMonth: lowestRow.month,
-    requiredBuffer, savingsSufficient: lowestRow.savingsBalance >= 0,
-    recoveryMonth: recoveryRow?.month ?? null,
-  };
+  // Whether target self-employed income (pre-ramp, unbuffered) still sits below
+  // expenses — drives the "Dip" phase copy below. Computed server-side since it
+  // reuses the same take-home tax formula as the rest of the model.
+  hasDip: boolean;
 }
 
 // ── Loading facts ─────────────────────────────────────────────────────────────
@@ -473,6 +402,14 @@ export default function TransitionCalculator() {
   const [currentFact, setCurrentFact] = useState("");
   const [showConfetti, setShowConfetti] = useState(false);
 
+  // Months/metrics now come from POST /api/transition instead of a local useMemo.
+  // Results only render once calcState is "done" (after the CTA click), so an
+  // empty starting value here never shows up as a blank flash on first paint.
+  const [{ months, metrics }, setResult] = useState<{ months: MonthData[]; metrics: Metrics | null }>({
+    months: [],
+    metrics: null,
+  });
+
   const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -497,12 +434,44 @@ export default function TransitionCalculator() {
     inp.targetSessions > 0 &&
     inp.sessionRate > 0;
 
-  const { months, metrics } = useMemo(() => {
-    if (!isValid) return { months: [] as MonthData[], metrics: null };
-    const m = buildModel(inp);
-    return { months: m, metrics: calcMetrics(m, inp) };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inp]);
+  // Wait until the user has stopped typing/dragging for 300ms before hitting the
+  // API — the model computes 25 months of figures per request, so we don't want
+  // to fire that on every keystroke or slider tick.
+  const debouncedInputs = useDebouncedValue(inp, 300);
+
+  useEffect(() => {
+    // Mirror the old synchronous guard: don't call the API for inputs that don't
+    // clear the minimum validity bar (e.g. £0 expenses) — just clear the result,
+    // the same way the useMemo used to return { months: [], metrics: null }.
+    const debouncedValid =
+      debouncedInputs.employedTakeHome > 0 &&
+      debouncedInputs.monthlyExpenses > 0 &&
+      debouncedInputs.targetSessions > 0 &&
+      debouncedInputs.sessionRate > 0;
+
+    if (!debouncedValid) {
+      setResult({ months: [], metrics: null });
+      return;
+    }
+
+    // Guards against a slow, stale response overwriting a newer one if the user
+    // changes the inputs again before this request comes back.
+    let cancelled = false;
+
+    fetch("/api/transition", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(debouncedInputs),
+    })
+      .then((res) => res.json())
+      .then((data: { months: MonthData[]; metrics: Metrics }) => {
+        if (!cancelled) setResult(data);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedInputs]);
 
   function handleCalculate() {
     if (!isValid || !metrics) return;
@@ -533,7 +502,8 @@ export default function TransitionCalculator() {
     }
 
     const dipEnd = breakEvenMonth ?? inp.rampMonths;
-    const hasDip = metrics.totalExpenses > seTakeHome(inp.existingSessions * (52 / 12) * inp.sessionRate + inp.classesPerWeek * (52 / 12) * inp.classRate);
+    // hasDip is computed server-side (see Metrics type) since it reuses the take-home tax formula.
+    const hasDip = metrics.hasDip;
     list.push({
       num: list.length === 0 ? "01" : "02",
       label: "The Dip",
