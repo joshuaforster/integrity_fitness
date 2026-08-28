@@ -165,7 +165,7 @@ export default function ProductPageClient({
                     ...(qual.durationMonths
                       ? [{ label: "Completion", value: qual.durationMonths }]
                       : []),
-                    { label: "Delivery", value: "1-to-1 with Harry" },
+                    { label: "Delivery", value: "1-to-1 with Paris" },
                   ].map(({ label, value }) => (
                     <div
                       key={label}
