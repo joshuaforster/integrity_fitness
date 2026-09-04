@@ -3,9 +3,9 @@
 export const footerContent = {
   brandCopy: "One-to-one fitness education in Norwich, Norfolk. CIMSPA accredited, Level 3 qualified, and built around you.",
   locationHeading: "Location",
-  addressLine1: "Complete Fitness Gym",
-  addressLine2: "Whiffler Road, Norwich",
-  addressLine3: "Norfolk, NR3 2AW",
+  addressLine1: "2 Marriot Close",
+  addressLine2: "Heigham Street, Norwich",
+  addressLine3: "Norfolk, NR2 4UX",
   copyright: "© 2026 Integrity Fitness Education Ltd. All rights reserved.",
   badge: "CIMSPA Accredited · Norwich, Norfolk",
   companyInfo: "Integrity Fitness Education Ltd · Company No. 13487683 · Registered office: 22 Oval Avenue, Norwich, England, NR5 0DP",
