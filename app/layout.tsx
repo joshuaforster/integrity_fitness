@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   description:
     "Integrity Fitness Education offers professional personal trainer courses and fitness qualifications in Norwich, Norfolk. Start your fitness career today.",
   icons: {
-    icon: 'images/ife.ico',
+    icon: '/images/ife.ico',
   },
   openGraph: {
     siteName: "Integrity Fitness Education",
