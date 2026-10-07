@@ -5,6 +5,7 @@ import Button from "@/app/components/ui/Button";
 import FooterNavColumn from "./FooterNavColumn";
 import { footerContent, footerNavQualifications, footerNavCompany, footerNavLegal } from "@/app/content/navigation";
 
+
 const NAVIGATION = {
   social: [
     {
@@ -38,7 +39,7 @@ export default function Footer() {
           <div className="space-y-6 flex flex-col items-start">
             <Image
               src="https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/General/logo_white.png"
-              alt=""
+              alt="Brand Logo"
               width={110}
               height={37}
               priority
@@ -90,7 +91,8 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="text-white text-xs tracking-wide">{footerContent.copyright}</p>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-4 sm:mt-0">
+              
               {/* Stripe trust badge */}
               <div className="flex items-center gap-2 text-white/50">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -101,12 +103,11 @@ export default function Footer() {
                   />
                 </svg>
                 <span className="text-xs">Payments secured by</span>
-                <span className="text-xs font-bold text-white/70 tracking-wide">Stripe</span>
+                <span className="text-xs font-bold text-white tracking-wide">Stripe</span>
               </div>
-              <p className="text-white text-xs tracking-wide font-medium">{footerContent.badge}</p>
             </div>
           </div>
-          <p className="text-white text-xs leading-relaxed max-w-4xl">
+          <p className="text-white text-xs leading-relaxed max-w-4xl mt-4 sm:mt-0">
             {footerContent.companyInfo}
           </p>
         </div>

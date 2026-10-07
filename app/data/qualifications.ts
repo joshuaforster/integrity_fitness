@@ -59,7 +59,7 @@ const qualifications: Qualification[] = [
     badge: "Most Popular",
     overview: [
       "Our Combined Level 2 & 3 Diploma is the most direct path to becoming a fully qualified personal trainer. Rather than taking the two qualifications separately, you complete both in a single integrated programme — saving you time and money without cutting corners on quality.",
-      "Delivered entirely one-to-one with Harry, every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students — it is personal education in the truest sense.",
+      "Every session is built around you. Your schedule, your learning style, your career goals. This is not a group course where you get lost in a room of twenty students — it is personal education in the truest sense.",
       "On completion you will hold a CIMSPA-accredited, internationally recognised qualification that opens the door to employment in gyms, leisure centres, and independent personal training practice.",
     ],
     whatYouWillLearn: [
@@ -230,7 +230,7 @@ const qualifications: Qualification[] = [
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-AND-PARIS-20220124-IFE-TGGNCC002.jpg",
     overview: [
       "The Level 2 Gym Instructor Certificate is the industry-standard entry qualification for anyone looking to begin a career in fitness. It equips you with everything you need to work safely and effectively on a gym floor.",
-      "Delivered one-to-one with Harry, you will build a genuine foundation of knowledge — anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
+      "You will build a genuine foundation of knowledge — anatomy, physiology, equipment use, and how to design basic exercise programmes for a range of clients.",
       "If you already know you want to go further, you can upgrade to the Combined Level 2 & 3 Diploma at any point and the cost of this course will be credited against it.",
     ],
     whatYouWillLearn: [
@@ -377,7 +377,7 @@ const qualifications: Qualification[] = [
     heroImage: "https://pub-6e6bb53af6c34756a861d2c0a8259e84.r2.dev/TGG%20Norwich/HARRY-PARIS-CLOE-2-20220124-IFE-TGGNCC010.jpg",
     overview: [
       "The Level 3 Personal Training Qualification is designed for those who already hold a Level 2 Gym Instructor certificate and are ready to take the next step. This is the qualification that allows you to work with clients independently — designing programmes, coaching sessions, and building a business.",
-      "Working one-to-one with Harry, you will develop advanced coaching skills, programme design knowledge, and the commercial understanding needed to thrive as a self-employed personal trainer.",
+      "You will develop advanced coaching skills, programme design knowledge, and the commercial understanding needed to thrive as a self-employed personal trainer.",
       "The qualification is CIMSPA accredited and internationally recognised, meaning your certification is respected wherever your career takes you.",
     ],
     whatYouWillLearn: [
